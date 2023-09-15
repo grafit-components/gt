@@ -16,6 +16,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
+          cache: 'npm'
       - run: npm ci
       - run: npm run build components
       - run: npm run build app
@@ -24,10 +25,10 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app
-          path: dist/app   
+          path: dist/app
           
       - name: Archive components artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: app
+          name: components
           path: dist/components
