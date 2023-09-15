@@ -2,17 +2,13 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x, 18.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -21,4 +17,17 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm ci
-      - run: npm run build
+      - run: npm run build components
+      - run: npm run build app
+      
+      - name: Archive app artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: app
+          path: dist/app   
+          
+      - name: Archive components artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: app
+          path: dist/components
