@@ -1,12 +1,22 @@
 name: CD
 
+# on:
+#   release:
+#     types: [published, prereleased]
+
 on:
-  release:
-    types: [published, prereleased]
+  push
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
-    name: Create Release
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -21,6 +31,7 @@ jobs:
       - run: npm run build components
       - name: Build app
       - run: npm run build app
+      
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
