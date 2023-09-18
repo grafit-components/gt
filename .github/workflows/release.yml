@@ -30,11 +30,8 @@ jobs:
         with:
           node-version: '18.x'
           cache: 'npm'
-      - name: Install packages
       - run: npm ci      
-      - name: Build components
       - run: npm run build components
-      - name: Build app
       - run: npm run build app
       
       - name: Setup Pages
