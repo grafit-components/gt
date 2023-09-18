@@ -1,4 +1,4 @@
-name: Node.js CI
+name: CI
 
 on:
   push:
@@ -17,18 +17,21 @@ jobs:
         with:
           node-version: '18.x'
           cache: 'npm'
+      - name: Install packages
       - run: npm ci
+      - name: Build components
       - run: npm run build components
+      - name: Build app
       - run: npm run build app
       
-      - name: Archive app artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: app
-          path: dist/app
+      # - name: Archive app artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: app
+      #     path: dist/app
           
-      - name: Archive components artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: components
-          path: dist/components
+      # - name: Archive components artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: components
+      #     path: dist/components
