@@ -1,8 +1,8 @@
 name: CD
 
 on:
- release:
-   types: [published, prereleased]
+  release:
+    types: [ published, prereleased ]
 
 permissions:
   contents: read
@@ -22,22 +22,34 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
           cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
+
       - run: |
           npm ci
           npm run build-components
           npm run build-app
+
+      - run: |
+          npm version ${{ github.ref_name }}
+          npm publish --access public
+        working-directory: ./dist/components
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: './dist/app'
+          path: ./dist/app
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
