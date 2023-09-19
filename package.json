@@ -4,9 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build-components": "ng build components",
+    "build-app": "ng build app --base-href /gt/ && npm run copy-index",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "copy-index": "node -e \"require('fs').copyFile('dist/app/index.html', 'dist/app/404.html', function(err) { })\""
   },
   "private": true,
   "dependencies": {
