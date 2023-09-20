@@ -1,0 +1,40 @@
+<ng-container *ngIf="column.columns && column.columns.length > 0">
+  <div class="grid__head__group__container">
+    <div class="grid__head__group__caption">
+      {{column.caption}}
+    </div>
+    <div class="grid__head__group__children">
+      <ng-container *ngFor="let col of column.columns; let i = index;">
+        <itsk-grid-head-group
+          class="grid__head__group"
+          *ngIf="!col.hidden"
+          [rootIndex]="rootIndex"
+          [selfIndex]="i"
+          [allColumns]="allColumns"
+          [column]="col"
+          [state]="state"
+          [selectType]="selectType"
+          [selectRowsBy]="selectRowsBy"
+          [style.flex-grow]="col.flex"
+          [style.flex-basis.px]="(col.width)"
+          [style.min-width.px]="(col.width)"></itsk-grid-head-group>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="!column.columns || column.columns.length === 0">
+  <itsk-grid-head-cell
+    *ngIf="!column.hidden"
+    draggable="true"
+    class="grid__head__cell"
+    [rootIndex]="rootIndex"
+    [selfIndex]="selfIndex"
+    [style.flex-grow]="column.flex"
+    [style.flex-basis.px]="(column.width)"
+    [style.min-width.px]="(column.width)"
+    [allColumns]="allColumns"
+    [column]="column"
+    [state]="state"
+    [selectType]="selectType"
+    [selectRowsBy]="selectRowsBy"></itsk-grid-head-cell>
+</ng-container>

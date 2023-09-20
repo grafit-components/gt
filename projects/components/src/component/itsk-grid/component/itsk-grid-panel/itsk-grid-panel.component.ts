@@ -1,0 +1,95 @@
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, QueryList, Type} from '@angular/core';
+import {Observable} from 'rxjs';
+import {ItskGridDictionary} from '../../model/itsk-grid-dictionary';
+import {GridPanelContentDirective} from '../../directive/grid-panel-content.directive';
+import {GridPanelButtonDirective} from '../../directive/grid-panel-button.directive';
+import {DetailComponentBase} from '../../model/detail-component-base';
+import {IId} from '../../model/grid-row';
+import {ItskGridConfigService} from '../../service/itsk-grid-config.service';
+
+@Component({
+  selector: 'itsk-grid-panel',
+  templateUrl: './itsk-grid-panel.component.html',
+  styleUrls: ['./itsk-grid-panel.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class ItskGridPanelComponent<T extends IId> implements OnInit {
+  _showDetails: boolean;
+  _showFilter: boolean;
+  _showColumns: boolean;
+  _showCustom: boolean;
+
+  @Output() showDetailsChange: EventEmitter<boolean> = new EventEmitter();
+  @Output() showFilterChange: EventEmitter<boolean> = new EventEmitter();
+  @Output() showColumnsChange: EventEmitter<boolean> = new EventEmitter();
+  @Output() showCustomChange: EventEmitter<boolean> = new EventEmitter();
+
+  @Input() showFilterButton: boolean;
+  @Input() showColumnsButton: boolean;
+  @Input() showDetailsButton: boolean;
+  @Input() detailComponent: Type<DetailComponentBase<T>>;
+
+  @Input()
+  set showDetails(val: boolean) {
+    this._showDetails = val;
+  }
+
+  @Input()
+  set showFilter(val: boolean) {
+    this._showFilter = val;
+  }
+
+  @Input()
+  set showColumns(val: boolean) {
+    this._showColumns = val;
+  }
+
+  @Input()
+  set showCustom(val: boolean) {
+    this._showCustom = val;
+  }
+
+  @Input() panelButtons: QueryList<GridPanelButtonDirective>;
+  @Input() panelContent: GridPanelContentDirective;
+
+  dict: Observable<ItskGridDictionary>;
+
+  constructor(private _config: ItskGridConfigService) {
+    this.dict = _config.dict;
+  }
+
+  ngOnInit() {
+  }
+
+  changeFilters() {
+    this._showFilter = !this._showFilter;
+    this._showColumns = false;
+    this._showCustom = false;
+    this.emit();
+  }
+
+  changeColumns() {
+    this._showColumns = !this._showColumns;
+    this._showCustom = false;
+    this._showFilter = false;
+    this.emit();
+  }
+
+  changeCustom() {
+    this._showCustom = !this._showCustom;
+    this._showColumns = false;
+    this._showFilter = false;
+    this.emit();
+  }
+
+  changeDetails() {
+    this._showDetails = !this._showDetails;
+    this.showDetailsChange.emit(this._showDetails);
+  }
+
+  private emit() {
+    this.showFilterChange.emit(this._showFilter);
+    this.showColumnsChange.emit(this._showColumns);
+    this.showCustomChange.emit(this._showCustom);
+  }
+}

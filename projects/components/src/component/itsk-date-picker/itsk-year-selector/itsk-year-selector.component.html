@@ -1,0 +1,12 @@
+<div class="datepicker__year"
+     (wheel)="scrollYearSelector($event);">
+  <div class="datepicker__year__item"
+       [class.datepicker__year__item_active]="year === currentYear"
+       [class.datepicker__year__item_disabled]="isYearDisabled(year)"
+       [class.datepicker__year__item_current]="year === today?.getFullYear()"
+       (click)="setYear($event, year)"
+       (dblclick)="applyYear($event, year)"
+       *ngFor="let year of years">
+    {{year}}
+  </div>
+</div>

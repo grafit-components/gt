@@ -1,0 +1,28 @@
+<div class="scrollbar scrollbar_hidden container_auto menu__container">
+  <itsk-menu-item *ngFor="let item of items"
+                  [template]="template"
+                  (itemClick)="navigate($event)"
+                  (itemToggle)="openItem($event)"
+                  [isOpen]="openChild === item"
+                  [item]="item"></itsk-menu-item>
+  <div class="menu__group"
+       *ngFor="let group of groups">
+    <div class="menu__title">
+      {{group.name}}
+    </div>
+    <itsk-menu-item *ngFor="let groupItem of group.items"
+                    (itemClick)="navigate($event)"
+                    (itemToggle)="openItem($event)"
+                    [template]="template"
+                    [isOpen]="openChild === groupItem"
+                    [item]="groupItem"></itsk-menu-item>
+  </div>
+</div>
+<itsk-menu-items
+  *ngIf="openChild"
+  [menu]="openChild.children"
+  [template]="template"
+  (itemClick)="navigate($event)"
+  class="menu_absolute menu__items"
+  (itskClickOutside)="clearChild()"
+></itsk-menu-items>

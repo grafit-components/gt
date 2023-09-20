@@ -1,0 +1,15 @@
+<div class="notification__container"
+     [class.notification__container_left]="align === ItskAlign.Left"
+     [class.notification__container_center]="align === ItskAlign.Center"
+     [class.notification__container_right]="align === ItskAlign.Right"
+     [class.notification__container_top]="verticalAlign === ItskVerticalAlign.Top"
+     [class.notification__container_middle]="verticalAlign === ItskVerticalAlign.Middle"
+     [class.notification__container_bottom]="verticalAlign === ItskVerticalAlign.Bottom">
+  <itsk-notification-item
+          *ngFor="let notify of notifications; let i=index"
+          (closed)="closedItem($event)"
+          [notification]="notify"
+          [index]="i"
+          [template]="template">
+  </itsk-notification-item>
+</div>

@@ -1,0 +1,24 @@
+<div #container
+     class="notification base-shape base-shape_primary"
+     [ngClass]="notification.className"
+     [class.base-shape_info]="notification.level === ItskNotificationLevel.Info"
+     [class.base-shape_success]="notification.level === ItskNotificationLevel.Success"
+     [class.base-shape_warning]="notification.level === ItskNotificationLevel.Warn"
+     [class.base-shape_error]="notification.level === ItskNotificationLevel.Error"
+     (mouseenter)="reset()" (mouseleave)="init()">
+  <div class="container align-center justify-content-between">
+    <div class="container overflow-hidden">
+      <itsk-icon *ngIf="notification.iconName != null" [name]="notification.iconName" class="margin-r-2"></itsk-icon>
+      <div class="font-title2 text-short">
+        {{notification.head}}
+      </div>
+    </div>
+    <itsk-icon [name]="'icon-x-close-outline'" (click)="closeMe($event)" class="cursor_pointer"></itsk-icon>
+  </div>
+  <div class="notification-content">
+    <div class="font-body3">
+      {{notification.text}}
+    </div>
+    <ng-container *ngTemplateOutlet="template; context: {$implicit: notification}"></ng-container>
+  </div>
+</div>

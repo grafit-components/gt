@@ -1,0 +1,7 @@
+.equality {
+  display: none;
+}
+
+:host:hover .equality {
+  display: inline-block;
+}

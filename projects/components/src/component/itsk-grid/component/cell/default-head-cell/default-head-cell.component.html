@@ -1,0 +1,7 @@
+<div style="max-width: 100%; display: flex"
+     [itskHint]="column.hint || column.caption">
+  <span class="grid__head__cell__text">
+  {{column.caption}}
+    <ng-container *ngIf="column.unit">, {{column.unit}}</ng-container>
+</span>
+</div>

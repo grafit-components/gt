@@ -1,0 +1,55 @@
+<div class="grid__head__dropdown"
+     [style.top.px]="top"
+     [style.bottom.px]="bottom"
+     [style.left.px]="left"
+     [style.right.px]="right"
+     *ngIf="column !== null && column !== undefined">
+  <itsk-tabs>
+    <itsk-tab *ngIf="column.filterable">
+      <ng-template itskTabTitle>
+        Фильтр
+      </ng-template>
+      <ng-template itskTabContent>
+        <div class="padding-v-3">
+          <itsk-filter-wrapper class="scrollbar" style="max-height: 50vh" [state]="state$" [column]="column"></itsk-filter-wrapper>
+        </div>
+      </ng-template>
+    </itsk-tab>
+    <itsk-tab>
+      <ng-template itskTabTitle>
+        Колонки
+      </ng-template>
+      <ng-template itskTabContent>
+        <itsk-grid-columns-settings
+          class="scrollbar nowrap"
+          style="max-height: 50vh"
+          (click)="$event.stopPropagation()"
+          [columns]="allColumns"
+          (columnsChange)="changeColumns($event)"></itsk-grid-columns-settings>
+      </ng-template>
+    </itsk-tab>
+  </itsk-tabs>
+  <div class="list__delimiter"></div>
+  <ng-container *ngIf="dict | async as dictionary">
+    <div class="border-t-s border-color_default display-flex justify-content-between">
+      <div>
+        <button class="button_default"
+                *ngIf="column.filterable"
+                [title]="dictionary.clearFilter"
+                (click)="clearFilter(column, $event)">
+          <itsk-icon [name]="'icon-filter_clear-conus-x-filled'"></itsk-icon>
+        </button>
+        <button class="button_default margin-l-2"
+                [title]="column.locked ? dictionary.unpinColumn : dictionary.pinColumn"
+                (click)="pinColumn(column, $event)">
+          <itsk-icon [name]="column.locked ? 'icon-pin_off-hold-outline' : 'icon-pin_on-hold-outline'"></itsk-icon>
+        </button>
+      </div>
+      <button class="button_primary"
+              *ngIf="column.filterable"
+              (click)="applyFilter($event)">
+        {{dictionary.apply}}
+      </button>
+    </div>
+  </ng-container>
+</div>

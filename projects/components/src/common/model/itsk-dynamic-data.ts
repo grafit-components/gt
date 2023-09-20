@@ -1,0 +1,11 @@
+export class ItskDynamicData {
+  [key: string]: any;
+
+  constructor(value: { [key: string]: any }) {
+    for (const key in value) {
+      if (value.hasOwnProperty(key)) {
+        this[key] = value[key];
+      }
+    }
+  }
+}

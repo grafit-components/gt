@@ -1,0 +1,8 @@
+<span [style.display]="edit ? 'none' : 'block'" class="grid__cell_text">
+  {{row.data[column.name] | date : 'dd.MM.yyyy HH:mm:ss'}}
+</span>
+<itsk-month-picker #input
+                   *ngIf="edit"
+                   style="flex-grow: 1"
+                   [fixed]="true"
+                   [(ngModel)]="row.data[column.name]"></itsk-month-picker>

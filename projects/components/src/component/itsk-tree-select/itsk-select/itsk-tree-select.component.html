@@ -1,0 +1,101 @@
+<itsk-dropdown
+  [autoClose]="true"
+  [(open)]="panelOpen"
+  [canOpen]="!disabled"
+  [fixed]="fixed">
+  <ng-template itskDropdownHead>
+    <div class="select__head"
+         [class.select__head_focus]="focused"
+         [ngSwitch]="viewType">
+      <ng-container *ngIf="valueTemplate">
+        <ng-container *ngTemplateOutlet="valueTemplate.templateRef; context: {$implicit:selectedItem}"></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="viewTypeEnum.inline">
+        <ng-container
+          *ngTemplateOutlet="textTemplate || defaultTextTemplate; context: {item : selectedItem}"></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="viewTypeEnum.template">
+        <ng-container *ngTemplateOutlet="selectedRef; context: {item : selectedItem}"></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="viewTypeEnum.inlineMulti">
+        {{getInlineMulti()}}
+      </ng-container>
+      <ng-container *ngSwitchCase="viewTypeEnum.block">
+        <div class="select__values">
+          <div class="select__values__title">Выбрано - {{selectedItem && selectedItem.length}} из {{itemsCount}}</div>
+          <div class="select__values__list">
+            <div *ngFor="let item of selectedItem" class="button_default margin-r-1 margin-b-1 padding-l-0">
+              <div class="padding-2 container align-center"
+                   *ngIf="!disabled"
+                   (click)="_select(item); elementRef.nativeElement.focus(); $event.stopPropagation();"
+                   tabindex="-1">
+                <itsk-icon [name]="'icon-x-close-outline'"></itsk-icon>
+              </div>
+              <ng-container
+                *ngTemplateOutlet="textTemplate || defaultTextTemplate; context: {item : item}"></ng-container>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="viewTypeEnum.templateMulti">
+        <div style="display: flex;">
+          <ng-container *ngFor="let item of selectedItem">
+            <ng-container *ngTemplateOutlet="selectedRef; context: {item : item}"></ng-container>
+          </ng-container>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="viewTypeEnum.notSelected">
+        <span class="select_placeholder">{{placeholder}}</span>
+      </ng-container>
+      <ng-container *ngSwitchCase="viewTypeEnum.notSelectedTemplate">
+        <ng-container *ngTemplateOutlet="placeholder"></ng-container>
+      </ng-container>
+      <i class="icon icon-delete select__icon-delete select__icon"
+         *ngIf="showClearButton && hasValue && !disabled"
+         (click)="erase()"></i>
+      <itsk-icon [name]="'icon-triangle-down-arrow-filled'" class="select__icon"></itsk-icon>
+    </div>
+  </ng-template>
+  <ng-template itskDropdownContent>
+    <div class="options">
+      <div class="padding-3" *ngIf="hasSearch">
+        <input #searchInput
+               class="input__field"
+               type="search"
+               [(ngModel)]="searchText"
+               (focusout)="searchFocusout($event)"
+               tabindex="-1">
+      </div>
+
+      <itsk-tree [data]="items"
+                 [open]="panelOpen"
+                 [control]="treeControl"
+                 class="scrollbar"
+                 [style.max-height]="height"
+                 style="padding-left: 24px">
+        <itsk-tree-item *itskTreeTemplate="let item; let control = control"
+                        [style.display]="hiddenItems.has(item) ? 'none' : ''"
+                        [itskMark]="!hasChildren(item) ? searchText : ''"
+                        (click)="allowSelection(item) ? _select(item) : control.toggle(item)">
+          <div class="tree__toggle" (click)="control.toggle(item); $event.stopPropagation()" *ngIf="hasChildren(item)">
+            <i class="icon tree__toggle_icon"
+               [class.icon-plus-square]="!control.isExpanded(item)"
+               [class.icon-minus-square]="control.isExpanded(item)"></i>
+          </div>
+          <div [class.options__item_active]="_isSelected(item)"
+               [class.options__item_focus]="item === focusedItem">
+            <ng-container *ngIf="hasChildren(item)">
+              <ng-container *ngTemplateOutlet="groupTemplate || textTemplate || defaultTextTemplate; context: {item: item, expanded: control.isExpanded(item)}"></ng-container>
+            </ng-container>
+            <ng-container *ngIf="!hasChildren(item)">
+              <ng-container *ngTemplateOutlet="textTemplate || defaultTextTemplate; context: {item : item}"></ng-container>
+            </ng-container>
+          </div>
+        </itsk-tree-item>
+      </itsk-tree>
+    </div>
+  </ng-template>
+</itsk-dropdown>
+<ng-template #defaultTextTemplate let-item="item">
+  <span class="select__head__text">{{getText(item)}}</span>
+</ng-template>

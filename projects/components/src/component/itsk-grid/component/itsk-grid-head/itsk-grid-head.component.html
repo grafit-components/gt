@@ -1,0 +1,50 @@
+<div class="grid__head__left"
+     *ngIf="locked?.length"
+     [style.flex-grow]="lockedFlex"
+     [style.min-width.px]="lockedBasis"
+     [style.flex-basis.px]="lockedBasis">
+  <ng-container>
+    <div class="grid__head__row grid__head__row__left">
+      <ng-container *ngFor="let column of locked; trackBy: track; let i = index;">
+        <itsk-grid-head-group
+          class="grid__head__group"
+          *ngIf="!column.hidden"
+          [rootIndex]="i"
+          [selfIndex]="0"
+          [column]="column"
+          [allColumns]="columns"
+          [state]="state$"
+          [selectType]="selectType"
+          [selectRowsBy]="selectRowsBy"
+          [style.flex-grow]="column.flex"
+          [style.flex-basis.px]="(column.width)"
+          [style.min-width.px]="(column.width)"></itsk-grid-head-group>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>
+<div class="grid__head__right"
+     [style.flex-grow]="unlockedFlex"
+     [style.min-width.px]="unlockedBasis"
+     [style.flex-basis.px]="unlockedBasis">
+  <ng-container *ngIf="unlocked?.length">
+    <div class="grid__head__row">
+      <ng-container *ngFor="let column of unlocked; trackBy: track; let i = index;">
+        <itsk-grid-head-group
+          class="grid__head__group"
+          *ngIf="!column.hidden"
+          [rootIndex]="i + locked?.length"
+          [selfIndex]="0"
+          [column]="column"
+          [allColumns]="columns"
+          [state]="state$"
+          [selectType]="selectType"
+          [selectRowsBy]="selectRowsBy"
+          [style.flex-grow]="column.flex"
+          [style.flex-basis.px]="(column.width)"
+          [style.min-width.px]="(column.width)"></itsk-grid-head-group>
+      </ng-container>
+      <div *ngIf="isChromium" style="flex-grow: 1; min-width: 0;flex-shrink: 0;max-width: 6px; flex-basis: 6px;"></div>
+    </div>
+  </ng-container>
+</div>
