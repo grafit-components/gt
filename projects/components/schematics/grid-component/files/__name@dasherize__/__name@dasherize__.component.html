@@ -1,0 +1,13 @@
+<div class="data-panel" [itskSpinner]="dataTransport">
+    <% if (grouped) { %><app-itsk-grid-grouped [GridOptions]="gridOptions"
+                           [Columns]="columns"
+                           [Data]="data"
+                           (rowDoubleClicked)="rowDbClicked($event)"
+                           (rowSelected)="rowSelected($event)">
+    </app-itsk-grid-grouped><% } else { %><app-itsk-grid [GridOptions]="gridOptions"
+                   [Columns]="columns"
+                   [Data]="data"
+                   (rowDoubleClicked)="rowDbClicked($event)"
+                   (rowSelected)="rowSelected($event)">
+    </app-itsk-grid><% } %>
+</div>

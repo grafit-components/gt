@@ -1,0 +1,21 @@
+<div class="app">
+  <div class="toolbar block-main" style="z-index: 1">
+    <itsk-menu-button #menuComponent>
+      <button class="block-main__button_secondary" menuButton>
+        <i class="icon icon-apps"></i>
+      </button>
+      <button class="button_secondary" [routerLink]="'/'">
+        Главная
+      </button>
+      <itsk-menu [menu]="menu">
+      </itsk-menu>
+    </itsk-menu-button>
+    <div style="margin-left: auto">
+      <app-theme-switch></app-theme-switch>
+    </div>
+  </div>
+  <div class="container_auto container" style="z-index: 0">
+    <router-outlet></router-outlet>
+  </div>
+  <itsk-notifications></itsk-notifications>
+</div>
