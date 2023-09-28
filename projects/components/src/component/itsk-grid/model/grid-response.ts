@@ -2,7 +2,7 @@ import {GridRow, IId} from './grid-row';
 import {Paging} from '../../itsk-pager/model/paging';
 
 export class GridResponse<T extends IId> {
-  paging: Paging;
+  paging?: Paging;
   result: GridRow<T>[] = [];
 
   constructor(options?: {

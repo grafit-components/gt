@@ -20,10 +20,10 @@ export class ItskGridAggregateComponent<T extends IId> implements OnInit, OnDest
 
   locked: GridColumn[] = [];
   unlocked: GridColumn[] = [];
-  lockedBasis: number;
-  unlockedBasis: number;
-  lockedFlex: number;
-  unlockedFlex: number;
+  lockedBasis?: number;
+  unlockedBasis?: number;
+  lockedFlex?: number;
+  unlockedFlex?: number;
 
   set columns(columns: GridColumn[]) {
     this.columns$ = GridUtil.flattenColumns(columns).filter(_ => _.hidden !== true);
@@ -38,11 +38,11 @@ export class ItskGridAggregateComponent<T extends IId> implements OnInit, OnDest
   /**
    * Настройки грида
    */
-  @Input() aggregateComponent: Type<AggregateComponentBase<T>>;
+  @Input() aggregateComponent?: Type<AggregateComponentBase<T>>;
   /**
    * Данные для отображения
    */
-  @Input() data: GridRow<T>;
+  @Input() data?: GridRow<T>;
 
   // @Input() hoveredColumn: string;
 

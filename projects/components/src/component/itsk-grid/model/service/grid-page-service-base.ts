@@ -10,7 +10,7 @@ import {GridColumn} from '../grid-column';
 type Ctor<T> = new (...params: any[]) => T;
 
 export abstract class GridPageServiceBase<T extends IId> {
-  private dataSubscription: Subscription;
+  private dataSubscription?: Subscription;
 
   protected data$: Subject<GridResponse<T>> = new Subject<GridResponse<T>>();
   data: Observable<GridResponse<T>> = this.data$.asObservable();
@@ -120,7 +120,7 @@ export abstract class GridPageServiceBase<T extends IId> {
         }
       }
     }
-    return this.http.get(`api/${this.controllerName}/${this.getConfigAction}`, {
+    return this.http.get<any>(`api/${this.controllerName}/${this.getConfigAction}`, {
       params
     }).pipe(map((config: any[]) => {
       if (config && config.length) {

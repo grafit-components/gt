@@ -17,8 +17,8 @@ export class ItskValidateGroupDirective implements AfterContentChecked {
   @Output() errors: EventEmitter<string[]> = new EventEmitter();
   @Output() warnings: EventEmitter<string[]> = new EventEmitter();
 
-  @ContentChildren(ItskValidateDirective) validators: QueryList<ItskValidateDirective>;
-  invalid: boolean;
+  @ContentChildren(ItskValidateDirective) validators?: QueryList<ItskValidateDirective>;
+  invalid: boolean = false;
 
   constructor() {
   }
@@ -36,12 +36,12 @@ export class ItskValidateGroupDirective implements AfterContentChecked {
         this.itskValidateGroup.emit(this.invalid);
         if (invalid) {
           this.errors.emit(invalid.map((x) => {
-            return x.errorMessage;
+            return x.errorMessage ?? '';
           }));
         }
         if (warnings && warnings.length) {
           this.warnings.emit(warnings.map((x) => {
-            return x.warningMessage;
+            return x.warningMessage ?? '';
           }));
         }
       }

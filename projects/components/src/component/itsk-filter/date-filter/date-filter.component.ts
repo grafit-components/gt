@@ -21,12 +21,12 @@ import {FilterColumn} from '../model/filter-column';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DateFilterComponent extends FilterComponentBase implements OnInit {
-  filter: DateFilter;
+  filter: DateFilter = new DateFilter();
 
-  @Input() column: FilterColumn;
+  @Input() column: FilterColumn = new FilterColumn();
   @Output() filterChanged: EventEmitter<FilterBase> = new EventEmitter<FilterBase>();
 
-  state$: FilterState;
+  state$: FilterState = new FilterState();
 
   @Input()
   set state(val: FilterState) {

@@ -1,5 +1,5 @@
 <span [style.display]="edit ? 'none' : 'block'" class="grid__cell_text">
-  {{row.data[column.name] | date : 'dd.MM.yyyy HH:mm:ss'}}
+  {{row?.data[column?.name] | date : 'dd.MM.yyyy HH:mm:ss'}}
 </span>
 <itsk-date-picker #input
                   class="border-0px border-radius-0"

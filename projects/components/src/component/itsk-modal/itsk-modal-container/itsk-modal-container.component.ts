@@ -9,7 +9,7 @@ import {ItskModalCloseReason} from '../model/itsk-modal-close-reason.enum';
   styleUrls: ['./itsk-modal-container.component.scss']
 })
 export class ItskModalContainerComponent implements OnInit {
-  @Input() config: ItskModalConfig;
+  @Input() config?: ItskModalConfig;
   @Output() closeEvent = new EventEmitter<IModalResult>();
 
   @HostBinding('attr.tabindex') tabindex = -1;
@@ -41,7 +41,7 @@ export class ItskModalContainerComponent implements OnInit {
   }
 
   @HostListener('click', ['$event']) click(event: MouseEvent) {
-    if (this.config.backdrop === true && this.elRef$.nativeElement === event.target) {
+    if (this.config?.backdrop === true && this.elRef$.nativeElement === event.target) {
       this.closeEvent.emit({
         reason: ItskModalCloseReason.Backdrop
       });

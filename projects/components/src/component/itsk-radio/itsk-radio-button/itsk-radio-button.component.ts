@@ -17,15 +17,15 @@ export class ItskRadioButtonComponent implements OnInit, OnDestroy {
   radioButton = true;
 
   @HostBinding('class.radio-selected')
-  selected: boolean;
+  selected: boolean = false;
 
   @Input()
   @HostBinding('class.radio-checked')
-  checked: boolean;
+  checked: boolean = false;
 
   @Input()
   @HostBinding('class.radio__button_disabled')
-  disabled: boolean;
+  disabled: boolean = false;
 
   @Input() set value(val: any) {
     this._value = val;

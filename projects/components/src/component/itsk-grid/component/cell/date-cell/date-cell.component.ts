@@ -12,31 +12,32 @@ import {ItskGridService} from '../../../service/itsk-grid.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DateCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
-  @Input() column: GridColumn;
-  @Input() row: GridRow<any>;
-  @ViewChild('input', {static: false}) input: ItskDatePickerComponent;
+  @Input() column?: GridColumn;
+  @Input() row?: GridRow<any>;
+  @ViewChild('input', {static: false}) input?: ItskDatePickerComponent;
 
-  constructor(protected svc$: ItskGridService<T>, protected cdr$: ChangeDetectorRef) {
+  constructor(svc$: ItskGridService<T>, cdr$: ChangeDetectorRef) {
     super(svc$, cdr$);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     super.ngOnInit();
   }
 
   setValue(value: Date) {
+    if(this.row && this.column)
     this.row.data[this.column.name] = value;
     this.valueChanged();
   }
 
-  startEdit() {
+  override startEdit() {
     setTimeout(() => {
-      this.input.openPicker(true);
+      this.input?.openPicker(true);
       this.cdr$.markForCheck();
     }, 0);
   }
 
-  stopEdit() {
+  override stopEdit() {
     this.cdr$.markForCheck();
   }
 }

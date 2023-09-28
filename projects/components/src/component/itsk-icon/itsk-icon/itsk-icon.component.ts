@@ -9,14 +9,14 @@ import {iconName} from '../icon-name';
 })
 export class ItskIconComponent implements OnInit {
   @Input()
-  name: iconName | string;
+  name?: iconName | string;
 
   get iconId() {
     return `#${this.name}`;
   }
 
   @Input()
-  cssClass: string;
+  cssClass?: string;
 
   constructor() {
   }

@@ -9,37 +9,37 @@ import {DefaultHeadCellComponent} from '../default-head-cell/default-head-cell.c
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeadCellComponent implements OnInit {
-  private componentRef: ComponentRef<HeadCellComponentBase>;
-  private init: boolean;
+  private componentRef?: ComponentRef<HeadCellComponentBase>;
+  private init: boolean = false;
 
-  @Input() column: GridColumn;
+  @Input() column?: GridColumn;
 
-  sorted$: boolean;
+  sorted$: boolean = false;
 
   @Input()
   set sorted(val: boolean) {
     this.sorted$ = val;
-    if (this.init) {
+    if (this.init && this.componentRef) {
       this.componentRef.instance.sorted = this.sorted$;
     }
   }
 
-  filtered$: boolean;
+  filtered$: boolean = false;
 
   @Input()
   set filtered(val: boolean) {
     this.filtered$ = val;
-    if (this.init) {
+    if (this.init && this.componentRef) {
       this.componentRef.instance.filtered = this.filtered$;
     }
   }
 
-  asc$: boolean;
+  asc$: boolean = false;
 
   @Input()
   set asc(val: boolean) {
     this.asc$ = val;
-    if (this.init) {
+    if (this.init && this.componentRef) {
       this.componentRef.instance.asc = this.asc$;
     }
   }
@@ -61,6 +61,9 @@ export class HeadCellComponent implements OnInit {
     // if (!HeadCellComponentBase.isPrototypeOf(this.column.headCellComponent)) {
     //   throw new Error('Head cell component must extend HeadCellComponentBase');
     // }
+    if (!this.column) {
+      return;
+    }
     this.column.headCellComponent = this.getHeadCellComponent(this.column);
     const compFactory = this.componentFactoryResolver.resolveComponentFactory<HeadCellComponentBase>(this.column.headCellComponent);
     this.componentRef = this.viewContainerRef.createComponent<HeadCellComponentBase>(compFactory);

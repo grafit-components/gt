@@ -13,6 +13,7 @@ import {FilterColumn} from '../model/filter-column';
 import {FilterBase} from '../model/filter-base';
 import {FilterState} from '../../itsk-grid/model/filter-state';
 import {DateFilterValue} from '../model/date-filter-value';
+import {GridColumn} from "../../itsk-grid/model/grid-column";
 
 @Component({
   selector: 'itsk-month-filter',
@@ -21,12 +22,12 @@ import {DateFilterValue} from '../model/date-filter-value';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MonthFilterComponent extends FilterComponentBase implements OnInit {
-  filter: DateFilter;
+  filter: DateFilter = this.getFilter();
 
-  @Input() column: FilterColumn;
+  @Input() column: FilterColumn = new FilterColumn();
   @Output() filterChanged: EventEmitter<FilterBase> = new EventEmitter<FilterBase>();
 
-  state$: FilterState;
+  state$?: FilterState;
 
   @Input()
   set state(val: FilterState) {
@@ -37,7 +38,7 @@ export class MonthFilterComponent extends FilterComponentBase implements OnInit 
   }
 
   get state() {
-    return this.state$;
+    return this.state$ as any;
   }
 
   constructor(private changeDetector: ChangeDetectorRef) {

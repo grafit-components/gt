@@ -1,10 +1,10 @@
 export class ItskPickerLocaleModel {
-  dayNames: string[];
-  dayNamesShort: string[];
-  dayNamesMin: string[];
-  monthNames: string[];
-  monthNamesShort: string[];
-  today: string;
+  dayNames: string[] = [];
+  dayNamesShort: string[] = [];
+  dayNamesMin: string[] = [];
+  monthNames: string[] = [];
+  monthNamesShort: string[] = [];
+  today: string = '';
 
   public constructor(options?: {
     dayNames: string[],

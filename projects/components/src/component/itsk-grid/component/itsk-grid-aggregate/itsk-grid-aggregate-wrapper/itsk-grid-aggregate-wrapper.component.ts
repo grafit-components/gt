@@ -8,12 +8,12 @@ import {AggregateComponentBase} from '../../../model/aggregate-component-base';
   template: ''
 })
 export class ItskGridAggregateWrapperComponent<T extends IId> implements OnInit {
-  private componentRef: ComponentRef<any>;
+  private componentRef?: ComponentRef<any>;
 
-  @Input() locked: boolean;
-  @Input() data: GridRow<T>;
+  @Input() locked: boolean = false;
+  @Input() data?: GridRow<T>;
 
-  private columns$: GridColumn[];
+  private columns$?: GridColumn[];
 
   @Input()
   set columns(val: GridColumn[]) {
@@ -23,13 +23,14 @@ export class ItskGridAggregateWrapperComponent<T extends IId> implements OnInit 
     }
   }
 
-  @Input() aggregateComponent: Type<AggregateComponentBase<T>>;
+  @Input() aggregateComponent?: Type<AggregateComponentBase<T>>;
 
   constructor(private viewContainerRef: ViewContainerRef,
               private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   ngOnInit() {
+    if(!this.aggregateComponent) {return}
     if (!AggregateComponentBase.isPrototypeOf(this.aggregateComponent)) {
       throw new Error('Aggregate component must extend AggregateComponentBase');
     }

@@ -5,8 +5,8 @@ import {ItskModalContainerComponent} from '../itsk-modal-container/itsk-modal-co
 import {ItskContentRef} from '../../../common/model/itsk-content-ref';
 
 export class ItskModalInstance {
-  private onClose$: Subject<IModalResult> = new Subject<IModalResult>();
-  onClose: Observable<IModalResult> = this.onClose$.asObservable();
+  private onClose$: Subject<IModalResult | undefined> = new Subject<IModalResult | undefined>();
+  onClose = this.onClose$.asObservable();
 
   constructor(private window$: ComponentRef<ItskModalContainerComponent>,
               private content$: ItskContentRef) {

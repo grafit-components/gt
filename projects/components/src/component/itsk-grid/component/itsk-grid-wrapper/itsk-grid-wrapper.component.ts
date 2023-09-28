@@ -47,52 +47,52 @@ export class ItskGridWrapperComponent<T extends IId> implements IGridWrapper<T> 
   /**
    * Данные для отображения в таблице
    */
-  @Input() data: GridRow<T>[];
-  @Input() aggregate: GridRow<T>;
+  @Input() data?: GridRow<T>[];
+  @Input() aggregate?: GridRow<T>;
 
   // hoveredColumn: string;
 
-  @ContentChildren(GridPanelButtonDirective, {descendants: false}) panelButtons: QueryList<GridPanelButtonDirective>;
-  @ContentChildren(GridCustomPanelDirective, {descendants: false}) panelCustom: QueryList<GridCustomPanelDirective>;
-  @ContentChild(GridPanelContentDirective, {static: false}) panelContent: GridPanelContentDirective;
+  @ContentChildren(GridPanelButtonDirective, {descendants: false}) panelButtons?: QueryList<GridPanelButtonDirective>;
+  @ContentChildren(GridCustomPanelDirective, {descendants: false}) panelCustom?: QueryList<GridCustomPanelDirective>;
+  @ContentChild(GridPanelContentDirective, {static: false}) panelContent?: GridPanelContentDirective;
 
-  @ViewChild(ItskGridComponent) grid: ItskGridComponent<T>;
+  @ViewChild(ItskGridComponent) grid?: ItskGridComponent<T>;
 
-  @Input() columns: GridColumn[];
-  @Input() state: FilterState;
+  @Input() columns?: GridColumn[];
+  @Input() state?: FilterState;
   @Output() stateChange: EventEmitter<FilterState> = new EventEmitter();
-  @Input() paging: Paging;
+  @Input() paging?: Paging;
   @Output() pagingChange: EventEmitter<Paging> = new EventEmitter();
   @Input() stateful = true;
-  @Input() cookieName: string;
-  @Input() virtual: boolean;
+  @Input() cookieName?: string;
+  @Input() virtual: boolean = false;
   @Input() showPager = true;
   @Input() showActionPanel = true;
   @Input() showFilterButton = true;
-  @Input() showFilter: boolean;
+  @Input() showFilter: boolean = false;
   @Output() showFilterChange: EventEmitter<boolean> = new EventEmitter();
   @Input() showColumnsButton = true;
-  @Input() showColumns: boolean;
+  @Input() showColumns: boolean = false;
   @Output() showColumnsChange: EventEmitter<boolean> = new EventEmitter();
   @Input() showDetailsButton = true;
-  @Input() showDetails: boolean;
+  @Input() showDetails: boolean = false;
   @Output() showDetailsChange: EventEmitter<boolean> = new EventEmitter();
-  @Input() showCustom: boolean;
+  @Input() showCustom: boolean = false;
   @Output() showCustomChange: EventEmitter<boolean> = new EventEmitter();
-  @Input() detailComponent: Type<DetailComponentBase<any>>;
-  @Input() additionalComponent: Type<AdditionalComponentBase<any>>;
-  @Input() aggregateComponent: Type<AggregateComponentBase<any>>;
-  @Input() activeRow: GridRow<T>;
+  @Input() detailComponent?: Type<DetailComponentBase<any>>;
+  @Input() additionalComponent?: Type<AdditionalComponentBase<any>>;
+  @Input() aggregateComponent?: Type<AggregateComponentBase<any>>;
+  @Input() activeRow?: GridRow<T>;
   @Output() activeRowChange: EventEmitter<GridRow<T>> = new EventEmitter();
   /** Выбранные стргоки */
-  @Input() selectedRows: GridRow<T>[];
+  @Input() selectedRows?: GridRow<T>[];
   @Output() selectedRowsChange: EventEmitter<GridRow<T>[]> = new EventEmitter();
   @Input() selectRowsBy: ItskGridSelectRowsByType = 'mouse';
   @Input() selectType: ItskGridSelectType = 'single';
 
   @Output() rowLeft = new EventEmitter<GridRow<T>>();
-  @Output() rowClick = new EventEmitter<ICellEvent<T>>();
-  @Output() rowDoubleClick = new EventEmitter<ICellEvent<T>>();
+  @Output() rowClick = new EventEmitter<any>();
+  @Output() rowDoubleClick = new EventEmitter<ICellCoordinates<T>>();
   @Output() bodyLeft = new EventEmitter<GridRow<T>>();
   @Output() rowEditStart = new EventEmitter<GridRow<T>>();
   @Output() rowEditEnd = new EventEmitter<GridRow<T>>();
@@ -101,7 +101,7 @@ export class ItskGridWrapperComponent<T extends IId> implements IGridWrapper<T> 
   @Output() cellFocus = new EventEmitter<ICellEvent<T>>();
   @Output() cellEditStart = new EventEmitter<ICellCoordinates<T>>();
   @Output() cellEditEnd = new EventEmitter<ICellCoordinates<T>>();
-  @Output() valueChange = new EventEmitter<ICellCoordinates<T>>();
+  @Output() valueChange = new EventEmitter<ICellCoordinates<T> | null>();
   @Output() cellKeyUp = new EventEmitter<ICellEvent<T>>();
   @Input() rowSelectable: boolean | ((row: GridRow<T>) => boolean) | ((row: GridRow<T>) => Promise<boolean>) = true;
   @Input() rowEditable: boolean | ((row: GridRow<T>) => boolean) | ((row: GridRow<T>) => Promise<boolean>) = true;
@@ -109,11 +109,11 @@ export class ItskGridWrapperComponent<T extends IId> implements IGridWrapper<T> 
   @Input() editType: ItskGridEditType = ItskGridEditType.Cell;
   @Input() editOn: ItskGridEditEvent = ItskGridEditEvent.Click;
   @Input() editMode: ItskGridEditMode = ItskGridEditMode.Single;
-  @Input() grouping: boolean;
+  @Input() grouping: boolean = false;
   @Input() groupingType: GroupingType = GroupingType.Row;
   @Input() groupRowComponent: Type<GroupRowComponentBase<T>> = GroupRowDefaultComponent;
-  @Input() openLevels: number;
-  @Input() tree: boolean;
+  @Input() openLevels?: number;
+  @Input() tree: boolean = false;
 
   constructor() {
   }
@@ -145,6 +145,7 @@ export class ItskGridWrapperComponent<T extends IId> implements IGridWrapper<T> 
 
   setState(state: FilterState) {
     this.state = new FilterState(state);
+    if(this.cookieName)
     this.state.save(this.cookieName);
     this.stateChange.emit(this.state);
   }

@@ -30,21 +30,21 @@ import {ItskFilterHelper} from '../model/itsk-filter-helper';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskFilterPanelComponent implements OnInit, OnChanges {
-  filters$: FilterColumn[];
+  filters$: FilterColumn[] = [];
   dict: Observable<ItskGridDictionary>;
-  showActive: boolean;
-  templates: any[];
+  showActive: boolean = false;
+  templates: any[] = [];
 
   @HostBinding('class.filter-panel') css = true;
 
-  @Input() cookieName: string;
+  @Input() cookieName: string = '';
 
   @Input()
   set columns(val: GridColumn[]) {
-    this.filters$ = val;
+    this.filters$ = val as any;
   }
 
-  state$: FilterState;
+  state$: FilterState = new FilterState();
 
   @Input()
   set state(val: FilterState) {

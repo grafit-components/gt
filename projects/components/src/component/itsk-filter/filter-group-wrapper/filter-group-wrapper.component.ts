@@ -12,12 +12,12 @@ import {ItskFilterHelper} from '../model/itsk-filter-helper';
 })
 export class FilterGroupWrapperComponent implements OnInit {
   @Input()
-  column: FilterColumn;
+  column?: FilterColumn;
 
   @Input()
-  state: FilterState;
+  state?: FilterState;
 
-  @Input() showActive: boolean;
+  @Input() showActive: boolean = false;
 
   @Output() filterChanged: EventEmitter<FilterBase> = new EventEmitter();
 

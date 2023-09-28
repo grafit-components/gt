@@ -32,13 +32,13 @@ export class ItskMenuItemsComponent<T extends IItskMenuItem> implements OnInit, 
     }
   }
 
-  @Input() template: TemplateRef<any>;
+  @Input() template?: TemplateRef<any>;
 
   @Output() itemClick = new EventEmitter<T>();
 
   @Output() itemToggle = new EventEmitter<T>();
 
-  openChild: IItskMenuItem | null;
+  openChild: IItskMenuItem | null = null;
 
   constructor(private cdr$: ChangeDetectorRef) {
   }

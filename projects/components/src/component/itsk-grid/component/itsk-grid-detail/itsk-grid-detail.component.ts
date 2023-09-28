@@ -19,15 +19,16 @@ import {DetailComponentBase} from '../../model/detail-component-base';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskGridDetailComponent<T extends IId> implements OnInit {
-  private componentRef: ComponentRef<DetailComponentBase<T>>;
-  private init: boolean;
+  private componentRef?: ComponentRef<DetailComponentBase<T>>;
+  private init: boolean = false;
 
-  row$: GridRow<T>;
+  row$?: GridRow<T>;
 
   @Input()
-  set row(value: GridRow<T>) {
+  set row(value: GridRow<T> | undefined) {
+    if(!value)return
     this.row$ = value;
-    if (this.init) {
+    if (this.init && this.componentRef) {
       this.componentRef.instance.row = value;
       this.componentRef.injector.get(ChangeDetectorRef).markForCheck();
     }
@@ -37,12 +38,13 @@ export class ItskGridDetailComponent<T extends IId> implements OnInit {
     return this.row$;
   }
 
-  columns$: GridColumn[];
+  columns$?: GridColumn[];
 
   @Input()
-  set columns(value: GridColumn[]) {
+  set columns(value: GridColumn[] | undefined) {
+    if(!value) return;
     this.columns$ = value;
-    if (this.init) {
+    if (this.init && this.componentRef) {
       this.componentRef.instance.columns = value;
       this.componentRef.changeDetectorRef.detectChanges();
     }
@@ -52,19 +54,21 @@ export class ItskGridDetailComponent<T extends IId> implements OnInit {
     return this.columns$;
   }
 
-  @Input() detailComponent: Type<DetailComponentBase<T>>;
+  @Input() detailComponent?: Type<DetailComponentBase<T>>;
 
   constructor(private viewContainerRef: ViewContainerRef,
               private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   ngOnInit() {
-    if (!DetailComponentBase.isPrototypeOf(this.detailComponent)) {
+    if (!this.detailComponent || !DetailComponentBase.isPrototypeOf(this.detailComponent)) {
       throw new Error('Details component must extend DetailComponentBase');
     }
     const compFactory = this.componentFactoryResolver.resolveComponentFactory<DetailComponentBase<T>>(this.detailComponent);
     this.componentRef = this.viewContainerRef.createComponent<DetailComponentBase<T>>(compFactory);
+    if(this.row)
     this.componentRef.instance.row = this.row;
+    if(this.columns)
     this.componentRef.instance.columns = this.columns;
     this.componentRef.changeDetectorRef.markForCheck();
     this.init = true;

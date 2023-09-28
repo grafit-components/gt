@@ -30,7 +30,7 @@ export const MONTH_PICKER_CONTROL_VALUE_ACCESSOR: any = {
 export class ItskMonthPickerComponent implements ControlValueAccessor, OnInit, OnDestroy {
   ItskDatePickerMode = ItskDatePickerMode;
   subs = true;
-  open: boolean;
+  open: boolean = false;
   /**
    * показать иконку
    */
@@ -46,19 +46,19 @@ export class ItskMonthPickerComponent implements ControlValueAccessor, OnInit, O
   /**
    * css класс, который будет применен к input
    */
-  @Input() className: string[];
+  @Input() className: string[] = [];
   /**
    * компонент неактивен
    */
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   /**
    * Минимальная доступная дата
    */
-  @Input() minDate: Date;
+  @Input() minDate?: Date;
   /**
    * Максимальная доступная дата
    */
-  @Input() maxDate: Date;
+  @Input() maxDate?: Date;
   /**
    * Показывать конпку выбора "сегодня"
    */
@@ -68,9 +68,9 @@ export class ItskMonthPickerComponent implements ControlValueAccessor, OnInit, O
    */
   @Input() fixed = true;
 
-  locale: ItskPickerLocaleModel;
+  locale?: ItskPickerLocaleModel;
   // showPicker: boolean;
-  public today: Date;
+  public today: Date = new Date();
 
   displayMode: ItskDatePickerMode = ItskDatePickerMode.Month;
 
@@ -93,7 +93,7 @@ export class ItskMonthPickerComponent implements ControlValueAccessor, OnInit, O
   /**
    * Текущий месяц
    */
-  currentMonth$: number | null;
+  currentMonth$: number | null = null;
 
   get currentMonth(): number | null {
     return this.currentMonth$;
@@ -111,7 +111,7 @@ export class ItskMonthPickerComponent implements ControlValueAccessor, OnInit, O
   /**
    * Текущий год
    */
-  currentYear$: number | null;
+  currentYear$: number | null = null;
 
   get currentYear(): number | null {
     return this.currentYear$;

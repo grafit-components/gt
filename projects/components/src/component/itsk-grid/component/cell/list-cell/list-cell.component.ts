@@ -20,25 +20,25 @@ import {ItskSelectComponent} from '../../../../itsk-select/itsk-select/itsk-sele
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
-  column$: GridColumn;
+  column$?: GridColumn;
 
   @Input()
   set column(val: GridColumn) {
     this.column$ = val;
   }
 
-  get column(): GridColumn {
+  get column(): GridColumn | undefined {
     return this.column$;
   }
 
-  row$: GridRow<any>;
+  row$?: GridRow<any>;
 
   @Input()
   set row(val: GridRow<any>) {
     this.row$ = val;
   }
 
-  get row(): GridRow<any> {
+  get row(): GridRow<any> | undefined {
     return this.row$;
   }
 
@@ -46,16 +46,16 @@ export class ListCellComponent<T extends IId> extends CellComponentBase<T> imple
     return this.getValue();
   }
 
-  @ViewChild('input', {static: false}) input: ItskSelectComponent;
+  @ViewChild('input', {static: false}) input?: ItskSelectComponent;
 
   // edit: boolean;
 
   getValue() {
-    if (this.column$.filterOptions === null || this.column$.filterOptions === undefined || !(this.column$.filterOptions instanceof Array)) {
+    if (this.column$?.filterOptions === null || this.column$?.filterOptions === undefined || !(this.column$.filterOptions instanceof Array)) {
       return '';
     }
-    const item = this.column$.filterOptions.find((option) => {
-      return option.id === this.row$.data[this.column$.name];
+    const item = this.column$?.filterOptions.find((option) => {
+      return option.id === this.row$?.data[this.column$?.name ?? 0];
     });
     if (item === null || item === undefined) {
       return '';
@@ -63,25 +63,25 @@ export class ListCellComponent<T extends IId> extends CellComponentBase<T> imple
     return item.name;
   }
 
-  constructor(protected svc$: ItskGridService<T>, protected cdr$: ChangeDetectorRef) {
+  constructor(svc$: ItskGridService<T>, cdr$: ChangeDetectorRef) {
     super(svc$, cdr$);
   }
 
-  startEdit() {
-    if (!this.column$.editable) {
+  override startEdit() {
+    if (!this.column$?.editable) {
       return;
     }
     setTimeout(() => {
-      this.input.open();
+      this.input?.open();
       this.cdr$.markForCheck();
     }, 0);
   }
 
-  stopEdit() {
+  override stopEdit() {
     this.cdr$.markForCheck();
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     super.ngOnInit();
   }
 }

@@ -8,7 +8,7 @@ export class ItskMarkDirective {
 
     @Input() hideWithoutMark = false;
 
-    @Input() set itskMark(text: string) {
+    @Input() set itskMark(text: string | null | undefined) {
         setTimeout(() => {
             if (this.temp$) { // что бы не искать в уже измененном доме надо вернуть как было
                 this.elementRef.nativeElement.innerHTML = this.temp$;

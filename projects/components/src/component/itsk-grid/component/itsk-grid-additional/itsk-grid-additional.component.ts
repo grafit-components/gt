@@ -19,12 +19,12 @@ import {AdditionalComponentBase} from '../../model/additional-component-base';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskGridAdditionalComponent<T extends IId> implements OnInit {
-  private componentRef: ComponentRef<any>;
+  private componentRef?: ComponentRef<any>;
 
-  @Input() locked: boolean;
-  @Input() row: GridRow<T>;
+  @Input() locked: boolean = false;
+  @Input() row?: GridRow<T>;
 
-  private columns$: GridColumn[];
+  private columns$?: GridColumn[];
 
   @Input()
   set columns(val: GridColumn[]) {
@@ -34,14 +34,14 @@ export class ItskGridAdditionalComponent<T extends IId> implements OnInit {
     }
   }
 
-  @Input() additionalComponent: Type<AdditionalComponentBase<T>>;
+  @Input() additionalComponent?: Type<AdditionalComponentBase<T>>;
 
   constructor(private viewContainerRef: ViewContainerRef,
               private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   ngOnInit() {
-    if (!AdditionalComponentBase.isPrototypeOf(this.additionalComponent)) {
+    if (!this.additionalComponent || !AdditionalComponentBase.isPrototypeOf(this.additionalComponent)) {
       throw new Error('Additional component must extend AdditionalComponentBase');
     }
     const compFactory =

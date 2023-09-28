@@ -21,9 +21,9 @@ import {getRealPosition} from '../../util/dom-util';
 export class ItskHintDirective implements OnDestroy {
   @HostBinding('class.position-relative') relative = true;
 
-  private instance$: ComponentRef<ItskHintContainerComponent> | null;
-  @Input() itskHint: string | TemplateRef<any> | Type<any>;
-  @Input() itskHintClass: string | string[];
+  private instance$: ComponentRef<ItskHintContainerComponent> | null = null;
+  @Input() itskHint?: string | TemplateRef<any> | Type<any>;
+  @Input() itskHintClass?: string | string[];
   @Input() zIndex = 1;
 
   private readonly element$: HTMLElement;
@@ -67,6 +67,7 @@ export class ItskHintDirective implements OnDestroy {
       injector,
       this.overlay$.getContainer());
     const rect = getRealPosition(this.element$);
+    if(this.itskHintClass)
     hint.instance.class = this.itskHintClass;
     hint.instance.zIndex = this.zIndex;
     hint.instance.bottom = window.innerHeight - rect.top;

@@ -14,7 +14,7 @@ export class ItskValidateDirective implements OnInit {
   private _message: any;
 
   /* Field has error */
-  private _error: boolean;
+  private _error: boolean = false;
 
   @Input()
   set error(val: boolean) {
@@ -27,7 +27,7 @@ export class ItskValidateDirective implements OnInit {
   }
 
   /* Field has warning */
-  private _warn: boolean;
+  private _warn: boolean = false;
 
   @Input()
   set warn(val: boolean) {
@@ -39,10 +39,10 @@ export class ItskValidateDirective implements OnInit {
     return this._warn;
   }
 
-  @Input() required: boolean;
-  @Input() errorMessage: string;
-  @Input() warningMessage: string;
-  @Input() disabled: boolean;
+  @Input() required: boolean = false;
+  @Input() errorMessage?: string;
+  @Input() warningMessage?: string;
+  @Input() disabled: boolean = false;
   @Input() markGood = false;
 
   @HostBinding('attr.disabled')

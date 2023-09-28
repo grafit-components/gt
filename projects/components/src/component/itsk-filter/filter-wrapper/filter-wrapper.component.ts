@@ -27,23 +27,23 @@ import {StringFilterComponent} from '../string-filter/string-filter.component';
 })
 export class FilterWrapperComponent implements OnInit, OnDestroy, OnChanges {
   private subs = true;
-  private column$: FilterColumn;
+  private column$: FilterColumn = new FilterColumn();
 
   @Input()
   set column(val: FilterColumn) {
     this.column$ = val;
-    if (this.init) {
+    if (this.init && this.componentRef) {
       this.componentRef.instance.filterField = this.column$;
       this.componentRef.injector.get(ChangeDetectorRef).detectChanges();
     }
   }
 
-  private state$: FilterState;
+  private state$: FilterState = new FilterState();
 
   @Input()
   set state(val: FilterState) {
     this.state$ = val;
-    if (this.init) {
+    if (this.init && this.componentRef) {
       this.componentRef.instance.state = this.state$;
       this.componentRef.injector.get(ChangeDetectorRef).detectChanges();
     }
@@ -51,8 +51,8 @@ export class FilterWrapperComponent implements OnInit, OnDestroy, OnChanges {
 
   @Output() filterChanged: EventEmitter<FilterBase> = new EventEmitter();
 
-  private componentRef: ComponentRef<any>;
-  private init: boolean;
+  private componentRef?: ComponentRef<any>;
+  private init: boolean = false;
 
   constructor(private viewContainerRef: ViewContainerRef,
               private componentFactoryResolver: ComponentFactoryResolver) {

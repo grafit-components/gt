@@ -1,4 +1,4 @@
-<ng-container *ngIf="column.columns && column.columns.length > 0">
+<ng-container *ngIf="column?.columns && column?.columns?.length > 0">
   <div class="grid__head__group__container">
     <div class="grid__head__group__caption">
       {{column.caption}}
@@ -22,7 +22,7 @@
     </div>
   </div>
 </ng-container>
-<ng-container *ngIf="!column.columns || column.columns.length === 0">
+<ng-container *ngIf="!column?.columns || column?.columns?.length === 0">
   <itsk-grid-head-cell
     *ngIf="!column.hidden"
     draggable="true"

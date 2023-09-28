@@ -14,20 +14,20 @@ import {ItskGridConfigService} from '../../service/itsk-grid-config.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskGridPanelComponent<T extends IId> implements OnInit {
-  _showDetails: boolean;
-  _showFilter: boolean;
-  _showColumns: boolean;
-  _showCustom: boolean;
+  _showDetails: boolean = false;
+  _showFilter: boolean = false;
+  _showColumns: boolean = false;
+  _showCustom: boolean = false;
 
   @Output() showDetailsChange: EventEmitter<boolean> = new EventEmitter();
   @Output() showFilterChange: EventEmitter<boolean> = new EventEmitter();
   @Output() showColumnsChange: EventEmitter<boolean> = new EventEmitter();
   @Output() showCustomChange: EventEmitter<boolean> = new EventEmitter();
 
-  @Input() showFilterButton: boolean;
-  @Input() showColumnsButton: boolean;
-  @Input() showDetailsButton: boolean;
-  @Input() detailComponent: Type<DetailComponentBase<T>>;
+  @Input() showFilterButton: boolean = false;
+  @Input() showColumnsButton: boolean = false;
+  @Input() showDetailsButton: boolean= false;
+  @Input() detailComponent?: Type<DetailComponentBase<T>>;
 
   @Input()
   set showDetails(val: boolean) {
@@ -49,8 +49,8 @@ export class ItskGridPanelComponent<T extends IId> implements OnInit {
     this._showCustom = val;
   }
 
-  @Input() panelButtons: QueryList<GridPanelButtonDirective>;
-  @Input() panelContent: GridPanelContentDirective;
+  @Input() panelButtons?: QueryList<GridPanelButtonDirective>;
+  @Input() panelContent?: GridPanelContentDirective;
 
   dict: Observable<ItskGridDictionary>;
 

@@ -16,39 +16,39 @@ export class GridColumn extends FilterColumn {
   /**
    * Высота
    */
-  height: number;
+  height?: number;
   /**
    * Высота в шапке таблицы
    */
-  headerHeight: number;
+  headerHeight?: number;
   /**
    * Стобец закреплен
    */
-  locked: boolean;
+  locked: boolean = false;
   /**
    * Название столбца в строке результатов
    */
-  name: string;
+  override name: string = '';
   /**
    * Название столбца для заголовка таблицы
    */
-  caption: string;
+  override caption: string = '';
   /**
    * Единицы измерения
    */
-  unit: string;
+  unit?: string;
   /**
    * Возможность скрыть столбец
    */
-  disableable: boolean;
+  disableable: boolean = false;
   /**
    * список css классов для шапки таблицы
    */
-  headCellClass: string[];
+  headCellClass?: string[];
   /**
    * список css классов для ячейки таблицы
    */
-  cellClass: string[];
+  cellClass?: string[];
   /**
    * Дополнительные данные, свободное описание, доступны внутри компонета ячейки, можно прокинуть callback например
    */
@@ -56,16 +56,16 @@ export class GridColumn extends FilterColumn {
   /**
    * Доступно для редактирования
    */
-  editable: boolean; // | ((row: GridRow<any>, column: GridColumn) => boolean);
+  editable: boolean = false; // | ((row: GridRow<any>, column: GridColumn) => boolean);
   /**
    * Колонка скрыта
    */
-  hidden: boolean;
+  hidden: boolean = false;
 
   /**
    * В данном столбце содержатся объекты
    */
-  objectType: boolean;
+  objectType: boolean = false;
 
   /**
    * Компонент для рендера ячейки
@@ -78,7 +78,7 @@ export class GridColumn extends FilterColumn {
   /**
    * Группировать по этому столбцу
    */
-  groupBy: boolean;
+  groupBy: boolean = false;
   /**
    * Порядок группировки
    */
@@ -90,7 +90,7 @@ export class GridColumn extends FilterColumn {
   /**
    * Дочерние колонки
    */
-  columns: GridColumn[];
+  // columns: GridColumn[] = [];
 
   /**
    * Инициализация из анонимного объекта
@@ -158,7 +158,7 @@ export class GridColumn extends FilterColumn {
         this.columns = [];
         this.columns = options.columns.map((x) => {
           return new GridColumn(x);
-        });
+        }) as any;
       }
 
       this.groupBy = options.groupBy ? options.groupBy : false;

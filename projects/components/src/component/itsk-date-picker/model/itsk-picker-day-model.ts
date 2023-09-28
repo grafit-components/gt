@@ -1,10 +1,10 @@
 export class ItskPickerDayModel {
-  disabled: boolean;
-  isCurrentMonth: boolean;
-  today: boolean;
-  selected: boolean;
-  date: Date;
-  weekend: boolean;
+  disabled: boolean = false;
+  isCurrentMonth: boolean = false;
+  today: boolean = false;
+  selected: boolean = false;
+  date?: Date;
+  weekend: boolean = false;
 
   public constructor(options?: {
     disabled?: boolean;

@@ -7,9 +7,11 @@ import { NavigationData } from '../model/itsk-navigation-data';
   templateUrl: './itsk-navigation.component.html'
 })
 export class ItskNavigationComponent implements OnInit {
+
   @Input()
-  navigationData: NavigationData;
-  @ContentChild('navHeaderCustom', {static: true}) headerTemplate: ElementRef<any>;
+  navigationData?: NavigationData;
+
+  @ContentChild('navHeaderCustom', {static: true}) headerTemplate: any;
   navigationVisible = false;
 
   @HostListener('click', ['$event']) clickHandler(e: any) {

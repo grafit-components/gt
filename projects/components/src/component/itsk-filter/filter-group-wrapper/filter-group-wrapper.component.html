@@ -1,5 +1,5 @@
-<div class="font-title1">{{column.caption}}</div>
-<ng-container *ngFor="let col of column.columns">
+<div class="font-title1">{{column?.caption}}</div>
+<ng-container *ngFor="let col of column?.columns">
   <ng-container *ngIf="isLeaf(col) && showFilter(col, state, showActive)">
     <itsk-filter-wrapper [column]="col"
                          [state]="state"

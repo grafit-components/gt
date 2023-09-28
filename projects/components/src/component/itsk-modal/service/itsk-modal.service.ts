@@ -14,7 +14,7 @@ import {DynamicComponentFactory} from '../../../common/util/dynamic-component-fa
 })
 export class ItskModalService {
   private stack$: ItskModalInstance[] = [];
-  private modalChanged$ = new Subject();
+  private modalChanged$ = new Subject<undefined>();
 
   constructor(private injector$: Injector,
               private factory$: DynamicComponentFactory) {
@@ -99,7 +99,7 @@ export class ItskModalService {
 
   private register(instance: ItskModalInstance) {
     this.stack$.push(instance);
-    this.modalChanged$.next();
+    this.modalChanged$.next(undefined);
     instance.onClose.subscribe(() => this.unregister(instance));
   }
 
@@ -107,7 +107,7 @@ export class ItskModalService {
     const index = this.stack$.indexOf(instance);
     if (index > -1) {
       this.stack$.splice(index, 1);
-      this.modalChanged$.next();
+      this.modalChanged$.next(undefined);
     }
   };
 

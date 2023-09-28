@@ -6,8 +6,8 @@ import {AnyObject} from '../itsk-shared/any-object';
   selector: '[itskTreeTemplate]'
 })
 export class ItskTreeTemplateDirective {
-  @Input() type: string;
-  @Input('itskTreeTemplate') name: string;
+  @Input() type?: string;
+  @Input('itskTreeTemplate') name?: string;
 
   constructor(public template: TemplateRef<{ $implicit: AnyObject, control: ItskTreeControl, index: number }>) {
   }

@@ -72,18 +72,18 @@ export class ItskAutocompleteComponent implements ControlValueAccessor, OnInit {
     );
 
     focusedIndex: null | number = null;
-    value: string;
+    value?: string;
 
     @HostBinding('class.select')
     selectClass = true;
 
     @ViewChild(CdkVirtualScrollViewport, {static: false})
-    private virtualViewport: CdkVirtualScrollViewport;
+    private virtualViewport?: CdkVirtualScrollViewport;
 
     @Input()
-    panelOpen: boolean;
+    panelOpen: boolean = false;
     @Input()
-    fixed: boolean;
+    fixed: boolean = false;
 
     /** Высота в `px` элемента выпадающего списка */
     itemSize = 32;
@@ -103,7 +103,7 @@ export class ItskAutocompleteComponent implements ControlValueAccessor, OnInit {
      * Значения для подсказки
      */
     @Input()
-    values: string[];
+    values?: string[];
 
     /**
      * Недоступно для измения

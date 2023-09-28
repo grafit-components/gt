@@ -23,35 +23,35 @@ import {DefaultCellComponent} from '../default-cell/default-cell.component';
 })
 export class ItskGridCellWrapperComponent<T extends IId> implements OnInit, OnDestroy {
   init = false;
-  componentRef: ComponentRef<CellComponentBase<any>>;
+  componentRef?: ComponentRef<CellComponentBase<any>>;
 
-  private column$: GridColumn;
+  private column$?: GridColumn;
 
   @Input()
   set column(val: GridColumn) {
     this.column$ = val;
-    if (this.init) {
+    if (this.init && this.componentRef) {
       this.componentRef.instance.column = val;
       this.componentRef.injector.get(ChangeDetectorRef).markForCheck();
     }
   }
 
-  get column(): GridColumn {
+  get column(): GridColumn | undefined {
     return this.column$;
   }
 
-  private row$: GridRow<T>;
+  private row$?: GridRow<T>;
 
   @Input()
   set row(val: GridRow<T>) {
     this.row$ = val;
-    if (this.init) {
+    if (this.init && this.componentRef) {
       this.componentRef.instance.row = val;
       this.componentRef.injector.get(ChangeDetectorRef).markForCheck();
     }
   }
 
-  get row(): GridRow<T> {
+  get row(): GridRow<T> | undefined {
     return this.row$;
   }
 
@@ -77,6 +77,9 @@ export class ItskGridCellWrapperComponent<T extends IId> implements OnInit, OnDe
     // if (!CellComponentBase.isPrototypeOf(this.column.cellComponent)) {
     //   throw new Error('Cell component must extend CellComponentBase');
     // }
+    if(!this.column) {
+      return;
+    }
     this.column.cellComponent = this.getCellComponent(this.column);
     const compFactory = this.componentFactoryResolver.resolveComponentFactory<CellComponentBase<any>>(this.column.cellComponent);
     this.componentRef = this.viewContainerRef.createComponent<CellComponentBase<any>>(compFactory);

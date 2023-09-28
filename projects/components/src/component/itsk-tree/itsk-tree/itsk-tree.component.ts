@@ -17,16 +17,16 @@ export class ItskTreeComponent implements OnInit, AfterViewInit {
   /**
    * All child nodes are open at the beginning
    */
-  @Input() open: boolean;
+  @Input() open: boolean = false;
 
   /**
    * All child nodes are open at the beginning
    */
-  @Input() control: ItskTreeControl;
+  @Input() control?: ItskTreeControl;
 
   @HostBinding('class.tree__container') treeContainer = true;
 
-  @ContentChild(ItskTreeTemplateDirective, {static: false}) template: ItskTreeTemplateDirective;
+  @ContentChild(ItskTreeTemplateDirective, {static: false}) template?: ItskTreeTemplateDirective;
 
   constructor() {
   }

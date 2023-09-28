@@ -11,15 +11,15 @@ export class FilterColumn {
   /**
    * Название столбца для заголовка таблицы
    */
-  caption: string;
+  caption: string = '';
   /**
    * Подсказка
    */
-  hint: string;
+  hint: string = '';
   /**
    * Название столбца в строке результатов
    */
-  name: string;
+  name: string = '';
   /**
    * Возможность сортировать поле
    */
@@ -31,31 +31,31 @@ export class FilterColumn {
   /**
    * Поле для сортировки
    */
-  sortField: string;
+  sortField: string = '';
   /**
    * Поле для фильтрации
    */
-  filterField: string;
+  filterField: string = '';
   /**
    * Тип фильтра
    */
-  filterType: FilterType | null;
+  filterType: FilterType | null = null;
   /**
    * Тип сравнения строкового фильтра
    */
-  stringFilterType: StringFilterType;
+  stringFilterType?: StringFilterType;
   /**
    * Тип сравнения строкового фильтра
    */
-  listFilterType: ListFilterType;
+  listFilterType?: ListFilterType;
   /**
    * Строгое сравнение
    */
-  strict: boolean;
+  strict: boolean = false;
   /**
    * Список опций для фильтра по списку
    */
-  filterOptions: IdNameModel<any>[];
+  filterOptions: IdNameModel<any>[] = [];
   /**
    * Компонент для рендера фильтра
    */
@@ -64,7 +64,7 @@ export class FilterColumn {
   /**
    * Дочерние элементы
    */
-  columns: FilterColumn[];
+  columns: FilterColumn[] = [];
 
   constructor(options?: {
     sortOrder?: number;
@@ -100,7 +100,7 @@ export class FilterColumn {
         ? ListFilterType.None
         : options.listFilterType;
       this.strict = options.strict || false;
-      this.filterOptions = options.filterOptions || this.filterOptions;
+      this.filterOptions = options.filterOptions as any;
       this.filterComponent = options.filterComponent;
       if (options.columns && options.columns.length) {
         this.columns = options.columns.map(_ => new FilterColumn(_));

@@ -23,24 +23,24 @@ export class ItskDaySelectorComponent implements OnInit, OnDestroy {
   /**
    * Даты, недоступные для выбора
    */
-  @Input() disabledDates: Date[];
+  @Input() disabledDates?: Date[];
 
   /**
    * Периоды, недоступные для выбора
    */
-  @Input() disabledPeriods: ItskDatePeriod[];
+  @Input() disabledPeriods?: ItskDatePeriod[];
   /**
    * Дни недели, недоступные для выбора
    */
-  @Input() disabledDays: number[];
+  @Input() disabledDays?: number[];
   /**
    * Минимальная доступная дата
    */
-  @Input() minDate: Date;
+  @Input() minDate?: Date;
   /**
    * Максимальная доступная дата
    */
-  @Input() maxDate: Date;
+  @Input() maxDate?: Date;
 
   @Output() dateSelected = new EventEmitter<Date>();
 
@@ -50,12 +50,12 @@ export class ItskDaySelectorComponent implements OnInit, OnDestroy {
 
   @Output() applyDate: EventEmitter<Date> = new EventEmitter();
 
-  locale: ItskPickerLocaleModel;
+  locale?: ItskPickerLocaleModel;
 
   /**
    * Текущая дата
    */
-  currentDate$: number;
+  currentDate$: number = 0;
 
   @Input()
   set currentDate(val: number) {
@@ -70,7 +70,7 @@ export class ItskDaySelectorComponent implements OnInit, OnDestroy {
   /**
    * Текущий месяц
    */
-  currentMonth$: number;
+  currentMonth$: number = 0;
 
   @Input()
   set currentMonth(val: number) {
@@ -85,7 +85,7 @@ export class ItskDaySelectorComponent implements OnInit, OnDestroy {
   /**
    * Текущий год
    */
-  currentYear$: number;
+  currentYear$: number = 0;
 
   @Input()
   set currentYear(val: number) {
@@ -97,7 +97,7 @@ export class ItskDaySelectorComponent implements OnInit, OnDestroy {
     return this.currentYear$;
   }
 
-  weeks: Array<Array<ItskPickerDayModel>>;
+  weeks?: Array<Array<ItskPickerDayModel>>;
   weekDays: number[] = [];
 
   constructor(public localeService: PickerLocaleService, private cdr$: ChangeDetectorRef) {
@@ -159,11 +159,11 @@ export class ItskDaySelectorComponent implements OnInit, OnDestroy {
       this.currentMonth$,
       this.currentDate$,
       this.firstDayOfWeek,
-      this.minDate,
-      this.maxDate,
-      this.disabledDates,
-      this.disabledDays,
-      this.disabledPeriods);
+      this.minDate as any,
+      this.maxDate as any,
+      this.disabledDates as any,
+      this.disabledDays as any,
+      this.disabledPeriods as any);
     this.weeks = ItskDatePickerHelper.sliceArrayIntoGroups<ItskPickerDayModel>(days, 7);
   }
 
@@ -171,7 +171,7 @@ export class ItskDaySelectorComponent implements OnInit, OnDestroy {
     if (this.weeks) {
       this.weeks = this.weeks.map(week => week.map((dat: ItskPickerDayModel) => ({
         ...dat,
-        selected: dat.date.getFullYear() === this.currentYear$
+        selected: dat.date?.getFullYear() === this.currentYear$
           && dat.date.getMonth() === this.currentMonth$
           && dat.date.getDate() === this.currentDate$
       })));

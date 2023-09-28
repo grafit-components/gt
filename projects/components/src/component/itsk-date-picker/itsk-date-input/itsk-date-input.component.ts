@@ -30,7 +30,7 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
   /**
    * компонент неактивен
    */
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   /**
    * Показывать выбор времени
    */
@@ -38,11 +38,11 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
   /**
    * Разрешено пустое значение
    */
-  @Input() allowNull: boolean;
+  @Input() allowNull: boolean = false;
   /**
    * Минимальный год
    */
-  minYear$: number;
+  minYear$?: number;
 
   @Input()
   set minYear(value: number) {
@@ -58,7 +58,7 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
   /**
    * Максимальный год
    */
-  maxYear$: number;
+  maxYear$?: number;
 
   @Input()
   set maxYear(value: number) {
@@ -74,8 +74,8 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
     return (this.value$ !== null && this.value$ !== undefined) || this.active || !this.isEmpty;
   }
 
-  active: boolean;
-  borderless: boolean;
+  active: boolean = false;
+  borderless: boolean = false;
 
   public formatValue: any = {
     DD: '__',
@@ -91,23 +91,23 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
     HH: [0, 23],
     mm: [0, 59],
   };
-  private valueManuallyChanged$: boolean;
-  element: HTMLElement;
-  inputElement: HTMLElement;
+  private valueManuallyChanged$: boolean = false;
+  element?: HTMLElement;
+  inputElement?: HTMLElement;
   isWindowPressEventListenerRegistered = false;
   /**
    * активная часть контролла даты
    */
-  currentFormatPart$: string;
+  currentFormatPart$?: string;
   /**
    * формат отображения даты
    */
-  format$: string;
-  formatList$: string[];
-  formatEssentialList$: string[];
+  format$?: string;
+  formatList$: string[] = [];
+  formatEssentialList$: string[] = [];
 
   get format(): string {
-    return this.format$;
+    return this.format$ as any;
   }
 
   set format(value: string) {
@@ -142,7 +142,7 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
   /**
    * Текущий год
    */
-  currentYear$: number;
+  currentYear$: number = 0;
 
   get currentYear(): number {
     return this.currentYear$;
@@ -163,7 +163,7 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
   /**
    * Текущий месяц
    */
-  currentMonth$: number;
+  currentMonth$: number = 0;
 
   get currentMonth(): number {
     return this.currentMonth$;
@@ -183,7 +183,7 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
   /**
    * Текущий час
    */
-  currentHour$: number;
+  currentHour$: number = 0;
 
   get currentHour(): number {
     return this.currentHour$;
@@ -205,7 +205,7 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
   /**
    * Текущая минута
    */
-  currentMinute$: number;
+  currentMinute$: number = 0;
 
   get currentMinute(): number {
     return this.currentMinute$;
@@ -229,7 +229,7 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
     return this.formatEssentialList$.every((_: any) => this.formatValue[_].split('').every((__: any) => __ === '_'));
   }
 
-  invalid: boolean;
+  invalid: boolean = false;
 
   constructor(private elementRef$: ElementRef,
               private cdr$: ChangeDetectorRef) {
@@ -374,7 +374,7 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
   }
 
   getRangeNode(formatName: string): Node | null {
-    return this.inputElement.querySelector(`[data-format="${formatName}"]`);
+    return this.inputElement?.querySelector(`[data-format="${formatName}"]`) ?? null;
   }
 
   jumpToFormat(format: any): void {
@@ -421,6 +421,9 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
   }
 
   appendToFormat(format: string, x: number): void {
+    if(!this.currentFormatPart$) {
+      return
+    }
     const [minRange, maxRange] = this.allowableRange[this.currentFormatPart$];
     let newValue = (+this.formatValue[format] || (format === 'YYYY' ? this.currentYear : 0)) + x;
     if (newValue < minRange) {
@@ -452,7 +455,7 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
   }
 
   onWindowPress = (event: KeyboardEvent) => {
-    if (event.defaultPrevented) {
+    if (event.defaultPrevented || !this.currentFormatPart$) {
       return;
     }
 
@@ -485,16 +488,16 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
     }
 
     if (key === 'ArrowLeft' || key === 'left' || key === 37) {
-      this.goToPrevFormat(this.currentFormatPart$);
+      this.goToPrevFormat(this.currentFormatPart$ as any);
     }
 
     if (key === 'ArrowUp' || key === 'Up' || key === 38) {
-      this.appendToFormat(this.currentFormatPart$, 1);
+      this.appendToFormat(this.currentFormatPart$ as any, 1);
       return;
     }
 
     if (key === 'ArrowDown' || key === 'Down' || key === 40) {
-      this.appendToFormat(this.currentFormatPart$, -1);
+      this.appendToFormat(this.currentFormatPart$ as any, -1);
       return;
     }
 
@@ -506,15 +509,15 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
       || key === '.'
       || key === 190) {
       if (valueList.every((_: any) => NumberUtil.isNumeric(+_))) {
-        this.saveInput(valueList, this.currentFormatPart$);
+        this.saveInput(valueList, this.currentFormatPart$ as any);
       } else {
         if (valueList.every((_: any) => _ === '_')) {
-          this.goToNextFormat(this.currentFormatPart$);
+          this.goToNextFormat(this.currentFormatPart$ as any);
         } else {
           valueList.unshift('0');
-          valueList = valueList.slice(0, this.currentFormatPart$.length);
+          valueList = valueList.slice(0, this.currentFormatPart$?.length);
           if (this.isBelong(valueList, allowableRange)) {
-            this.saveInput(valueList, this.currentFormatPart$);
+            this.saveInput(valueList, this.currentFormatPart$ as any);
           } else {
             this.ignoreInput();
           }
@@ -525,10 +528,10 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
     if (key === 'Backspace' || key === 8 ||
       key === 'Delete' || key === 'Del' || key === 46) {
       if (valueList.every((_: any) => _ === '_')) {
-        this.goToPrevFormat(this.currentFormatPart$);
+        this.goToPrevFormat(this.currentFormatPart$ as any);
       } else {
         valueList = valueList.map(() => '_');
-        this.saveInput(valueList, this.currentFormatPart$);
+        this.saveInput(valueList, this.currentFormatPart$ as any);
         this.jumpToFormat({
           name: this.currentFormatPart$
         });
@@ -546,17 +549,17 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
 
     if (valueList.every((_: any) => NumberUtil.isNumeric(+_))) {
       if (this.isBelong(valueList, allowableRange)) {
-        this.saveInput(valueList, this.currentFormatPart$);
+        this.saveInput(valueList, this.currentFormatPart$ as any);
       } else {
         this.ignoreInput();
       }
     } else if (this.isBelong(valueList, allowableRange)) {
-      this.saveInput(valueList, this.currentFormatPart$);
+      this.saveInput(valueList, this.currentFormatPart$ as any);
     } else {
       valueList.unshift('0');
-      valueList = valueList.slice(0, this.currentFormatPart$.length);
+      valueList = valueList.slice(0, this.currentFormatPart$?.length);
       if (this.isBelong(valueList, allowableRange)) {
-        this.saveInput(valueList, this.currentFormatPart$);
+        this.saveInput(valueList, this.currentFormatPart$ as any);
       } else {
         this.ignoreInput();
       }
@@ -624,7 +627,7 @@ export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
   dataInputDoubleClick = (e: any): void => {
     e.preventDefault();
     e.stopPropagation();
-    this.elementSelection(this.inputElement);
+    this.elementSelection(this.inputElement as any);
     this.currentFormatPart$ = 'YYYY';
   };
 

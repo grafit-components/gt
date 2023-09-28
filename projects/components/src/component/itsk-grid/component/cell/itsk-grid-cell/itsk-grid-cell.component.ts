@@ -25,15 +25,15 @@ import {ItskGridSelectType} from '../../../model/enum/itsk-grid-select-type';
 export class ItskGridCellComponent<T extends IId> implements OnInit, OnDestroy {
   GroupingType = GroupingType;
   private alive = true;
-  componentRef: ComponentRef<CellComponentBase<any>>;
-  @Input() index: number;
-  @Input() additionalComponent: Type<AdditionalComponentBase<T>>;
-  @Input() column: GridColumn;
+  componentRef?: ComponentRef<CellComponentBase<any>>;
+  @Input() index?: number;
+  @Input() additionalComponent?: Type<AdditionalComponentBase<T>>;
+  @Input() column?: GridColumn;
 
-  @Input() row: GridRow<T>;
-  @Input() grouping: boolean;
-  @Input() groupingType: GroupingType;
-  @Input() tree: boolean;
+  @Input() row?: GridRow<T>;
+  @Input() grouping: boolean = false;
+  @Input() groupingType?: GroupingType;
+  @Input() tree: boolean = false;
   @Input() selectRowsBy: ItskGridSelectRowsByType = 'mouse';
   @Input() selectType: ItskGridSelectType = 'single';
   originalSelected: GridRow<T>[] = [];
@@ -44,6 +44,7 @@ export class ItskGridCellComponent<T extends IId> implements OnInit, OnDestroy {
 
   selectRow() {
     this.selectedRows = [...this.originalSelected];
+    if(this.row)
     this.svc$.selectRow(this.row);
   }
 

@@ -11,7 +11,7 @@ import {
 import {ItskTabComponent} from '../itsk-tab/itsk-tab.component';
 
 export interface IItskTabChangeEvent {
-  activeId: string | null;
+  activeId: string | null | undefined;
   nextId: string;
   preventDefault: () => void;
 }
@@ -27,7 +27,7 @@ export class ItskTabsComponent implements AfterContentChecked {
   /**
    * An identifier of an initially selected (active) tab. Use the "select" method to switch a tab programmatically.
    */
-  @Input() activeId: string | null;
+  @Input() activeId: string | null | undefined;
 
   /**
    * Whether the closed tabs should be hidden without destroying them
@@ -39,7 +39,7 @@ export class ItskTabsComponent implements AfterContentChecked {
    */
   @Output() tabChange = new EventEmitter<IItskTabChangeEvent>();
 
-  @ContentChildren(ItskTabComponent) tabs: QueryList<ItskTabComponent>;
+  @ContentChildren(ItskTabComponent) tabs?: QueryList<ItskTabComponent>;
 
   constructor() {
   }
@@ -69,11 +69,11 @@ export class ItskTabsComponent implements AfterContentChecked {
 
   ngAfterContentChecked() {
     const activeTab = this._getTabById(this.activeId);
-    this.activeId = activeTab ? activeTab.id : (this.tabs.length ? this.tabs.first.id : null);
+    this.activeId = activeTab ? activeTab.id : (this.tabs?.length ? this.tabs.first.id : null);
   }
 
-  private _getTabById(id: string | null): ItskTabComponent | null {
-    const tabsWithId: ItskTabComponent[] = this.tabs.filter(tab => tab.id === id);
+  private _getTabById(id: string | null | undefined): ItskTabComponent | null {
+    const tabsWithId: ItskTabComponent[] = this.tabs?.filter(tab => tab.id === id) ?? [];
     return tabsWithId.length ? tabsWithId[0] : null;
   }
 }

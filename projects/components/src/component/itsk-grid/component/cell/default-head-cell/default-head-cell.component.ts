@@ -9,7 +9,7 @@ import {GridColumn} from '../../../model/grid-column';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DefaultHeadCellComponent extends HeadCellComponentBase implements OnInit {
-  private column$: GridColumn;
+  private column$?: GridColumn;
 
   @Input()
   set column(val: GridColumn) {
@@ -18,10 +18,10 @@ export class DefaultHeadCellComponent extends HeadCellComponentBase implements O
   }
 
   get column(): GridColumn {
-    return this.column$;
+    return this.column$ as any;
   }
 
-  private sorted$: boolean;
+  private sorted$: boolean = false;
 
   @Input()
   set sorted(val: boolean) {
@@ -33,7 +33,7 @@ export class DefaultHeadCellComponent extends HeadCellComponentBase implements O
     return this.sorted$;
   }
 
-  private asc$: boolean;
+  private asc$: boolean = false;
 
   @Input()
   set asc(val: boolean) {
@@ -45,7 +45,7 @@ export class DefaultHeadCellComponent extends HeadCellComponentBase implements O
     return this.asc$;
   }
 
-  private filtered$: boolean;
+  private filtered$: boolean = false;
 
   @Input()
   set filtered(val: boolean) {

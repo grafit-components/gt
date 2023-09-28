@@ -9,12 +9,12 @@ import {Paging} from '../../../itsk-pager/model/paging';
 
 @Directive()
 export class GridPageBase<T extends IId> implements OnInit {
-  state: FilterState;
-  paging: Paging;
-  columns: GridColumn[];
+  state?: FilterState;
+  paging?: Paging;
+  columns?: GridColumn[];
   data: GridRow<T>[] = [];
-  dataTransport: Observable<boolean>;
-  row: GridRow<T>;
+  dataTransport?: Observable<boolean>;
+  row?: GridRow<T>;
 
   constructor(protected svc$: GridPageServiceBase<T>) {
   }

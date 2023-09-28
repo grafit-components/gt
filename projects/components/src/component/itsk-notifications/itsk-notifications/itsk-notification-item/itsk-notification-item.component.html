@@ -1,6 +1,6 @@
 <div #container
      class="notification base-shape base-shape_primary"
-     [ngClass]="notification.className"
+     [ngClass]="notification?.className"
      [class.base-shape_info]="notification.level === ItskNotificationLevel.Info"
      [class.base-shape_success]="notification.level === ItskNotificationLevel.Success"
      [class.base-shape_warning]="notification.level === ItskNotificationLevel.Warn"
@@ -17,7 +17,7 @@
   </div>
   <div class="notification-content">
     <div class="font-body3">
-      {{notification.text}}
+      {{notification?.text}}
     </div>
     <ng-container *ngTemplateOutlet="template; context: {$implicit: notification}"></ng-container>
   </div>

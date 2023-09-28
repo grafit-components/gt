@@ -6,7 +6,7 @@ import {Directive, ElementRef, Input, OnInit} from '@angular/core';
 export class ItskFocusDirective implements OnInit {
   element: HTMLElement;
 
-  private _appItskFocus: boolean;
+  private _appItskFocus: boolean = false;
   @Input()
   set appItskFocus(value: boolean) {
     this._appItskFocus = value;

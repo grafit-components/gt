@@ -22,17 +22,17 @@ import {ItskMenuItemDirective} from '../itsk-menu-item.directive';
 })
 export class ItskMenuComponent<T extends IItskMenuItem> implements OnInit, AfterViewInit {
   @HostBinding('class.menu') classMenu = true;
-  @ContentChild(ItskMenuItemDirective, {static: false}) template: ItskMenuItemDirective;
+  @ContentChild(ItskMenuItemDirective, {static: false}) template?: ItskMenuItemDirective;
 
   groups: ItskMenuGroup<T>[] = [];
 
-  @Input() menu: T[];
+  @Input() menu: T[] = [];
 
   @Output() itemClick = new EventEmitter<T>();
 
   @Output() itemToggle = new EventEmitter<T>();
 
-  openChild: IItskMenuItem | null;
+  openChild: IItskMenuItem | null = null;
 
   constructor(private cdr$: ChangeDetectorRef) {
   }

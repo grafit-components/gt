@@ -23,12 +23,12 @@ export class GridBodyBase<T extends IId> implements OnInit, OnDestroy {
 
   locked: GridColumn[] = [];
   unlocked: GridColumn[] = [];
-  lockedBasis: number;
-  unlockedBasis: number;
-  lockedFlex: number;
-  unlockedFlex: number;
+  lockedBasis: number = 0;
+  unlockedBasis: number = 0;
+  lockedFlex: number = 0;
+  unlockedFlex: number = 0;
 
-  @Input() activeRow: GridRow<T>;
+  @Input() activeRow?: GridRow<T>;
 
   private columns$: GridColumn[] = [];
 
@@ -50,25 +50,25 @@ export class GridBodyBase<T extends IId> implements OnInit, OnDestroy {
   /**
    * Настройки грида
    */
-  @Input() additionalComponent: Type<AdditionalComponentBase<T>>;
+  @Input() additionalComponent?: Type<AdditionalComponentBase<T>>;
   /**
    * Данные для отображения
    */
-  data: GridRow<T>[];
+  data?: GridRow<T>[];
 
-  @Input() tree: boolean;
+  @Input() tree: boolean = false;
 
-  @Input() grouping: boolean;
+  @Input() grouping: boolean = false;
   /**
    * Тип отображения группировки
    */
   @Input() groupingType: GroupingType = GroupingType.SingleGroupCell;
-  @Input() groupRowComponent: Type<GroupRowComponentBase<T>>;
-  @Input() openLevels: number;
+  @Input() groupRowComponent?: Type<GroupRowComponentBase<T>>;
+  @Input() openLevels: number =0;
 
   @Input() selectRowsBy: ItskGridSelectRowsByType = 'mouse';
   @Input() selectType: ItskGridSelectType = 'single';
-  @Input() editOn: ItskGridEditEvent;
+  @Input() editOn?: ItskGridEditEvent;
 
   constructor(protected svc$: ItskGridService<T>, protected cdr$: ChangeDetectorRef) {
     this.svc$.selectedRows.pipe(takeWhile(_ => this.alive)).subscribe(_ => {

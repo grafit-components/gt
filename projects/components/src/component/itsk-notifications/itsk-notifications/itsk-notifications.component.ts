@@ -32,14 +32,14 @@ export class ItskNotificationsComponent implements OnInit, AfterContentInit, OnD
   @Input() verticalAlign: ItskVerticalAlign = ItskVerticalAlign.Bottom;
 
   @Output() itemClose: EventEmitter<any> = new EventEmitter();
-  @ContentChildren(ItskTemplateDirective) templates: QueryList<any>;
+  @ContentChildren(ItskTemplateDirective) templates?: QueryList<any>;
 
   ItskAlign = ItskAlign;
   ItskVerticalAlign = ItskVerticalAlign;
 
   notifications: ItskNotification[] = [];
 
-  template: TemplateRef<any>;
+  template?: TemplateRef<any>;
 
 
   private stop$: Subject<boolean> = new Subject<boolean>();
@@ -75,7 +75,7 @@ export class ItskNotificationsComponent implements OnInit, AfterContentInit, OnD
   }
 
   ngAfterContentInit() {
-    this.templates.forEach((item) => {
+    this.templates?.forEach((item) => {
       this.template = item.template;
     });
   }

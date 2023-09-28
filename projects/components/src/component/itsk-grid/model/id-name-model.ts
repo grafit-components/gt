@@ -1,6 +1,6 @@
 export class IdNameModel<T> {
-  public id: T | null;
-  public name: string;
+  public id: T | null = null;
+  public name?: string;
 
   constructor(options?: {
     id: T | null;

@@ -20,37 +20,37 @@ import {GroupRowComponentBase} from '../../../model/group-row-component-base';
 })
 export class GroupRowWrapperComponent<T extends IId> implements OnInit {
   init = false;
-  componentRef: ComponentRef<GroupRowComponentBase<T>>;
+  componentRef?: ComponentRef<GroupRowComponentBase<T>>;
 
-  private columns$: GridColumn[];
+  private columns$?: GridColumn[];
 
   @Input() groupRowComponent: any;
 
   @Input()
   set columns(val: GridColumn[]) {
     this.columns$ = val;
-    if (this.init) {
+    if (this.init && this.componentRef) {
       this.componentRef.instance.columns = val;
       this.componentRef.injector.get(ChangeDetectorRef).markForCheck();
     }
   }
 
-  get columns(): GridColumn[] {
+  get columns(): GridColumn[] | undefined {
     return this.columns$;
   }
 
-  private row$: GridRow<T>;
+  private row$?: GridRow<T>;
 
   @Input()
   set row(val: GridRow<T>) {
     this.row$ = val;
-    if (this.init) {
+    if (this.init && this.componentRef) {
       this.componentRef.instance.row = val;
       this.componentRef.injector.get(ChangeDetectorRef).markForCheck();
     }
   }
 
-  get row(): GridRow<T> {
+  get row(): GridRow<T> | undefined {
     return this.row$;
   }
 

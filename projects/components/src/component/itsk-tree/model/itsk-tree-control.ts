@@ -43,8 +43,8 @@ export class ItskTreeControl {
   }
 
   defaultGetChildren = (item: AnyObject) => {
-    if (item && item.children) {
-      return item.children;
+    if (item && item['children']) {
+      return item['children'];
     } else {
       return null;
     }

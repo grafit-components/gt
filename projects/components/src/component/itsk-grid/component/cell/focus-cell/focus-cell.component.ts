@@ -19,17 +19,17 @@ import {ItskGridService} from '../../../service/itsk-grid.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FocusCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
-  @Input() column: GridColumn;
-  @Input() row: GridRow<any>;
-  @ViewChild('input', {static: false}) input: ElementRef;
+  @Input() column?: GridColumn;
+  @Input() row?: GridRow<any>;
+  @ViewChild('input', {static: false}) input?: ElementRef;
 
-  value$: string;
+  value$?: string;
 
-  constructor(protected svc$: ItskGridService<T>, protected cdr$: ChangeDetectorRef) {
+  constructor(svc$: ItskGridService<T>, cdr$: ChangeDetectorRef) {
     super(svc$, cdr$);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     super.ngOnInit();
   }
 
@@ -37,22 +37,24 @@ export class FocusCellComponent<T extends IId> extends CellComponentBase<T> impl
     this.value$ = value;
   }
 
-  startEdit() {
+  override startEdit() {
+    if(this.row && this.column)
     this.value$ = this.row.data[this.column.name];
     this.cdr$.markForCheck();
     setTimeout(() => {
-      this.input.nativeElement.focus();
-      this.input.nativeElement.select();
+      this.input?.nativeElement.focus();
+      this.input?.nativeElement.select();
     }, 0);
   }
 
-  stopEdit() {
+  override stopEdit() {
+    if(this.row && this.column)
     this.row.data[this.column.name] = this.value$;
     this.valueChanged();
     this.cdr$.markForCheck();
   }
 
-  cancelEdit() {
+  override cancelEdit() {
     this.cdr$.markForCheck();
   }
 }

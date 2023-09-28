@@ -22,11 +22,11 @@ export class ItskGridHeadComponent implements OnInit, OnDestroy {
 
   locked: GridColumn[] = [];
   unlocked: GridColumn[] = [];
-  lockedBasis: number;
-  unlockedBasis: number;
-  lockedFlex: number;
-  unlockedFlex: number;
-  isChromium: boolean;
+  lockedBasis: number = 0;
+  unlockedBasis: number = 0;
+  lockedFlex: number = 0;
+  unlockedFlex: number = 0;
+  isChromium: boolean = false;
 
   set columns(columns: GridColumn[]) {
     this.columns$ = this.prepareColumns(columns);
@@ -46,7 +46,7 @@ export class ItskGridHeadComponent implements OnInit, OnDestroy {
   /**
    * Настройки грида
    */
-  state$: FilterState;
+  state$?: FilterState;
 
   @Input()
   set state(val: FilterState) {
@@ -79,13 +79,13 @@ export class ItskGridHeadComponent implements OnInit, OnDestroy {
     if (columns === null || columns === undefined || columns.length === 0) {
       return [];
     }
-    columns.forEach((column) => {
+    columns.forEach((column: any) => {
       if (column.columns !== null && column.columns !== undefined && column.columns.length > 0) {
         column.columns = this.prepareColumns(column.columns);
-        column.width = column.columns.reduce((a, b) => {
+        column.width = column.columns.reduce((a: any, b: any) => {
           return a + (b.hidden ? 0 : b.width);
         }, 0);
-        column.flex = column.columns.reduce((a, b) => {
+        column.flex = column.columns.reduce((a: any, b: any) => {
           return a + (b.hidden ? 0 : b.flex);
         }, 0);
       }
@@ -98,7 +98,7 @@ export class ItskGridHeadComponent implements OnInit, OnDestroy {
 
     columns.forEach((column) => {
       if (column.columns && column.columns.length) {
-        width += this.getBasis(column.columns);
+        width += this.getBasis(column.columns as any);
       } else {
         width += column.hidden ? 0 : column.width;
       }
@@ -111,7 +111,7 @@ export class ItskGridHeadComponent implements OnInit, OnDestroy {
 
     columns.forEach((column) => {
       if (column.columns && column.columns.length) {
-        flex += this.getFlex(column.columns);
+        flex += this.getFlex(column.columns as any);
       } else {
         flex += column.hidden ? 0 : column.flex;
       }

@@ -36,7 +36,7 @@ export class GridColumnsSettingsComponent implements OnInit {
     column.hidden = value;
     if (column.columns) {
       column.columns.forEach((x) => {
-        this.hideChildren(x, value);
+        this.hideChildren(x as any, value);
       });
     }
   };
@@ -59,7 +59,7 @@ export class GridColumnsSettingsComponent implements OnInit {
 
   hideParents(column: GridColumn) {
     const parent = this.findParent(column, this.columns$);
-    if (parent && !parent.hidden && parent.columns && parent.columns.every(_ => _.hidden)) {
+    if (parent && !parent.hidden && parent.columns && parent.columns.every((_ : any) => _.hidden)) {
       parent.hidden = true;
       this.hideParents(parent);
     }
@@ -78,7 +78,7 @@ export class GridColumnsSettingsComponent implements OnInit {
     for (let i = 0, l = columns.length; i < l; i++) {
       const col = columns[i];
       if (col.columns && col.columns.length) {
-        const res = this.findParent(column, col.columns);
+        const res = this.findParent(column, col.columns as any);
         if (res !== null && res !== undefined) {
           return res;
         }

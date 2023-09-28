@@ -21,12 +21,12 @@ import {FilterColumn} from '../model/filter-column';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NumericFilterComponent extends FilterComponentBase implements OnInit {
-  filter: NumericFilter;
+  filter: NumericFilter = new NumericFilter();
 
-  @Input() column: FilterColumn;
+  @Input() column: FilterColumn = new FilterColumn();
   @Output() filterChanged: EventEmitter<FilterBase> = new EventEmitter<FilterBase>();
 
-  private state$: FilterState;
+  private state$: FilterState = new FilterState();
 
   @Input()
   set state(val: FilterState) {

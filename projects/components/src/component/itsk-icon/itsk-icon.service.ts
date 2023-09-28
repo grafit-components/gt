@@ -29,7 +29,7 @@ export class ItskIconService {
   getAllIconNames() {
     const symbols = this.document$.body.querySelectorAll('svg symbol') as NodeList;
     const ids: string[] = [];
-    symbols.forEach((s: HTMLElement) => ids.push(s.id));
+    symbols.forEach((s: any) => ids.push(s.id));
     return ids;
   }
 

@@ -1,6 +1,6 @@
 <div class="grid__head__cell__wrapper"
-     [ngClass]="column.headCellClass"
-     (click)="sortColumn(column, $event)">
+     [ngClass]="column?.headCellClass"
+     (click)="sortColumn($event)">
   <itsk-checkbox *ngIf="selfIndex === 0 && rootIndex === 0 && (selectType==='single' || selectType==='multiple') && selectRowsBy === 'checkbox'"
                  (click)="stopPropagation($event)"
                  class="margin-l-2"

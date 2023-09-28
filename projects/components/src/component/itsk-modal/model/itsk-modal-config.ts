@@ -2,12 +2,12 @@ import {Observable} from 'rxjs';
 
 export class ItskModalConfig {
   backdrop = true;
-  resizable: boolean;
-  draggable: boolean;
+  resizable: boolean = false;
+  draggable: boolean = false;
   class: string[] = [];
   esc = true;
-  beforeClose: Observable<any>;
-  beforeOpen: Observable<any>;
+  beforeClose?: Observable<any>;
+  beforeOpen?: Observable<any>;
 
   constructor(options?: {
     backdrop?: boolean;

@@ -25,8 +25,8 @@ import {takeWhile} from 'rxjs/operators';
 })
 export class ItskGridHeadDropdownComponent<T extends IId> extends ClickOutsideBase implements OnInit, OnDestroy {
   private subs = true;
-  private position$: DOMRect;
-  private visible$: boolean;
+  private position$?: DOMRect;
+  private visible$: boolean = false;
 
   set visible(val: boolean) {
     this.visible$ = val;
@@ -36,12 +36,12 @@ export class ItskGridHeadDropdownComponent<T extends IId> extends ClickOutsideBa
     return this.visible$;
   }
 
-  top: string | null;
-  bottom: string | null;
-  left: string | null;
-  right: string | null;
+  top?: string | null;
+  bottom?: string | null;
+  left?: string | null;
+  right?: string | null;
 
-  column$: GridColumn | null;
+  column$?: GridColumn | null;
 
   set column(column: GridColumn | null) {
     this.column$ = column;
@@ -54,11 +54,11 @@ export class ItskGridHeadDropdownComponent<T extends IId> extends ClickOutsideBa
     this.cdr$.detectChanges();
   }
 
-  get column(): GridColumn | null {
+  get column(): GridColumn | null | undefined {
     return this.column$;
   }
 
-  state$: FilterState;
+  state$?: FilterState;
 
   @Input()
   set state(val: FilterState) {
@@ -102,6 +102,7 @@ export class ItskGridHeadDropdownComponent<T extends IId> extends ClickOutsideBa
   }
 
   applyFilter(event: MouseEvent) {
+    if (this.state$)
     this.svc$.setState(this.state$);
   }
 
@@ -114,6 +115,7 @@ export class ItskGridHeadDropdownComponent<T extends IId> extends ClickOutsideBa
   };
 
   private setPosition() {
+    if(!this.position$) return;
     const leftPosition = this.position$.left + window.pageXOffset;
     const topPosition = this.position$.bottom + window.pageYOffset;
     const pageWidth = window.innerWidth;

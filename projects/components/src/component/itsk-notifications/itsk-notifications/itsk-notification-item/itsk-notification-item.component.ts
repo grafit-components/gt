@@ -24,12 +24,12 @@ import {ItskNotificationLevel} from '../../model/itsk-notification-level.enum';
 export class ItskNotificationItemComponent implements AfterViewInit, OnDestroy {
   ItskNotificationLevel = ItskNotificationLevel;
 
-  @Input() notification: ItskNotification;
-  @Input() index: number;
-  @Input() template: TemplateRef<any>;
+  @Input() notification: ItskNotification = new ItskNotification();
+  @Input() index?: number;
+  @Input() template?: TemplateRef<any>;
   @Output() closed: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('container', {static: false}) containerViewChild: ElementRef;
+  @ViewChild('container', {static: false}) containerViewChild?: ElementRef;
 
   timeout: any;
 

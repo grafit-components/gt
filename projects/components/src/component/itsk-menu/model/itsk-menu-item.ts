@@ -17,7 +17,7 @@ export interface ItskMenuItemOptions {
 export class ItskMenuItem implements IItskMenuItem {
   id: number | undefined | null;
   parentId: number | undefined | null;
-  name: string;
+  name: string = '';
   url: string | undefined;
   hidden: boolean | undefined;
   code: string | undefined;

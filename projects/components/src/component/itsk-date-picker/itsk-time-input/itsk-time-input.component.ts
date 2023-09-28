@@ -30,7 +30,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
   /**
    * Компонент неактивен
    */
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   /**
    * Отображать ввод секунд
    */
@@ -40,8 +40,8 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     return (this.value$ !== null && this.value$ !== undefined) || this.active || !this.isEmpty;
   }
 
-  active: boolean;
-  borderless: boolean;
+  active: boolean = false;
+  borderless: boolean = false;
 
   public formatValue: any = {
     HH: '__',
@@ -53,8 +53,8 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     mm: [0, 59],
     ss: [0, 59],
   };
-  element: HTMLElement;
-  inputElement: HTMLElement;
+  element?: HTMLElement;
+  inputElement?: HTMLElement;
   isWindowPressEventListenerRegistered = false;
   /**
    * активная часть контролла даты
@@ -63,12 +63,12 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
   /**
    * формат отображения даты
    */
-  format$: string;
-  formatList$: string[];
-  formatEssentialList$: string[];
+  format$?: string;
+  formatList$: string[] = [];
+  formatEssentialList$: string[] = [];
 
   get format(): string {
-    return this.format$;
+    return this.format$ as any;
   }
 
   set format(value: string) {
@@ -103,7 +103,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
   /**
    * Текущий год
    */
-  currentYear$: number;
+  currentYear$: number = 0;
 
   get currentYear(): number {
     return this.currentYear$;
@@ -118,7 +118,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
   /**
    * Текущий месяц
    */
-  currentMonth$: number;
+  currentMonth$: number = 0;
 
   get currentMonth(): number {
     return this.currentMonth$;
@@ -136,7 +136,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
   /**
    * Текущий день
    */
-  currentDate$: number;
+  currentDate$: number = 0;
 
   get currentDate(): number {
     return this.currentDate$;
@@ -154,7 +154,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
   /**
    * Текущий час
    */
-  currentHour$: number;
+  currentHour$: number = 0;
 
   get currentHour(): number {
     return this.currentHour$;
@@ -175,7 +175,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
   /**
    * Текущая минута
    */
-  currentMinute$: number;
+  currentMinute$: number = 0;
 
   get currentMinute(): number {
     return this.currentMinute$;
@@ -196,7 +196,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
   /**
    * Текущая секунда
    */
-  currentSecond$: number;
+  currentSecond$: number = 0;
 
   get currentSecond(): number {
     return this.currentSecond$;
@@ -319,7 +319,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
   }
 
   getRangeNode(formatName: string): Node | null {
-    return this.inputElement.querySelector(`[data-format="${formatName}"]`);
+    return this.inputElement?.querySelector(`[data-format="${formatName}"]`) ?? null;
   }
 
   jumpToFormat(format: any): void {
@@ -534,7 +534,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
   dataInputDoubleClick = (e: any): void => {
     e.preventDefault();
     e.stopPropagation();
-    this.elementSelection(this.inputElement);
+    this.elementSelection(this.inputElement as any);
     this.currentFormatPart$ = 'HH';
   };
 

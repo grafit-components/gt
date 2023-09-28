@@ -17,9 +17,9 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskMenuButtonComponent implements OnInit {
-  @Input() open: boolean;
+  @Input() open: boolean = false;
   @Output() openChange = new EventEmitter<boolean>();
-  @ContentChild('[menuButton]', {static: true}) menuButton: ElementRef;
+  @ContentChild('[menuButton]', {static: true}) menuButton?: ElementRef;
 
   constructor(private cdr$: ChangeDetectorRef) {
   }

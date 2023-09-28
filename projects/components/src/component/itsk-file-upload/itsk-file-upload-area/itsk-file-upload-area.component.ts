@@ -9,11 +9,11 @@ export class ItskFileUploadAreaComponent implements OnInit {
   @HostBinding('class.file-upload') fileUpload = true;
 
   @Input() multiple = true;
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
 
   @Output() upload: EventEmitter<FileList> = new EventEmitter();
 
-  @ViewChild('fileUpload', {static: false}) input: ElementRef;
+  @ViewChild('fileUpload', {static: false}) input: ElementRef | undefined;
 
   files: any;
 
@@ -24,7 +24,7 @@ export class ItskFileUploadAreaComponent implements OnInit {
   }
 
   fileChanged(event: any) {
-    if (event.target && event.target.files) {
+    if (event.target && event.target.files && this.input) {
       this.upload.emit(event.target.files);
       this.input.nativeElement.value = null;
     }

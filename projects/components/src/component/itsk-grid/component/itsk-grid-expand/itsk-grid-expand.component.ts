@@ -9,15 +9,17 @@ import {ItskGridService} from '../../service/itsk-grid.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskGridExpandComponent<T extends IId> implements OnInit {
-  @Input() row: GridRow<T>;
+  @Input() row?: GridRow<T>;
 
   constructor(private svc$: ItskGridService<T>) {
   }
 
   @HostListener('click')
   click() {
-    this.row.expanded = !this.row.expanded;
-    this.svc$.toggleRow(this.row);
+    if(this.row) {
+      this.row.expanded = !this.row.expanded;
+      this.svc$.toggleRow(this.row);
+    }
   }
 
   ngOnInit(): void {

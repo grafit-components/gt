@@ -11,23 +11,23 @@ export class Paging {
   /**
    * Количество страниц
    */
-  count: number;
+  count: number = 0;
   /**
    * Количество записей
    */
-  totalCount: number;
+  totalCount: number = 0;
   /**
    * первая видимая страница
    */
-  start: number;
+  start: number = 0;
   /**
    * Последняя видимая страница
    */
-  end: number;
+  end: number = 0;
   /**
    * Список страниц
    */
-  pages: number[];
+  pages: number[] = [];
 
   /**
    * Инициализация из анонимного объекта

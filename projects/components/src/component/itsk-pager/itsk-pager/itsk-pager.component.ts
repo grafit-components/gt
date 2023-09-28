@@ -15,7 +15,7 @@ export class ItskPagerComponent implements OnInit {
   /**
    * Настройки пагинатора
    */
-  private paging$: Paging;
+  private paging$: Paging = new Paging();
   @HostBinding('class.pager') pagerClass = true;
 
   @Input()
@@ -30,7 +30,7 @@ export class ItskPagerComponent implements OnInit {
 
   @Input() pageSizeSelection = true;
 
-  @Input() pageSizeList: number[];
+  @Input() pageSizeList: number[] = [];
 
   get _pageSizeList(): number[] {
     if (Array.isArray(this.pageSizeList) && this.pageSizeList.length > 0) {
@@ -44,7 +44,7 @@ export class ItskPagerComponent implements OnInit {
    */
   @Output() pagingChange = new EventEmitter<any>();
 
-  pageNum: number;
+  pageNum: number = 0;
 
   /**
    * Выбор страницы в процессе

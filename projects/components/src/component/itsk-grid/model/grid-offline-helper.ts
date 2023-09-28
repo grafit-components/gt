@@ -123,7 +123,9 @@ export class GridOfflineHelper<T> {
   }
 
   static sort<T>(data: T[], sortParam: SortParam): T[] {
+    if(sortParam.field)
     return data.sort(sortParam.asc ? GridOfflineHelper.asc(sortParam.field) : GridOfflineHelper.desc(sortParam.field));
+    return data
   }
 
   static desc(field: string) {

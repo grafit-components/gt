@@ -24,22 +24,22 @@ export class GridRow<T extends IId> {
   expanded = false;
   showAdditional = false;
   data: T;
-  isGroup: boolean;
-  level: number;
+  isGroup: boolean = false;
+  level: number = 0;
   groupValue: any[] = [];
-  groupColumn: string;
+  groupColumn?: string;
   className: string[] = [];
-  isSelected: boolean;
+  isSelected: boolean = false;
   children: GridRow<T>[] = [];
-  parents: GridRow<T>[];
+  parents: GridRow<T>[] = [];
   private backup: any = {};
 
-  private hash$: string | null;
+  private hash$: string | null | undefined;
 
   public get hash(): string {
     if (!this.hash$) {
       const hashObj = {...this.data};
-      delete hashObj.children;
+      delete hashObj['children'];
       this.hash$ = JSON.stringify(hashObj);
     }
     return this.hash$;
@@ -51,10 +51,9 @@ export class GridRow<T extends IId> {
   }
 
   constructor(data?: any) {
+    this.data = data;
+    this.id = data?.id;
     if (data) {
-      this.id = data.id;
-      this.data = data;
-
       if (data.children && data.children.length > 0) {
         this.children = data.children.map((_: any) => new GridRow(_));
       }

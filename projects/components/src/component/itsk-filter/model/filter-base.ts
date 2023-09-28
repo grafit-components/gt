@@ -1,6 +1,6 @@
 export class FilterBase {
-  fieldName: string;
-  name: string;
+  fieldName: string = '';
+  name: string = '';
 
   constructor(options?: {
     fieldName: string,

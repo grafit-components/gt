@@ -10,8 +10,8 @@ import {GroupRowComponentBase} from '../../../model/group-row-component-base';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GroupRowDefaultComponent<T extends IId> extends GroupRowComponentBase<T> implements OnInit {
-  @Input() row: GridRow<T>;
-  @Input() columns: GridColumn[];
+  @Input() override row?: GridRow<T>;
+  @Input() override columns?: GridColumn[];
 
   constructor() {
     super();

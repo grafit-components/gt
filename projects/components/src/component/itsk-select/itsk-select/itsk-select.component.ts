@@ -43,16 +43,16 @@ enum ViewType {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskSelectComponent implements ControlValueAccessor, OnInit {
-  private items$: any[];
+  private items$?: any[];
   private disabled$ = false;
   private multiple$ = false;
-  private textPath$: string;
+  private textPath$?: string;
   private searchTextSub$ = new Subject<string | null>();
-  private searchTextSubscription$: Subscription | null;
-  private searchText$: string | null;
+  private searchTextSubscription$: Subscription | null = null;
+  private searchText$: string | null = null;
   private rawNgModel$: any;
-  viewItems$: any[];
-  textTemplate$: TemplateRef<any>;
+  viewItems$: any[] = [];
+  textTemplate$?: TemplateRef<any>;
   viewTypeEnum$ = ViewType;
   selectedItem$: any | any[] = null;
   focusedItem$: any;
@@ -62,11 +62,11 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
   private panelOpen$ = false;
 
 
-  @ViewChild('searchInput', {static: false}) private searchInput$: ElementRef<HTMLInputElement>;
-  @ViewChild(CdkVirtualScrollViewport, {static: false}) private virtualViewport$: CdkVirtualScrollViewport;
+  @ViewChild('searchInput', {static: false}) private searchInput$?: ElementRef<HTMLInputElement>;
+  @ViewChild(CdkVirtualScrollViewport, {static: false}) private virtualViewport$?: CdkVirtualScrollViewport;
 
-  @ContentChild(ItskSelectValueDirective, {static: true}) valueTemplate: ItskSelectValueDirective;
-  @ContentChild(ItskSelectOptionDirective, {static: true}) optionTemplate: ItskSelectOptionDirective;
+  @ContentChild(ItskSelectValueDirective, {static: true}) valueTemplate?: ItskSelectValueDirective;
+  @ContentChild(ItskSelectOptionDirective, {static: true}) optionTemplate?: ItskSelectOptionDirective;
 
   //#region Inputs
 
@@ -85,8 +85,8 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
   @Input() fixed = false;
 
   /** Данные для отображения */
-  @Input() set items(val: any[]) {
-    this.items$ = val;
+  @Input() set items(val: any[] | undefined) {
+    this.items$ = val ?? [];
     this.itemsCount = val ? val.length : 0;
     this.height = this.itemSize * (this.itemsCount > 8 ? 8 : this.itemsCount) + 7;
     this.searchText$ = null;
@@ -113,13 +113,13 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
 
 
   /** Поиск по элементам */
-  @Input() searchRef: string | ((item: any) => string);
+  @Input() searchRef?: string | ((item: any) => string);
 
   /** Шаблон или текст выводящийся если нет выбранных, по умолчанию пустая строка */
-  @Input() placeholder: string | TemplateRef<any>;
+  @Input() placeholder?: string | TemplateRef<any>;
 
   /** Для отображения выделенного */
-  @Input() selectedRef: TemplateRef<any> | 'block';
+  @Input() selectedRef?: TemplateRef<any> | 'block';
 
   /** спользовать virtual scroll */
   @Input() virtual = false;
@@ -281,7 +281,7 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
         .subscribe(text => this.search(text));
 
       setTimeout(() => {
-        this.searchInput$.nativeElement.focus();
+        this.searchInput$?.nativeElement.focus();
       }, 0);
 
     }
@@ -583,7 +583,7 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
             if (!this.panelOpen) {
               this.open();
             } else {
-              this.searchInput$.nativeElement.focus();
+              this.searchInput$?.nativeElement.focus();
             }
             // note: иначе не успевает учесть
             this.searchText$ = event.key;

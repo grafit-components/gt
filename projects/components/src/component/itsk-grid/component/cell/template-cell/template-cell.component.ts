@@ -11,22 +11,22 @@ import {ItskGridService} from '../../../service/itsk-grid.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TemplateCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
-  @Input() column: GridColumn;
-  @Input() row: GridRow<any>;
+  @Input() column?: GridColumn;
+  @Input() row?: GridRow<any>;
 
-  template: TemplateRef<any>;
+  template?: TemplateRef<any>;
 
-  constructor(protected svc$: ItskGridService<T>, protected cdr$: ChangeDetectorRef) {
+  constructor(svc$: ItskGridService<T>, cdr$: ChangeDetectorRef) {
     super(svc$, cdr$);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     super.ngOnInit();
     this.template = this.getTemplate();
   }
 
   getTemplate() {
-    if (!this.column.parameters || !this.column.parameters.template) {
+    if (!this.column || !this.column.parameters || !this.column.parameters.template) {
       throw new Error('column.parameters.template must be set');
     }
     return this.column.parameters.template;

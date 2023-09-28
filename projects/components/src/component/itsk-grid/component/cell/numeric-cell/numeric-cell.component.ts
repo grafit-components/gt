@@ -20,28 +20,28 @@ import {ItskGridService} from '../../../service/itsk-grid.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NumericCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
-  @Input() column: GridColumn;
-  @Input() row: GridRow<any>;
-  @ViewChild('input', {static: false}) input: ElementRef;
+  @Input() column?: GridColumn;
+  @Input() row?: GridRow<any>;
+  @ViewChild('input', {static: false}) input?: ElementRef;
 
   // edit: boolean;
 
-  constructor(protected svc$: ItskGridService<T>, protected cdr$: ChangeDetectorRef) {
+  constructor(svc$: ItskGridService<T>, cdr$: ChangeDetectorRef) {
     super(svc$, cdr$);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     super.ngOnInit();
   }
 
-  startEdit() {
+  override startEdit() {
     this.cdr$.markForCheck();
     setTimeout(() => {
-      this.input.nativeElement.focus();
+      this.input?.nativeElement.focus();
     }, 0);
   }
 
-  stopEdit() {
+  override stopEdit() {
     this.cdr$.markForCheck();
   }
 }

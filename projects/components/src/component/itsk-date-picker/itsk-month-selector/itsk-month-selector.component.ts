@@ -8,7 +8,7 @@ import {ItskPickerLocaleModel} from '../model/itsk-picker-locale-model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskMonthSelectorComponent implements OnInit {
-  currentMonth$: number;
+  currentMonth$: number = 0;
 
   @Input()
   set currentMonth(val: number) {
@@ -20,7 +20,7 @@ export class ItskMonthSelectorComponent implements OnInit {
     return this.currentMonth$;
   }
 
-  currentYear$: number;
+  currentYear$: number = 0;
 
   @Input()
   set currentYear(val: number) {
@@ -31,9 +31,9 @@ export class ItskMonthSelectorComponent implements OnInit {
     return this.currentYear$;
   }
 
-  @Input() locale: ItskPickerLocaleModel;
-  @Input() minDate: Date;
-  @Input() maxDate: Date;
+  @Input() locale?: ItskPickerLocaleModel;
+  @Input() minDate?: Date;
+  @Input() maxDate?: Date;
   @Output() monthSelected = new EventEmitter<number>();
   @Output() monthApplied = new EventEmitter<number>();
   today: Date;

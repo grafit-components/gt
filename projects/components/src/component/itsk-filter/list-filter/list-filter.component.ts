@@ -21,12 +21,12 @@ import {FilterColumn} from '../model/filter-column';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListFilterComponent extends FilterComponentBase implements OnInit {
-  filter: ListFilter;
+  filter: ListFilter = new ListFilter();
 
-  @Input() column: FilterColumn;
+  @Input() column: FilterColumn = new FilterColumn();
   @Output() filterChanged: EventEmitter<FilterBase> = new EventEmitter<FilterBase>();
 
-  state$: FilterState;
+  state$: FilterState = new FilterState();
 
   @Input()
   set state(val: FilterState) {
@@ -39,7 +39,7 @@ export class ListFilterComponent extends FilterComponentBase implements OnInit {
     return this.state$;
   }
 
-  excluded: boolean;
+  excluded: boolean = false;
 
   constructor(private changeDetector: ChangeDetectorRef) {
     super();

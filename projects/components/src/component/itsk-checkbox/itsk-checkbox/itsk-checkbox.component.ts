@@ -30,7 +30,7 @@ export class ItskCheckboxComponent implements ControlValueAccessor, OnInit {
    * компонент неактивен
    */
   @HostBinding('class.checkbox_disabled')
-  @Input() disabled: boolean;
+  @Input() disabled?: boolean;
   /**
    * true/false или list
    */
@@ -38,7 +38,7 @@ export class ItskCheckboxComponent implements ControlValueAccessor, OnInit {
   /**
    * true/false или list
    */
-  @Input() binary: boolean;
+  @Input() binary?: boolean;
   /**
    * значение, которое должена принимать модель, чтобы чекбокс был отмечен
    */
@@ -63,7 +63,7 @@ export class ItskCheckboxComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  checked: boolean;
+  checked: boolean = false;
 
   constructor(private cdr: ChangeDetectorRef) {
   }

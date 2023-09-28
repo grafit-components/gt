@@ -17,20 +17,20 @@ export class ItskTabComponent implements AfterContentChecked {
   /**
    * Simple (string only) title. Use the "ItskTabTitleDirective" directive for more complex use-cases.
    */
-  @Input() title: string;
+  @Input() title: string = '';
   /**
    * Allows toggling disabled state of a given state. Disabled tabs can't be selected.
    */
   @Input() disabled = false;
 
-  titleTpl: ItskTabTitleDirective | null;
-  contentTpl: ItskTabContentDirective | null;
+  titleTpl: ItskTabTitleDirective | null = null;
+  contentTpl: ItskTabContentDirective | null = null;
 
-  @ContentChildren(ItskTabTitleDirective, {descendants: false}) titleTemplates: QueryList<ItskTabTitleDirective>;
-  @ContentChildren(ItskTabContentDirective, {descendants: false}) contentTemplates: QueryList<ItskTabContentDirective>;
+  @ContentChildren(ItskTabTitleDirective, {descendants: false}) titleTemplates?: QueryList<ItskTabTitleDirective>;
+  @ContentChildren(ItskTabContentDirective, {descendants: false}) contentTemplates?: QueryList<ItskTabContentDirective>;
 
   ngAfterContentChecked() {
-    this.titleTpl = this.titleTemplates.first;
-    this.contentTpl = this.contentTemplates.first;
+    this.titleTpl = this.titleTemplates?.first ?? null;
+    this.contentTpl = this.contentTemplates?.first ?? null;
   }
 }

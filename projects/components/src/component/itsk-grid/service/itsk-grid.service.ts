@@ -14,9 +14,9 @@ import {ArrayUtil} from '../../../util/array-util';
 
 @Injectable()
 export class ItskGridService<T extends IId> {
-  grouping: boolean;
-  openLevels: number;
-  tree: boolean;
+  grouping: boolean = false;
+  openLevels: number = 0;
+  tree: boolean = false;
 
   private data: GridRow<T>[] = [];
   private displayData: GridRow<T>[] = [];
@@ -32,8 +32,8 @@ export class ItskGridService<T extends IId> {
   visibleColumns = this.visibleColumns$.asObservable();
 
 
-  rowSelectable: boolean | BooleanFunc<GridRow<T>> | BooleanPromiseFunc<GridRow<T>>;
-  selectType: 'single' | 'multiple' | 'none';
+  rowSelectable: boolean | BooleanFunc<GridRow<T>> | BooleanPromiseFunc<GridRow<T>> = false;
+  selectType: 'single' | 'multiple' | 'none' = 'none';
 
   private editRowStart$ = new Subject<GridRow<T> | null>();
   editRowStart = this.editRowStart$.asObservable();
@@ -68,7 +68,7 @@ export class ItskGridService<T extends IId> {
   private sortEvent$ = new Subject<GridSortEvent>();
   sortEvent = this.sortEvent$.asObservable();
 
-  private dragSource$: GridColumn;
+  private dragSource$?: GridColumn;
 
   // private columnReorder$ = new Subject<ColumnReorderEvent>();
   // columnReorder = this.columnReorder$.asObservable();
@@ -148,6 +148,9 @@ export class ItskGridService<T extends IId> {
   }
 
   reorderColumn(column: GridColumn) {
+    if(!this.dragSource$) {
+      return;
+    }
     const event = new ColumnReorderEvent(this.dragSource$, column);
     const sourceParent = this.findParent(event.source, this.allColumns);
     const targetParent = this.findParent(event.target, this.allColumns);
@@ -163,7 +166,7 @@ export class ItskGridService<T extends IId> {
 
   updateColumns() {
     this.setColumns(this.allColumns);
-    this.columnsUpdate$.next();
+    this.columnsUpdate$.next(undefined);
   }
 
   openColumnMenu(column: GridColumn, position: DOMRect) {
@@ -212,7 +215,7 @@ export class ItskGridService<T extends IId> {
   }
 
   selectGroup(row: GridRow<T>, val: boolean) {
-    if (this.grouping) {
+    if (this.grouping && row.groupColumn) {
       const groupColumn = this.getColumnByName(row.groupColumn);
       const groupChildren = this.data.filter(_ => {
         return row.groupValue.every((groupValue: any, index: number) => {
@@ -260,7 +263,7 @@ export class ItskGridService<T extends IId> {
   }
 
   private getGroupChildren(row: GridRow<T>) {
-    if (this.grouping) {
+    if (this.grouping && row.groupColumn) {
       const groupColumn = this.getColumnByName(row.groupColumn);
       if (groupColumn) {
         return this.data.filter(_ => {
@@ -432,7 +435,7 @@ export class ItskGridService<T extends IId> {
         return col;
       } else {
         if (col.columns && col.columns.length > 0) {
-          const result = this.findColumn(columnName, col.columns);
+          const result = this.findColumn(columnName, col.columns as any);
           if (result !== null && result !== undefined) {
             return result;
           }
@@ -452,7 +455,7 @@ export class ItskGridService<T extends IId> {
     for (let i = 0, l = columns.length; i < l; i++) {
       const col = columns[i];
       if (col.columns && col.columns.length) {
-        const result = this.findParent(column, col.columns);
+        const result = this.findParent(column, col.columns as any);
         if (result !== null && result !== undefined) {
           return result;
         }

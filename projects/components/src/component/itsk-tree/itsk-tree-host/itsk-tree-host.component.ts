@@ -9,7 +9,7 @@ import {ItskTreeControl} from '../model/itsk-tree-control';
 export class ItskTreeHostComponent implements OnInit {
   @Input() data: any[] = [];
   @Input() template: any;
-  @Input() control: ItskTreeControl;
+  @Input() control?: ItskTreeControl;
 
   @HostBinding('class.tree__host') treeHost = true;
 

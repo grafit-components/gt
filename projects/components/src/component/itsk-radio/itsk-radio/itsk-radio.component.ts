@@ -37,7 +37,7 @@ export class ItskRadioComponent implements OnInit, ControlValueAccessor {
 
   /** Менять значение при изменении выбранного */
   @Input()
-  @HostBinding('class.radio_inline') inline: boolean;
+  @HostBinding('class.radio_inline') inline: boolean = false;
 
   @Input() checkChangeSelected = true;
 

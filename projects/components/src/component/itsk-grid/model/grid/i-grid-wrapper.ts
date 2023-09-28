@@ -17,5 +17,5 @@ export interface IGridWrapper<T extends IId> extends IGrid<T> {
   showDetailsChange: EventEmitter<boolean>;
   showCustom: boolean;
   showCustomChange: EventEmitter<boolean>;
-  detailComponent: Type<DetailComponentBase<any>>;
+  detailComponent?: Type<DetailComponentBase<any>>;
 }

@@ -32,8 +32,8 @@ import {ClickOutsideBase} from '../../../directive/itsk-click-outside/click-outs
 export class ItskDropdownComponent extends ClickOutsideBase implements OnInit, OnDestroy {
   @HostBinding('class.dropdown') classDropdown = true;
 
-  @ContentChild(ItskDropdownContentDirective, {static: true}) content: ItskDropdownContentDirective;
-  @ContentChild(ItskDropdownHeadDirective, {static: true}) head: ItskDropdownHeadDirective;
+  @ContentChild(ItskDropdownContentDirective, {static: true}) content?: ItskDropdownContentDirective;
+  @ContentChild(ItskDropdownHeadDirective, {static: true}) head?: ItskDropdownHeadDirective;
 
   @Input() align: ItskAlign.Left | ItskAlign.Right = ItskAlign.Left;
   @Input() fixed = false;
@@ -54,16 +54,16 @@ export class ItskDropdownComponent extends ClickOutsideBase implements OnInit, O
   @Input()
   autoClose = true;
 
-  visible: boolean;
+  visible: boolean = false;
   ItskAlign = ItskAlign;
-  top: number | null;
-  bottom: number | null;
-  left: number | null;
-  right: number | null;
-  minWidth: number | null;
+  top: number | null | undefined;
+  bottom: number | null | undefined;
+  left: number | null | undefined;
+  right: number | null | undefined;
+  minWidth: number | null | undefined;
 
-  private scrollXParentElement$: HTMLElement | null;
-  private scrollYParentElement$: HTMLElement | null;
+  private scrollXParentElement$: HTMLElement | null = null;
+  private scrollYParentElement$: HTMLElement | null = null;
 
   constructor(private element$: ElementRef,
               private cdr$: ChangeDetectorRef) {

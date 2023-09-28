@@ -11,13 +11,13 @@ import {ItskGridSelectType} from '../../model/enum/itsk-grid-select-type';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskGridHeadGroupComponent implements OnInit {
-  private column$: GridColumn;
+  private column$?: GridColumn;
 
-  @Input() rootIndex: number;
-  @Input() selfIndex: number;
+  @Input() rootIndex?: number;
+  @Input() selfIndex?: number;
 
   @Input()
-  set column(column: GridColumn) {
+  set column(column: GridColumn | undefined) {
     this.column$ = column;
   }
 
@@ -25,7 +25,7 @@ export class ItskGridHeadGroupComponent implements OnInit {
     return this.column$;
   }
 
-  @Input() state: FilterState;
+  @Input() state?: FilterState;
 
   @Input() allColumns: GridColumn[] = [];
   @Input() selectRowsBy: ItskGridSelectRowsByType = 'mouse';

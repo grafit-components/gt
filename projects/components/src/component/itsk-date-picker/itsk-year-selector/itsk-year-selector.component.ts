@@ -7,22 +7,22 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnIn
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskYearSelectorComponent implements OnInit, OnDestroy {
-  @Input() currentYear: number;
-  @Input() today: Date;
-  @Input() size: number;
-  @Input() minDate: Date;
-  @Input() maxDate: Date;
+  @Input() currentYear?: number;
+  @Input() today?: Date;
+  @Input() size?: number;
+  @Input() minDate?: Date;
+  @Input() maxDate?: Date;
   @Input() allowableRange: number[] = [1900, 2100];
   @Output() yearSelected = new EventEmitter<number>();
   @Output() yearApplied = new EventEmitter<number>();
 
-  minYearDate: Date;
-  maxYearDate: Date;
-  years: number[];
-  minYearList: number[];
-  maxYearList: number[];
-  decreaseInterval: number;
-  increaseInterval: number;
+  minYearDate?: Date;
+  maxYearDate?: Date;
+  years?: number[];
+  minYearList?: number[];
+  maxYearList?: number[];
+  decreaseInterval?: number;
+  increaseInterval?: number;
 
   constructor() {
   }
@@ -64,13 +64,13 @@ export class ItskYearSelectorComponent implements OnInit, OnDestroy {
     }
   };
 
-  initYearSelector = (year: number) => {
+  initYearSelector = (year?: number) => {
     if (!year) {
-      year = this.today.getFullYear();
+      year = this.today?.getFullYear() ?? 0;
     }
     this.years = [year];
     let direction = false;
-    for (let i = 1; i < this.size; i++) {
+    for (let i = 1; i < (this.size ?? 0); i++) {
       if (direction) {
         this.years.unshift(this.years[0] - 1);
       } else {
@@ -82,27 +82,29 @@ export class ItskYearSelectorComponent implements OnInit, OnDestroy {
   };
 
   initMinYearList = () => {
-    this.minYearList = [this.minYearDate.getFullYear()];
-    for (let i = 1; i < this.size; i++) {
-      this.minYearList.push(this.minYearList[this.minYearList.length - 1] + 1);
+    const minYearList: any = [this.minYearDate?.getFullYear()];
+    this.minYearList = minYearList;
+    for (let i = 1; i < (this.size ?? 0); i++) {
+      minYearList.push(minYearList[minYearList.length - 1] + 1);
     }
   };
 
   initMaxYearList = () => {
-    this.maxYearList = [this.maxYearDate.getFullYear()];
-    for (let i = 1; i < this.size; i++) {
-      this.maxYearList.unshift(this.maxYearList[0] - 1);
+    const maxYearList: any = [this.maxYearDate?.getFullYear()];
+    this.maxYearList = maxYearList;
+    for (let i = 1; i < (this.size ?? 0); i++) {
+      maxYearList.unshift(maxYearList[0] - 1);
     }
   };
 
   checkRanges = () => {
-    if (this.years.some((year) => {
+    if (this.years?.some((year) => {
       const dat = new Date(year, 0, 1);
       return this.isMinYear(dat);
     })) {
       this.years = this.minYearList;
     }
-    if (this.years.some((year) => {
+    if (this.years?.some((year) => {
       const dat = new Date(year, 0, 1);
       return this.isMaxYear(dat);
     })) {
@@ -111,31 +113,31 @@ export class ItskYearSelectorComponent implements OnInit, OnDestroy {
   };
 
   shiftYearSelector = (step: number = 0) => {
-    this.years = this.years.map((year) => {
+    this.years = this.years?.map((year) => {
       return year + step;
     });
     this.checkRanges();
   };
 
   decreaseYearSelector = (step: number = 3) => {
-    const dat = new Date(this.years[0] - step, 0, 1);
+    const dat = new Date(this.years ?this.years[0]:0 - step, 0, 1);
     if (this.isMinYear(dat)) {
       this.years = this.minYearList;
       return;
     }
 
-    this.years = this.years.map((year) => {
+    this.years = this.years?.map((year) => {
       return year - step;
     });
   };
 
   increaseYearSelector = (step: number = 3) => {
-    const dat = new Date(this.years[this.years.length - 1] + step, 0, 1);
+    const dat = new Date((this.years ? this.years[this.years.length - 1]:0) + step, 0, 1);
     if (this.isMaxYear(dat)) {
       this.years = this.maxYearList;
       return;
     }
-    this.years = this.years.map((year) => {
+    this.years = this.years?.map((year) => {
       return year + step;
     });
   };

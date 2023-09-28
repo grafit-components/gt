@@ -17,7 +17,7 @@ import {IItskMenuItem} from '../model/i-itsk-menu-item';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskMenuItemComponent<T extends IItskMenuItem> implements OnInit, OnDestroy {
-  item$: T;
+  item$?: T;
 
   @Input()
   set item(item: T) {
@@ -29,7 +29,7 @@ export class ItskMenuItemComponent<T extends IItskMenuItem> implements OnInit, O
 
   children?: IItskMenuItem[];
 
-  @Input() template: TemplateRef<any>;
+  @Input() template?: TemplateRef<any>;
 
   @Input() isOpen = false;
 
@@ -55,6 +55,7 @@ export class ItskMenuItemComponent<T extends IItskMenuItem> implements OnInit, O
   }
 
   ngOnDestroy(): void {
+    if(this.item$)
     this.item$.open = false;
   }
 }

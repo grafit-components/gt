@@ -51,16 +51,16 @@ interface TreeSelectItem extends IItskTreeItem {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
-  private searchTextSub = new Subject<string | null>();
-  private searchTextSubscription: Subscription | null;
-  private $searchText: string | null;
+  private searchTextSub = new Subject<string | null | undefined>();
+  private searchTextSubscription?: Subscription;
+  private $searchText: string | null | undefined;
   private rawNgModel: TreeSelectItem | TreeSelectItem[] | undefined;
   viewTypeEnum = ViewType;
   selectedItem: TreeSelectItem | TreeSelectItem[] | undefined;
   focusedIndex: number | null = null;
   focused = false;
   itemsCount = 0;
-  treeControl: ItskTreeControl;
+  treeControl?: ItskTreeControl;
   private started = false;
   hiddenItems: Set<TreeSelectItem> = new Set();
 
@@ -69,11 +69,11 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
    */
   @Input() height = '40vh';
 
-  @ViewChild('searchInput', {static: false}) private searchInput$: ElementRef<HTMLInputElement>;
-  @ViewChild(CdkVirtualScrollViewport, {static: false}) private virtualViewport$: CdkVirtualScrollViewport;
+  @ViewChild('searchInput', {static: false}) private searchInput$?: ElementRef<HTMLInputElement>;
+  @ViewChild(CdkVirtualScrollViewport, {static: false}) private virtualViewport$?: CdkVirtualScrollViewport;
 
-  @ContentChild(ItskTreeSelectValueDirective, {static: true}) valueTemplate: ItskTreeSelectValueDirective;
-  @ContentChild(ItskTreeSelectOptionDirective, {static: true}) optionTemplate: ItskTreeSelectOptionDirective;
+  @ContentChild(ItskTreeSelectValueDirective, {static: true}) valueTemplate?: ItskTreeSelectValueDirective;
+  @ContentChild(ItskTreeSelectOptionDirective, {static: true}) optionTemplate?: ItskTreeSelectOptionDirective;
 
   //#region Inputs
 
@@ -128,8 +128,8 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
       this.textPath = val;
     }
   }
-  textTemplate: TemplateRef<{item: TreeSelectItem}>;
-  private textPath: string;
+  textTemplate?: TemplateRef<{item: TreeSelectItem}>;
+  private textPath?: string;
 
   /** Шаблон для отображения групп */
   @Input() set groupItemRef(val: TemplateRef<{item: TreeSelectItem, expanded: boolean}> | string) {
@@ -140,8 +140,8 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
       this.groupPath = val;
     }
   }
-  groupTemplate: TemplateRef<{item: TreeSelectItem, expanded: boolean}>;
-  private groupPath: string;
+  groupTemplate?: TemplateRef<{item: TreeSelectItem, expanded: boolean}>;
+  private groupPath?: string;
 
   /** Доступность селекта, по умолчанию `false` */
   @HostBinding('class.select_disabled')
@@ -180,14 +180,14 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
     this.$searchText = null;
     this.writeValue(this.rawNgModel);
   }
-  get items() { return this.$items; }
+  get items() { return this.$items ?? []; }
   get filteredFlatItems() {
     if (!this.treeControl) {
       return [];
     }
     const temp: Set<TreeSelectItem> = new Set();
     return this.flatItems.filter(i => {
-      const result = !this.hiddenItems.has(i[0]) && (!i[1] || (this.treeControl.isExpanded(i[1]) && temp.has(i[1])));
+      const result = !this.hiddenItems.has(i[0]) && (!i[1] || (this.treeControl?.isExpanded(i[1]) && temp.has(i[1])));
       if (result) {
         temp.add(i[0]);
       }
@@ -212,7 +212,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
   }
   private flatItems: [TreeSelectItem, TreeSelectItem?][] = [];
   private flatDeepestItems: [TreeSelectItem, TreeSelectItem?][] = [];
-  private $items: TreeSelectItem[];
+  private $items?: TreeSelectItem[];
 
   /** Геттер значения объекта */
   @Input() set valueRef(value: ((item?: TreeSelectItem) => any) | string) {
@@ -235,7 +235,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
 
   get hasSearch() { return !!this.searchRef; }
 
-  set searchText(value: string | null) { this.searchTextSub.next(value); }
+  set searchText(value: string | null | undefined) { this.searchTextSub.next(value); }
   get searchText() { return this.$searchText; }
 
   get hasValue() {
@@ -327,7 +327,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
         .subscribe(text => this.search(text));
 
       setTimeout(() => {
-        this.searchInput$.nativeElement.focus();
+        this.searchInput$?.nativeElement.focus();
       }, 0);
 
     }
@@ -346,7 +346,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
       }
       if (this.searchTextSubscription) {
         this.searchTextSubscription.unsubscribe();
-        this.searchTextSubscription = null;
+        this.searchTextSubscription = undefined;
       }
     }
   }
@@ -433,18 +433,18 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
   }
 
   showGroup(item: TreeSelectItem) {
-    if (!this.hasChildren(item) || this.treeControl.isExpanded(item)) {
+    if (!this.hasChildren(item) || this.treeControl?.isExpanded(item)) {
       return;
     }
-    this.treeControl.toggle(item);
+    this.treeControl?.toggle(item);
     this.forceChange();
   }
 
   hideGroup(item: TreeSelectItem) {
-    if (!this.hasChildren(item) || !this.treeControl.isExpanded(item)) {
+    if (!this.hasChildren(item) || !this.treeControl?.isExpanded(item)) {
       return;
     }
-    this.treeControl.toggle(item);
+    this.treeControl?.toggle(item);
     this.forceChange();
   }
 
@@ -536,7 +536,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
 
   //#region Поиск
 
-  private search(searchText: string|null) {
+  private search(searchText: string|null|undefined) {
     if (!this.items) {
       return;
     }
@@ -637,7 +637,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
         if (this.panelOpen) {
           if (this.focusedIndex !== null && !this.hasSearch) {
             if (item && this.hasChildren(item)) {
-              this.treeControl.toggle(item);
+              this.treeControl?.toggle(item);
               this.forceChange();
             } else {
               this._select(item);
@@ -670,7 +670,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
               if (this.groupsSelectable) {
                 this._select(item);
               } else {
-                this.treeControl.toggle(item);
+                this.treeControl?.toggle(item);
                 this.forceChange();
               }
             } else {
@@ -730,7 +730,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
           eventSilenced = false;
           break;
         }
-        if (!this.treeControl.isExpanded(item)) {
+        if (!this.treeControl?.isExpanded(item)) {
           this.showGroup(item);
           if (items.length > this.focusedIndex + 1) {
             const nextIndex = this.filteredFlatItems.findIndex(v => v[1] === item);
@@ -755,7 +755,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
           const targetItem = items[this.focusedIndex][1];
           if (targetItem) {
             this.focusedIndex = items.findIndex(v => v[0] === targetItem);
-            if (this.focusedItem && this.treeControl.isExpanded(this.focusedItem)) {
+            if (this.focusedItem && this.treeControl?.isExpanded(this.focusedItem)) {
               this.hideGroup(this.focusedItem);
             }
           }
@@ -768,7 +768,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
             if (!this.panelOpen) {
               this.open();
             } else {
-              this.searchInput$.nativeElement.focus();
+              this.searchInput$?.nativeElement.focus();
             }
             // note: иначе не успевает учесть
             this.$searchText = event.key;

@@ -1,4 +1,4 @@
-<div class="dropdown__head"
+<div *ngIf="head" class="dropdown__head"
      (click)="toggle(!visible)">
   <ng-container *ngTemplateOutlet="head.template;"></ng-container>
 </div>

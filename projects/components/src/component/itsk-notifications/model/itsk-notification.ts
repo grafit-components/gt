@@ -4,10 +4,10 @@ export class ItskNotification {
   name: string| null | undefined;
   head: string | null | undefined;
   text: string| null | undefined;
-  infinite: boolean;
+  infinite: boolean = false;
   duration = 5000;
   className: string | string[] | null | undefined;
-  level: ItskNotificationLevel;
+  level: ItskNotificationLevel = ItskNotificationLevel.Info;
   iconName: string | undefined;
 
   constructor(options?: {

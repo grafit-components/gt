@@ -55,21 +55,21 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
   /**
    * Данные для отображения в таблице
    */
-  data$: GridRow<T>[];
+  data$?: GridRow<T>[];
   @Input()
   set data(data: GridRow<T>[]) {
     this.data$ = data;
   }
 
-  @Input() aggregate: GridRow<T>;
+  @Input() aggregate?: GridRow<T>;
 
   /**
    * Столбцы таблицы
    */
-  @Input() columns: GridColumn[];
+  @Input() columns?: GridColumn[];
 
   /** Состояние сортировки и фильтрации */
-  state$: FilterState;
+  state$?: FilterState;
 
   @Input()
   set state(val: FilterState) {
@@ -82,26 +82,26 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
   @Input() stateful = true;
 
   /** Наименование для хранения состояние в localStorage */
-  @Input() cookieName: string;
+  @Input() cookieName?: string;
 
   /** Использовать виртуальный скролл */
-  @Input() virtual: boolean;
+  @Input() virtual: boolean = false;
 
   /** Компонент для отображения дополнительного содержимого под основной строкой */
-  @Input() additionalComponent: Type<AdditionalComponentBase<any>>;
+  @Input() additionalComponent?: Type<AdditionalComponentBase<any>>;
 
   /** Компонент для отображения строки аггрегации */
-  @Input() aggregateComponent: Type<AggregateComponentBase<any>>;
+  @Input() aggregateComponent?: Type<AggregateComponentBase<any>>;
 
   /** Оповещение о том, что кликнули мимо грида */
   @Output() bodyLeft = new EventEmitter<GridRow<T>>();
 
   /** Активная строка */
-  @Input() activeRow: GridRow<T>;
+  @Input() activeRow?: GridRow<T>;
   @Output() activeRowChange: EventEmitter<GridRow<T>> = new EventEmitter();
 
   /** Выбранные стргоки */
-  @Input() selectedRows: GridRow<T>[];
+  @Input() selectedRows?: GridRow<T>[];
   @Output() selectedRowsChange: EventEmitter<GridRow<T>[]> = new EventEmitter();
   @Input() selectRowsBy: ItskGridSelectRowsByType = 'checkbox';
   @Input() selectType: ItskGridSelectType = 'single';
@@ -110,10 +110,10 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
   @Output() rowLeft = new EventEmitter<GridRow<T>>();
 
   /** Оповещение о том, что строка выбрана */
-  @Output() rowClick = new EventEmitter<ICellEvent<T>>();
+  @Output() rowClick = new EventEmitter<any>();
 
   /** Оповещение о том, что строка выбрана */
-  @Output() rowDoubleClick = new EventEmitter<ICellEvent<T>>();
+  @Output() rowDoubleClick = new EventEmitter<ICellCoordinates<T>>();
 
   @Output() rowEditStart = new EventEmitter<GridRow<T>>();
 
@@ -129,13 +129,13 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
   /** Оповещение о том, что строка выбрана */
   @Output() cellEditStart = new EventEmitter<ICellCoordinates<T>>();
   @Output() cellEditEnd = new EventEmitter<ICellCoordinates<T>>();
-  @Output() valueChange = new EventEmitter<ICellCoordinates<T>>();
+  @Output() valueChange = new EventEmitter<ICellCoordinates<T> | null>();
   @Output() cellKeyUp = new EventEmitter<ICellEvent<T>>();
 
-  @Input() grouping: boolean;
+  @Input() grouping: boolean = false;
   @Input() groupRowComponent: Type<GroupRowComponentBase<T>> = GroupRowDefaultComponent;
-  @Input() openLevels: number;
-  @Input() tree: boolean;
+  @Input() openLevels: number = 0;
+  @Input() tree: boolean = false;
   /**
    * Тип отображения группировки
    */
@@ -157,21 +157,21 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
 
   @Input() cellEditable: boolean | BooleanFunc<ICellCoordinates<T>> | BooleanPromiseFunc<ICellCoordinates<T>> = true;
 
-  @Input() editType: ItskGridEditType;
+  @Input() editType?: ItskGridEditType;
 
-  @Input() editOn: ItskGridEditEvent;
+  @Input() editOn?: ItskGridEditEvent;
 
-  @Input() editMode: ItskGridEditMode;
+  @Input() editMode?: ItskGridEditMode;
 
-  @ViewChild('gridBody', {read: ElementRef}) gridBody: ElementRef;
+  @ViewChild('gridBody', {read: ElementRef}) gridBody?: ElementRef;
 
   protected element: ElementRef;
 
-  leftTop: HTMLElement;
-  rightTop: HTMLElement;
-  leftBottom: HTMLElement;
-  rightBottom: HTMLElement;
-  aggregateRight: HTMLElement;
+  leftTop?: HTMLElement;
+  rightTop?: HTMLElement;
+  leftBottom?: HTMLElement;
+  rightBottom?: HTMLElement;
+  aggregateRight?: HTMLElement;
 
   bindScrollCallback = this.onScroll.bind(this);
 
@@ -208,7 +208,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
 
     this.svc$.valueChanged
       .pipe(takeWhile(_ => this.alive))
-      .subscribe((coordinates: ICellCoordinates<T>) => {
+      .subscribe((coordinates) => {
         this.valueChange.emit(coordinates);
       });
   }
@@ -291,7 +291,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
     if (coordinates) {
       this.cellKeyUp.emit(coordinates);
     }
-    if (this.editOn === ItskGridEditEvent.Enter && this.gridBody.nativeElement.contains(event.target)) {
+    if (this.editOn === ItskGridEditEvent.Enter && this.gridBody?.nativeElement.contains(event.target)) {
       let nextCell;
       switch (event.key) {
         case 'Tab':
@@ -450,7 +450,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
     }
   }
 
-  leaveRow(row: GridRow<T>) {
+  leaveRow(row?: GridRow<T>) {
     if (row !== null && row !== undefined) {
       this.rowLeft.emit(row);
     }
@@ -500,7 +500,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
   }
 
   saveHidden() {
-    if (this.stateful && this.cookieName) {
+    if (this.stateful && this.cookieName && this.columns) {
       localStorage.setItem(`${this.cookieName}_hidden`, JSON.stringify(this.getHidden(this.columns)));
     }
   }
@@ -512,7 +512,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
         res.push(col.name);
       }
       if (col.columns !== null && col.columns !== undefined && col.columns.length) {
-        res.push(...this.getHidden(col.columns));
+        res.push(...this.getHidden(col.columns as any));
       }
     });
     return res;
@@ -523,6 +523,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
       const newState = localStorage.getItem(`${this.cookieName}_hidden`) || 'null';
       const hidden = JSON.parse(newState);
       if (hidden !== null && hidden !== undefined && hidden.length > 0) {
+        if(this.columns)
         this.columns = this.setHidden(this.columns, hidden);
       }
     }
@@ -534,7 +535,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
         col.hidden = true;
       }
       if (col.columns !== null && col.columns !== undefined && col.columns.length) {
-        col.columns = this.setHidden(col.columns, hidden);
+        col.columns = this.setHidden(col.columns as any, hidden) as any;
       }
       return col;
     });
@@ -542,7 +543,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
 
   restoreFilters() {
     if (this.stateful && this.cookieName !== null && this.cookieName !== undefined) {
-      let newState = Object.assign(this.state$, FilterState.restore(this.cookieName));
+      let newState = Object.assign(this.state$ ?? {}, FilterState.restore(this.cookieName));
       newState = DateUtil.ConvertDateStringsToDates(newState);
       this.state$ = new FilterState(newState);
     }
@@ -551,6 +552,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
   ngOnInit() {
     this.restoreHiddenState();
     this.restoreFilters();
+    if(this.state$)
     this.setState(this.state$);
   }
 
@@ -560,16 +562,18 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
     this.leftBottom = this.element.nativeElement.querySelector('.grid__body__left');
     this.rightBottom = this.element.nativeElement.querySelector('.grid__body__right');
     this.aggregateRight = this.element.nativeElement.querySelector('.grid__aggregate_right');
-
+    if(this.rightBottom)
     this.rightBottom.addEventListener('scroll', this.bindScrollCallback);
   }
 
   ngOnDestroy() {
+    if(this.rightBottom)
     this.rightBottom.removeEventListener('scroll', this.bindScrollCallback);
     this.alive = false;
   }
 
   sortColumn(sortEvent: GridSortEvent): void {
+    if(!this.state$)return;
     const column = sortEvent.column;
     const shiftKey = sortEvent.shiftKey;
     if (!column.sortable) {
@@ -603,6 +607,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
   }
 
   clearFilter(column: GridColumn) {
+    if(!this.state$) return;
     if (column !== null && column !== undefined && column.filterable) {
       switch (column.filterType) {
         case FilterType.Date:
@@ -640,29 +645,32 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
   }
 
   updateColumns() {
-    this.columns = this.columns.map((_: any) => new GridColumn(_));
+    this.columns = this.columns?.map((_: any) => new GridColumn(_));
     this.saveHidden();
   }
 
   private setState(state: FilterState) {
     this.state$ = new FilterState(state);
+    if(this.cookieName)
     this.state$.save(this.cookieName);
     this.stateChange.emit(this.state$);
   }
 
   onScroll() {
-    const left = this.rightBottom.scrollLeft;
-    this.rightTop.style.transform = `translateX(${'-' + left + 'px'})`;
-    this.left = left;
-    // this.cdr$.markForCheck();
-    const list = this.element.nativeElement.querySelectorAll('.grid__row_locked');
-    list.forEach((_: any) => {
-      _.style.left = `${this.left + 'px'}`;
-    });
+    if(this.rightTop && this.rightBottom) {
+      const left = this.rightBottom.scrollLeft;
+      this.rightTop.style.transform = `translateX(${'-' + left + 'px'})`;
+      this.left = left;
+      // this.cdr$.markForCheck();
+      const list = this.element.nativeElement.querySelectorAll('.grid__row_locked');
+      list.forEach((_: any) => {
+        _.style.left = `${this.left + 'px'}`;
+      });
+    }
   }
 
   pinColumn(column: GridColumn) {
-    this.columns.forEach((col: GridColumn) => {
+    this.columns?.forEach((col: GridColumn) => {
       if (col.name === column.name) {
         col.locked = !col.locked;
       }
@@ -674,11 +682,11 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
     this.svc$.grouping = this.grouping;
     this.svc$.openLevels = this.openLevels;
     this.svc$.tree = this.tree;
-    if (changes.hasOwnProperty('columns')) {
+    if (changes.hasOwnProperty('columns') && this.columns) {
       this.svc$.setColumns(this.columns);
     }
 
-    if (changes.hasOwnProperty('data')) {
+    if (changes.hasOwnProperty('data') && this.data$) {
       this.svc$.setData(this.data$);
       setTimeout(() => {
         const list = this.element.nativeElement.querySelectorAll('.grid__row_locked');
@@ -689,13 +697,14 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
     }
 
     if (changes.hasOwnProperty('selectedRows')) {
-      if (changes.selectedRows.previousValue !== changes.selectedRows.currentValue) {
+      if (changes['selectedRows'].previousValue !== changes['selectedRows'].currentValue) {
+        if(this.selectedRows)
         this.svc$.selectRows(this.selectedRows);
       }
     }
 
     if (changes.hasOwnProperty('selectType')) {
-      if (changes.selectType.previousValue !== changes.selectType.currentValue) {
+      if (changes['selectType'].previousValue !== changes['selectType'].currentValue) {
         this.svc$.selectType = this.selectType;
       }
     }

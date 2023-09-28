@@ -5,9 +5,9 @@ import {ItskTreeControl} from './model/itsk-tree-control';
   selector: '[itskTreeToggle]'
 })
 export class ItskTreeToggleDirective {
-  @Input() itskTreeToggleChildren: boolean;
+  @Input() itskTreeToggleChildren: boolean = false;
 
-  @Input() itskTreeControl: ItskTreeControl;
+  @Input() itskTreeControl?: ItskTreeControl;
 
   @HostBinding('class.tree__toggle') treeToggle = true;
 

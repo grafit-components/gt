@@ -21,12 +21,12 @@ export class ItskBreadcrumbComponent {
 
     private readonly url$ = this.router.events.pipe(
         startWith(new NavigationEnd(0, this.router.url, this.router.url)),
-        filter(event => event instanceof NavigationEnd || event instanceof ResolveEnd),
+        filter((event: any) => Boolean(event instanceof NavigationEnd || event instanceof ResolveEnd)),
         map((even: NavigationEnd) => even.urlAfterRedirects.split('?')[0]),
         distinctUntilChanged(),
     );
 
-    breadcrumbItems$: Observable<BreadcrumbItem[]>;
+    breadcrumbItems$?: Observable<BreadcrumbItem[]>;
 
     @Input()
     set menuItems(value: IItskMenuItem[]) {

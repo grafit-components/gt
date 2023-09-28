@@ -1,8 +1,8 @@
 import {IItskMenuItem} from './i-itsk-menu-item';
 
 export class ItskMenuGroup<T extends IItskMenuItem> {
-  name: string;
-  items: T[];
+  name: string = '';
+  items: T[] = [];
 
   constructor(options?: {
     name: string;

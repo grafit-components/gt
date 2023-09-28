@@ -26,18 +26,18 @@ export const TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
 export class ItskToggleComponent implements ControlValueAccessor, OnInit {
   @HostBinding('class.toggle') toggleClass = true;
   @HostBinding('attr.tabindex') tabindex = 0;
-  @Input() leftLabel: boolean;
-  @Input() trueColor: string;
-  @Input() falseColor: string;
+  @Input() leftLabel?: boolean;
+  @Input() trueColor?: string;
+  @Input() falseColor?: string;
   /**
    * css класс, который будет применен к input
    */
-  @Input() className: string[];
+  @Input() className?: string[];
   /**
    * компонент неактивен
    */
   @HostBinding('class.toggle_disabled')
-  @Input() disabled: boolean;
+  @Input() disabled?: boolean;
   /**
    * значение
    */

@@ -8,27 +8,27 @@ import {Component, HostBinding, Input, OnInit} from '@angular/core';
 export class ItskHintContainerComponent implements OnInit {
   @HostBinding('class')
   @Input()
-  class: string | string[];
+  class?: string | string[];
 
   @HostBinding('style.z-index')
   @Input()
-  zIndex: number;
+  zIndex?: number;
 
   @HostBinding('style.bottom.px')
   @Input()
-  bottom: number;
+  bottom?: number;
 
   @HostBinding('style.top.px')
   @Input()
-  top: number;
+  top?: number;
 
   @HostBinding('style.left.px')
   @Input()
-  left: number;
+  left?: number;
 
   @HostBinding('style.right.px')
   @Input()
-  right: number;
+  right?: number;
 
   @HostBinding('class.hint__container')
   hintContainer = true;

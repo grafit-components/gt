@@ -28,12 +28,12 @@ import {ItskGridSelectType} from '../../model/enum/itsk-grid-select-type';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestroy {
-  state$: FilterState;
+  state$?: FilterState;
   alive = true;
-  @Input() rootIndex: number;
-  @Input() selfIndex: number;
+  @Input() rootIndex?: number;
+  @Input() selfIndex?: number;
 
-  @Input() column: GridColumn;
+  @Input() column?: GridColumn;
 
   @Input()
   set state(val: FilterState) {
@@ -45,18 +45,19 @@ export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestr
   @Input() selectRowsBy: ItskGridSelectRowsByType = 'mouse';
   @Input() selectType: ItskGridSelectType = 'single';
 
-  @HostBinding('class.grid__head__cell__filtered') filtered: boolean;
-  @HostBinding('class.grid__head__cell__sorted') sorted: boolean;
-  asc: boolean;
+  @HostBinding('class.grid__head__cell__filtered') filtered: boolean = false;
+  @HostBinding('class.grid__head__cell__sorted') sorted: boolean = false;
+  asc: boolean = false;
 
   align = ItskAlign.Right;
 
-  dragStartPx: number;
-  dragEndPx: number;
+  dragStartPx: number = 0;
+  dragEndPx: number = 0;
 
   @HostListener('drop', ['$event']) drop(event: DragEvent) {
     const move = event.dataTransfer && event.dataTransfer.getData('text');
     if (move === 'move') {
+      if(this.column)
       this.svc$.reorderColumn(this.column);
     }
   }
@@ -69,6 +70,7 @@ export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestr
     if (event && event.dataTransfer) {
       event.dataTransfer.setData('text', 'move');
     }
+    if(this.column)
     this.svc$.dragStart(this.column);
   }
 
@@ -109,9 +111,9 @@ export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestr
 
   setSortState() {
     this.sorted = false;
-    if (this.state$.sortParams && this.state$.sortParams.length) {
+    if (this.state$ && this.state$.sortParams && this.state$.sortParams.length) {
       const param = this.state$.sortParams.find((x) => {
-        return x.field === this.column.sortField;
+        return x.field === this.column?.sortField;
       });
       if (param) {
         this.sorted = true;
@@ -121,15 +123,15 @@ export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestr
   }
 
   setFilterState() {
-    if (!this.column.filterable) {
+    if (!this.column || !this.column?.filterable) {
       return;
     }
     this.filtered = false;
-    switch (this.column.filterType) {
+    switch (this.column?.filterType) {
       case FilterType.String:
-        if (this.state$.stringFilters) {
+        if (this.state$ && this.state$.stringFilters) {
           const filter = this.state$.stringFilters.find((x) => {
-            return x.fieldName === this.column.filterField;
+            return x.fieldName === this.column?.filterField;
           });
           if (filter && filter.value && filter.value.length) {
             this.filtered = true;
@@ -137,9 +139,9 @@ export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestr
         }
         break;
       case FilterType.List:
-        if (this.state$.listFilters) {
+        if (this.state$ && this.state$.listFilters) {
           const filter = this.state$.listFilters.find((x) => {
-            return x.fieldName === this.column.filterField;
+            return x.fieldName === this.column?.filterField;
           });
           if (filter && filter.value && filter.value.length) {
             this.filtered = true;
@@ -147,9 +149,9 @@ export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestr
         }
         break;
       case FilterType.Number:
-        if (this.state$.numericFilters) {
+        if (this.state$ && this.state$.numericFilters) {
           const filter = this.state$.numericFilters.find((x) => {
-            return x.fieldName === this.column.filterField;
+            return x.fieldName === this.column?.filterField;
           });
           if (filter && filter.value &&
             (filter.value.lessThan !== null && filter.value.lessThan !== undefined ||
@@ -160,9 +162,9 @@ export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestr
         }
         break;
       case FilterType.Date:
-        if (this.state$.dateFilters) {
+        if (this.state$ && this.state$.dateFilters) {
           const filter = this.state$.dateFilters.find((x) => {
-            return x.fieldName === this.column.filterField;
+            return x.fieldName === this.column?.filterField;
           });
           if (filter && filter.value &&
             (filter.value.lessThan !== null && filter.value.lessThan !== undefined ||
@@ -174,7 +176,8 @@ export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestr
     }
   }
 
-  sortColumn(column: GridColumn, event: MouseEvent): void {
+  sortColumn(event: MouseEvent): void {
+    if(this.column)
     this.svc$.sort(new GridSortEvent(this.column, event.shiftKey));
   }
 
@@ -187,12 +190,14 @@ export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestr
     this.dragEndPx = event.pageX;
     const parent = (event.target as HTMLElement).parentElement;
     if (parent) {
+      if(this.column)
       this.svc$.resizeColumn(new ColumnResizeEvent(this.column, parent.clientWidth, this.dragEndPx - this.dragStartPx));
     }
   }
 
   columnSettings(event: MouseEvent) {
     setTimeout(() => {
+      if(this.column)
       this.svc$.openColumnMenu(this.column, this.element$.nativeElement.getBoundingClientRect());
     }, 0);
   }

@@ -2,15 +2,15 @@ export class SortParam {
   /**
    * Поле сортировки
    */
-  field: string;
+  field?: string;
   /**
    * Направление (true: Asc, false: Desc)
    */
-  asc: boolean;
+  asc: boolean = false;
   /**
    * Порядок сортировки
    */
-  order: number;
+  order?: number;
 
   /**
    * Инициализация из анонимного объекта
@@ -21,7 +21,7 @@ export class SortParam {
     order?: number;
   }) {
     if (options) {
-      this.field = options.field || this.field;
+      this.field = options.field;
       this.asc = options.asc || false;
       this.order = options.order || this.order;
     }

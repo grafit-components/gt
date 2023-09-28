@@ -54,7 +54,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
   /**
    * компонент неактивен
    */
-  @Input() disabled: boolean;
+  @Input() disabled: boolean = false;
   /**
    * Первый день недели
    */
@@ -62,31 +62,31 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
   /**
    * Даты, недоступные для выбора
    */
-  @Input() disabledDates: Date[];
+  @Input() disabledDates?: Date[];
   /**
    * Периоды, недоступные для выбора
    */
-  @Input() disabledPeriods: ItskDatePeriod[];
+  @Input() disabledPeriods?: ItskDatePeriod[];
   /**
    * Дни недели, недоступные для выбора
    */
-  @Input() disabledDays: number[];
+  @Input() disabledDays?: number[];
   /**
    * Минимальная доступная дата
    */
-  @Input() minDate: Date;
+  @Input() minDate?: Date;
   /**
    * Максимальная доступная дата
    */
-  @Input() maxDate: Date;
+  @Input() maxDate?: Date;
   /**
    * Минимальный доступный год в виде даты
    */
-  @Input() minYearDate: Date;
+  @Input() minYearDate?: Date;
   /**
    * Максимальный доступный год в виде даты
    */
-  @Input() maxYearDate: Date;
+  @Input() maxYearDate?: Date;
   /**
    * Показывать выбор времени
    */
@@ -102,11 +102,11 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
   /**
    * Значение по умолчанию, используется если инициируется как null и allowNull == false
    */
-  @Input() defaultDate: Date;
+  @Input() defaultDate?: Date;
   /**
    * Использовать position: fixes
    */
-  @Input() fixed: boolean;
+  @Input() fixed: boolean = false;
   /**
    * Использовать align для ItskDropdownComponent
    */
@@ -120,9 +120,9 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
    */
   isEmpty = false;
 
-  locale: ItskPickerLocaleModel;
-  showPicker: boolean;
-  public today: Date;
+  locale?: ItskPickerLocaleModel;
+  showPicker: boolean = false;
+  public today: Date = new Date();
   public formatValue: any = {
     DD: '__',
     MM: '__',
@@ -139,9 +139,9 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     mm: [0, 59],
     ss: [0, 59]
   };
-  private valueManuallyChanged$: boolean;
-  element: HTMLElement;
-  inputElement: HTMLElement;
+  private valueManuallyChanged$: boolean = false;
+  element?: HTMLElement;
+  inputElement?: HTMLElement;
   ignoreFocus = false;
   isWindowPressEventListenerRegistered = false;
   /**
@@ -151,17 +151,17 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
   /**
    * активная часть контролла даты
    */
-  currentFormatPart$: string;
+  currentFormatPart$: string = '';
   /**
    * активна часть контролла ввода времени
    */
-  isTimePart$: boolean;
+  isTimePart$: boolean = false;
   /**
    * формат отображения даты
    */
-  format$: string;
-  formatList$: string[];
-  formatEssentialList$: string[];
+  format$: string = '';
+  formatList$: string[] = [];
+  formatEssentialList$: string[] = [];
 
   get format(): string {
     return this.format$;
@@ -192,7 +192,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
   /**
    * Текущий час
    */
-  currentHour$: number;
+  currentHour$: number = 0;
 
   get currentHour(): number {
     return this.currentHour$;
@@ -213,7 +213,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
   /**
    * Текущая минута
    */
-  currentMinute$: number;
+  currentMinute$: number = 0;
 
   get currentMinute(): number {
     return this.currentMinute$;
@@ -234,7 +234,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
   /**
    * Текущий день
    */
-  currentDate$: number;
+  currentDate$: number = 0;
 
   get currentDate(): number {
     return this.currentDate$;
@@ -254,7 +254,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
   /**
    * Текущий месяц
    */
-  currentMonth$: number;
+  currentMonth$: number = 0;
 
   get currentMonth(): number {
     return this.currentMonth$;
@@ -274,7 +274,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
   /**
    * Текущий год
    */
-  currentYear$: number;
+  currentYear$: number = 0;
 
   get currentYear(): number {
     return this.currentYear$;
@@ -515,7 +515,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
   getRangeNode = (formatName: string): Node | null => {
     this.inputElement = this.elementRef$.nativeElement.querySelector('.datepicker__input') as HTMLElement;
     return (this.isTimePart$ && (formatName === 'HH' || formatName === 'mm'))
-      ? this.element.querySelector(`.datepicker__time-input[data-format="${formatName}"]`)
+      ? this.element?.querySelector(`.datepicker__time-input[data-format="${formatName}"]`) ?? null
       : this.inputElement.querySelector(`[data-format="${formatName}"]`);
   };
 
@@ -781,6 +781,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
   dataInputDoubleClick = (e: any): void => {
     e.preventDefault();
     e.stopPropagation();
+    if(this.inputElement)
     this.elementSelection(this.inputElement);
     this.currentFormatPart$ = 'YYYY';
   };

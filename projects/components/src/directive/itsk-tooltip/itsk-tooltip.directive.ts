@@ -10,27 +10,27 @@ import {ItskTooltipContainerComponent} from './itsk-tooltip-container/itsk-toolt
 export class ItskTooltipDirective implements OnDestroy {
   @HostBinding('class.position-relative') relative = true;
 
-  private instance$: ComponentRef<ItskTooltipContainerComponent> | null;
+  private instance$?: ComponentRef<ItskTooltipContainerComponent> | null;
 
-  private content$: string | TemplateRef<any> | Type<any>;
+  private content$?: string | TemplateRef<any> | Type<any>;
 
   @Input()
   set itskTooltip(value: string | TemplateRef<any> | Type<any>) {
     this.content$ = value;
   }
 
-  get itskTooltip(): string | TemplateRef<any> | Type<any> {
+  get itskTooltip(): string | TemplateRef<any> | Type<any> | undefined {
     return this.content$;
   }
 
   @Input() itskTooltipData: any;
 
-  @Input() itskTooltipConfig: IItskTooltipConfig;
+  @Input() itskTooltipConfig?: IItskTooltipConfig;
 
   private readonly element$: HTMLElement;
 
   @HostListener('click') showTooltip() {
-    if (this.instance$ === null || this.instance$ === undefined) {
+    if (this.content$ && !this.instance$) {
       this.instance$ = this.create(this.content$, this.itskTooltipData, this.injector$);
       this.instance$.instance.destroyed.subscribe(() => {
         this.destroy();
@@ -62,7 +62,7 @@ export class ItskTooltipDirective implements OnDestroy {
     injector = this.getInjector(modalData, injector);
     const contentInstance = this.factory$.createContent(content, injector, this.getContext(content, modalData));
     const tooltip = this.factory$.createComponent(ItskTooltipContainerComponent, contentInstance, injector, this.element$);
-    tooltip.instance.config = this.itskTooltipConfig;
+    if (this.itskTooltipConfig)tooltip.instance.config = this.itskTooltipConfig;
     return tooltip;
   }
 

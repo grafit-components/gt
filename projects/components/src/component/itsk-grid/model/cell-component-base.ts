@@ -9,7 +9,7 @@ import {takeWhile} from 'rxjs/operators';
 export abstract class CellComponentBase<T extends IId> implements OnInit, OnDestroy {
   protected alive = true;
 
-  private edit$: boolean;
+  private edit$: boolean = false;
 
   set edit(val: boolean) {
     this.edit$ = val;
@@ -20,8 +20,8 @@ export abstract class CellComponentBase<T extends IId> implements OnInit, OnDest
     return this.edit$;
   }
 
-  abstract column: GridColumn;
-  abstract row: GridRow<T>;
+  abstract column?: GridColumn;
+  abstract row?: GridRow<T>;
 
   protected constructor(protected svc$: ItskGridService<T>, protected cdr$: ChangeDetectorRef) {
     this.init();
@@ -37,6 +37,7 @@ export abstract class CellComponentBase<T extends IId> implements OnInit, OnDest
   }
 
   valueChanged() {
+    if(this.row && this.column)
     this.svc$.changeValue({
       column: this.column,
       row: this.row
@@ -52,8 +53,8 @@ export abstract class CellComponentBase<T extends IId> implements OnInit, OnDest
 
   private init() {
     this.svc$.editRowStart.pipe(takeWhile(_ => this.alive))
-      .subscribe((row: GridRow<T>) => {
-        if (!this.column.editable) {
+      .subscribe((row) => {
+        if (!this.column?.editable) {
           return;
         }
         if (this.row === row && !this.edit) {
@@ -65,8 +66,8 @@ export abstract class CellComponentBase<T extends IId> implements OnInit, OnDest
       });
 
     this.svc$.editRowStop.pipe(takeWhile(_ => this.alive))
-      .subscribe((row: GridRow<T>) => {
-        if (!this.column.editable) {
+      .subscribe((row) => {
+        if (!this.column?.editable) {
           return;
         }
         if (this.row === row && this.edit) {
@@ -76,33 +77,33 @@ export abstract class CellComponentBase<T extends IId> implements OnInit, OnDest
       });
 
     this.svc$.editCellStart.pipe(takeWhile(_ => this.alive))
-      .subscribe((cell: ICellCoordinates<T>) => {
-        if (!this.column.editable) {
+      .subscribe((cell) => {
+        if (!this.column?.editable || !cell || !this.column) {
           return;
         }
-        if (this.row === cell.row && this.column.name === cell.column.name && !this.edit) {
+        if (this.row === cell.row && this.column?.name === cell.column.name && !this.edit) {
           this.edit = true;
           this.startEdit();
         }
-        if ((this.row !== cell.row || this.column.name !== cell.column.name) && this.edit) {
+        if ((this.row !== cell.row || this.column?.name !== cell.column.name) && this.edit) {
           this.edit = false;
         }
       });
 
     this.svc$.editCellStop.pipe(takeWhile(_ => this.alive))
-      .subscribe((cell: ICellCoordinates<T>) => {
-        if (!this.column.editable) {
+      .subscribe((cell) => {
+        if (!this.column?.editable || !cell || !this.column) {
           return;
         }
-        if ((this.row === cell.row && this.column.name === cell.column.name) && this.edit) {
+        if ((this.row === cell.row && this.column?.name === cell.column.name) && this.edit) {
           this.stopEdit();
           this.edit = false;
         }
       });
 
     this.svc$.editCellCancel.pipe(takeWhile(_ => this.alive))
-      .subscribe((cell: ICellCoordinates<T>) => {
-        if (!this.column.editable) {
+      .subscribe((cell) => {
+        if (!this.column?.editable || !cell || !this.column) {
           return;
         }
         if ((this.row === cell.row && this.column.name === cell.column.name) && this.edit) {

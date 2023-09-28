@@ -6,7 +6,7 @@ import {DOCUMENT} from '@angular/common';
 })
 export class OverlayContainerService implements OnDestroy {
   private containerClass$ = 'overlay-container';
-  private container$: HTMLElement;
+  private container$?: HTMLElement;
 
   constructor(@Inject(DOCUMENT) private document$: any) {
   }

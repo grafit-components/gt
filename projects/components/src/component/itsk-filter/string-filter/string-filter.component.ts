@@ -18,12 +18,12 @@ import {FilterColumn} from '../model/filter-column';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StringFilterComponent extends FilterComponentBase implements OnInit {
-  filter: StringFilter;
+  filter: StringFilter = new StringFilter();
 
-  @Input() column: FilterColumn;
+  @Input() column: FilterColumn = new FilterColumn();
   @Output() filterChanged: EventEmitter<FilterBase> = new EventEmitter<FilterBase>();
 
-  state$: FilterState;
+  state$: FilterState = new FilterState();
 
   @Input()
   set state(val: FilterState) {
@@ -60,6 +60,7 @@ export class StringFilterComponent extends FilterComponentBase implements OnInit
         name: this.column.name
       }));
     }
+    if(this.column.stringFilterType!== undefined)
     filter.type = this.column.stringFilterType;
     return filter;
   }

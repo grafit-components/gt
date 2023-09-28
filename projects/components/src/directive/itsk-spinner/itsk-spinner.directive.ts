@@ -7,7 +7,7 @@ export class ItskSpinnerDirective implements OnInit {
   private element$: HTMLElement;
   private spinner$: any;
 
-  private itskSpinner$: boolean;
+  private itskSpinner$: boolean = false;
 
   @Input()
   set itskSpinner(value: boolean) {

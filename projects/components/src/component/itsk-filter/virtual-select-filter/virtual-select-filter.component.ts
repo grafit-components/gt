@@ -13,6 +13,7 @@ import {FilterColumn} from '../model/filter-column';
 import {FilterBase} from '../model/filter-base';
 import {FilterState} from '../../itsk-grid/model/filter-state';
 import {ListFilterType} from '../model/enum/list-filter-type.enum';
+import {GridColumn} from "../../itsk-grid/model/grid-column";
 
 @Component({
   selector: 'itsk-virtual-select-filter',
@@ -21,12 +22,12 @@ import {ListFilterType} from '../model/enum/list-filter-type.enum';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VirtualSelectFilterComponent extends FilterComponentBase implements OnInit {
-  filter: ListFilter;
+  filter?: ListFilter;
 
-  @Input() column: FilterColumn;
+  @Input() column: FilterColumn = new FilterColumn();
   @Output() filterChanged: EventEmitter<FilterBase> = new EventEmitter<FilterBase>();
 
-  state$: FilterState;
+  state$: FilterState = new FilterState();
 
   @Input()
   set state(val: FilterState) {
@@ -39,7 +40,7 @@ export class VirtualSelectFilterComponent extends FilterComponentBase implements
     return this.state$;
   }
 
-  excluded: boolean;
+  excluded: boolean = false;
 
   constructor(private changeDetector: ChangeDetectorRef) {
     super();
@@ -50,10 +51,12 @@ export class VirtualSelectFilterComponent extends FilterComponentBase implements
 
   setType() {
     this.excluded = !this.excluded;
+    if (this.filter)
     this.filter.type = this.excluded ? ListFilterType.Excluded : ListFilterType.None;
   }
 
   setFilter(value: any[]) {
+    if (this.filter)
     this.filter.value = value;
     this.filterChanged.emit(this.filter);
   }

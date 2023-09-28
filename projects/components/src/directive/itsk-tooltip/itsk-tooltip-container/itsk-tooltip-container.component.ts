@@ -9,9 +9,9 @@ import {ItskTooltipPosition} from '../model/itsk-tooltip-position.enum';
 })
 export class ItskTooltipContainerComponent implements OnInit {
   ItskTooltipPosition = ItskTooltipPosition;
-  @Input() config: IItskTooltipConfig;
+  @Input() config?: IItskTooltipConfig;
   @Output() destroyed: EventEmitter<boolean> = new EventEmitter();
-  ready: boolean;
+  ready: boolean = false;
 
   constructor() {
   }

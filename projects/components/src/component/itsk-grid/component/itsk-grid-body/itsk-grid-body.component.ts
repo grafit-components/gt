@@ -10,9 +10,9 @@ import {ItskGridService} from '../../service/itsk-grid.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskGridBodyComponent<T extends IId> extends GridBodyBase<T> {
-  @Input() virtual: boolean;
+  @Input() virtual: boolean = false;
 
-  constructor(protected svc$: ItskGridService<T>, protected cdr$: ChangeDetectorRef) {
+  constructor(svc$: ItskGridService<T>, cdr$: ChangeDetectorRef) {
     super(svc$, cdr$);
   }
 
