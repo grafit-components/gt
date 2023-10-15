@@ -13,11 +13,21 @@
   "peerDependencies": {
     "@angular/cdk": "^15.0.0",
     "@angular/common": "^16.2.0",
-    "@angular/core": "^16.2.0",    
+    "@angular/core": "^16.2.0",
     "moment-mini": "^2.24.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "description": "Система проектирования интерфейсов",
+  "homepage": "https://grafit-components.github.io/gt",
+  "keywords": ["angular", "grafit", "gt", "components"],
+  "repository": {
+    "url": "https://github.com/grafit-components/gt.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/grafit-components/gt/issues"
+  }
 }
