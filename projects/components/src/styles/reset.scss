@@ -1,0 +1,87 @@
+@import './color.scss';
+
+html {
+  font-size: $font-base;
+}
+
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+body {
+  font-kerning: normal;
+  font-size: 1.2rem;
+  background: map-get($blocks, '$work', 'default', 'color');
+  height: 100vh;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.5;
+  color: map-get($blocks, '$work', 'default', 'color');
+}
+
+input, textarea {
+  font-family: $font_default;
+  font-kerning: normal;
+}
+
+label {
+  font-weight: normal;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+li {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  text-align: left;
+}
+
+*:focus {
+  outline: 0;
+}
+
+* {
+  font-family: $font_default;
+  margin: 0;
+  padding: 0;
+}
+
+button:focus {
+  outline: 0;
+}
+
+//font
+h1 {
+  @include fontHelper($font-h1);
+}
+
+h2 {
+  @include fontHelper($font-h2);
+}
+
+h3 {
+  @include fontHelper($font-h3);
+}
+
+h4 {
+  @include fontHelper($font-h4);
+}
+
+h5 {
+  @include fontHelper($font-h5);
+}
+
+h6 {
+  @include fontHelper($font-h6);
+}
+
+p {
+  @include fontHelper($font-body3);
+}

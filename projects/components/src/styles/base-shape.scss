@@ -1,0 +1,37 @@
+@import "border.scss";
+@import "util/state-util.scss";
+@import "util/shape-util.scss";
+@import "color/index.scss";
+
+.base-shape {
+  @include baseShape(map-get($work, 'default'));
+  @include borderRadius(1);
+}
+
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName}.base-shape {
+    @include baseShape(map-get($blockItem, 'default'));
+  }
+
+  .block-#{$blockName} {
+    .base-shape {
+      @include baseShape(map-get($blockItem, 'default'));
+    }
+  }
+
+  @each $accentName, $accent in $blockItem {
+    .base-shape_#{$accentName} {
+      @include baseShape($accent);
+    }
+
+    .block-#{$blockName}.base-shape_#{$accentName} {
+      @include baseShape($accent);
+    }
+
+    .block-#{$blockName} {
+      .base-shape_#{$accentName} {
+        @include baseShape($accent)
+      }
+    }
+  }
+}

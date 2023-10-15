@@ -1,0 +1,203 @@
+@import './scrollbar-util.scss';
+@import './state-util.scss';
+@import './shape-util.scss';
+
+@mixin grid($blockItem) {
+  &.grid, & .grid, & > .grid {
+    @include gridBlock($blockItem);
+  }
+}
+
+@mixin gridBlock($blockItem) {
+  background-color: map-get($blockItem, 'default', 'background-color');
+  border: solid 1px map-get($blockItem, 'default', 'border-color');
+
+  &__body {
+    background-color: map-get($blockItem, 'default', 'background-color');
+
+    &__left {
+      background-color: map-get($blockItem, 'default', 'background-color');
+    }
+
+    &__right {
+      background-color: map-get($blockItem, 'default', 'background-color');
+      @include scrollbarBlock($blockItem);
+    }
+  }
+
+  &__row {
+    border-bottom: solid 1px map-get($blockItem, 'default', 'border-color');
+    background-color: map-get($blockItem, 'default', 'background-color');
+
+    &_locked {
+      background-color: inherit;
+    }
+
+    &_left {
+      border-right: solid 1px map-get($blockItem, 'secondary', 'border-color');
+      @include baseState(map-get($blockItem, 'default', 'background-color'));
+    }
+  }
+
+  &__additional {
+    border-bottom: solid 1px map-get($blockItem, 'default', 'border-color');
+    background: map-get($blockItem, 'default', 'background-color');
+
+    &_left {
+      border-right: solid 1px map-get($blockItem, 'default', 'border-color');
+    }
+  }
+
+  &__cell {
+    border-right: solid 1px map-get($blockItem, 'default', 'border-color');
+
+    &:last-child {
+      border-right: solid 1px map-get($blockItem, 'secondary', 'border-color');
+    }
+
+    &:hover {
+      @include hoverFunc(map-get($blockItem, 'default', 'background-color'), 10%);
+    }
+
+    &_hover {
+      @include hoverFunc(map-get($blockItem, 'default', 'background-color'), 5%);
+    }
+
+    &:focus {
+      border: solid 1px map-get($blockItem, 'focus', 'border-color');
+    }
+  }
+
+  &__head {
+    border-bottom: solid 1px map-get($blockItem, 'default', 'border-color');
+    color: map-get($blockItem, 'default', 'color');
+    background: map-get($blockItem, 'default', 'background-color');
+
+    &__left {
+      background: map-get($blockItem, 'default', 'background-color');
+    }
+
+    &__right {
+      background: map-get($blockItem, 'default', 'background-color');
+    }
+
+    &__row {
+      &__left {
+        border-right: solid 1px map-get($blockItem, 'secondary', 'border-color');
+      }
+    }
+
+    &__group {
+      border-right: solid 1px map-get($blockItem, 'default', 'border-color');
+
+      &:last-child {
+        border: none;
+      }
+
+      &__caption {
+        border-bottom: solid 1px map-get($blockItem, 'default', 'border-color');
+        color: adjust-color(map-get($blockItem, 'default', 'color'), $alpha: 0.7);
+      }
+    }
+
+    &__cell {
+      color: adjust-color(map-get($blockItem, 'default', 'color'), $alpha: 0.7);
+
+      &:hover {
+        @include hoverFunc(map-get($blockItem, 'default', 'background-color'), 5%)
+      }
+
+      &__sorted {
+        color: map-get($blockItem, 'default', 'color');
+      }
+
+      &__filtered {
+        color: map-get($blockItem, 'default', 'color');
+      }
+
+      &__icon {
+        &__filtered {
+          color: map-get($blockItem, 'error', 'color');
+        }
+      }
+
+      &__dropdown {
+        @include hoverFunc(map-get($blockItem, 'default', 'background-color'), 5%);
+      }
+
+      &__resize {
+
+        &:hover {
+          background: map-get($blockItem, 'secondary', 'background-color');
+        }
+      }
+    }
+
+    &__dropdown {
+      @include baseShape(map-get($blockItem, 'default'));
+      @include baseShadow();
+    }
+  }
+
+  &__aggregate {
+    border-top: solid 1px map-get($blockItem, 'default', 'border-color');
+    color: map-get($blockItem, 'default', 'color');
+    background: map-get($blockItem, 'default', 'background-color');
+
+    &_left {
+      border-right: solid 1px map-get($blockItem, 'default', 'border-color');
+      background: map-get($blockItem, 'default', 'background-color');
+    }
+
+    &_right {
+      background: map-get($blockItem, 'default', 'background-color');
+    }
+  }
+}
+
+@mixin gridWrapper($blockItem) {
+  &.grid-wrapper, & .grid-wrapper, & > .grid-wrapper {
+    @include gridWrapperBlock($blockItem);
+  }
+}
+
+@mixin gridWrapperBlock($blockItem) {
+  background-color: map-get($blockItem, 'default', 'background-color');
+  border: solid 1px map-get($blockItem, 'default', 'border-color');
+
+  &__panel {
+    background-color: map-get($blockItem, 'default', 'background-color');
+    color: map-get($blockItem, 'default', 'color');
+  }
+
+  &__container {
+    background-color: map-get($blockItem, 'default', 'background-color');
+    color: map-get($blockItem, 'default', 'color');
+  }
+
+  &__sidebar {
+    background-color: map-get($blockItem, 'info', 'background-color');
+    color: map-get($blockItem, 'info', 'color');
+  }
+
+  &__pager {
+    background-color: map-get($blockItem, 'default', 'background-color');
+    color: map-get($blockItem, 'default', 'color');
+  }
+}
+
+@mixin tableBlock($blockItem) {
+  background: map-get($blockItem, 'default', 'background-color');
+  color: map-get($blockItem, 'default', 'color');
+
+  &__head {
+    color: adjust-color(map-get($blockItem, 'default', 'color'), $alpha: 0.7);
+    &__cell {
+      border-color: map-get($blockItem, 'default', 'border-color');
+    }
+  }
+
+  &__cell {
+    border-color: map-get($blockItem, 'default', 'border-color');
+  }
+}

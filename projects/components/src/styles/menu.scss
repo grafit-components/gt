@@ -1,0 +1,82 @@
+@import 'color';
+@import "util/menu-util";
+@import "util/list-util";
+
+.menu {
+  flex-grow: 1;
+  position: relative;
+  @include listDefault();
+  @include menuBlock(map-get($blocks, work));
+
+  &_absolute {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    bottom: 0;
+    z-index: 2;
+  }
+  &__items {
+    display: flex;
+    flex-grow: 1;
+    margin-top: -1px;
+    margin-bottom: -1px;
+  }
+  &__button {
+    display: inline-block;
+  }
+  &__toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding: $space-3;
+    min-height: $space-14;
+
+    &-close {
+      top: $space-3;
+      right: $space-3;
+      position: absolute;
+      cursor: pointer;
+    }
+  }
+  &__root {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1.4rem;
+    height: 100%;
+    z-index: 1;
+  }
+  &__container {
+    padding: $space-3;
+    min-width: 200px;
+    &__secondary {
+      position: absolute;
+      top: -1px;
+      left: 100%;
+      height: calc(100% + 2px);
+      z-index: 2;
+    }
+  }
+  &__item {
+    justify-content: space-between;
+    &__name {
+      margin-top: -$space-2;
+      margin-bottom: -$space-2;
+      height: $space-8;
+      display: flex;
+      align-items: center;
+      border-bottom: 0;
+      text-decoration: none;
+      flex: 1;
+      &:hover {
+        border-bottom: 0;
+      }
+    }
+    &__icon {
+      text-align: center;
+      padding: 0 $space-1 0 $space-10;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@import './color.scss';
+@import 'util/breadcrumb-util.scss';
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+
+  &__delimiter {
+    position: relative;
+    display: flex;
+    width: 28px;
+    margin: 0;
+    text-align: center;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName} {
+    @include breadcrumb($blockItem);
+  }
+}

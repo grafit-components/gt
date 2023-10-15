@@ -1,0 +1,83 @@
+@import '../font.scss';
+@import '../vars';
+@import 'shape-util';
+@import 'state-util';
+
+@mixin list($blockItem) {
+  &.list, & .list {
+    @include listBlock($blockItem);
+  }
+}
+
+@mixin listBlock($blockItem) {
+  @include baseBackground(map-get($blockItem, 'default'));
+  &__group {
+    border-bottom: solid 1px map-get($blockItem, 'default', 'border-color');
+    &:last-child {
+      padding: 0;
+      margin: 0;
+      border-bottom: 0;
+    }
+  }
+  &__item {
+    @include baseState(map-get($blockItem, 'default', 'background-color'));
+    color: map-get($blockItem, 'default', 'color');
+    &_non-interactive:hover, &_disabled:hover {
+      background-color: map-get($blockItem, 'default', 'background-color');
+    }
+  }
+  &__title {
+    color: map-get($blockItem, 'default', 'color');
+  }
+}
+
+@mixin listDefault() {
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  &__group {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: $space-1;
+    margin-bottom: $space-1;
+
+    &:last-child {
+      border-bottom: 0;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: $space-2 $space-3;
+    border: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: map-get($work, 'default', 'color');
+    @include fontHelper($font-body2);
+    white-space: nowrap;
+    @include cursorPointer();
+
+    &_disabled {
+      opacity: 0.5;
+    }
+
+    &:focus, &_focus {
+      border: solid 1px map-get($work, 'focus', 'border-color');
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    padding: $space-2 $space-3;
+    border: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: map-get($work, 'default', 'color');
+    @include fontHelper($font-title3);
+    white-space: nowrap;
+  }
+}

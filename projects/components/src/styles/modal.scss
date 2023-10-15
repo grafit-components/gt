@@ -1,0 +1,12 @@
+@import './color.scss';
+@import 'util/modal-util.scss';
+
+.modal {
+  @include modalBlock(map-get($blocks, 'work'));
+}
+
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName} {
+    @include modal($blockItem);
+  }
+}

@@ -1,0 +1,25 @@
+@import 'color/index';
+
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName} {
+    a {
+      color: map-get($blockItem, "info", "color");
+    }
+  }
+}
+
+
+a {
+  text-decoration: none;
+  color: map-get($blocks, "work", "info", "color");;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  &.anchor {
+    border-bottom-style: dashed;
+  }
+  &:hover {
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+  }
+}

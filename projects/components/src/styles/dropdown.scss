@@ -1,0 +1,71 @@
+@import './color.scss';
+@import 'util/shape-util.scss';
+@import 'util/shadow-util.scss';
+
+.dropdown {
+  position: relative;
+  display: inline-flex;
+  flex-grow: 1;
+  min-width: 0;
+
+  &__head {
+    position: relative;
+    display: inline-flex;
+    flex-grow: 1;
+    min-width: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &__container {
+      display: inline-flex;
+      flex-grow: 1;
+    }
+  }
+
+  &__container {
+    display: inline-flex;
+    flex-grow: 1;
+  }
+
+  &__content {
+    z-index: 3;
+    @include baseBorder(map-get($blocks, 'work', 'default'));
+    @include shadow-b($shadow-1);
+
+    &_top {
+      @include shadow-t($shadow-1);
+      background: red;
+    }
+
+    &_right,
+    &-absolute {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      left: auto;
+      min-width: 100%;
+    }
+
+    &-absolute {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: auto;
+      min-width: 100%;
+    }
+
+    &-fixed {
+      position: fixed;
+      top: auto;
+      left: auto;
+    }
+  }
+}
+
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName} .dropdown__content {
+    @include baseBorder(map-get($blockItem, 'default'));
+  }
+}

@@ -1,0 +1,130 @@
+@import 'color';
+@import 'util/shape-util';
+
+.tooltip {
+  &__container {
+    font-weight: normal;
+    color: map-get($blocks, 'work', 'default', 'color');
+    background: map-get($blocks, 'work', 'default', 'background-color');
+    position: absolute;
+    line-height: initial;
+    padding: 12px;
+    white-space: nowrap;
+    @include baseShape(map-get($blocks, 'work', 'default'));
+    @include baseShadow();
+    @include baseRadius();
+    z-index: 1;
+
+    &::before, &::after {
+      position: absolute;
+      display: block;
+      content: '';
+      width: 0;
+      height: 0;
+    }
+
+    &_top {
+      bottom: 100%;
+      margin-bottom: 12px;
+      left: 50%;
+      transform: translate(-50%, 0);
+
+      &::before {
+        bottom: -12px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-top: 12px solid map-get($blocks, 'work', 'default', 'border-color');
+      }
+
+      &::after {
+        bottom: -11px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-top: 12px solid map-get($blocks, 'work', 'default', 'background-color');
+      }
+    }
+
+    &_left {
+      right: 100%;
+      margin-right: 12px;
+      top: 50%;
+      transform: translate(0, -50%);
+
+      &::before {
+        right: -12px;
+        top: 50%;
+        transform: translate(0, -50%);
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-left: 12px solid map-get($blocks, 'work', 'default', 'border-color');
+      }
+
+      &::after {
+        right: -11px;
+        top: 50%;
+        transform: translate(0, -50%);
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-left: 12px solid map-get($blocks, 'work', 'default', 'background-color');
+      }
+    }
+
+    &_right {
+      left: 100%;
+      margin-left: 12px;
+      top: 50%;
+      transform: translate(0, -50%);
+
+      &::before {
+        left: -12px;
+        top: 50%;
+        transform: translate(0, -50%);
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-right: 12px solid map-get($blocks, 'work', 'default', 'border-color');
+      }
+
+      &::after {
+        left: -11px;
+        top: 50%;
+        transform: translate(0, -50%);
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-right: 12px solid map-get($blocks, 'work', 'default', 'background-color');
+      }
+    }
+
+    &_bottom {
+      top: 100%;
+      margin-top: 12px;
+      left: 50%;
+      transform: translate(-50%, 0);
+
+      &::before {
+        top: -12px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-bottom: 12px solid map-get($blocks, 'work', 'default', 'border-color');
+      }
+
+      &::after {
+        top: -11px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-bottom: 12px solid map-get($blocks, 'work', 'default', 'background-color');
+      }
+    }
+  }
+}
+
+.tooltip__container {
+  cursor: default;
+}

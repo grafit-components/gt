@@ -1,0 +1,60 @@
+@use "sass:math";
+@import './color.scss';
+@import './vars.scss';
+@import 'util/layout-util.scss';
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.toolbar {
+  display: flex;
+  height: $space-14;
+  padding: 0 $space-6;
+  align-items: center;
+  flex-shrink: 0;
+  @include toolbarBlock(map-get($blocks, 'work'));
+}
+
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName} {
+    @include toolbar($blockItem);
+  }
+}
+
+/*column width calc*/
+@function widthCol($n) {
+  @return math.div(100%, $columns-count) * $n;
+}
+
+.container {
+  display: flex;
+
+  &_column {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  @for $n from 1 through $columns-count {
+    &_#{$n} {
+      flex: 0 0 widthCol($n);
+      min-width: 0;
+      min-height: 0;
+    }
+  }
+
+  &_auto {
+    flex-grow: 1;
+    min-width: 0;
+    min-height: 0;
+  }
+}
+
+.overlay-container {
+  position: fixed;
+  z-index: 10;
+  width: 0;
+  height: 0;
+}

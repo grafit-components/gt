@@ -1,0 +1,145 @@
+@import './color.scss';
+@import 'util/datepicker-util.scss';
+
+$datePickerDaySize: $space-8;
+$datePickerWidth: 276px;
+$datePickerMinWidth: 130px;
+$datePickerWithTimeMinWidth: 170px;
+$datePickerWithSecondMinWidth: 150px;
+
+.datepicker {
+  @include datePickerBlock(map-get($blocks, "work"));
+  display: inline-flex;
+
+  &__input {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    position: relative;
+    min-width: $datePickerMinWidth;
+    min-height: $datePickerDaySize;
+    padding: 0 $space-2;
+    line-height: $datePickerDaySize;
+    font-size: 1.4rem;
+    user-select: none;
+
+    &_show-time {
+      min-width: $datePickerWithTimeMinWidth;
+    }
+
+    &_show-second {
+      min-width: $datePickerWithSecondMinWidth;
+    }
+  }
+
+  &__button {
+    cursor: pointer;
+
+    &_open {
+      margin-right: $space-2;
+    }
+
+    &_clear {
+      margin-left: auto;
+    }
+  }
+
+  &__body {
+    padding: 0;
+    font-size: 1.2rem;
+    line-height: initial;
+    width: $datePickerWidth;
+    z-index: 1;
+  }
+
+  &__panel {
+    display: flex;
+    padding: 0 $space-3;
+    align-items: center;
+    height: $space-14;
+
+    &__today {
+      flex-grow: 1;
+      text-align: right;
+    }
+
+    &__week {
+      display: flex;
+      font-size: 1rem;
+      padding: $space-1 $space-3;
+      align-items: center;
+
+      &__item {
+        width: 36px;
+        text-align: center;
+      }
+    }
+  }
+
+  &__picker {
+    padding: $space-3;
+
+    &__week {
+      display: flex;
+    }
+
+    &__day {
+      height: 34px;
+      line-height: $space-8;
+      width: 36px;
+      justify-content: center;
+      text-align: center;
+      padding: 0;
+
+      &_other {
+        opacity: 0.6;
+      }
+
+      &_disabled {
+        opacity: 0.5;
+
+        &:hover {
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  &__month {
+    padding: $space-2 0;
+
+    &__item {
+      height: $datePickerDaySize;
+      line-height: $datePickerDaySize;
+      padding: 0 $space-3;
+
+      &__number {
+        opacity: 0.6;
+      }
+
+      &_current {
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__year {
+    padding: $space-2 0;
+
+    &__item {
+      height: $datePickerDaySize;
+      line-height: $datePickerDaySize;
+      padding: 0 $space-3;
+
+      &_current {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName} {
+    @include datepicker($blockItem)
+  }
+}

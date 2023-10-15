@@ -1,0 +1,71 @@
+$default: (
+        'background-color': #ffffff,
+        'color': #5e5e5e,
+        'border-color': #ebebeb
+);
+$secondary: (
+        'background-color': #f3f3f3,
+        'color': #000000,
+        'border-color': #e1e1e1
+);
+$primary: (
+        'background-color': #4b93ff,
+        'color': #ffffff,
+        'border-color': #4b93ff
+);
+$ghost: (
+        'color': #4b93ff,
+        'border-color': #4b93ff,
+        'background-color': #ffffff
+);
+$success: (
+        'color': #26bf8d,
+        'border-color': #22c38e,
+        'background-color': #f3f3f3
+);
+$success_invert: (
+        'background': #22c38e,
+        'color': #ffffff,
+        'border-color': #1dad7e
+);
+$warning_invert: (
+        'background-color': #ffb342,
+        'color': #ffffff,
+        'border-color': #db8700
+);
+$warning: (
+        'background-color': #f3f3f3,
+        'color': #ffb342,
+        'border-color': #eea32a
+);
+$error: (
+        'background-color': #f3f3f3,
+        'color': #ed5353,
+        'border-color': #eb3333
+);
+$error_invert: (
+        'background-color': #ed5353,
+        'color': #ffffff,
+        'border-color': #eb3333
+);
+$focus: (
+        'background-color': #fff7cd,
+        'color': #2d2d2d,
+        'border-color': #57b3ff
+);
+$info: (
+        'background-color': #f3f3f3,
+        'color': #2f2f2f,
+        'border-color': #d3dde5
+);
+$main: (
+        'default': $default,
+        'secondary': $secondary,
+        'primary': $primary,
+        'ghost': $ghost,
+        'success': $success,
+        'warning': $warning,
+        'error': $error,
+        'info': $info,
+        'focus': $focus
+);

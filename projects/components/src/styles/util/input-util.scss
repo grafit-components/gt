@@ -1,0 +1,59 @@
+@import '../vars.scss';
+@import 'shape-util.scss';
+@import 'state-util.scss';
+
+@mixin control($blockItem) {
+  &.control, & .control {
+    &__label {
+      color: map-get($blockItem, 'default', 'color');
+      &-delimiter {
+        &:after {
+          background-color: map-get($blockItem, 'default', 'border-color');
+        }
+      }
+      &__text {
+        color: map-get($blockItem, 'default', 'color');
+      }
+    }
+  }
+}
+
+@mixin input($blockItem) {
+  &.input, & .input, &__input, & > .input {
+    &__icon {
+      color: map-get($blockItem, 'default', 'color');
+    }
+
+    &__field {
+      @include inputField($blockItem);
+      &_error {
+        border-color: map-get($blockItem, 'error', 'border-color');
+      }
+      &_warning {
+        border-color: map-get($blockItem, 'warning', 'border-color');
+      }
+
+      &::placeholder {
+        opacity: 0.5;
+      }
+    }
+
+    &_required {
+      &:after {
+        color: map-get($blockItem, 'error', 'color');
+      }
+    }
+
+    &_optional {
+      &:after {
+        color: map-get($blockItem, 'success', 'color');
+      }
+    }
+  }
+}
+
+@mixin inputField($blockItem) {
+  @include baseShape(map-get($blockItem, 'default'));
+  @include baseRadius();
+  @include baseFocus($blockItem);
+}

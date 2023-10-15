@@ -1,0 +1,167 @@
+@import './color.scss';
+@import 'util/list-util.scss';
+@import 'util/input-util.scss';
+@import 'util/state-util.scss';
+@import 'util/select-util.scss';
+
+.select {
+  position: relative;
+  display: inline-flex;
+  flex-basis: 150px;
+  width: 150px;
+  min-width: 0;
+  flex-grow: 1;
+  min-height: $space-8;
+  line-height: $space-8;
+
+  &_disabled, &[disabled] {
+    opacity: 0.6;
+  }
+
+  &_multiple {
+    min-height: $space-8;
+    height: auto;
+  }
+
+  &_placeholder {
+    opacity: 0.5;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__head {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 $space-3;
+    font-size: 1.4rem;
+    flex-grow: 1;
+    min-height: 3.2rem;
+    min-width: 0;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    @include selectBlock(map-get($blocks, 'work'));
+
+    &-clear {
+      padding-right: $space-8;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__text {
+      flex-grow: 0;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    right: $space-1;
+    top: 50%;
+    margin-top: -0.8rem;
+
+    &-delete {
+      right: 1.3em;
+    }
+  }
+
+  &__values {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &__title {
+      margin: $space-1 0;
+      color: map-get($blocks, 'work', 'secondary', 'color')
+    }
+
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+      overflow: hidden;
+
+      & > div {
+        flex-shrink: 1;
+      }
+    }
+  }
+}
+
+itsk-select.ng-invalid .select__head {
+  border-color: map-get($blocks, 'work', 'error', 'color')
+}
+
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName} {
+    &.select, & .select {
+      &__head {
+        @include selectBlock($blockItem);
+      }
+
+      &__values {
+         &__title {
+           color: map-get($blockItem, 'secondary', 'color');
+         }
+       }
+    }
+
+    & itsk-select.ng-invalid .select__head {
+      border-color: map-get($blockItem, 'error', 'color');
+    }
+  }
+}
+
+.options {
+  //position absolute
+  //z-index 1
+  @include listDefault();
+  //min-width 100%
+  @include listBlock(map-get($blocks, 'work'));
+}
+
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName} {
+    &.options, & .options {
+      @include listBlock($blockItem);
+    }
+  }
+}
+
+select {
+  padding: 0 $space-3;
+  min-height: $space-8;
+  line-height: $space-8;
+  font-size: 1.4rem;
+  @include selectBlock(map-get($blocks, 'work'));
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@each $blockName, $blockItem in $blocks {
+  select.block-#{$blockName}, .block-#{$blockName}__select, .block-#{$blockName} select {
+    @include selectBlock($blockItem);
+  }
+}
+
+option {
+  position: absolute;
+  z-index: 1;
+  min-width: 100%;
+  @include listDefault();
+  @include listBlock(map-get($blocks, 'work'));
+}
+
+@each $blockName, $blockItem in $blocks {
+  option.block-#{$blockName}, .block-#{$blockName}__option, .block-#{$blockName} option {
+    @include listBlock($blockItem)
+  }
+}

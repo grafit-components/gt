@@ -1,0 +1,33 @@
+@import './color.scss';
+@import './vars.scss';
+
+$properties: margin padding;
+$spaceListKeys: map-keys($spaceList);
+
+@each $k in $properties {
+  @each $i in $spaceListKeys {
+    .#{$k}-h-#{$i} {
+      #{$k}-left: map-get($spaceList, $i) !important;
+      #{$k}-right: map-get($spaceList, $i) !important;
+    }
+
+    .#{$k}-v-#{$i} {
+      #{$k}-top: map-get($spaceList, $i) !important;
+      #{$k}-bottom: map-get($spaceList, $i) !important;
+    }
+
+    @each $j, $index in $direction {
+      .#{$k}-#{$j}-#{$i} {
+        #{$k}-#{$index}: map-get($spaceList, $i) !important;
+      }
+    }
+  }
+}
+
+@each $k in $properties {
+  @for $i from 0 through length($spaceList) {
+    .#{$k}-#{$i} {
+      #{$k}: map-get($spaceList, $i) !important;
+    }
+  }
+}

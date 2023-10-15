@@ -1,0 +1,10 @@
+@mixin toolbar($blockItem) {
+  &.toolbar, & .toolbar {
+    @include toolbarBlock($blockItem);
+  }
+}
+
+@mixin toolbarBlock($blockItem) {
+  background: map-get($blockItem, 'default', 'background-color');
+  color: map-get($blockItem, 'default', 'color');
+}

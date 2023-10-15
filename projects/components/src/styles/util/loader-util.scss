@@ -1,0 +1,9 @@
+@mixin loader-color($blockItem) {
+  border-color: map-get($blockItem, 'primary', 'background-color');
+  border-left-color: transparent;
+}
+
+@mixin loader-color-invert($blockItem) {
+  border-color: map-get($blockItem, 'default', 'background-color');
+  border-left-color: transparent;
+}

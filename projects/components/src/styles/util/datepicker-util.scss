@@ -1,0 +1,73 @@
+@import '../vars.scss';
+@import './shape-util.scss';
+@import './state-util.scss';
+@import './button-util.scss';
+
+@mixin datepicker($blockItem) {
+  &.datepicker, &__datepicker, & .datepicker, & > .datepicker {
+    @include datePickerBlock($blockItem);
+  }
+}
+
+@mixin datePickerBlock($blockItem) {
+  border: solid 1px map-get($blockItem, 'default', 'border-color');
+
+  &__input {
+    background: map-get($blockItem, 'default', 'background-color');
+    line-height: $datePickerDaySize;
+    font-size: 1.4rem;
+
+    &_month {
+      background: map-get($blockItem, 'secondary', 'background-color');
+      color: map-get($blockItem, 'secondary', 'color');
+    }
+
+    &_show-time {
+      min-width: $datePickerWithTimeMinWidth;
+    }
+
+    &_invalid {
+      outline: 1px solid map-get($blockItem, 'error', 'border-color');
+    }
+  }
+
+  &__body {
+    @include baseBackground(map-get($blockItem, 'default'));
+    @include baseColor(map-get($blockItem, 'default'));
+  }
+
+  &__panel {
+    border-bottom: 1px solid map-get($blockItem, 'default', 'border-color');
+  }
+
+  &__picker {
+    &__day {
+      @include buttonAccent(map-get($blockItem, 'default'));
+
+      &_weekend {
+        @include buttonAccent(map-get($blockItem, 'success'));
+        background: transparent;
+      }
+
+      &_today {
+        @include buttonAccent(map-get($blockItem, 'secondary'));
+      }
+
+      &_active {
+        @include buttonAccent(map-get($blockItem, 'primary'));
+      }
+    }
+  }
+
+  &__month {
+    &__item {
+      @include baseState(map-get($blockItem, 'default', 'background-color'));
+    }
+  }
+
+  &__year {
+    &__item {
+      @include baseState(map-get($blockItem, 'default', 'background-color'));
+    }
+  }
+}

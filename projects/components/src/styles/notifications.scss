@@ -1,0 +1,47 @@
+@import 'util/shape-util.scss';
+@import 'util/card-util.scss';
+@import 'util/shadow-util.scss';
+
+.notification {
+  position: relative;
+  margin: $space-3;
+  @include card();
+  @include shadow($shadow-3);
+}
+
+.notification__container {
+  position: fixed;
+  z-index: 5000;
+  width: 300px;
+
+  &_left {
+    left: 48px;
+    right: auto;
+  }
+
+  &_center {
+    margin-left: -150px;
+    left: 50%;
+    right: auto;
+  }
+
+  &_right {
+    right: 48px;
+    left: auto;
+  }
+
+  &_top {
+    top: 24px;
+    bottom: auto;
+  }
+
+  &_middle {
+    top: auto;
+    bottom: auto;
+  }
+
+  &_bottom {
+    bottom: 24px;
+    top: auto;
+  }
+}
