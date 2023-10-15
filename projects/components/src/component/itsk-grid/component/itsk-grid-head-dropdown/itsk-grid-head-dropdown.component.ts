@@ -43,7 +43,7 @@ export class ItskGridHeadDropdownComponent<T extends IId> extends ClickOutsideBa
 
   column$?: GridColumn | null;
 
-  set column(column: GridColumn | null) {
+  set column(column: GridColumn | null | undefined) {
     this.column$ = column;
     this.visible = !!column;
     if (this.visible) {

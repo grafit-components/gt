@@ -15,7 +15,7 @@ export class ItskTooltipDirective implements OnDestroy {
   private content$?: string | TemplateRef<any> | Type<any>;
 
   @Input()
-  set itskTooltip(value: string | TemplateRef<any> | Type<any>) {
+  set itskTooltip(value: string | TemplateRef<any> | Type<any> | undefined) {
     this.content$ = value;
   }
 
