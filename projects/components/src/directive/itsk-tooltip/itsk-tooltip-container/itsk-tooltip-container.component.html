@@ -1,0 +1,8 @@
+<div class="tooltip__container"
+     [class.tooltip__container_left]="config?.position===ItskTooltipPosition.Left"
+     [class.tooltip__container_right]="config?.position===ItskTooltipPosition.Right"
+     [class.tooltip__container_top]="config?.position === null || config?.position === undefined || config?.position===ItskTooltipPosition.Top"
+     [class.tooltip__container_bottom]="config?.position===ItskTooltipPosition.Bottom"
+     (itskClickOutside)="destroyTooltip()" [visible]="ready">
+  <ng-content></ng-content>
+</div>

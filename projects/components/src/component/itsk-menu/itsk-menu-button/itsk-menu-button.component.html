@@ -1,0 +1,19 @@
+<div class="menu__button" (itskClickOutside)="showMenu(false)" [visible]="open">
+  <div #ref (click)="showMenu(true)">
+    <ng-content select="[menuButton]"></ng-content>
+  </div>
+
+  <div *ngIf="!ref.innerHTML.trim()" class="button_secondary" (click)="showMenu(true)">
+    <itsk-icon [name]="'icon-menu_full-point-circle-dot-filled'" [cssClass]="'color_secondary'"></itsk-icon>
+  </div>
+
+  <div class="menu__root" *ngIf="open">
+    <div class="menu__toolbar">
+      <div class="menu__toolbar-close button_ghost" (click)="showMenu(false)">
+        <itsk-icon [name]="'icon-x-close-outline'"></itsk-icon>
+      </div>
+      <ng-content></ng-content>
+    </div>
+    <ng-content select="itsk-menu"></ng-content>
+  </div>
+</div>

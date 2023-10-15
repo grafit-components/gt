@@ -1,0 +1,50 @@
+import * as stories from './grid.stories.ts';
+import { Story } from '@storybook/addon-docs/blocks';
+
+# Импорт модуля
+```javascript
+@NgModule({
+  declarations: [],
+  exports: [],
+  imports: [
+    ItskGridModule
+  ]
+})
+export class YourModule {
+}
+```
+# Настройка константных текстов в гриде
+```javascript
+export class AppComponent implements OnInit {
+  constructor(private gridConfig$: ItskGridConfigService) {
+    this.gridConfig$.setConfig({
+      apply: 'Применить',
+      clear: 'Очистить',
+      clearFilter: 'Очистить фильтр',
+      detail: 'Детализация',
+      filter: 'Фильтровать',
+      pinColumn: 'Закрепить колонку',
+      unpinColumn: 'Открепить колонку'
+    });
+  }
+}
+```
+Если у вас в приложении есть переводы - вызывайте setConfig при смене языка, передавая нужные переводы
+```javascript
+export class AppComponent implements OnInit {
+  constructor(private gridConfig$: ItskGridConfigService,
+              private lang$: SomeLangService) {
+    lang$.onChange.subscribe(newLang => {
+        this.gridConfig$.setConfig({
+              apply: getTranslation(newLang, 'Применить'),
+              clear: getTranslation(newLang, 'Очистить'),
+              clearFilter: getTranslation(newLang, 'Очистить фильтр'),
+              detail: getTranslation(newLang, 'Детализация'),
+              filter: getTranslation(newLang, 'Фильтровать'),
+              pinColumn: getTranslation(newLang, 'Закрепить колонку'),
+              unpinColumn: getTranslation(newLang, 'Открепить колонку')
+            });
+    })
+  }
+}
+```

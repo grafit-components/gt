@@ -1,0 +1,35 @@
+<div class="navigation" *ngIf="navigationVisible">
+  <div *ngIf="navigationData" class="navigation__content">
+    <div class="navigation__header">
+      <div class="navigation__toolbar display-flex justify-content-between margin-b-6">
+        <a (click)="closeNavigation()"
+           style="border-bottom: none;">
+          <itsk-icon [name]="'icon-home-house-filled'"></itsk-icon>
+        </a>
+        <itsk-icon [name]="'icon-x-close-outline'"
+                   [cssClass]="'margin-l-4 cursor_pointer icon'"
+                   (click)="closeNavigation()">
+        </itsk-icon>
+      </div>
+      <h4 *ngIf="navigationData.title">
+        {{navigationData.title}}
+      </h4>
+      <div *ngIf="navigationData.subtitle" class="font-overline">
+        {{navigationData.subtitle}}
+      </div>
+      <ng-template [ngTemplateOutlet]="headerTemplate"></ng-template>
+    </div>
+    <itsk-menu [menu]="navigationData.menuItems"></itsk-menu>
+    <div class="navigation__footer">
+      <svg class="navigation__footer-img"
+           [attr.width]="navigationData?.footerImgHeight ? navigationData?.footerImgWidth : '300px'"
+           [attr.height]="navigationData?.footerImgHeight ? navigationData?.footerImgHeight : '80px'">
+        <use [attr.xlink:href]="navigationData?.footerImg"/>
+      </svg>
+      <div class="justify-content-between display-flex">
+        <div class="font-overline" *ngIf="navigationData?.footerText">{{navigationData?.footerText}}</div>
+        <div class="font-overline" *ngIf="navigationData?.version">{{navigationData?.version}}</div>
+      </div>
+    </div>
+  </div>
+</div>

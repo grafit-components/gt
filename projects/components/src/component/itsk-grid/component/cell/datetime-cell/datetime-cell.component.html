@@ -1,0 +1,13 @@
+<span [style.display]="edit ? 'none' : 'block'" class="grid__cell_text">
+  {{row?.data[column?.name] | date : 'dd.MM.yyyy HH:mm:ss'}}
+</span>
+<itsk-date-picker #input
+                  class="border-0px border-radius-0"
+                  *ngIf="edit"
+                  style="flex-grow: 1"
+                  [fixed]="true"
+                  [showTime]="true"
+                  [(ngModel)]="row.data[column.name]"
+                  [ngModel]="row.data[column.name]"
+                  (ngModelChange)="setValue($event)"
+></itsk-date-picker>

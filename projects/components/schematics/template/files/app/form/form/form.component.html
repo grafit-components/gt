@@ -1,0 +1,145 @@
+<form [formGroup]="form" class="container container_auto container_column padding-3">
+  <div class="container">
+    <div class="container_3 padding-r-5">
+      <div class="control__label">
+        <div class="control__label__text">Скважина</div>
+        <div class="input input_required">
+          <input id="well" [formControlName]="'well'" type="text"
+                 class="input__field"
+                 [class.border-color_error]="form.get('well').invalid && form.get('well').touched"
+                 placeholder="placeholder text">
+          <div class="input__helper"
+               *ngIf="form.get('well').invalid && form.get('well').touched"
+               title="Поле обязательно для ввода">
+            Поле обязательно для ввода
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container_3 padding-r-5">
+      <div class="control__label">
+        <div class="control__label__text">Месторождение</div>
+        <div class="input input_required">
+          <select [formControlName]="'field'"
+                  class="input__field"
+                  [class.border-color_error]="form.get('field').invalid && form.get('field').touched"
+                  placeholder="placeholder text">
+            <option *ngFor="let field of fields" [ngValue]="field.id">{{field.name}}</option>
+          </select>
+          <div class="input__helper"
+               *ngIf="form.get('field').invalid && form.get('field').touched"
+               title="Поле обязательно для ввода">
+            Поле обязательно для ввода
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container_3 padding-r-5">
+      <div class="control__label input_required">
+        <div class="control__label__text">Пласт</div>
+        <div class="input">
+          <select [formControlName]="'layer'"
+                  class="input__field"
+                  [class.border-color_error]="form.get('layer').invalid && form.get('layer').touched"
+                  placeholder="placeholder text">
+            <option *ngFor="let layer of layers" [ngValue]="layer.id">{{layer.name}}</option>
+          </select>
+          <div class="input__helper"
+               *ngIf="form.get('layer').invalid && form.get('layer').touched"
+               title="Поле обязательно для ввода">
+            Поле обязательно для ввода
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="container_3 padding-r-5">
+      <div class="control__label">
+        <div class="control__label__text">Qж</div>
+        <div class="input">
+          <input [formControlName]="'liq'" type="text" class="input__field"
+                 [class.border-color_error]="form.get('liq').invalid"
+                 placeholder="placeholder text">
+          <div class="input__helper"
+               *ngIf="form.get('liq').invalid && form.get('liq').touched"
+               title="Значение не может быть отрицательным">
+            Значение не может быть отрицательным
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container_3 padding-r-5">
+      <div class="control__label">
+        <div class="control__label__text">Qн</div>
+        <div class="input">
+          <input [formControlName]="'oil'" type="text" class="input__field"
+                 [class.border-color_error]="form.get('oil').invalid"
+                 placeholder="placeholder text">
+          <div class="input__helper"
+               *ngIf="form.get('oil').invalid && form.get('oil').touched"
+               title="Значение не может быть отрицательным">
+            Значение не может быть отрицательным
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container_3 padding-r-5">
+      <div class="control__label">
+        <div class="control__label__text">Рпл</div>
+        <div class="input">
+          <input [formControlName]="'pressure'" type="text" class="input__field"
+                 [class.border-color_error]="form.get('pressure').invalid"
+                 placeholder="placeholder text">
+          <div class="input__helper"
+               *ngIf="form.get('pressure').invalid && form.get('pressure').touched"
+               title="Значение не может быть отрицательным">
+            Значение не может быть отрицательным
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="container_3 padding-r-5">
+      <div class="control__label">
+        <div class="control__label__text">Дата ремонта</div>
+        <div class="input">
+          <itsk-date-picker
+            [formControlName]="'repair'"
+            [class.border-color_error]="form.get('repair').invalid && (form.get('repair').touched || form.get('repair').dirty)"
+            [class.border-1px]="form.get('repair').invalid && (form.get('repair').touched || form.get('repair').dirty)">
+          </itsk-date-picker>
+          <div class="input__helper"
+               *ngIf="form.get('repair').invalid && (form.get('repair').touched || form.get('repair').dirty)"
+               title="Дата ремонта не может быть меньше даты создания">
+            Дата ремонта не может быть меньше даты создания
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container_3 padding-r-5">
+      <div class="control__label">
+        <div class="control__label__text">Дата запуска</div>
+        <div class="input">
+          <itsk-date-picker
+            [formControlName]="'created'"
+            [class.border-color_error]="form.get('created').invalid && (form.get('created').touched || form.get('created').dirty)"
+            [class.border-1px]="form.get('created').invalid && (form.get('created').touched || form.get('created').dirty)">
+          </itsk-date-picker>
+          <div class="input__helper"
+               *ngIf="form.get('created').invalid && (form.get('created').touched || form.get('created').dirty)"
+               title="Поле обязательно для ввода">
+            Поле обязательно для ввода
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="margin-t-3">
+    <button type="submit" class="button_primary"
+            (click)="trySave()">
+      Сохранить
+    </button>
+  </div>
+</form>

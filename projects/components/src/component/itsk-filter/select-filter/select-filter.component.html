@@ -1,0 +1,21 @@
+<div class="control__label control__label_inline container justify-content-between align-center">
+  <span class="control__label__text">{{column.caption}}</span>
+  <div class="equality padding-h-1 height-4 margin-l-3 background-color_secondary"
+       (click)="setType()"
+       [title]="excluded ? 'Исключающая выборка' : 'Включающая выборка'">
+    <itsk-icon [name]="excluded ? 'icon-not_equal-line-cross-outline' : 'icon-equal-line-parallel-outline'"></itsk-icon>
+  </div>
+</div>
+<div class="container" *ngIf="filter">
+  <itsk-select [items]="column.filterOptions"
+               [multiple]="true"
+               [fixed]="true"
+               [ngModel]="filter.value"
+               [textRef]="'name'"
+               [valueRef]="'id'"
+               [selectedRef]="'block'"
+               [searchRef]="'name'"
+               (ngModelChange)="setFilter($event)"
+               [virtual]="false">
+  </itsk-select>
+</div>

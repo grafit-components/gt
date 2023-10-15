@@ -1,0 +1,21 @@
+<div
+  class="datepicker__input"
+  [class.datepicker__input_show-second]="showSecond"
+  [class.datepicker__input_borderless]="borderless"
+  [class.datepicker__input_disabled]="disabled"
+  [tabIndex]="disabled ? -1 : 0"
+  (focus)="activate(true)"
+  (itskClickOutside)="activate(false)"
+  [visible]="active"
+  (dblclick)="dataInputDoubleClick($event)">
+  <ng-container *ngFor="let format of formatList$">
+    <span class="datepicker__input-part"
+          *ngIf="showFormat && isEditableFormat(format)"
+          (focus)="dataPartFocus($event, format)"
+          (click)="dataPartFocus($event, format)"
+          (wheel)="dataPartScroll($event, format);"
+          [attr.data-format]="format">{{formatValue[format]}}</span>
+    <span class="datepicker__input-part"
+          *ngIf="showFormat && !isEditableFormat(format)">{{format}}</span>
+  </ng-container>
+</div>

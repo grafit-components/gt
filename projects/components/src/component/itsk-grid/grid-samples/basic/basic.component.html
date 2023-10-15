@@ -1,0 +1,12 @@
+<div style="height: 400px; width: 700px; display: flex;">
+  <itsk-grid [data]="data"
+             [columns]="columns"
+             [state]="state"
+             (stateChange)="stateChange($event)"
+             [virtual]="virtual"
+             [selectType]="selectType"
+             [selectRowsBy]="selectRowsBy"
+             [editType]="editType"
+             [editOn]="editEvent"
+             (selectedRowsChange)="emit('selectedRowsChange', $event)"></itsk-grid>
+</div>

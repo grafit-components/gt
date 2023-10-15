@@ -1,0 +1,16 @@
+<itsk-tree [data]="columns$" [control]="treeControl" style="margin-left: 24px;">
+  <itsk-tree-item *itskTreeTemplate="let item; let control=control; let index = index">
+    <div class="tree__toggle" (click)="control.toggle(item)" *ngIf="item.columns && item.columns.length">
+      <itsk-icon
+        [name]="!control.isExpanded(item) ? 'icon-group_square_max-plus-rectangle-filled' : 'icon-group_square_min-minus-rectangle-filled'">
+      </itsk-icon>
+    </div>
+    <itsk-checkbox [ngModel]="item.hidden"
+                   (ngModelChange)="hide(item, $event)"
+                   [trueValue]="false"
+                   [falseValue]="true"
+                   [binary]="true">
+      {{item.caption}}
+    </itsk-checkbox>
+  </itsk-tree-item>
+</itsk-tree>

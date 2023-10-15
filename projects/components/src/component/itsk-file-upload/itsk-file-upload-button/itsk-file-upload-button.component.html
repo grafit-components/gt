@@ -1,0 +1,10 @@
+<label class="file-upload__label">
+  <input #fileUpload
+         class="file-upload__input"
+         type="file"
+         name="fileUpload"
+         [attr.multiple]="multiple ? 'multiple' : null"
+         [disabled]="disabled"
+         (change)="fileChanged($event)"/>
+    <ng-content></ng-content>
+</label>
