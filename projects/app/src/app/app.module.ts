@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FirstComponent } from './first/first.component';
 import { SecondComponent } from './second/second.component';
+import {ItskMenuModule} from "@grafit/components";
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { SecondComponent } from './second/second.component';
     SecondComponent
   ],
   imports: [
+    ItskMenuModule,
     BrowserModule,
     AppRoutingModule
   ],
