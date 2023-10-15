@@ -1,0 +1,18 @@
+@import './color.scss';
+@import 'util/list-util.scss';
+
+.list {
+  @include listBlock(map-get($blocks, 'work'));
+  @include listDefault();
+}
+
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName} {
+    @include list($blockItem);
+  }
+}
+
+.list__item_disabled:hover,
+.list__item_non-interactive:hover {
+  cursor: default;
+}

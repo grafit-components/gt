@@ -1,0 +1,12 @@
+@import "../vars.scss";
+
+@mixin selectBlock($blockItem) {
+  background: map-get($blockItem, 'secondary', 'background-color');
+  color: map-get($blockItem, 'secondary', 'color');
+  border: solid 1px transparent;
+  border-radius: $borderRadius-1;
+
+  &:focus, &_focus {
+    border-color: map-get($blockItem, 'focus', 'border-color');
+  }
+}

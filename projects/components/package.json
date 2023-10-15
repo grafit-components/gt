@@ -3,12 +3,22 @@
   "version": "0.0.0",
   "scripts": {
     "build": "tsc -p tsconfig.schematics.json",
-    "copy:schemas": "xcopy schematics\\my-service\\schema.json ..\\..\\dist\\itsk-ng-lib\\schematics\\my-service",
-    "copy:files": "xcopy /e /v schematics\\my-service\\files ..\\..\\dist\\itsk-ng-lib\\schematics\\my-service\\files\\",
-    "copy:collection": "copy schematics\\collection.json ..\\..\\dist\\itsk-ng-lib\\schematics\\collection.json",
-    "template:schemas": "xcopy schematics\\template\\schema.json ..\\..\\dist\\itsk-ng-lib\\schematics\\template",
-    "template:files": "xcopy /e /v schematics\\template\\files ..\\..\\dist\\itsk-ng-lib\\schematics\\template\\files\\",
-    "postbuild": "npm run copy:schemas && npm run copy:files && npm run copy:collection && npm run template:schemas && npm run template:files"
+    "copy:schemas": "xcopy schematics\\my-service\\schema.json ..\\..\\dist\\components\\schematics\\my-service",
+    "copy:files": "xcopy /e /v schematics\\my-service\\files ..\\..\\dist\\components\\schematics\\my-service\\files\\",
+    "copy:collection": "copy schematics\\collection.json ..\\..\\dist\\components\\schematics\\collection.json",
+    "template:schemas": "xcopy schematics\\template\\schema.json ..\\..\\dist\\components\\schematics\\template",
+    "template:files": "xcopy /e /v schematics\\template\\files ..\\..\\dist\\components\\schematics\\template\\files\\",
+    "template:assets": "xcopy /e /v src\\assets ..\\..\\dist\\components\\assets\\",
+    "template:styles": "xcopy /e /v src\\styles ..\\..\\dist\\components\\styles\\",
+    "postbuild": "npm run copy:schemas && npm run copy:files && npm run copy:collection && npm run template:schemas && npm run template:files && npm run template:assets && npm run template:styles"
+  },
+  "exports": {
+    "./assets": {
+      "default": "./assets/*"
+    },
+    "./styles": {
+      "default": "./styles/*"
+    }
   },
   "peerDependencies": {
     "@angular/cdk": "^15.0.0",

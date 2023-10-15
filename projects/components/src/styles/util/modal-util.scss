@@ -1,0 +1,61 @@
+@import '../vars.scss';
+@import 'shape-util.scss';
+
+$modalMinHeight: 100px;
+$modalMinWidth: 200px;
+
+@mixin modal($blockItem) {
+  &.modal, & .modal {
+    @include modalBlock($blockItem);
+  }
+}
+
+@mixin modalBlock($blockItem) {
+  &__backdrop {
+    background: rgba(#000, 0.4);
+    z-index: 100;
+  }
+
+  &__window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &__container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    @include baseShadow();
+    @include baseRadius();
+    @include baseShape(map-get($blockItem, 'default'));
+    min-width: $modalMinWidth;
+    min-height: $modalMinHeight;
+
+    &_resize {
+      resize: both;
+    }
+  }
+
+  &__head {
+    display: flex;
+    padding: $space-3;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &__content {
+    display: flex;
+    padding: $space-3;
+  }
+
+  &__foot {
+    display: flex;
+    padding: $space-3;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}

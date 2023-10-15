@@ -1,0 +1,17 @@
+@import './vars.scss';
+@import './util/shadow-util.scss';
+
+@each $i, $value in $shadowHash {
+  .shadow-#{$i} {
+    @include shadow($value);
+  }
+  .shadow-b-#{$i} {
+    @include shadow-b($value);
+  }
+  .shadow-l-#{$i} {
+    @include shadow-l($value);
+  }
+  .shadow-r-#{$i} {
+    @include shadow-r($value);
+  }
+}

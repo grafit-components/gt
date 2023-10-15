@@ -1,0 +1,66 @@
+$blockItem: (
+        'n': 0%,
+        'base': #000,
+        'normal': #216293,
+        'info': #F08200,
+        'success': #00891E,
+        'warning': #C3D300,
+        'error': #FF465C,
+        'focus': #02A7F0
+);
+$default: (
+        'background-color': mix(map-get($blockItem, 'normal'), map-get($blockItem, 'base'), map-get($blockItem, 'n')),
+        'color': #D2D9DE,
+        'border-color': #1F5986
+);
+$secondary: (
+        'secondary':  undefined ,
+        'color': #FFFFFF,
+        'border-color': #1F5986
+);
+$primary: (
+        'background-color':  undefined ,
+        'color': #FFFFFF,
+        'border-color': #F08200
+);
+$ghost: (
+        'background-color': map-get($blockItem, 'normal'),
+        'color': map-get($blockItem, 'normal'),
+        'border-color': map-get($blockItem, 'normal')
+);
+$success: (
+        'background-color':  undefined ,
+        'color': #fff,
+        'border-color': #00891E
+);
+$warning: (
+        'background-color':  undefined ,
+        'color': #000,
+        'border-color': #E3B100
+);
+$error: (
+        'background-color':  undefined ,
+        'color': #fff,
+        'border-color': #FF465C
+);
+$info: (
+        'background-color': #558A8D,
+        'color': #fff,
+        'border-color': #558A8D
+);
+$focus: (
+        'background-color': #02A7F0,
+        'color': #02A7F0,
+        'border-color': #02A7F0
+);
+$main: (
+        'default': $default,
+        'secondary': $secondary,
+        'primary': $primary,
+        'ghost': $ghost,
+        'success': $success,
+        'warning': $warning,
+        'error': $error,
+        'info': $info,
+        'focus': $focus
+);

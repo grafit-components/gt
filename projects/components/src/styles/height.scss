@@ -1,0 +1,9 @@
+@each $i, $heightItem in $spaceList {
+  .height-#{$i} {
+    height: $heightItem;
+  }
+
+  .line-height-#{$i} {
+     line-height: $heightItem;
+  }
+}

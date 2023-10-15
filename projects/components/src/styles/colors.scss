@@ -1,0 +1,20 @@
+@import "./color.scss";
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName} {
+    @each $accentName, $accent in $blockItem {
+      @each $parameter, $value in $accent {
+        &__#{$parameter}_#{$accentName}, &.#{$parameter}_#{$accentName}, & .#{$parameter}_#{$accentName} {
+          #{$parameter}: $value !important
+        }
+      }
+    }
+  }
+}
+
+@each $accentName, $accent in map-get($blocks, 'work') {
+  @each $parameter, $value in $accent {
+    .#{$parameter}_#{$accentName} {
+      #{$parameter}: $value !important;
+    }
+  }
+}

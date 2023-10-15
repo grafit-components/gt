@@ -1,0 +1,371 @@
+@import './color.scss';
+@import './vars.scss';
+@import './font.scss';
+@import 'util/scrollbar-util.scss';
+@import 'util/state-util.scss';
+@import 'util/shape-util.scss';
+@import 'util/grid-util.scss';
+@import 'util/font-util.scss';
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+  @include gridBlock(map-get($blocks, 'work'));
+
+  &__body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    flex-basis: 0;
+    min-height: 0;
+
+    &__left {
+      display: flex;
+      flex-direction: column;
+      overflow: visible;
+      flex-shrink: 0;
+      flex-grow: 1;
+    }
+
+    &__right {
+      //display flex
+      //flex-direction column
+      flex-grow: 1;
+      overflow-y: scroll !important;
+      overflow-x: auto;
+    }
+  }
+
+  &__row {
+    display: flex;
+    flex-shrink: 0;
+    height: $space-10;
+    line-height: $space-10;
+    //z-index 0
+
+    &_locked {
+      display: flex;
+      position: relative;
+      left: 0;
+    }
+  }
+
+  &__additional {
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  &__cell {
+    overflow: hidden;
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: flex;
+
+    &_text {
+      flex-grow: 1;
+      padding: 0 $space-3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &__icon {
+      display: flex;
+      align-items: center;
+      margin: 0 $space-1 0 $space-2;
+    }
+  }
+
+  &__head {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    z-index: 1;
+    font-size: $font-size-title3;
+
+    &__left {
+      display: flex;
+      flex-direction: column;
+      z-index: 2;
+      flex-shrink: 0;
+      flex-grow: 1;
+    }
+
+    &__right {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      z-index: 1;
+    }
+
+    &__row {
+      display: flex;
+      flex-grow: 1;
+      overflow: visible;
+    }
+
+    &__group {
+      min-height: 2.4rem;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      text-align: center;
+      text-overflow: ellipsis;
+
+      &__container {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        min-width: 0;
+      }
+
+      &__caption {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        min-height: 3.2rem;
+        justify-content: center;
+        @include fontHelper($font-title3);
+      }
+
+      &__children {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+      }
+    }
+
+    &__cell {
+      position: relative;
+      min-height: 4rem;
+      flex-shrink: 0;
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      text-overflow: ellipsis;
+      @include fontHelper($font-title3);
+
+      &__wrapper {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        justify-content: center;
+      }
+
+      &__component {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        margin: 0 $space-4;
+      }
+
+      &__dropdown {
+        position: absolute !important;
+        top: 0;
+        right: 0;
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        visibility: hidden;
+
+        &__button {
+          width: 24px;
+          text-align: center;
+          padding: 0;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
+      &:hover &__dropdown {
+        visibility: visible;
+      }
+
+      &__text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+      }
+
+      &__icon {
+        font-size: $font-size-title3;
+
+        &__sorted {
+          width: $space-4;
+          display: block;
+          flex-shrink: 0;
+          margin-right: -($space-4);
+        }
+        &__filtered {
+          width: $space-4;
+          display: block;
+          flex-shrink: 0;
+          margin-left: -($space-4);
+        }
+      }
+
+      &__resize {
+        position: absolute;
+        top: 0;
+        right: -4px;
+        bottom: 0;
+        width: $space-2;
+        background: transparent;
+        z-index: 1;
+
+        &:hover {
+          cursor: col-resize;
+        }
+      }
+    }
+
+    &__dropdown {
+      position: fixed;
+      z-index: 2;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      min-width: 250px;
+      padding: 12px;
+    }
+  }
+
+  &__aggregate {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    z-index: 1;
+    font-size: $font-size-title3;
+    font-weight: 500;
+
+    &_left {
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      height: $space-10;
+    }
+
+    &_right {
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      height: $space-10;
+    }
+  }
+}
+
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName} {
+    @include grid($blockItem);
+  }
+}
+
+.grid-wrapper {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  min-width: 0;
+  @include gridWrapperBlock(map-get($blocks, 'work'));
+
+  &__panel {
+    display: flex;
+    height: $space-14;
+    align-items: center;
+    padding: 0 $space-6;
+  }
+
+  &__container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 1;
+    flex-basis: 0;
+    min-height: 0;
+    min-width: 0;
+  }
+
+  &__sidebar {
+    display: flex;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    &_detail {
+      flex-grow: 1;
+      flex-shrink: 0;
+    }
+  }
+
+  &__pager {
+    height: $space-14;
+    align-items: center;
+    display: flex;
+    padding: 0 $space-6;
+    z-index: 0;
+  }
+}
+
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName} {
+    @include gridWrapper($blockItem);
+  }
+}
+
+@keyframes show-panel {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+.table {
+  border-collapse: collapse;
+
+  &__head {
+    @include fontHelper($font-title3);
+    border-style: solid;
+    border-width: 1px;
+
+    &__cell {
+      border-style: solid;
+      border-width: 1px;
+      height: $space-8;
+      padding: 0 $space-2;
+    }
+  }
+
+  &__cell {
+    border-style: solid;
+    border-width: 1px;
+    height: $space-8;
+    padding: 0 $space-2;
+  }
+}
+
+.table {
+  @include tableBlock(map-get($blocks, 'work'));
+}
+
+.filter-panel {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}

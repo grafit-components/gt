@@ -1,0 +1,44 @@
+@import './vars.scss';
+
+@mixin borderRadius($size) {
+  border-radius: map-get($borderRadiusSize, $size);
+}
+
+
+@each $j, $size in $borderSize {
+  .border-#{$j} {
+    border-style: solid;
+    border-width: $size;
+  }
+}
+
+@each $i, $directionItem in $direction {
+  @each $j, $size in $borderSize {
+    .border-#{$i}-#{$j} {
+      border-#{$directionItem}-style: solid;
+      border-#{$directionItem}-width: $size;
+    }
+  }
+}
+
+@each $key, $value in $borderRadiusSize {
+  .border-radius-#{$key} {
+    border-radius: $value;
+  }
+
+  .border-radius-topLeft-#{$key} {
+    border-top-left-radius: $value;
+  }
+
+  .border-radius-topRight-#{$key} {
+    border-top-right-radius: $value;
+  }
+
+  .border-radius-bottomRight-#{$key} {
+    border-bottom-right-radius: $value;
+  }
+
+  .border-radius-bottomLeft-#{$key} {
+    border-bottom-left-radius: $value;
+  }
+}

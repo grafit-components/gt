@@ -1,0 +1,35 @@
+@import '../color.scss';
+@import '../vars.scss';
+
+@mixin card() {
+  padding: $space-3;
+
+  & > * {
+    margin-bottom: $space-3;
+  }
+
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+
+  &-icon {
+    display: inline-block;
+    margin-bottom: $space-3;
+    width: 6.4rem;
+    height: 6.4rem;
+    font-size: 6.4rem;
+  }
+
+  &-img {
+    width: 100%;
+    height: auto;
+  }
+
+  &-content > * {
+    margin-bottom: $space-3;
+  }
+
+  &-content > *:last-child {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,246 @@
+@import './color.scss';
+@import 'util/control-util.scss';
+@import 'util/state-util.scss';
+
+.checkbox {
+  display: flex;
+  align-items: center;
+
+  & ~ & {
+    margin-top: 1.2rem;
+  }
+
+  &_disabled {
+    opacity: 0.5;
+  }
+
+  @include checkboxBlock(map-get($blocks, work));
+
+  //&__icon
+  //  display inline-block
+  //  text-align center
+  //  //border-radius borderRadius-1
+  //  font-size 1.6rem
+  //
+  //  &_unchecked
+  //    color transparent
+
+  &__label {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: calc(100% - 20px);
+    padding-left: $space-1;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName} {
+    @include checkbox($blockItem);
+  }
+}
+
+.toggle {
+  display: inline-flex;
+  @include toggleBlock(map-get($blocks, work));
+
+  &_disabled {
+    opacity: 0.5;
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 8px;
+    width: 3.2rem;
+    position: relative;
+    font-size: 2.4rem;
+    height: 1.6rem;
+    font-weight: bolder;
+
+    &__circle {
+      position: absolute;
+      right: unset;
+      display: inline-block;
+      height: 1.6rem;
+      width: 1.6rem;
+      border-radius: 0.8rem;
+      transition: left 0.2s ease-out;
+      top: -1px;
+
+      &_checked {
+        left: calc(100% - 1.5rem);
+      }
+
+      &_unchecked {
+        left: -1px;
+      }
+    }
+  }
+
+  &__label {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: calc(100% - 20px);
+    padding-left: 8px;
+    white-space: nowrap;
+
+    &_left {
+      padding-left: 0;
+      padding-right: 8px;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+  // @include toggle(map-get($blocks, 'work'));
+
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName} {
+    @include toggle($blockItem);
+  }
+}
+
+.radio {
+  @include radioBlock(map-get($blocks, work));
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  &_inline {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__button {
+    height: $space-6;
+    display: inline-flex;
+    align-items: center;
+    margin-right: $space-4;
+    @include cursorPointer();
+
+    &_disabled {
+      opacity: 0.5;
+    }
+  }
+
+
+  &__icon {
+    flex-shrink: 0;
+    height: $space-4;
+    width: $space-4;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: $space-2;
+
+    &-inner {
+      border-radius: 50%;
+      height: $space-2;
+      width: $space-2;
+    }
+  }
+}
+
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName} {
+    @include radio($blockItem);
+  }
+}
+
+@-webkit-keyframes uncheck  {
+  0%  {
+    left: 1px;
+  }
+  100%  {
+    right: 1px;
+  }
+}
+
+@-moz-keyframes uncheck  {
+  0%  {
+    left: 1px;
+  }
+  100%  {
+    right: 1px;
+  }
+}
+
+@-ms-keyframes uncheck  {
+  0%  {
+    left: 1px;
+  }
+  100%  {
+    right: 1px;
+  }
+}
+
+@-o-keyframes uncheck  {
+  0%  {
+    left: 1px;
+  }
+  100%  {
+    right: 1px;
+  }
+}
+
+@keyframes uncheck  {
+  0%  {
+    left: 1px;
+  }
+  100%  {
+    right: 1px;
+  }
+}
+
+@-webkit-keyframes check  {
+  0%  {
+    left: 1px;
+  }
+  100%  {
+    right: 1px;
+  }
+}
+
+@-moz-keyframes check  {
+  0%  {
+    left: 1px;
+  }
+  100%  {
+    right: 1px;
+  }
+}
+
+@-ms-keyframes check  {
+  0%  {
+    left: 1px;
+  }
+  100%  {
+    right: 1px;
+  }
+}
+
+@-o-keyframes check  {
+  0%  {
+    left: 1px;
+  }
+  100%  {
+    right: 1px;
+  }
+}
+
+@keyframes check  {
+  0%  {
+    left: 1px;
+  }
+  100%  {
+    right: 1px;
+  }
+}

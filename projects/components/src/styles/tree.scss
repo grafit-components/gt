@@ -1,0 +1,62 @@
+@import './color.scss';
+
+.tree {
+  &__container {
+    //padding-left 24px
+    display: block;
+  }
+
+  &__host {
+    display: block;
+    padding-left: 32px;
+    border-left: solid 1px, map-get($blocks, 'work', 'default', 'border-color');
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    height: $space-8;
+    padding-left: 24px;
+    position: relative;
+    font-size: 1.4rem;
+
+    &:last-child {
+      position: relative;
+      border-left: 0;
+
+      &:before {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: block;
+        content: "";
+        height: 50%;
+        border-left: solid 1px, map-get($blocks, 'work', 'default', 'border-color');
+      }
+    }
+
+    &:before {
+      position: absolute;
+      top: 15px;
+      height: 1px;
+      width: 16px;
+      border-bottom: solid 1px, map-get($blocks, 'work', 'default', 'border-color');
+      border-bottom-left-radius: 3px;
+      content: "";
+      display: block;
+      left: 0;
+      z-index: 0;
+    }
+  }
+
+  &__toggle {
+    margin-left: -34px;
+    margin-right: 17px;
+    width: 16px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    position: relative;
+    z-index: 1;
+  }
+}

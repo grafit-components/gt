@@ -1,0 +1,14 @@
+@mixin fontHelper($fontDescription) {
+  font-size: map-get($fontDescription, 'font-size');
+  line-height: map-get($fontDescription, 'line-height');
+  font-weight: map-get($fontDescription, 'font-weight');
+  font-style: map-get($fontDescription, 'font-style');
+}
+
+
+@mixin fontHelperImportant($fontDescription) {
+  font-size: map-get($fontDescription, 'font-size') !important;
+  line-height: map-get($fontDescription, 'line-height') !important;
+  font-weight: map-get($fontDescription, 'font-weight') !important;
+  font-style: map-get($fontDescription, 'font-style') !important;
+}

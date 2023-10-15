@@ -1,0 +1,31 @@
+@import "../vars.scss";
+@import "state-util";
+@import "shadow-util";
+
+@mixin baseShape($accent) {
+ @include baseBorder($accent);
+ @include baseBackground($accent);
+ @include baseColor($accent);
+}
+
+@mixin baseBorder($accent) {
+  border: 1px solid map-get($accent, 'border-color');
+}
+
+@mixin baseBackground($accent) {
+  background-color: map-get($accent, 'background-color');
+  &_active {
+    background-color: darkOrLight(map-get($accent, 'background-color'), 10%);
+  }
+}
+
+@mixin baseColor($accent) {
+  color: map-get($accent, 'color');
+}
+
+ @mixin baseShadow(){
+    @include shadow-b($shadow-1);
+ }
+ @mixin baseRadius(){
+   border-radius: $borderRadius-1;
+ }

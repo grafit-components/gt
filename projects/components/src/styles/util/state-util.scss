@@ -1,0 +1,60 @@
+@function is_dark($color) {
+  $result: false;
+  @if ($color == grayscale($color)) {
+    $result: true;
+  }
+  @return $result;
+}
+
+@mixin baseFocus($blockItem) {
+  &:focus,
+  &_focus {
+    border-color: map-get($blockItem, 'focus', 'border-color');
+  }
+  //color: blockItem.focus.color;
+  //background-color: blockItem.focus.background-color;
+}
+
+@mixin cursorPointer() {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@mixin baseHover($color) {
+  &:hover {
+    @include hoverFunc($color, 5%);
+  }
+}
+
+@mixin hoverFunc($color, $percent) {
+  background: darkOrLight($color, $percent);
+}
+
+@mixin baseState($color) {
+  background: $color;
+  @include baseHover($color);
+
+  &:active {
+    background: darkOrLight($color, 10%);
+  }
+
+  &_active {
+    background: darkOrLight($color, 10%);
+  }
+
+  &_disabled, &[disabled] {
+    opacity: 0.6;
+    &:hover {
+      background: $color;
+    }
+  }
+}
+
+@function darkOrLight($color, $percent) {
+  @if lightness($color) < 50% {
+    @return lighten($color, $percent);
+  } @else {
+    @return darken($color, $percent);
+  }
+}

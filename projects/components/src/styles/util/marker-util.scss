@@ -1,0 +1,14 @@
+@import 'state-util.scss';
+
+@mixin marker() {
+  display: inline-flex;
+  align-items: center;
+  margin-right: $space-2;
+  padding: 0 $space-2;
+  border-radius: $borderRadius-5;
+}
+
+@mixin markerAccent($accent) {
+  background-color: map-get($accent, 'background-color');
+  color: map-get($accent, 'color');
+}

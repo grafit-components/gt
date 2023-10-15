@@ -1,0 +1,37 @@
+@import '../vars.scss';
+@import 'shape-util.scss';
+
+@mixin tabs($blockItem) {
+  &.tabs, & .tabs {
+    @include tabsBlock($blockItem);
+  }
+}
+
+@mixin tabsBlock($blockItem) {
+  background: map-get($blockItem, 'default', 'background-color');
+  color: map-get($blockItem, 'default', 'color');
+
+  &__head {
+    background: map-get($blockItem, 'default', 'background-color');
+    color: map-get($blockItem, 'default', 'color');
+
+    &__item {
+      color: map-get($blockItem, 'secondary', 'color');
+      border-bottom: solid 4px transparent;
+      @include baseState(map-get($blockItem, 'default', 'background-color'));
+      @include cursorPointer();
+
+      &_active {
+        background: map-get($blockItem, 'default', 'background-color');
+        border-bottom: solid 4px map-get($blockItem, 'primary', 'border-color');
+      }
+    }
+  }
+
+  &__content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: map-get($blockItem, 'default', 'background-color');
+  }
+}

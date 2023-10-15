@@ -1,0 +1,31 @@
+@import 'state-util.scss';
+@import 'shape-util.scss';
+
+@mixin pager($blockItem) {
+  &_pager, &.pager, & .pager {
+    background: map-get($blockItem, 'default', 'background-color');
+    color: map-get($blockItem, 'default', 'color');
+
+    &__dropdown {
+      @include baseRadius();
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      white-space: nowrap;
+      z-index: 1;
+      @include baseShape(map-get($blockItem, 'default'));
+    }
+
+    &__button__move {
+      @include buttonAccent(map-get($blockItem, 'secondary'));
+    }
+
+    &__button__count {
+      @include buttonAccent(map-get($blockItem, 'secondary'));
+    }
+
+    &__button__page {
+      @include buttonAccent(map-get($blockItem, 'default'));
+    }
+  }
+}

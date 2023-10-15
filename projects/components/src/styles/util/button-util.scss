@@ -1,0 +1,42 @@
+@import '../vars.scss';
+@import 'state-util.scss';
+
+@mixin button($blockItem) {
+  @each $accentName, $accent in $blockItem {
+    &__button_#{$accentName}, &.button_#{$accentName}, & .button_#{$accentName} {
+      @include buttonAccent($accent);
+      @include baseFocus($blockItem);
+    }
+  }
+}
+
+@mixin buttonAccent($accent) {
+  @include baseRadius();
+  border: solid 1px transparent;
+  min-height: $space-8;
+  height: $space-8;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  min-width: $space-8;
+  white-space: nowrap;
+  padding: 0 $space-3;
+  color: map-get($accent, 'color');
+  @include fontHelper($font-button2);
+  @include baseState(map-get($accent, 'background-color'));
+  @include cursorPointer();
+}
+
+@mixin buttonDelimiter($blockItem) {
+  @each $accentName, $accent in $blockItem {
+    &__button-delimiter_#{$accentName}, &.button-delimiter_#{$accentName}, & .button-delimiter_#{$accentName} {
+      @include buttonDelimiterAccent($accent)
+    }
+  }
+}
+
+@mixin buttonDelimiterAccent($accent) {
+  display: inline-block;
+  width: 1px;
+  background: map-get($accent, 'background-color');
+}

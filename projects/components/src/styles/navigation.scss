@@ -1,0 +1,45 @@
+@import 'vars';
+@import 'color';
+@import 'util/navigation-util';
+
+.navigation {
+  @include navigationBlock(map-get($blocks, work));
+  position: fixed;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: rgba(black, 0.4);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__header {
+    padding: $space-5 $space-3 $space-3 $space-6;
+  }
+
+  &__footer {
+    padding: $space-3 $space-3 $space-3 $space-6;
+  }
+
+  & .menu_absolute {
+    position: static;
+    z-index: 0;
+  }
+}
+
+@each $blockName, $blockItem in $blocks {
+  .block-#{$blockName}.navigation {
+    @include navigationBlock($blockItem);
+  }
+  .block-#{$blockName} {
+    .navigation {
+      @include navigationBlock($blockItem);
+    }
+  }
+}
