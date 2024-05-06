@@ -27,7 +27,7 @@ export class GroupRowWrapperComponent<T extends IId> implements OnInit {
   @Input() groupRowComponent: any;
 
   @Input()
-  set columns(val: GridColumn[]) {
+  set columns(val: GridColumn[] | undefined) {
     this.columns$ = val;
     if (this.init && this.componentRef) {
       this.componentRef.instance.columns = val;
@@ -42,7 +42,7 @@ export class GroupRowWrapperComponent<T extends IId> implements OnInit {
   private row$?: GridRow<T>;
 
   @Input()
-  set row(val: GridRow<T>) {
+  set row(val: GridRow<T> | undefined) {
     this.row$ = val;
     if (this.init && this.componentRef) {
       this.componentRef.instance.row = val;

@@ -23,7 +23,7 @@ export class ListCellComponent<T extends IId> extends CellComponentBase<T> imple
   column$?: GridColumn;
 
   @Input()
-  set column(val: GridColumn) {
+  set column(val: GridColumn | undefined) {
     this.column$ = val;
   }
 
@@ -34,7 +34,7 @@ export class ListCellComponent<T extends IId> extends CellComponentBase<T> imple
   row$?: GridRow<any>;
 
   @Input()
-  set row(val: GridRow<any>) {
+  set row(val: GridRow<any> | undefined) {
     this.row$ = val;
   }
 

@@ -1,11 +1,12 @@
-import {Observable, Subject} from 'rxjs';
+import {Subject} from 'rxjs';
 import {IModalResult} from './imodal-result';
 import {ComponentRef} from '@angular/core';
 import {ItskModalContainerComponent} from '../itsk-modal-container/itsk-modal-container.component';
 import {ItskContentRef} from '../../../common/model/itsk-content-ref';
+import {ItskModalCloseReason} from "./itsk-modal-close-reason.enum";
 
 export class ItskModalInstance {
-  private onClose$: Subject<IModalResult | undefined> = new Subject<IModalResult | undefined>();
+  private onClose$: Subject<IModalResult> = new Subject<IModalResult>();
   onClose = this.onClose$.asObservable();
 
   constructor(private window$: ComponentRef<ItskModalContainerComponent>,
@@ -26,7 +27,7 @@ export class ItskModalInstance {
   }
 
   close = (event?: IModalResult) => {
-    this.onClose$.next(event);
+    this.onClose$.next(event ?? {reason: ItskModalCloseReason.Exit});
     this.onClose$.complete();
     this.destroy();
   }

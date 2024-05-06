@@ -28,7 +28,7 @@ export class ItskGridCellWrapperComponent<T extends IId> implements OnInit, OnDe
   private column$?: GridColumn;
 
   @Input()
-  set column(val: GridColumn) {
+  set column(val: GridColumn | undefined) {
     this.column$ = val;
     if (this.init && this.componentRef) {
       this.componentRef.instance.column = val;
@@ -43,7 +43,7 @@ export class ItskGridCellWrapperComponent<T extends IId> implements OnInit, OnDe
   private row$?: GridRow<T>;
 
   @Input()
-  set row(val: GridRow<T>) {
+  set row(val: GridRow<T> | undefined) {
     this.row$ = val;
     if (this.init && this.componentRef) {
       this.componentRef.instance.row = val;
