@@ -8,6 +8,8 @@ import { IItskMenuItem } from '../model/i-itsk-menu-item';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskMenuItemComponent<T extends IItskMenuItem> implements OnInit, OnDestroy {
+  private timer: any;
+  private debounceTime = 200;
   item$?: T;
 
   @Input()
@@ -38,12 +40,18 @@ export class ItskMenuItemComponent<T extends IItskMenuItem> implements OnInit, O
   }
 
   openItem(item: T) {
-    this.itemToggle.emit(item);
+   this.clearTimeout()
+    this.timer = setTimeout(() => this.itemToggle.emit(item), this.debounceTime);
   }
 
   ngOnInit() {}
 
   ngOnDestroy(): void {
     if (this.item$) this.item$.open = false;
+    this.clearTimeout()
+  }
+
+  clearTimeout() {
+    clearTimeout(this.timer)
   }
 }
