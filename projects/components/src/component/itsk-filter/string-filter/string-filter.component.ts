@@ -1,21 +1,15 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component, EventEmitter,
-  Input,
-  OnInit, Output
-} from '@angular/core';
-import {FilterComponentBase} from '../model/filter-component-base';
-import {StringFilter} from '../model/string-filter';
-import {FilterState} from '../../itsk-grid/model/filter-state';
-import {FilterBase} from '../model/filter-base';
-import {FilterColumn} from '../model/filter-column';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FilterState } from '../../itsk-grid/model/filter-state';
+import { FilterBase } from '../model/filter-base';
+import { FilterColumn } from '../model/filter-column';
+import { FilterComponentBase } from '../model/filter-component-base';
+import { StringFilter } from '../model/string-filter';
 
 @Component({
   selector: 'itsk-string-filter',
   templateUrl: './string-filter.component.html',
   styleUrls: ['./string-filter.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StringFilterComponent extends FilterComponentBase implements OnInit {
   filter: StringFilter = new StringFilter();
@@ -40,9 +34,7 @@ export class StringFilterComponent extends FilterComponentBase implements OnInit
     super();
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   setFilter() {
     this.filterChanged.emit(this.filter);
@@ -53,15 +45,16 @@ export class StringFilterComponent extends FilterComponentBase implements OnInit
       return f.fieldName === this.column.filterField;
     });
     if (!filter) {
-      filter = this.state.addStringFilter(new StringFilter({
-        value: '',
-        fieldName: this.column.filterField,
-        type: this.column.stringFilterType,
-        name: this.column.name
-      }));
+      filter = this.state.addStringFilter(
+        new StringFilter({
+          value: '',
+          fieldName: this.column.filterField,
+          type: this.column.stringFilterType,
+          name: this.column.name,
+        }),
+      );
     }
-    if(this.column.stringFilterType!== undefined)
-    filter.type = this.column.stringFilterType;
+    if (this.column.stringFilterType !== undefined) filter.type = this.column.stringFilterType;
     return filter;
   }
 }

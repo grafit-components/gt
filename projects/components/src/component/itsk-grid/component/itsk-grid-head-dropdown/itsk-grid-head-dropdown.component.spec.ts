@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import {ItskGridHeadDropdownComponent} from './itsk-grid-head-dropdown.component';
+import { ItskGridHeadDropdownComponent } from './itsk-grid-head-dropdown.component';
 
 describe('ItskGridHeadDropdownComponent', () => {
   let component: ItskGridHeadDropdownComponent<any>;
@@ -8,9 +8,8 @@ describe('ItskGridHeadDropdownComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskGridHeadDropdownComponent]
-    })
-      .compileComponents();
+      declarations: [ItskGridHeadDropdownComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

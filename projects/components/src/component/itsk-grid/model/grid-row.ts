@@ -1,4 +1,3 @@
-
 export interface IId {
   id: string | number;
 
@@ -38,7 +37,7 @@ export class GridRow<T extends IId> {
 
   public get hash(): string {
     if (!this.hash$) {
-      const hashObj = {...this.data};
+      const hashObj = { ...this.data };
       delete hashObj['children'];
       this.hash$ = JSON.stringify(hashObj);
     }

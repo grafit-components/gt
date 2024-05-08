@@ -4,8 +4,8 @@ export interface IItskMenuItem {
   name: string;
   url?: string;
   outerUrl?: string;
-  target?: '_blank'|'_self'|'_parent'|'_top';
-  hidden?: boolean ;
+  target?: '_blank' | '_self' | '_parent' | '_top';
+  hidden?: boolean;
   code?: string;
   group?: string;
   iconClassName?: string;

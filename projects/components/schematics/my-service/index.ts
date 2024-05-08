@@ -1,10 +1,6 @@
-import {
-  Rule, Tree, SchematicsException,
-  apply, url, applyTemplates, move,
-  chain, mergeWith
-} from '@angular-devkit/schematics';
+import { Rule, SchematicsException, Tree, apply, applyTemplates, chain, mergeWith, move, url } from '@angular-devkit/schematics';
 
-import { strings, normalize } from '@angular-devkit/core';
+import { normalize, strings } from '@angular-devkit/core';
 
 import { Schema as MyServiceSchema } from './schema';
 
@@ -38,13 +34,11 @@ export function myService(options: MyServiceSchema): Rule {
       applyTemplates({
         classify: strings.classify,
         dasherize: strings.dasherize,
-        name: options.name
+        name: options.name,
       }),
-      move(normalize(options.path as string))
+      move(normalize(options.path as string)),
     ]);
 
-    return chain([
-      mergeWith(templateSource)
-    ]);
+    return chain([mergeWith(templateSource)]);
   };
 }

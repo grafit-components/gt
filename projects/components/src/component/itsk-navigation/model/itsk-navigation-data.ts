@@ -1,4 +1,4 @@
-import {IItskMenuItem} from '../../itsk-menu/model/i-itsk-menu-item';
+import { IItskMenuItem } from '../../itsk-menu/model/i-itsk-menu-item';
 
 export interface NavigationData {
   title?: string;

@@ -1,7 +1,7 @@
-import {getWorkspace} from '@schematics/angular/utility/config';
-import {parseName} from '@schematics/angular/utility/parse-name';
-import {SchematicsException, Tree} from '@angular-devkit/schematics';
-import {Schema} from './schema';
+import { SchematicsException, Tree } from '@angular-devkit/schematics';
+import { getWorkspace } from '@schematics/angular/utility/config';
+import { parseName } from '@schematics/angular/utility/parse-name';
+import { Schema } from './schema';
 
 export function setupOptions(host: Tree, options: Schema): Tree {
   const workspace = getWorkspace(host);

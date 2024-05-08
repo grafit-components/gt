@@ -23,6 +23,6 @@
 
 @each $blockName, $blockItem in $blocks {
   .block-#{$blockName} {
-    @include hint($blockItem)
+    @include hint($blockItem);
   }
 }

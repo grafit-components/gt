@@ -1,26 +1,26 @@
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  HostBinding,
-  Input,
   ChangeDetectorRef,
-  TemplateRef,
-  forwardRef,
-  HostListener,
+  Component,
+  ContentChild,
   ElementRef,
+  HostBinding,
+  HostListener,
+  Input,
+  OnInit,
+  TemplateRef,
   ViewChild,
-  ContentChild
+  forwardRef,
 } from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Subject, Subscription} from 'rxjs';
-import {debounceTime} from 'rxjs/operators';
-import {CdkVirtualScrollViewport} from '@angular/cdk/scrolling';
-import {ItskTreeSelectValueDirective} from '../directive/itsk-tree-select-value.directive';
-import {ItskTreeSelectOptionDirective} from '../directive/itsk-tree-select-option.directive';
-import {ItskTreeControl} from '../../itsk-tree/model/itsk-tree-control';
-import {IItskTreeItem} from '../../itsk-tree/model/i-itsk-tree-item';
-import {AnyObject} from '../../itsk-shared/any-object';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { AnyObject } from '../../itsk-shared/any-object';
+import { IItskTreeItem } from '../../itsk-tree/model/i-itsk-tree-item';
+import { ItskTreeControl } from '../../itsk-tree/model/itsk-tree-control';
+import { ItskTreeSelectOptionDirective } from '../directive/itsk-tree-select-option.directive';
+import { ItskTreeSelectValueDirective } from '../directive/itsk-tree-select-value.directive';
 
 enum ViewType {
   inline,
@@ -45,10 +45,10 @@ interface TreeSelectItem extends IItskTreeItem {
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ItskTreeSelectComponent),
-      multi: true
+      multi: true,
     },
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
   private searchTextSub = new Subject<string | null | undefined>();
@@ -64,16 +64,14 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
   private started = false;
   hiddenItems: Set<TreeSelectItem> = new Set();
 
-  /**
-   * Максимальная высота области прокрутки
-   */
+  /** Максимальная высота области прокрутки */
   @Input() height = '40vh';
 
-  @ViewChild('searchInput', {static: false}) private searchInput$?: ElementRef<HTMLInputElement>;
-  @ViewChild(CdkVirtualScrollViewport, {static: false}) private virtualViewport$?: CdkVirtualScrollViewport;
+  @ViewChild('searchInput', { static: false }) private searchInput$?: ElementRef<HTMLInputElement>;
+  @ViewChild(CdkVirtualScrollViewport, { static: false }) private virtualViewport$?: CdkVirtualScrollViewport;
 
-  @ContentChild(ItskTreeSelectValueDirective, {static: true}) valueTemplate?: ItskTreeSelectValueDirective;
-  @ContentChild(ItskTreeSelectOptionDirective, {static: true}) optionTemplate?: ItskTreeSelectOptionDirective;
+  @ContentChild(ItskTreeSelectValueDirective, { static: true }) valueTemplate?: ItskTreeSelectValueDirective;
+  @ContentChild(ItskTreeSelectOptionDirective, { static: true }) optionTemplate?: ItskTreeSelectOptionDirective;
 
   //#region Inputs
 
@@ -92,7 +90,6 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
   /** Можно ли выбирать группы */
   @Input() groupsSelectable = false;
 
-  /** */
   @Input() set panelOpen(val) {
     if (val) {
       this.open();
@@ -100,7 +97,9 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
       this.close();
     }
   }
-  get panelOpen() { return this.$panelOpen; }
+  get panelOpen() {
+    return this.$panelOpen;
+  }
   private $panelOpen = false;
 
   /** Возможность стереть значение(я) */
@@ -117,44 +116,48 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
   @Input() placeholder?: string | TemplateRef<void>;
 
   /** Для отображения выделенного */
-  @Input() selectedRef?: TemplateRef<{item: TreeSelectItem}> | 'block';
+  @Input() selectedRef?: TemplateRef<{ item: TreeSelectItem }> | 'block';
 
   /** Шаблон для отображения */
-  @Input() set textRef(val: TemplateRef<{item: TreeSelectItem}> | string) {
+  @Input() set textRef(val: TemplateRef<{ item: TreeSelectItem }> | string) {
     if (val instanceof TemplateRef) {
       this.textTemplate = val;
     }
-    if (typeof (val) === 'string') {
+    if (typeof val === 'string') {
       this.textPath = val;
     }
   }
-  textTemplate?: TemplateRef<{item: TreeSelectItem}>;
+  textTemplate?: TemplateRef<{ item: TreeSelectItem }>;
   private textPath?: string;
 
   /** Шаблон для отображения групп */
-  @Input() set groupItemRef(val: TemplateRef<{item: TreeSelectItem, expanded: boolean}> | string) {
+  @Input() set groupItemRef(val: TemplateRef<{ item: TreeSelectItem; expanded: boolean }> | string) {
     if (val instanceof TemplateRef) {
       this.groupTemplate = val;
     }
-    if (typeof (val) === 'string') {
+    if (typeof val === 'string') {
       this.groupPath = val;
     }
   }
-  groupTemplate?: TemplateRef<{item: TreeSelectItem, expanded: boolean}>;
+  groupTemplate?: TemplateRef<{ item: TreeSelectItem; expanded: boolean }>;
   private groupPath?: string;
 
   /** Доступность селекта, по умолчанию `false` */
   @HostBinding('class.select_disabled')
-  @Input() set disabled(value: boolean) {
+  @Input()
+  set disabled(value: boolean) {
     this.$disabled = value;
     this.close();
   }
-  get disabled() { return this.$disabled; }
+  get disabled() {
+    return this.$disabled;
+  }
   private $disabled = false;
 
   /** Возможность множественного выбора, по умолчанию `false` */
   @HostBinding('class.select_multiple')
-  @Input() set multiple(value: boolean) {
+  @Input()
+  set multiple(value: boolean) {
     if (this.$multiple !== value) {
       if (this.started) {
         throw new Error('Нельзя менять режим `multiple` после инициализации');
@@ -165,28 +168,30 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
       }
     }
   }
-  get multiple() { return this.$multiple; }
+  get multiple() {
+    return this.$multiple;
+  }
   private $multiple = false;
 
   /** Данные для отображения */
   @Input() set items(val: TreeSelectItem[]) {
     this.$items = val;
-    this.flatItems = val.map(v => this.flat(v))
-        .reduce((acc, v) => acc.concat(v), []); // .flat();
-    this.flatDeepestItems = val.map(v => this.flatNoParent(v))
-        .reduce((acc, v) => acc.concat(v), []); // .flat();
+    this.flatItems = val.map((v) => this.flat(v)).reduce((acc, v) => acc.concat(v), []); // .flat();
+    this.flatDeepestItems = val.map((v) => this.flatNoParent(v)).reduce((acc, v) => acc.concat(v), []); // .flat();
     this.treeControl = new ItskTreeControl(this.$items, this.$panelOpen);
     this.itemsCount = val ? this.filteredFlatSelectableItems.length : 0;
     this.$searchText = null;
     this.writeValue(this.rawNgModel);
   }
-  get items() { return this.$items ?? []; }
+  get items() {
+    return this.$items ?? [];
+  }
   get filteredFlatItems() {
     if (!this.treeControl) {
       return [];
     }
     const temp: Set<TreeSelectItem> = new Set();
-    return this.flatItems.filter(i => {
+    return this.flatItems.filter((i) => {
       const result = !this.hiddenItems.has(i[0]) && (!i[1] || (this.treeControl?.isExpanded(i[1]) && temp.has(i[1])));
       if (result) {
         temp.add(i[0]);
@@ -201,8 +206,8 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
     return this.filteredFlatItems;
   }
   get filteredFlatDeepestItems() {
-    const temp = this.filteredFlatItems.map(v => v[0]);
-    return this.flatDeepestItems.filter(v => temp.includes(v[0]));
+    const temp = this.filteredFlatItems.map((v) => v[0]);
+    return this.flatDeepestItems.filter((v) => temp.includes(v[0]));
   }
   get focusedItem() {
     if (this.focusedIndex === null) {
@@ -218,7 +223,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
   @Input() set valueRef(value: ((item?: TreeSelectItem) => any) | string) {
     switch (typeof value) {
       case 'string':
-        this.$valueRef = item => this.fetchFromObject(item, value);
+        this.$valueRef = (item) => this.fetchFromObject(item, value);
         break;
       case 'function':
         this.$valueRef = value;
@@ -233,19 +238,28 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
 
   //#region Props
 
-  get hasSearch() { return !!this.searchRef; }
-
-  set searchText(value: string | null | undefined) { this.searchTextSub.next(value); }
-  get searchText() { return this.$searchText; }
-
-  get hasValue() {
-    return this.multiple ? this.selectedItem?.length > 0 :
-        (this.selectedItem !== null && typeof this.selectedItem !== 'undefined');
+  get hasSearch() {
+    return !!this.searchRef;
   }
 
-  get searchFocused() { return this.hasSearch && this.searchInput$?.nativeElement === document.activeElement; }
+  set searchText(value: string | null | undefined) {
+    this.searchTextSub.next(value);
+  }
+  get searchText() {
+    return this.$searchText;
+  }
 
-  get performedSearch() { return this.hasSearch && this.$searchText; }
+  get hasValue() {
+    return this.multiple ? this.selectedItem?.length > 0 : this.selectedItem !== null && typeof this.selectedItem !== 'undefined';
+  }
+
+  get searchFocused() {
+    return this.hasSearch && this.searchInput$?.nativeElement === document.activeElement;
+  }
+
+  get performedSearch() {
+    return this.hasSearch && this.$searchText;
+  }
 
   //#endregion
 
@@ -253,9 +267,8 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
 
   constructor(
     private changeDetector: ChangeDetectorRef,
-    public elementRef: ElementRef
-  ) {
-  }
+    public elementRef: ElementRef,
+  ) {}
 
   ngOnInit() {
     this.started = true;
@@ -269,29 +282,26 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
 
   //#region ControlValueAccessor
 
-
   /** Writes a new value to the element. */
   writeValue(obj?: TreeSelectItem | TreeSelectItem[]): void {
     this.rawNgModel = obj;
     if (this.multiple) {
-      this.selectedItem = obj && this.items ? this.items.filter(item => obj.indexOf(this.$valueRef(item)) > -1) : [];
+      this.selectedItem = obj && this.items ? this.items.filter((item) => obj.indexOf(this.$valueRef(item)) > -1) : [];
     } else {
-      this.selectedItem = this.items && this.items.find(item => this.$valueRef(item) === obj);
+      this.selectedItem = this.items && this.items.find((item) => this.$valueRef(item) === obj);
     }
     this.changeDetector.markForCheck();
   }
 
-  /** model callback вызовется когда модель измениться из ui */
-  onChange: (value?: TreeSelectItem) => void = () => {
-  };
+  /** Model callback вызовется когда модель измениться из ui */
+  onChange: (value?: TreeSelectItem) => void = () => {};
 
   /** Registers a callback function that should be called when the control's value changes in the UI */
   registerOnChange(fn: (value?: TreeSelectItem) => void): void {
     this.onChange = fn;
   }
 
-  onTouched = () => {
-  };
+  onTouched = () => {};
 
   /** Registers a callback function that should be called when the control receives a blur event. */
   registerOnTouched(fn: () => {}): void {
@@ -322,14 +332,11 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
     this.$panelOpen = true;
     this.changeDetector.markForCheck();
     if (this.hasSearch) {
-      this.searchTextSubscription = this.searchTextSub
-        .pipe(debounceTime(300))
-        .subscribe(text => this.search(text));
+      this.searchTextSubscription = this.searchTextSub.pipe(debounceTime(300)).subscribe((text) => this.search(text));
 
       setTimeout(() => {
         this.searchInput$?.nativeElement.focus();
       }, 0);
-
     }
   }
 
@@ -363,7 +370,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
     return this.selectedItem?.map((s: TreeSelectItem) => this.getText(s));
   }
 
-  private fetchFromObject(obj: AnyObject|undefined, prop: string): any {
+  private fetchFromObject(obj: AnyObject | undefined, prop: string): any {
     if (typeof obj === 'undefined') {
       return null;
     }
@@ -420,16 +427,14 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
     if (!item.children) {
       return [[item, parent]];
     }
-    return item.children.map(i => this.flat(i, item))
-      .reduce((acc, val) => acc.concat(val), [[item, parent]]); // .flat();
+    return item.children.map((i) => this.flat(i, item)).reduce((acc, val) => acc.concat(val), [[item, parent]]); // .flat();
   }
 
   private flatNoParent(item: TreeSelectItem, parent?: TreeSelectItem): [TreeSelectItem, TreeSelectItem?][] {
     if (!item.children) {
       return [[item, parent]];
     }
-    return item.children.map(i => this.flatNoParent(i, item))
-        .reduce((acc, val) => acc.concat(val), []); // .flat();
+    return item.children.map((i) => this.flatNoParent(i, item)).reduce((acc, val) => acc.concat(val), []); // .flat();
   }
 
   showGroup(item: TreeSelectItem) {
@@ -509,7 +514,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
     if (this.debug) {
       return;
     }
-    if (this.focused && !event.relatedTarget || !this._isDescendant(this.elementRef.nativeElement, event.relatedTarget as HTMLElement)) {
+    if ((this.focused && !event.relatedTarget) || !this._isDescendant(this.elementRef.nativeElement, event.relatedTarget as HTMLElement)) {
       this.focused = false;
       this.close();
       this.onTouched();
@@ -521,7 +526,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
   }
 
   private _isDescendant(parent: HTMLElement, child: HTMLElement) {
-    let node: HTMLElement|Node|null = child;
+    let node: HTMLElement | Node | null = child;
     while (node !== null) {
       if (node === parent) {
         return true;
@@ -536,7 +541,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
 
   //#region Поиск
 
-  private search(searchText: string|null|undefined) {
+  private search(searchText: string | null | undefined) {
     if (!this.items) {
       return;
     }
@@ -561,7 +566,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
       .toLowerCase()
       .replace(pattern, '\\$&')
       .split(' ')
-      .filter(t => t.length > 0)
+      .filter((t) => t.length > 0)
       .join('|');
 
     const lookUp = (item: TreeSelectItem): boolean => {
@@ -573,7 +578,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
 
       let foundAnyChild = false;
       if (hasChildren) {
-        foundAnyChild = Boolean(item.children?.filter(i => lookUp(i)).length);
+        foundAnyChild = Boolean(item.children?.filter((i) => lookUp(i)).length);
       }
       const result = match || foundAnyChild;
 
@@ -587,7 +592,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
     };
 
     this.hiddenItems.clear();
-    this.items.forEach(v => lookUp(v));
+    this.items.forEach((v) => lookUp(v));
     this.forceChange();
 
     this.focusedIndex = null;
@@ -733,7 +738,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
         if (!this.treeControl?.isExpanded(item)) {
           this.showGroup(item);
           if (items.length > this.focusedIndex + 1) {
-            const nextIndex = this.filteredFlatItems.findIndex(v => v[1] === item);
+            const nextIndex = this.filteredFlatItems.findIndex((v) => v[1] === item);
             if (nextIndex > -1) {
               this.focusedIndex = nextIndex;
             }
@@ -754,7 +759,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
         if (this.focusedIndex > 0) {
           const targetItem = items[this.focusedIndex][1];
           if (targetItem) {
-            this.focusedIndex = items.findIndex(v => v[0] === targetItem);
+            this.focusedIndex = items.findIndex((v) => v[0] === targetItem);
             if (this.focusedItem && this.treeControl?.isExpanded(this.focusedItem)) {
               this.hideGroup(this.focusedItem);
             }

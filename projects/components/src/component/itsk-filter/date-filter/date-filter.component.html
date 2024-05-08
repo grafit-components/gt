@@ -1,21 +1,25 @@
 <div class="control__label">
-  <span class="control__label__text">{{column.caption}}</span>
+  <span class="control__label__text">{{ column.caption }}</span>
 </div>
 <div class="container">
   <label class="control__label control__label-delimiter">
     <span class="input container">
-      <itsk-date-picker class="container_auto"
-                        [ngModel]="filter.value?.greaterThan"
-                        [fixed]="true"
-                        (ngModelChange)="filter.value.greaterThan=$event"></itsk-date-picker>
+      <itsk-date-picker
+        class="container_auto"
+        [ngModel]="filter.value?.greaterThan"
+        [fixed]="true"
+        (ngModelChange)="filter.value.greaterThan = $event"
+      ></itsk-date-picker>
     </span>
   </label>
   <label class="control__label">
     <span class="input container">
-      <itsk-date-picker class="container_auto"
-                        [ngModel]="filter.value?.lessThan"
-                        [fixed]="true"
-                        (ngModelChange)="filter.value.lessThan=$event"></itsk-date-picker>
+      <itsk-date-picker
+        class="container_auto"
+        [ngModel]="filter.value?.lessThan"
+        [fixed]="true"
+        (ngModelChange)="filter.value.lessThan = $event"
+      ></itsk-date-picker>
     </span>
   </label>
 </div>

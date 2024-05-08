@@ -1,7 +1,7 @@
-@import "border.scss";
-@import "util/state-util.scss";
-@import "util/shape-util.scss";
-@import "color/index.scss";
+@import 'border.scss';
+@import 'util/state-util.scss';
+@import 'util/shape-util.scss';
+@import 'color/index.scss';
 
 .base-shape {
   @include baseShape(map-get($work, 'default'));
@@ -30,7 +30,7 @@
 
     .block-#{$blockName} {
       .base-shape_#{$accentName} {
-        @include baseShape($accent)
+        @include baseShape($accent);
       }
     }
   }

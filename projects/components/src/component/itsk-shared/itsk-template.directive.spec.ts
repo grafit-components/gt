@@ -1,4 +1,4 @@
-import {ItskTemplateDirective} from './itsk-template.directive';
+import { ItskTemplateDirective } from './itsk-template.directive';
 
 describe('ItskTemplateDirective', () => {
   it('should create an instance', () => {

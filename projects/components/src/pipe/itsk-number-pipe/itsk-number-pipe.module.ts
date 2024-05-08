@@ -1,13 +1,10 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ItskNumberPipe} from './itsk-number.pipe';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ItskNumberPipe } from './itsk-number.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [ItskNumberPipe],
-  exports: [ItskNumberPipe]
+  exports: [ItskNumberPipe],
 })
-export class ItskNumberPipeModule {
-}
+export class ItskNumberPipeModule {}

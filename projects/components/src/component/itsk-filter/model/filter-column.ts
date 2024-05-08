@@ -1,69 +1,39 @@
-import {FilterType} from './enum/filter-type.enum';
-import {StringFilterType} from './enum/string-filter-type.enum';
-import {ListFilterType} from './enum/list-filter-type.enum';
-import {IdNameModel} from '../../itsk-grid/model/id-name-model';
+import { IdNameModel } from '../../itsk-grid/model/id-name-model';
+import { FilterType } from './enum/filter-type.enum';
+import { ListFilterType } from './enum/list-filter-type.enum';
+import { StringFilterType } from './enum/string-filter-type.enum';
 
 export class FilterColumn {
-  /**
-   * Порядковый номер
-   */
+  /** Порядковый номер */
   sortOrder: number = Number.MAX_VALUE;
-  /**
-   * Название столбца для заголовка таблицы
-   */
+  /** Название столбца для заголовка таблицы */
   caption: string = '';
-  /**
-   * Подсказка
-   */
+  /** Подсказка */
   hint: string = '';
-  /**
-   * Название столбца в строке результатов
-   */
+  /** Название столбца в строке результатов */
   name: string = '';
-  /**
-   * Возможность сортировать поле
-   */
+  /** Возможность сортировать поле */
   sortable = true;
-  /**
-   * Возможность фильтровать поле
-   */
+  /** Возможность фильтровать поле */
   filterable = true;
-  /**
-   * Поле для сортировки
-   */
+  /** Поле для сортировки */
   sortField: string = '';
-  /**
-   * Поле для фильтрации
-   */
+  /** Поле для фильтрации */
   filterField: string = '';
-  /**
-   * Тип фильтра
-   */
+  /** Тип фильтра */
   filterType: FilterType | null = null;
-  /**
-   * Тип сравнения строкового фильтра
-   */
+  /** Тип сравнения строкового фильтра */
   stringFilterType?: StringFilterType;
-  /**
-   * Тип сравнения строкового фильтра
-   */
+  /** Тип сравнения строкового фильтра */
   listFilterType?: ListFilterType;
-  /**
-   * Строгое сравнение
-   */
+  /** Строгое сравнение */
   strict: boolean = false;
-  /**
-   * Список опций для фильтра по списку
-   */
+  /** Список опций для фильтра по списку */
   filterOptions: IdNameModel<any>[] = [];
-  /**
-   * Компонент для рендера фильтра
-   */
+  /** Компонент для рендера фильтра */
   filterComponent: any;
 
-  /**
-   * Дочерние элементы
-   */
+  /** Дочерние элементы */
   columns: FilterColumn[] = [];
 
   constructor(options?: {
@@ -93,17 +63,15 @@ export class FilterColumn {
       this.sortField = options.sortField === null || options.sortField === undefined ? this.name : options.sortField;
       this.filterField = options.filterField === null || options.filterField === undefined ? this.name : options.filterField;
       this.filterType = options.filterType === null || options.filterType === undefined ? null : options.filterType;
-      this.stringFilterType = options.stringFilterType === null || options.stringFilterType === undefined
-        ? StringFilterType.Contains
-        : options.stringFilterType;
-      this.listFilterType = options.listFilterType === null || options.listFilterType === undefined
-        ? ListFilterType.None
-        : options.listFilterType;
+      this.stringFilterType =
+        options.stringFilterType === null || options.stringFilterType === undefined ? StringFilterType.Contains : options.stringFilterType;
+      this.listFilterType =
+        options.listFilterType === null || options.listFilterType === undefined ? ListFilterType.None : options.listFilterType;
       this.strict = options.strict || false;
       this.filterOptions = options.filterOptions as any;
       this.filterComponent = options.filterComponent;
       if (options.columns && options.columns.length) {
-        this.columns = options.columns.map(_ => new FilterColumn(_));
+        this.columns = options.columns.map((_) => new FilterColumn(_));
       }
     }
   }

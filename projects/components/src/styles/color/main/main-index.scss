@@ -1,9 +1,9 @@
-@import "color.scss";
+@import 'color.scss';
 
 @each $accentName, $accent in $main {
-    @each $parameter, $value in $accent {
-        .main-#{$accentName}_#{$parameter} {
-            #{$parameter}: $value;
-        }
+  @each $parameter, $value in $accent {
+    .main-#{$accentName}_#{$parameter} {
+      #{$parameter}: $value;
     }
+  }
 }

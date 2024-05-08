@@ -1,14 +1,14 @@
-<div class="font-title1">{{column?.caption}}</div>
+<div class="font-title1">{{ column?.caption }}</div>
 <ng-container *ngFor="let col of column?.columns">
   <ng-container *ngIf="isLeaf(col) && showFilter(col, state, showActive)">
-    <itsk-filter-wrapper [column]="col"
-                         [state]="state"
-                         (filterChanged)="filterChange($event)"></itsk-filter-wrapper>
+    <itsk-filter-wrapper [column]="col" [state]="state" (filterChanged)="filterChange($event)"></itsk-filter-wrapper>
   </ng-container>
   <ng-container *ngIf="!isLeaf(col) && hasFilterableLeafs(col)">
-    <itsk-filter-group-wrapper [column]="col"
-                               [showActive]="showActive"
-                               [state]="state"
-                               (filterChanged)="filterChange($event)"></itsk-filter-group-wrapper>
+    <itsk-filter-group-wrapper
+      [column]="col"
+      [showActive]="showActive"
+      [state]="state"
+      (filterChanged)="filterChange($event)"
+    ></itsk-filter-group-wrapper>
   </ng-container>
 </ng-container>

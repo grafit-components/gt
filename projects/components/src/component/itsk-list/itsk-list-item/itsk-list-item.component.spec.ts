@@ -8,9 +8,8 @@ describe('ItskListItemComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItskListItemComponent ]
-    })
-    .compileComponents();
+      declarations: [ItskListItemComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

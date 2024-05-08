@@ -1,11 +1,11 @@
-import {NumericFilter} from '../../itsk-filter/model/numeric-filter';
-import {DateFilter} from '../../itsk-filter/model/date-filter';
-import {StringFilter} from '../../itsk-filter/model/string-filter';
-import {ListFilter} from '../../itsk-filter/model/list-filter';
-import {SortParam} from '../../itsk-filter/model/sort-param';
-import {DateFilterValue} from '../../itsk-filter/model/date-filter-value';
-import {NumericFilterValue} from '../../itsk-filter/model/numeric-filter-value';
-import {ListFilterType} from '../../itsk-filter/model/enum/list-filter-type.enum';
+import { DateFilter } from '../../itsk-filter/model/date-filter';
+import { DateFilterValue } from '../../itsk-filter/model/date-filter-value';
+import { ListFilterType } from '../../itsk-filter/model/enum/list-filter-type.enum';
+import { ListFilter } from '../../itsk-filter/model/list-filter';
+import { NumericFilter } from '../../itsk-filter/model/numeric-filter';
+import { NumericFilterValue } from '../../itsk-filter/model/numeric-filter-value';
+import { SortParam } from '../../itsk-filter/model/sort-param';
+import { StringFilter } from '../../itsk-filter/model/string-filter';
 
 export class FilterState {
   stringFilters: StringFilter[] = [];
@@ -14,13 +14,7 @@ export class FilterState {
   listFilters: ListFilter[] = [];
   sortParams: SortParam[] = [];
 
-  constructor(options?: {
-    stringFilters?: any[];
-    numericFilters?: any[];
-    dateFilters?: any[];
-    listFilters?: any[];
-    sortParams?: any[];
-  }) {
+  constructor(options?: { stringFilters?: any[]; numericFilters?: any[]; dateFilters?: any[]; listFilters?: any[]; sortParams?: any[] }) {
     if (options) {
       if (options.stringFilters && options.stringFilters.length) {
         this.stringFilters = options.stringFilters.map((x: any) => {
@@ -64,7 +58,6 @@ export class FilterState {
       localStorage.setItem(cookieName, JSON.stringify(this));
     }
   }
-
 
   addListFilter(value: ListFilter): ListFilter {
     if (this.listFilters === null || this.listFilters === undefined) {
@@ -139,14 +132,14 @@ export class FilterState {
     this.dateFilters.map((f: DateFilter) => {
       f.value = new DateFilterValue({
         lessThan: null,
-        greaterThan: null
+        greaterThan: null,
       });
     });
     this.numericFilters.map((f: NumericFilter) => {
       f.value = new NumericFilterValue({
         lessThan: null,
         greaterThan: null,
-        equalsTo: null
+        equalsTo: null,
       });
     });
     this.listFilters.map((f: ListFilter) => {

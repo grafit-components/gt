@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import {
   ApplicationRef,
   ComponentFactoryResolver,
@@ -5,37 +6,34 @@ import {
   Inject,
   Injectable,
   Injector,
-  Renderer2, RendererFactory2,
+  Renderer2,
+  RendererFactory2,
   TemplateRef,
-  Type
+  Type,
 } from '@angular/core';
-import {DOCUMENT} from '@angular/common';
-import {ItskContentRef} from '../model/itsk-content-ref';
+import { ItskContentRef } from '../model/itsk-content-ref';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DynamicComponentFactory {
   private readonly container$: any;
   private renderer$: Renderer2;
 
-  constructor(@Inject(DOCUMENT)
-              private document$: any,
-              private rendererFactory$: RendererFactory2,
-              private componentFactoryResolver$: ComponentFactoryResolver,
-              private appRef$: ApplicationRef) {
+  constructor(
+    @Inject(DOCUMENT)
+    private document$: any,
+    private rendererFactory$: RendererFactory2,
+    private componentFactoryResolver$: ComponentFactoryResolver,
+    private appRef$: ApplicationRef,
+  ) {
     this.container$ = this.document$.body;
     this.renderer$ = this.rendererFactory$.createRenderer(null, null);
   }
 
-  createComponent<T>(component: Type<T>,
-                     contentRef: ItskContentRef,
-                     injector: Injector,
-                     container?: any): ComponentRef<T> {
+  createComponent<T>(component: Type<T>, contentRef: ItskContentRef, injector: Injector, container?: any): ComponentRef<T> {
     container = container ? container : this.container$;
-    const componentRef = this.componentFactoryResolver$
-      .resolveComponentFactory(component)
-      .create(injector, contentRef.nodes);
+    const componentRef = this.componentFactoryResolver$.resolveComponentFactory(component).create(injector, contentRef.nodes);
     this.appRef$.attachView(componentRef.hostView);
     container.appendChild(componentRef.location.nativeElement);
     return componentRef;

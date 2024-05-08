@@ -1,9 +1,8 @@
-import {Directive, TemplateRef} from '@angular/core';
+import { Directive, TemplateRef } from '@angular/core';
 
 @Directive({
-  selector: '[itskDropdownContent]'
+  selector: '[itskDropdownContent]',
 })
 export class ItskDropdownContentDirective {
-  constructor(public template: TemplateRef<any>) {
-  }
+  constructor(public template: TemplateRef<any>) {}
 }

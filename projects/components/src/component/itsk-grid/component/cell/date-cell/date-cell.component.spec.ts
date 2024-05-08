@@ -8,9 +8,8 @@ describe('DateCellComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DateCellComponent ]
-    })
-    .compileComponents();
+      declarations: [DateCellComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

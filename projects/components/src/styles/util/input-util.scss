@@ -3,7 +3,8 @@
 @import 'state-util.scss';
 
 @mixin control($blockItem) {
-  &.control, & .control {
+  &.control,
+  & .control {
     &__label {
       color: map-get($blockItem, 'default', 'color');
       &-delimiter {
@@ -19,7 +20,10 @@
 }
 
 @mixin input($blockItem) {
-  &.input, & .input, &__input, & > .input {
+  &.input,
+  & .input,
+  &__input,
+  & > .input {
     &__icon {
       color: map-get($blockItem, 'default', 'color');
     }

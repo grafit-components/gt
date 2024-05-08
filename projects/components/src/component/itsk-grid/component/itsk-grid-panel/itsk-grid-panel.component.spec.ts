@@ -8,9 +8,8 @@ describe('ItskGridPanelComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItskGridPanelComponent ]
-    })
-    .compileComponents();
+      declarations: [ItskGridPanelComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

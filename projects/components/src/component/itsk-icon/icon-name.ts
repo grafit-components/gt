@@ -1,5 +1,5 @@
 export type iconName =
-  `icon-toggle_off-switch-filled`
+  | `icon-toggle_off-switch-filled`
   | 'icon-toggle_on-switch-filled'
   | 'icon-radio_off-circle-filled'
   | 'icon-radio_on-circle-tor-filled'

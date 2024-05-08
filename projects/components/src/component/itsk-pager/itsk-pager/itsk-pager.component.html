@@ -1,42 +1,37 @@
-<button class="pager__button__move"
-        (click)="paginateToPage(paging.page - 1)"
-        [disabled]="paging.page < 1">
+<button class="pager__button__move" (click)="paginateToPage(paging.page - 1)" [disabled]="paging.page < 1">
   <itsk-icon [name]="'icon-less-left-chevron-arrow-outline'"></itsk-icon>
 </button>
-<div class="pager__button__page"
-     *ngFor="let page of paging.pages"
-     (click)="paginateToPage(page)"
-     [class.pager__button__page_active]="page == paging.page">
-  {{page + 1}}
+<div
+  class="pager__button__page"
+  *ngFor="let page of paging.pages"
+  (click)="paginateToPage(page)"
+  [class.pager__button__page_active]="page == paging.page"
+>
+  {{ page + 1 }}
 </div>
-<button class="pager__button__move"
-        (click)="paginateToPage(paging.page + 1)"
-        [disabled]="(paging.page >= paging.count - 1)">
+<button class="pager__button__move" (click)="paginateToPage(paging.page + 1)" [disabled]="paging.page >= paging.count - 1">
   <itsk-icon [name]="'icon-more-right-chevron-arrow-outline'"></itsk-icon>
 </button>
 <ng-container *ngIf="config | async as dict">
   <div class="display-inline-block margin-l-4" *ngIf="pageSizeSelection">
-    {{dict.pageSize}}
+    {{ dict.pageSize }}
     <div class="position-relative display-inline-block margin-l-2">
       <div class="pager__button__count container align-center" (click)="startPageSelection($event)">
-        <span>{{paging.pageSize}}</span>
+        <span>{{ paging.pageSize }}</span>
         <itsk-icon [name]="'icon-roll_down-triangle-filled'" class="margin-l-2"></itsk-icon>
       </div>
-      <span class="pager__dropdown"
-            *ngIf="pageSelection"
-            (itskClickOutside)="endPageSelection()"
-            [visible]="pageSelection">
-          <button class="pager__button__page" *ngFor="let size of _pageSizeList" (click)="setPageSize(size)">
-            {{size}}
-          </button>
-        </span>
+      <span class="pager__dropdown" *ngIf="pageSelection" (itskClickOutside)="endPageSelection()" [visible]="pageSelection">
+        <button class="pager__button__page" *ngFor="let size of _pageSizeList" (click)="setPageSize(size)">
+          {{ size }}
+        </button>
+      </span>
     </div>
   </div>
-  <div class="display-inline-block margin-l-3">
-    {{dict.pagesCount}}: {{paging.count}}
-  </div>
-  <div class="display-inline-block margin-l-3"
-       *ngIf="paging.totalCount !== null && paging.totalCount !== undefined && paging.totalCount > 0">
-    {{dict.recordsCount}}: {{paging.totalCount}}
+  <div class="display-inline-block margin-l-3">{{ dict.pagesCount }}: {{ paging.count }}</div>
+  <div
+    class="display-inline-block margin-l-3"
+    *ngIf="paging.totalCount !== null && paging.totalCount !== undefined && paging.totalCount > 0"
+  >
+    {{ dict.recordsCount }}: {{ paging.totalCount }}
   </div>
 </ng-container>

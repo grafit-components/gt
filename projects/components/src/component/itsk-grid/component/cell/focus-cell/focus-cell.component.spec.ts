@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import {FocusCellComponent} from './focus-cell.component';
+import { FocusCellComponent } from './focus-cell.component';
 
 describe('FocusCellComponent', () => {
   let component: FocusCellComponent<any>;
@@ -8,9 +8,8 @@ describe('FocusCellComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [FocusCellComponent]
-    })
-      .compileComponents();
+      declarations: [FocusCellComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

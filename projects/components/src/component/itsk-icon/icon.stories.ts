@@ -1,10 +1,10 @@
-import {Meta} from '@storybook/angular';
-import {withKnobs} from '@storybook/addon-knobs';
-import {iconsList} from './icons-list';
+import { withKnobs } from '@storybook/addon-knobs';
+import { Meta } from '@storybook/angular';
+import { iconsList } from './icons-list';
 // @ts-ignore
+import { IconSampleModule } from './icon-sample/icon-sample.module';
+import { IconSampleComponent } from './icon-sample/icon-sample/icon-sample.component';
 import mdx from './icon.mdx';
-import {IconSampleModule} from './icon-sample/icon-sample.module';
-import {IconSampleComponent} from './icon-sample/icon-sample/icon-sample.component';
 
 export default {
   title: 'Icon',
@@ -16,13 +16,13 @@ export default {
   },
   component: IconSampleComponent,
   moduleMetadata: {
-    imports: [IconSampleModule]
-  }
+    imports: [IconSampleModule],
+  },
 } as Meta;
 
 export const iconList = () => ({
   moduleMetadata: {
-    imports: [IconSampleModule]
+    imports: [IconSampleModule],
   },
   props: {
     icons: iconsList,

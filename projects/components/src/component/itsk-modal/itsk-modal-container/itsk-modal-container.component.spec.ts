@@ -8,9 +8,8 @@ describe('ItskModalContainerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItskModalContainerComponent ]
-    })
-    .compileComponents();
+      declarations: [ItskModalContainerComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

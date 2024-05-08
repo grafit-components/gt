@@ -1,4 +1,4 @@
-import {GridColumn} from './grid-column';
+import { GridColumn } from './grid-column';
 
 export interface IColumnPosition {
   column: GridColumn;

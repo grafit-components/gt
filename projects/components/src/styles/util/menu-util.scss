@@ -4,7 +4,8 @@
 @import 'list-util';
 
 @mixin menu($blockItem) {
-  &.menu, & .menu {
+  &.menu,
+  & .menu {
     @include menuBlock($blockItem);
   }
 }

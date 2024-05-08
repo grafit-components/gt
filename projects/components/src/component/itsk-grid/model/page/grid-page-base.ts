@@ -1,11 +1,11 @@
-import {GridRow, IId} from '../grid-row';
-import { OnInit, Directive } from '@angular/core';
-import {GridColumn} from '../grid-column';
-import {Observable} from 'rxjs';
-import {GridPageServiceBase} from '../service/grid-page-service-base';
-import {GridResponse} from '../grid-response';
-import {FilterState} from '../filter-state';
-import {Paging} from '../../../itsk-pager/model/paging';
+import { Directive, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Paging } from '../../../itsk-pager/model/paging';
+import { FilterState } from '../filter-state';
+import { GridColumn } from '../grid-column';
+import { GridResponse } from '../grid-response';
+import { GridRow, IId } from '../grid-row';
+import { GridPageServiceBase } from '../service/grid-page-service-base';
 
 @Directive()
 export class GridPageBase<T extends IId> implements OnInit {
@@ -16,8 +16,7 @@ export class GridPageBase<T extends IId> implements OnInit {
   dataTransport?: Observable<boolean>;
   row?: GridRow<T>;
 
-  constructor(protected svc$: GridPageServiceBase<T>) {
-  }
+  constructor(protected svc$: GridPageServiceBase<T>) {}
 
   ngOnInit() {
     this.svc$.data.subscribe((res: GridResponse<T>) => {
@@ -39,9 +38,7 @@ export class GridPageBase<T extends IId> implements OnInit {
     }
   }
 
-  rowDoubleClicked = (row: GridRow<T>) => {
-
-  }
+  rowDoubleClicked = (row: GridRow<T>) => {};
 
   selectRow(row: GridRow<T>) {
     this.row = row;
@@ -54,7 +51,7 @@ export class GridPageBase<T extends IId> implements OnInit {
     });
     if (!newRow) {
       newRow = new GridRow({
-        id: null
+        id: null,
       });
       newRow.edit = true;
       this.data.unshift(newRow);
@@ -69,11 +66,11 @@ export class GridPageBase<T extends IId> implements OnInit {
         this.data.splice(index, 1);
       }
     }
-  }
+  };
 
   startEdit = () => {
     this.data.map((item) => {
       item.edit = false;
     });
-  }
+  };
 }

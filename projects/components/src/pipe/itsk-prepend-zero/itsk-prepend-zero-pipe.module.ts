@@ -1,13 +1,10 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ItskPrependZeroPipe} from './itsk-prepend-zero.pipe';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ItskPrependZeroPipe } from './itsk-prepend-zero.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [ItskPrependZeroPipe],
-  exports: [ItskPrependZeroPipe]
+  exports: [ItskPrependZeroPipe],
 })
-export class ItskPrependZeroPipeModule {
-}
+export class ItskPrependZeroPipeModule {}

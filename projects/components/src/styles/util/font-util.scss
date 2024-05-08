@@ -5,7 +5,6 @@
   font-style: map-get($fontDescription, 'font-style');
 }
 
-
 @mixin fontHelperImportant($fontDescription) {
   font-size: map-get($fontDescription, 'font-size') !important;
   line-height: map-get($fontDescription, 'line-height') !important;

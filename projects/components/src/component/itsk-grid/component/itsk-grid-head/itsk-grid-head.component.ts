@@ -1,23 +1,21 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {GridColumn} from '../../model/grid-column';
-import {FilterState} from '../../model/filter-state';
-import {GridUtil} from '../../model/util';
-import {ItskGridService} from '../../service/itsk-grid.service';
-import {takeWhile} from 'rxjs/operators';
-import {ItskGridSelectRowsByType} from '../../model/enum/itsk-grid-select-rows-by-type';
-import {ItskGridSelectType} from '../../model/enum/itsk-grid-select-type';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { takeWhile } from 'rxjs/operators';
+import { ItskGridSelectRowsByType } from '../../model/enum/itsk-grid-select-rows-by-type';
+import { ItskGridSelectType } from '../../model/enum/itsk-grid-select-type';
+import { FilterState } from '../../model/filter-state';
+import { GridColumn } from '../../model/grid-column';
+import { GridUtil } from '../../model/util';
+import { ItskGridService } from '../../service/itsk-grid.service';
 
 @Component({
   selector: 'itsk-grid-head',
   templateUrl: './itsk-grid-head.component.html',
   styleUrls: ['./itsk-grid-head.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskGridHeadComponent implements OnInit, OnDestroy {
   private alive = true;
-  /**
-   * Строки заголовка таблицы
-   */
+  /** Строки заголовка таблицы */
   private columns$: GridColumn[] = [];
 
   locked: GridColumn[] = [];
@@ -43,9 +41,7 @@ export class ItskGridHeadComponent implements OnInit, OnDestroy {
     return this.columns$;
   }
 
-  /**
-   * Настройки грида
-   */
+  /** Настройки грида */
   state$?: FilterState;
 
   @Input()
@@ -58,18 +54,19 @@ export class ItskGridHeadComponent implements OnInit, OnDestroy {
 
   // @Output() hoveredColumn: EventEmitter<string> = new EventEmitter();
 
-  constructor(private svc$: ItskGridService<any>, private cdr$: ChangeDetectorRef) {
+  constructor(
+    private svc$: ItskGridService<any>,
+    private cdr$: ChangeDetectorRef,
+  ) {
     this.isChromium = this.checkChromium(window);
-    this.svc$.columns.pipe(takeWhile(_ => this.alive)).subscribe(_ => this.columns = _);
+    this.svc$.columns.pipe(takeWhile((_) => this.alive)).subscribe((_) => (this.columns = _));
   }
 
   // columnHover(name: string) {
   //   this.hoveredColumn.emit(name);
   // }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.alive = false;

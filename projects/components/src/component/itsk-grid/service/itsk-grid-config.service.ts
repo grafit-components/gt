@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {ItskGridDictionary} from '../model/itsk-grid-dictionary';
-import {BehaviorSubject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { ItskGridDictionary } from '../model/itsk-grid-dictionary';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ItskGridConfigService {
   private defaultDict: ItskGridDictionary = new ItskGridDictionary({
@@ -13,13 +13,12 @@ export class ItskGridConfigService {
     clearFilter: 'Clear filter',
     detail: 'Detail',
     pinColumn: 'Pin column',
-    unpinColumn: 'Unpin column'
+    unpinColumn: 'Unpin column',
   });
   private dict$ = new BehaviorSubject<ItskGridDictionary>(this.defaultDict);
   dict = this.dict$.asObservable();
 
-  constructor() {
-  }
+  constructor() {}
 
   setConfig(newDict: ItskGridDictionary) {
     this.dict$.next(newDict);

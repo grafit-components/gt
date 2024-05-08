@@ -1,20 +1,13 @@
-<div class="container" style="width: 350px;flex-grow: 0;flex-shrink: 0;" *ngIf="showFilters">
-  <itsk-filter-panel class="background-color_info"
-                     [state]="state"
-                     (stateChange)="state=$event"
-                     [columns]="config"></itsk-filter-panel>
+<div class="container" style="width: 350px; flex-grow: 0; flex-shrink: 0" *ngIf="showFilters">
+  <itsk-filter-panel class="background-color_info" [state]="state" (stateChange)="state = $event" [columns]="config"></itsk-filter-panel>
 </div>
 <div class="container container_column container_auto" style="overflow: hidden">
   <div class="toolbar">
-    <button [class.button_primary]="showFilters"
-            [class.button_secondary]="!showFilters"
-            (click)="showFilters = !showFilters">
+    <button [class.button_primary]="showFilters" [class.button_secondary]="!showFilters" (click)="showFilters = !showFilters">
       <i class="icon icon-filter"></i>
     </button>
-    <button class="button_primary" style="margin-left: auto" (click)="create()">
-      Создать
-    </button>
-    <input [(ngModel)]="dataSize" class="input__field margin-l-2" style="width: 200px; flex-grow: 0"/>
+    <button class="button_primary" style="margin-left: auto" (click)="create()">Создать</button>
+    <input [(ngModel)]="dataSize" class="input__field margin-l-2" style="width: 200px; flex-grow: 0" />
     <span class="margin-l-2">записей</span>
   </div>
   <itsk-tabs class="container_auto">
@@ -23,9 +16,7 @@
         <span class="title-3">Таблица</span>
       </ng-template>
       <ng-template itskTabContent>
-        <app-data-grid [state]="state"
-                       [config]="config"
-                       (stateChange)="state=$event"></app-data-grid>
+        <app-data-grid [state]="state" [config]="config" (stateChange)="state = $event"></app-data-grid>
       </ng-template>
     </itsk-tab>
     <itsk-tab>

@@ -1,17 +1,17 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, QueryList, Type} from '@angular/core';
-import {Observable} from 'rxjs';
-import {ItskGridDictionary} from '../../model/itsk-grid-dictionary';
-import {GridPanelContentDirective} from '../../directive/grid-panel-content.directive';
-import {GridPanelButtonDirective} from '../../directive/grid-panel-button.directive';
-import {DetailComponentBase} from '../../model/detail-component-base';
-import {IId} from '../../model/grid-row';
-import {ItskGridConfigService} from '../../service/itsk-grid-config.service';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, QueryList, Type } from '@angular/core';
+import { Observable } from 'rxjs';
+import { GridPanelButtonDirective } from '../../directive/grid-panel-button.directive';
+import { GridPanelContentDirective } from '../../directive/grid-panel-content.directive';
+import { DetailComponentBase } from '../../model/detail-component-base';
+import { IId } from '../../model/grid-row';
+import { ItskGridDictionary } from '../../model/itsk-grid-dictionary';
+import { ItskGridConfigService } from '../../service/itsk-grid-config.service';
 
 @Component({
   selector: 'itsk-grid-panel',
   templateUrl: './itsk-grid-panel.component.html',
   styleUrls: ['./itsk-grid-panel.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskGridPanelComponent<T extends IId> implements OnInit {
   _showDetails: boolean = false;
@@ -26,7 +26,7 @@ export class ItskGridPanelComponent<T extends IId> implements OnInit {
 
   @Input() showFilterButton: boolean = false;
   @Input() showColumnsButton: boolean = false;
-  @Input() showDetailsButton: boolean= false;
+  @Input() showDetailsButton: boolean = false;
   @Input() detailComponent?: Type<DetailComponentBase<T>>;
 
   @Input()
@@ -58,8 +58,7 @@ export class ItskGridPanelComponent<T extends IId> implements OnInit {
     this.dict = _config.dict;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   changeFilters() {
     this._showFilter = !this._showFilter;

@@ -3,7 +3,9 @@
 
 @mixin button($blockItem) {
   @each $accentName, $accent in $blockItem {
-    &__button_#{$accentName}, &.button_#{$accentName}, & .button_#{$accentName} {
+    &__button_#{$accentName},
+    &.button_#{$accentName},
+    & .button_#{$accentName} {
       @include buttonAccent($accent);
       @include baseFocus($blockItem);
     }
@@ -29,8 +31,10 @@
 
 @mixin buttonDelimiter($blockItem) {
   @each $accentName, $accent in $blockItem {
-    &__button-delimiter_#{$accentName}, &.button-delimiter_#{$accentName}, & .button-delimiter_#{$accentName} {
-      @include buttonDelimiterAccent($accent)
+    &__button-delimiter_#{$accentName},
+    &.button-delimiter_#{$accentName},
+    & .button-delimiter_#{$accentName} {
+      @include buttonDelimiterAccent($accent);
     }
   }
 }

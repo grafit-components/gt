@@ -7,24 +7,24 @@ import {
   HostBinding,
   Input,
   OnDestroy,
-  OnInit
+  OnInit,
 } from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {PickerLocaleService} from '../service/picker-locale.service';
-import {takeWhile} from 'rxjs/operators';
-import {ArrayUtil} from '../../../util/array-util';
-import {NumberUtil} from '../../../util/number-util';
-import {ItskDatePeriod} from '../model/itsk-date-period';
-import {ItskPickerLocaleModel} from '../model/itsk-picker-locale-model';
-import {ItskRange} from '../model/itsk-range';
-import {ItskDatePickerMode} from '../model/itsk-date-picker-mode.enum';
-import {ItskAlign} from '../../../common/model/itsk-align.enum';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import momentMini from 'moment-mini';
+import { takeWhile } from 'rxjs/operators';
+import { ItskAlign } from '../../../common/model/itsk-align.enum';
+import { ArrayUtil } from '../../../util/array-util';
+import { NumberUtil } from '../../../util/number-util';
+import { ItskDatePeriod } from '../model/itsk-date-period';
+import { ItskDatePickerMode } from '../model/itsk-date-picker-mode.enum';
+import { ItskPickerLocaleModel } from '../model/itsk-picker-locale-model';
+import { ItskRange } from '../model/itsk-range';
+import { PickerLocaleService } from '../service/picker-locale.service';
 
 export const DATE_TIME_PICKER_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => ItskDatePickerComponent),
-  multi: true
+  multi: true,
 };
 
 @Component({
@@ -32,92 +32,52 @@ export const DATE_TIME_PICKER_CONTROL_VALUE_ACCESSOR: any = {
   templateUrl: './itsk-date-picker.component.html',
   styleUrls: ['./itsk-date-picker.component.scss'],
   providers: [DATE_TIME_PICKER_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, OnDestroy {
   @HostBinding('class.datepicker') classDatepicker = true;
   ItskDatePickerMode = ItskDatePickerMode;
   displayMode: ItskDatePickerMode = ItskDatePickerMode.Date;
   private alive = true;
-  /**
-   * показать иконку
-   */
+  /** Показать иконку */
   @Input() showIcon = true;
-  /**
-   * показать кнопку очистки
-   */
+  /** Показать кнопку очистки */
   @Input() showClear = true;
-  /**
-   * класс иконки (из библиотеки font-awesome)
-   */
+  /** Класс иконки (из библиотеки font-awesome) */
   @Input() icon = 'icon-calendar-date';
-  /**
-   * компонент неактивен
-   */
+  /** Компонент неактивен */
   @Input() disabled: boolean = false;
-  /**
-   * Первый день недели
-   */
+  /** Первый день недели */
   @Input() firstDayOfWeek = 1;
-  /**
-   * Даты, недоступные для выбора
-   */
+  /** Даты, недоступные для выбора */
   @Input() disabledDates?: Date[];
-  /**
-   * Периоды, недоступные для выбора
-   */
+  /** Периоды, недоступные для выбора */
   @Input() disabledPeriods?: ItskDatePeriod[];
-  /**
-   * Дни недели, недоступные для выбора
-   */
+  /** Дни недели, недоступные для выбора */
   @Input() disabledDays?: number[];
-  /**
-   * Минимальная доступная дата
-   */
+  /** Минимальная доступная дата */
   @Input() minDate?: Date;
-  /**
-   * Максимальная доступная дата
-   */
+  /** Максимальная доступная дата */
   @Input() maxDate?: Date;
-  /**
-   * Минимальный доступный год в виде даты
-   */
+  /** Минимальный доступный год в виде даты */
   @Input() minYearDate?: Date;
-  /**
-   * Максимальный доступный год в виде даты
-   */
+  /** Максимальный доступный год в виде даты */
   @Input() maxYearDate?: Date;
-  /**
-   * Показывать выбор времени
-   */
+  /** Показывать выбор времени */
   @Input() showTime = false;
-  /**
-   * Показывать выбор времени с секундами
-   */
+  /** Показывать выбор времени с секундами */
   @Input() showSeconds = false;
-  /**
-   * Позволить значение null
-   */
+  /** Позволить значение null */
   @Input() allowNull = true;
-  /**
-   * Значение по умолчанию, используется если инициируется как null и allowNull == false
-   */
+  /** Значение по умолчанию, используется если инициируется как null и allowNull == false */
   @Input() defaultDate?: Date;
-  /**
-   * Использовать position: fixes
-   */
+  /** Использовать position: fixes */
   @Input() fixed: boolean = false;
-  /**
-   * Использовать align для ItskDropdownComponent
-   */
+  /** Использовать align для ItskDropdownComponent */
   @Input() align: ItskAlign.Left | ItskAlign.Right = ItskAlign.Left;
-  /**
-   * Введено недопустимое значение в поле
-   */
+  /** Введено недопустимое значение в поле */
   invalid = false;
-  /**
-   * Введено пустое значение в поле
-   */
+  /** Введено пустое значение в поле */
   isEmpty = false;
 
   locale?: ItskPickerLocaleModel;
@@ -129,7 +89,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     YYYY: '____',
     HH: '__',
     mm: '__',
-    ss: '__'
+    ss: '__',
   };
   allowableRange: any = {
     DD: [1, 31],
@@ -137,28 +97,20 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     YYYY: [1900, 2100],
     HH: [0, 23],
     mm: [0, 59],
-    ss: [0, 59]
+    ss: [0, 59],
   };
   private valueManuallyChanged$: boolean = false;
   element?: HTMLElement;
   inputElement?: HTMLElement;
   ignoreFocus = false;
   isWindowPressEventListenerRegistered = false;
-  /**
-   * Таймауат для window.resize
-   */
+  /** Таймауат для window.resize */
   protected timeout: any;
-  /**
-   * активная часть контролла даты
-   */
+  /** Активная часть контролла даты */
   currentFormatPart$: string = '';
-  /**
-   * активна часть контролла ввода времени
-   */
+  /** Активна часть контролла ввода времени */
   isTimePart$: boolean = false;
-  /**
-   * формат отображения даты
-   */
+  /** Формат отображения даты */
   format$: string = '';
   formatList$: string[] = [];
   formatEssentialList$: string[] = [];
@@ -173,9 +125,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     this.format$ = value;
   }
 
-  /**
-   * Текущая дата
-   */
+  /** Текущая дата */
   value$: Date | null = null;
 
   get value(): Date | null {
@@ -189,9 +139,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     }
   }
 
-  /**
-   * Текущий час
-   */
+  /** Текущий час */
   currentHour$: number = 0;
 
   get currentHour(): number {
@@ -210,9 +158,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     this.formatValue.HH = this.formatTime(v);
   }
 
-  /**
-   * Текущая минута
-   */
+  /** Текущая минута */
   currentMinute$: number = 0;
 
   get currentMinute(): number {
@@ -231,9 +177,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     this.formatValue.mm = this.formatTime(v);
   }
 
-  /**
-   * Текущий день
-   */
+  /** Текущий день */
   currentDate$: number = 0;
 
   get currentDate(): number {
@@ -251,9 +195,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     }
   }
 
-  /**
-   * Текущий месяц
-   */
+  /** Текущий месяц */
   currentMonth$: number = 0;
 
   get currentMonth(): number {
@@ -271,9 +213,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     }
   }
 
-  /**
-   * Текущий год
-   */
+  /** Текущий год */
   currentYear$: number = 0;
 
   get currentYear(): number {
@@ -292,14 +232,14 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     }
   }
 
-  constructor(public localeService: PickerLocaleService,
-              private cdr$: ChangeDetectorRef,
-              private elementRef$: ElementRef) {
-    localeService.locale
-      .pipe(takeWhile(_ => this.alive))
-      .subscribe((locale: ItskPickerLocaleModel) => {
-        this.locale = locale;
-      });
+  constructor(
+    public localeService: PickerLocaleService,
+    private cdr$: ChangeDetectorRef,
+    private elementRef$: ElementRef,
+  ) {
+    localeService.locale.pipe(takeWhile((_) => this.alive)).subscribe((locale: ItskPickerLocaleModel) => {
+      this.locale = locale;
+    });
     this.setDefaults();
   }
 
@@ -316,11 +256,9 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     this.cdr$.markForCheck();
   }
 
-  onChange = (_: any) => {
-  };
+  onChange = (_: any) => {};
 
-  onTouched = () => {
-  };
+  onTouched = () => {};
 
   registerOnChange(fn: (_: any) => void): void {
     this.onChange = fn;
@@ -391,7 +329,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     this.formatValue.YYYY = this.formatTime(this.currentYear, 4);
     this.checkDateValid();
     this.jumpToFormat({
-      name: 'DD'
+      name: 'DD',
     });
     this.saveValue();
   };
@@ -434,14 +372,11 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
   };
 
   private isDateAutoCorrected = (date: Date, yearPart: number, monthPart: number, datePart: number): boolean => {
-    return date.getFullYear() !== yearPart || date.getMonth() !== (monthPart - 1) || date.getDate() !== datePart;
+    return date.getFullYear() !== yearPart || date.getMonth() !== monthPart - 1 || date.getDate() !== datePart;
   };
 
   private checkFormatValueEmpty = (): void => {
-    this.isEmpty = this.formatEssentialList$
-      .every(_ => this.formatValue[_]
-        .split('')
-        .every((__: any) => __ === '_'));
+    this.isEmpty = this.formatEssentialList$.every((_) => this.formatValue[_].split('').every((__: any) => __ === '_'));
   };
 
   private checkDateValid = (): void => {
@@ -449,15 +384,16 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
       return;
     }
 
-    if (['YYYY', 'MM', 'DD'].some(_ => (this.formatValue[_].indexOf('_') !== -1))) {
+    if (['YYYY', 'MM', 'DD'].some((_) => this.formatValue[_].indexOf('_') !== -1)) {
       this.unsetInvalid();
       return;
     }
     this.checkFormatValueEmpty();
     const getInputDate = this.getInputDate();
-    const isDateInvalid = !this.isEmpty && (
-      this.isDateInvalid(getInputDate) ||
-      this.isDateAutoCorrected(getInputDate, +this.formatValue.YYYY, +this.formatValue.MM, +this.formatValue.DD));
+    const isDateInvalid =
+      !this.isEmpty &&
+      (this.isDateInvalid(getInputDate) ||
+        this.isDateAutoCorrected(getInputDate, +this.formatValue.YYYY, +this.formatValue.MM, +this.formatValue.DD));
     if (isDateInvalid) {
       this.setInvalid(false);
     } else {
@@ -489,7 +425,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     return {
       name: exec[0].split('').reverse().join(''),
       start: format.length - exec.index,
-      end: format.length - (exec.index + exec[0].length)
+      end: format.length - (exec.index + exec[0].length),
     };
   };
 
@@ -504,7 +440,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     return {
       name: exec[0],
       start: exec.index,
-      end: exec.index + exec[0].length
+      end: exec.index + exec[0].length,
     };
   };
 
@@ -514,7 +450,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
 
   getRangeNode = (formatName: string): Node | null => {
     this.inputElement = this.elementRef$.nativeElement.querySelector('.datepicker__input') as HTMLElement;
-    return (this.isTimePart$ && (formatName === 'HH' || formatName === 'mm'))
+    return this.isTimePart$ && (formatName === 'HH' || formatName === 'mm')
       ? this.element?.querySelector(`.datepicker__time-input[data-format="${formatName}"]`) ?? null
       : this.inputElement.querySelector(`[data-format="${formatName}"]`);
   };
@@ -530,9 +466,10 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
   saveValue = () => {
     this.checkFormatValueEmpty();
     const getInputDate = this.getInputDate();
-    const isDateInvalid = !this.isEmpty && (
-      this.isDateInvalid(getInputDate) ||
-      this.isDateAutoCorrected(getInputDate, +this.formatValue.YYYY, +this.formatValue.MM, +this.formatValue.DD));
+    const isDateInvalid =
+      !this.isEmpty &&
+      (this.isDateInvalid(getInputDate) ||
+        this.isDateAutoCorrected(getInputDate, +this.formatValue.YYYY, +this.formatValue.MM, +this.formatValue.DD));
     if (isDateInvalid) {
       this.setInvalid(false);
     } else {
@@ -540,14 +477,14 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     }
     if (!isDateInvalid && !(this.isEmpty && !this.allowNull)) {
       this.valueManuallyChanged$ = true;
-      this.checkUserDate(this.formatList$.map(_ => (this.isEditableFormat(_) ? this.formatValue[_] : _)).join(''));
+      this.checkUserDate(this.formatList$.map((_) => (this.isEditableFormat(_) ? this.formatValue[_] : _)).join(''));
     }
   };
 
   saveInput = (valueList: string[], format: string, transitionToNextFormat: boolean = true): void => {
     this.formatValue[format] = valueList.join('');
     window.setTimeout(this.checkDateValid, 0);
-    if (valueList.every(_ => NumberUtil.isNumeric(+_))) {
+    if (valueList.every((_) => NumberUtil.isNumeric(+_))) {
       if (format === 'YYYY') {
         this.currentYear = +this.formatValue[format];
       }
@@ -611,23 +548,47 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
       this.closePicker();
     }
 
-    if (this.isScrollIgnored() && (
-      key === 'ArrowLeft' || key === 'left' || key === 37 ||
-      key === 'ArrowUp' || key === 'Up' || key === 38 ||
-      key === 'ArrowRight' || key === 'right' || key === 39 ||
-      key === 'ArrowDown' || key === 'Down' || key === 40 ||
-      key === 'Enter' || key === 13 ||
-      key === 'Backspace' || key === 8 ||
-      key === 'Delete' || key === 'Del' || key === 46)) {
+    if (
+      this.isScrollIgnored() &&
+      (key === 'ArrowLeft' ||
+        key === 'left' ||
+        key === 37 ||
+        key === 'ArrowUp' ||
+        key === 'Up' ||
+        key === 38 ||
+        key === 'ArrowRight' ||
+        key === 'right' ||
+        key === 39 ||
+        key === 'ArrowDown' ||
+        key === 'Down' ||
+        key === 40 ||
+        key === 'Enter' ||
+        key === 13 ||
+        key === 'Backspace' ||
+        key === 8 ||
+        key === 'Delete' ||
+        key === 'Del' ||
+        key === 46)
+    ) {
       return;
     }
 
     if (
-      key === 'Backspace' || key === 8 ||
-      key === 'ArrowLeft' || key === 'left' || key === 37 ||
-      key === 'ArrowUp' || key === 'Up' || key === 38 ||
-      key === 'ArrowRight' || key === 'right' || key === 39 ||
-      key === 'ArrowDown' || key === 'Down' || key === 40) {
+      key === 'Backspace' ||
+      key === 8 ||
+      key === 'ArrowLeft' ||
+      key === 'left' ||
+      key === 37 ||
+      key === 'ArrowUp' ||
+      key === 'Up' ||
+      key === 38 ||
+      key === 'ArrowRight' ||
+      key === 'right' ||
+      key === 39 ||
+      key === 'ArrowDown' ||
+      key === 'Down' ||
+      key === 40
+    ) {
       event.preventDefault();
     }
 
@@ -655,10 +616,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
       return;
     }
 
-    if (
-      key === 'ArrowRight' || key === 'right' || key === 39 ||
-      key === ',' || key === 188 ||
-      key === '.' || key === 190) {
+    if (key === 'ArrowRight' || key === 'right' || key === 39 || key === ',' || key === 188 || key === '.' || key === 190) {
       if (valueList.every((_: any) => NumberUtil.isNumeric(+_))) {
         this.saveInput(valueList, this.currentFormatPart$);
       } else {
@@ -676,9 +634,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
       }
     }
 
-    if (
-      key === 'Backspace' || key === 8 ||
-      key === 'Delete' || key === 'Del' || key === 46) {
+    if (key === 'Backspace' || key === 8 || key === 'Delete' || key === 'Del' || key === 46) {
       if (valueList.every((_: any) => _ === '_')) {
         if (this.currentFormatPart$ === 'HH') {
           this.isTimePart$ = false;
@@ -688,7 +644,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
         valueList = valueList.map(() => '_');
         this.saveInput(valueList, this.currentFormatPart$);
         this.jumpToFormat({
-          name: this.currentFormatPart$
+          name: this.currentFormatPart$,
         });
       }
     }
@@ -772,7 +728,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     if (this.currentFormatPart$ !== format || this.isTimePart$ !== currentIsTimePart) {
       this.isTimePart$ = currentIsTimePart;
       this.jumpToFormat({
-        name: format
+        name: format,
       });
     }
     this.appendToFormat(format, e.deltaY > 0 ? 1 : -1);
@@ -781,8 +737,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
   dataInputDoubleClick = (e: any): void => {
     e.preventDefault();
     e.stopPropagation();
-    if(this.inputElement)
-    this.elementSelection(this.inputElement);
+    if (this.inputElement) this.elementSelection(this.inputElement);
     this.currentFormatPart$ = 'YYYY';
   };
 
@@ -790,12 +745,12 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     const [minRange, maxRange] = band;
     const capacity = maxRange.toString().length;
     if (valueList.length !== capacity) {
-      throw new Error('Can\'t identity belong of value to range');
+      throw new Error("Can't identity belong of value to range");
     }
     const rangeList = ArrayUtil.getSequence(minRange, maxRange);
     const capacityList = ArrayUtil.getSequence(1, capacity);
 
-    if (valueList.every(_ => NumberUtil.isNumeric(+_))) {
+    if (valueList.every((_) => NumberUtil.isNumeric(+_))) {
       const value = +valueList.join('');
       return rangeList.indexOf(value) !== -1;
     }
@@ -804,7 +759,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
       return capacityList.every((digit) => {
         const valueIndex = capacity - digit;
         // tslint:disable-next-line:no-bitwise
-        return isNaN(+valueList[valueIndex]) || +valueList[valueIndex] === (((_ / Math.pow(10, digit - 1)) % 10) | 0);
+        return isNaN(+valueList[valueIndex]) || +valueList[valueIndex] === ((_ / Math.pow(10, digit - 1)) % 10 | 0);
       });
     });
   };
@@ -821,7 +776,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
         YYYY: this.formatTime(value.getFullYear(), 4),
         HH: this.formatTime(value.getHours()),
         mm: this.formatTime(value.getMinutes()),
-        ss: this.formatTime(value.getSeconds())
+        ss: this.formatTime(value.getSeconds()),
       };
     } else {
       this.formatValue = this.formatEssentialList$.reduce((sum: any, current) => {
@@ -849,16 +804,18 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     this.value = null;
     this.initFormatMaskValue();
     this.jumpToFormat({
-      name: 'DD'
+      name: 'DD',
     });
   };
 
   isDateInvalid = (dat: Date): boolean => {
-    return this.isDayDisabled(dat)
-      || this.isDateDisabled(dat)
-      || this.isDateInDisabledPeriod(dat)
-      || this.isMaxInvalid(dat)
-      || this.isMinInvalid(dat);
+    return (
+      this.isDayDisabled(dat) ||
+      this.isDateDisabled(dat) ||
+      this.isDateInDisabledPeriod(dat) ||
+      this.isMaxInvalid(dat) ||
+      this.isMinInvalid(dat)
+    );
   };
 
   isDayDisabled = (dat: Date): boolean => {
@@ -872,12 +829,8 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     if (!this.disabledDates || this.disabledDates.length < 1 || !dat) {
       return false;
     }
-    return this.disabledDates.some((d: Date) => (
-        d
-        && d.getFullYear() === dat.getFullYear()
-        && d.getMonth() === dat.getMonth()
-        && d.getDate() === dat.getDate()
-      )
+    return this.disabledDates.some(
+      (d: Date) => d && d.getFullYear() === dat.getFullYear() && d.getMonth() === dat.getMonth() && d.getDate() === dat.getDate(),
     );
   };
 
@@ -899,13 +852,8 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     if (!this.disabledPeriods || this.disabledPeriods.length < 1 || !dat) {
       return false;
     }
-    return this.disabledPeriods.some((d: ItskDatePeriod) => (
-        d
-        && d.start
-        && d.end
-        && d.start.getTime() <= dat.getTime()
-        && d.end.getTime() >= dat.getTime()
-      )
+    return this.disabledPeriods.some(
+      (d: ItskDatePeriod) => d && d.start && d.end && d.start.getTime() <= dat.getTime() && d.end.getTime() >= dat.getTime(),
     );
   };
 
@@ -935,7 +883,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
       }
     }
     this.jumpToFormat({
-      name: 'MM'
+      name: 'MM',
     });
     return true;
   };
@@ -951,7 +899,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
       this.currentYear--;
     }
     this.jumpToFormat({
-      name: 'YYYY'
+      name: 'YYYY',
     });
     return true;
   };
@@ -986,7 +934,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
       if (e) {
         window.setTimeout(() => {
           this.jumpToFormat({
-            name: 'DD'
+            name: 'DD',
           });
         }, 50);
       }
@@ -1022,7 +970,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     this.currentMonth = month;
     this.setMode(ItskDatePickerMode.Date);
     this.jumpToFormat({
-      name: 'MM'
+      name: 'MM',
     });
   };
 
@@ -1030,7 +978,7 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     this.currentYear = year;
     this.setMode(ItskDatePickerMode.Date);
     this.jumpToFormat({
-      name: 'YYYY'
+      name: 'YYYY',
     });
   };
 
@@ -1038,14 +986,16 @@ export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, On
     const today = new Date();
     this.currentMonth = today.getMonth();
     this.currentYear = today.getFullYear();
-    this.initFormatValue(new Date(
-      today.getFullYear(),
-      today.getMonth(),
-      today.getDate(),
-      +this.formatValue.HH || this.currentHour,
-      +this.formatValue.mm || this.currentMinute,
-      0
-    ));
+    this.initFormatValue(
+      new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate(),
+        +this.formatValue.HH || this.currentHour,
+        +this.formatValue.mm || this.currentMinute,
+        0,
+      ),
+    );
     this.checkDateValid();
   };
 

@@ -8,9 +8,8 @@ describe('DataLayoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DataLayoutComponent ]
-    })
-    .compileComponents();
+      declarations: [DataLayoutComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

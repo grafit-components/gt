@@ -9,16 +9,15 @@ import {
   Output,
   QueryList,
   TemplateRef,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
-import {Subject} from 'rxjs';
-import {ItskNotificationService} from '../itsk-notification.service';
-import {ItskNotification} from '../model/itsk-notification';
-import {takeUntil} from 'rxjs/operators';
-import {ItskTemplateDirective} from '../../itsk-shared/itsk-template.directive';
-import {ItskAlign} from '../../../common/model/itsk-align.enum';
-import {ItskVerticalAlign} from '../../../common/model/itsk-vertical-align.enum';
-
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { ItskAlign } from '../../../common/model/itsk-align.enum';
+import { ItskVerticalAlign } from '../../../common/model/itsk-vertical-align.enum';
+import { ItskTemplateDirective } from '../../itsk-shared/itsk-template.directive';
+import { ItskNotificationService } from '../itsk-notification.service';
+import { ItskNotification } from '../model/itsk-notification';
 
 @Component({
   selector: 'itsk-notifications',
@@ -41,14 +40,12 @@ export class ItskNotificationsComponent implements OnInit, AfterContentInit, OnD
 
   template?: TemplateRef<any>;
 
-
   private stop$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private svc$: ItskNotificationService) {
-  }
+  constructor(private svc$: ItskNotificationService) {}
 
   ngOnInit() {
-    this.svc$.notifications.pipe(takeUntil(this.stop$)).subscribe(notifications => {
+    this.svc$.notifications.pipe(takeUntil(this.stop$)).subscribe((notifications) => {
       if (notifications) {
         if (!this.notifications) {
           this.notifications = [];
@@ -83,7 +80,7 @@ export class ItskNotificationsComponent implements OnInit, AfterContentInit, OnD
   closedItem(event: any) {
     this.notifications.splice(event.index, 1);
     this.itemClose.emit({
-      message: event.message
+      message: event.message,
     });
   }
 

@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {FilterState, GridColumn} from "@grafit/angular";
-import {DataService} from "../../service/data.service";
+import { Component, OnInit } from '@angular/core';
+import { FilterState, GridColumn } from '@grafit/angular';
+import { DataService } from '../../service/data.service';
 
 @Component({
   selector: 'app-data-layout',
   templateUrl: './data-layout.component.html',
-  styleUrls: ['./data-layout.component.styl']
+  styleUrls: ['./data-layout.component.styl'],
 })
 export class DataLayoutComponent implements OnInit {
   config: GridColumn[];
@@ -19,12 +19,9 @@ export class DataLayoutComponent implements OnInit {
     this.config = this.svc.getConfig();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   create() {
     this.svc.createData(this.dataSize);
   }
-
-
 }

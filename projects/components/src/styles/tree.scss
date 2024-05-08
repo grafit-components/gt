@@ -9,7 +9,9 @@
   &__host {
     display: block;
     padding-left: 32px;
-    border-left: solid 1px, map-get($blocks, 'work', 'default', 'border-color');
+    border-left:
+      solid 1px,
+      map-get($blocks, 'work', 'default', 'border-color');
   }
 
   &__item {
@@ -29,9 +31,11 @@
         left: 0;
         top: 0;
         display: block;
-        content: "";
+        content: '';
         height: 50%;
-        border-left: solid 1px, map-get($blocks, 'work', 'default', 'border-color');
+        border-left:
+          solid 1px,
+          map-get($blocks, 'work', 'default', 'border-color');
       }
     }
 
@@ -40,9 +44,11 @@
       top: 15px;
       height: 1px;
       width: 16px;
-      border-bottom: solid 1px, map-get($blocks, 'work', 'default', 'border-color');
+      border-bottom:
+        solid 1px,
+        map-get($blocks, 'work', 'default', 'border-color');
       border-bottom-left-radius: 3px;
-      content: "";
+      content: '';
       display: block;
       left: 0;
       z-index: 0;

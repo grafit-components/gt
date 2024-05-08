@@ -8,21 +8,21 @@ import {
   HostBinding,
   Input,
   OnInit,
-  Output
+  Output,
 } from '@angular/core';
-import {ItskMenuGroup} from '../model/itsk-menu-group';
-import {IItskMenuItem} from '../model/i-itsk-menu-item';
-import {ItskMenuItemDirective} from '../itsk-menu-item.directive';
+import { ItskMenuItemDirective } from '../itsk-menu-item.directive';
+import { IItskMenuItem } from '../model/i-itsk-menu-item';
+import { ItskMenuGroup } from '../model/itsk-menu-group';
 
 @Component({
   selector: 'itsk-menu',
   templateUrl: './itsk-menu.component.html',
   styleUrls: ['./itsk-menu.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskMenuComponent<T extends IItskMenuItem> implements OnInit, AfterViewInit {
   @HostBinding('class.menu') classMenu = true;
-  @ContentChild(ItskMenuItemDirective, {static: false}) template?: ItskMenuItemDirective;
+  @ContentChild(ItskMenuItemDirective, { static: false }) template?: ItskMenuItemDirective;
 
   groups: ItskMenuGroup<T>[] = [];
 
@@ -34,14 +34,11 @@ export class ItskMenuComponent<T extends IItskMenuItem> implements OnInit, After
 
   openChild: IItskMenuItem | null = null;
 
-  constructor(private cdr$: ChangeDetectorRef) {
-  }
+  constructor(private cdr$: ChangeDetectorRef) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  ngAfterViewInit(): void {
-  }
+  ngAfterViewInit(): void {}
 
   navigate(item: T) {
     this.itemClick.emit(item);

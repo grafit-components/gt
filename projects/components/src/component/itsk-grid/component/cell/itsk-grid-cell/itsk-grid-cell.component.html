@@ -1,22 +1,19 @@
-<div class="container align-center"
-     [style.margin-left.px]="index === 0 ? row.level * 20 : 0"
-     *ngIf="index === 0">
-  <div *ngIf="(selectType==='single' || selectType==='multiple') && selectRowsBy === 'checkbox'"
-       class="grid__cell__icon">
+<div class="container align-center" [style.margin-left.px]="index === 0 ? row.level * 20 : 0" *ngIf="index === 0">
+  <div *ngIf="(selectType === 'single' || selectType === 'multiple') && selectRowsBy === 'checkbox'" class="grid__cell__icon">
     <itsk-checkbox [ngModel]="selectedRows" [value]="row" (ngModelChange)="selectRow()"></itsk-checkbox>
   </div>
   <itsk-grid-expand
-    *ngIf="(tree===true  && row.children?.length > 0) ||
-          (grouping === true && groupingType === GroupingType.SingleGroupCell && row.isGroup)"
-    [row]="row">
+    *ngIf="
+      (tree === true && row.children?.length > 0) || (grouping === true && groupingType === GroupingType.SingleGroupCell && row.isGroup)
+    "
+    [row]="row"
+  >
   </itsk-grid-expand>
 
-  <div *ngIf="additionalComponent"
-       class="grid__cell_text grid__cell__icon"
-       (click)="row.showAdditional = !row.showAdditional">
-    <itsk-icon [name]="row.showAdditional
-    ? 'icon-group_square_min-minus-rectangle-filled'
-    : 'icon-group_square_max-plus-rectangle-filled'"></itsk-icon>
+  <div *ngIf="additionalComponent" class="grid__cell_text grid__cell__icon" (click)="row.showAdditional = !row.showAdditional">
+    <itsk-icon
+      [name]="row.showAdditional ? 'icon-group_square_min-minus-rectangle-filled' : 'icon-group_square_max-plus-rectangle-filled'"
+    ></itsk-icon>
   </div>
 </div>
 <itsk-grid-cell-wrapper [row]="row" [column]="column"></itsk-grid-cell-wrapper>

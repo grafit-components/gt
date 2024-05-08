@@ -9,31 +9,26 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output
+  Output,
 } from '@angular/core';
-import {ItskAlign} from '../../../common/model/itsk-align.enum';
-import {ItskDropdownContentDirective} from '../itsk-dropdown-content.directive';
-import {ItskDropdownHeadDirective} from '../itsk-dropdown-head.directive';
-import {
-  findScrollableParentX,
-  findScrollableParentY,
-  findTransformedParent,
-  getRealPosition
-} from '../../../util/dom-util';
-import {BooleanFunc, BooleanPromiseFunc, boolFuncOrPromiseCallback} from '../../../util/object-util';
-import {ClickOutsideBase} from '../../../directive/itsk-click-outside/click-outside-base';
+import { ItskAlign } from '../../../common/model/itsk-align.enum';
+import { ClickOutsideBase } from '../../../directive/itsk-click-outside/click-outside-base';
+import { findScrollableParentX, findScrollableParentY, findTransformedParent, getRealPosition } from '../../../util/dom-util';
+import { BooleanFunc, BooleanPromiseFunc, boolFuncOrPromiseCallback } from '../../../util/object-util';
+import { ItskDropdownContentDirective } from '../itsk-dropdown-content.directive';
+import { ItskDropdownHeadDirective } from '../itsk-dropdown-head.directive';
 
 @Component({
   selector: 'itsk-dropdown',
   templateUrl: './itsk-dropdown.component.html',
   styleUrls: ['./itsk-dropdown.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskDropdownComponent extends ClickOutsideBase implements OnInit, OnDestroy {
   @HostBinding('class.dropdown') classDropdown = true;
 
-  @ContentChild(ItskDropdownContentDirective, {static: true}) content?: ItskDropdownContentDirective;
-  @ContentChild(ItskDropdownHeadDirective, {static: true}) head?: ItskDropdownHeadDirective;
+  @ContentChild(ItskDropdownContentDirective, { static: true }) content?: ItskDropdownContentDirective;
+  @ContentChild(ItskDropdownHeadDirective, { static: true }) head?: ItskDropdownHeadDirective;
 
   @Input() align: ItskAlign.Left | ItskAlign.Right = ItskAlign.Left;
   @Input() fixed = false;
@@ -65,13 +60,14 @@ export class ItskDropdownComponent extends ClickOutsideBase implements OnInit, O
   private scrollXParentElement$: HTMLElement | null = null;
   private scrollYParentElement$: HTMLElement | null = null;
 
-  constructor(private element$: ElementRef,
-              private cdr$: ChangeDetectorRef) {
+  constructor(
+    private element$: ElementRef,
+    private cdr$: ChangeDetectorRef,
+  ) {
     super(element$.nativeElement);
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnDestroy(): void {
     this.unRegisterOnScrollParent();
@@ -180,7 +176,6 @@ export class ItskDropdownComponent extends ClickOutsideBase implements OnInit, O
       this.left = null;
       this.right = right;
     }
-
   }
 
   clickedOutside = (click: MouseEvent) => {

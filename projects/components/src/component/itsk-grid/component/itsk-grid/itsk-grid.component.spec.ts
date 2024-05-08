@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import {ItskGridComponent} from './itsk-grid.component';
+import { ItskGridComponent } from './itsk-grid.component';
 
 describe('ItskGridComponent', () => {
   let component: ItskGridComponent<any>;
@@ -8,9 +8,8 @@ describe('ItskGridComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskGridComponent]
-    })
-      .compileComponents();
+      declarations: [ItskGridComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

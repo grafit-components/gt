@@ -199,5 +199,5 @@ export const iconsList = [
   'icon-chart_bar-graph-rand-outline',
   'icon-chart_bar-graph-desc-outline',
   'icon-chart_line-graph-outline',
-  'icon-chart_pie-graph-circle-outline'
+  'icon-chart_pie-graph-circle-outline',
 ];

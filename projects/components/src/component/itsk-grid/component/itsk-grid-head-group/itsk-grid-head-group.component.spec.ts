@@ -8,9 +8,8 @@ describe('ItskGridHeadGroupComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItskGridHeadGroupComponent ]
-    })
-    .compileComponents();
+      declarations: [ItskGridHeadGroupComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

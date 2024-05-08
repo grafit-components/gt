@@ -1,9 +1,9 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'itsk-hint-container',
   templateUrl: './itsk-hint-container.component.html',
-  styleUrls: ['./itsk-hint-container.component.styl']
+  styleUrls: ['./itsk-hint-container.component.styl'],
 })
 export class ItskHintContainerComponent implements OnInit {
   @HostBinding('class')
@@ -33,9 +33,7 @@ export class ItskHintContainerComponent implements OnInit {
   @HostBinding('class.hint__container')
   hintContainer = true;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

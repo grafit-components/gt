@@ -1,11 +1,11 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ItskPickerLocaleModel} from '../model/itsk-picker-locale-model';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ItskPickerLocaleModel } from '../model/itsk-picker-locale-model';
 
 @Component({
   selector: 'itsk-month-selector',
   templateUrl: './itsk-month-selector.component.html',
   styleUrls: ['./itsk-month-selector.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskMonthSelectorComponent implements OnInit {
   currentMonth$: number = 0;
@@ -60,15 +60,14 @@ export class ItskMonthSelectorComponent implements OnInit {
   private makeMonths() {
     const start = this._displayDate;
     this.months = [];
-    start.setMonth((start.getMonth() - 3));
+    start.setMonth(start.getMonth() - 3);
     for (let i = this.shift; i < 7 + this.shift; i++) {
       const dt = new Date(start.getFullYear(), start.getMonth() + i, 1);
       this.months.push(dt.getMonth());
     }
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   scrollMonthSelector = (e: any) => {
     e.preventDefault();
@@ -124,6 +123,6 @@ export class ItskMonthSelectorComponent implements OnInit {
   };
 
   leadingZero = (value: number): string => {
-    return ((value < 10) ? '0' : '') + value;
+    return (value < 10 ? '0' : '') + value;
   };
 }

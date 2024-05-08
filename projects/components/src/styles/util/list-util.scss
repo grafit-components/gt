@@ -4,7 +4,8 @@
 @import 'state-util';
 
 @mixin list($blockItem) {
-  &.list, & .list {
+  &.list,
+  & .list {
     @include listBlock($blockItem);
   }
 }
@@ -22,7 +23,8 @@
   &__item {
     @include baseState(map-get($blockItem, 'default', 'background-color'));
     color: map-get($blockItem, 'default', 'color');
-    &_non-interactive:hover, &_disabled:hover {
+    &_non-interactive:hover,
+    &_disabled:hover {
       background-color: map-get($blockItem, 'default', 'background-color');
     }
   }
@@ -64,7 +66,8 @@
       opacity: 0.5;
     }
 
-    &:focus, &_focus {
+    &:focus,
+    &_focus {
       border: solid 1px map-get($work, 'focus', 'border-color');
     }
   }

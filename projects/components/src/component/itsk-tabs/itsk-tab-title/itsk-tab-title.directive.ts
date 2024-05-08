@@ -1,7 +1,6 @@
-import {Directive, TemplateRef} from '@angular/core';
+import { Directive, TemplateRef } from '@angular/core';
 
-@Directive({selector: '[itskTabTitle]'})
+@Directive({ selector: '[itskTabTitle]' })
 export class ItskTabTitleDirective {
-  constructor(public templateRef: TemplateRef<any>) {
-  }
+  constructor(public templateRef: TemplateRef<any>) {}
 }

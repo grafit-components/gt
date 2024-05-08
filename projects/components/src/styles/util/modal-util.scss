@@ -5,7 +5,8 @@ $modalMinHeight: 100px;
 $modalMinWidth: 200px;
 
 @mixin modal($blockItem) {
-  &.modal, & .modal {
+  &.modal,
+  & .modal {
     @include modalBlock($blockItem);
   }
 }

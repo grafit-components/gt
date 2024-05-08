@@ -7,25 +7,23 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  Output
+  Output,
 } from '@angular/core';
 
 @Component({
   selector: 'itsk-menu-button',
   templateUrl: './itsk-menu-button.component.html',
   styleUrls: ['./itsk-menu-button.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskMenuButtonComponent implements OnInit {
   @Input() open: boolean = false;
   @Output() openChange = new EventEmitter<boolean>();
-  @ContentChild('[menuButton]', {static: true}) menuButton?: ElementRef;
+  @ContentChild('[menuButton]', { static: true }) menuButton?: ElementRef;
 
-  constructor(private cdr$: ChangeDetectorRef) {
-  }
+  constructor(private cdr$: ChangeDetectorRef) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   showMenu(val: boolean) {
     this.open = val;

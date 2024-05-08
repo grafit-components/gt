@@ -1,12 +1,12 @@
-import {FilterState} from './filter-state';
-import {Paging} from '../../itsk-pager/model/paging';
-import {StringFilter} from '../../itsk-filter/model/string-filter';
-import {NumericFilter} from '../../itsk-filter/model/numeric-filter';
-import {DateFilter} from '../../itsk-filter/model/date-filter';
-import {ListFilter} from '../../itsk-filter/model/list-filter';
-import {StringFilterType} from '../../itsk-filter/model/enum/string-filter-type.enum';
-import {SortParam} from '../../itsk-filter/model/sort-param';
-import {ListFilterType} from "../../itsk-filter/model/enum/list-filter-type.enum";
+import { DateFilter } from '../../itsk-filter/model/date-filter';
+import { ListFilterType } from '../../itsk-filter/model/enum/list-filter-type.enum';
+import { StringFilterType } from '../../itsk-filter/model/enum/string-filter-type.enum';
+import { ListFilter } from '../../itsk-filter/model/list-filter';
+import { NumericFilter } from '../../itsk-filter/model/numeric-filter';
+import { SortParam } from '../../itsk-filter/model/sort-param';
+import { StringFilter } from '../../itsk-filter/model/string-filter';
+import { Paging } from '../../itsk-pager/model/paging';
+import { FilterState } from './filter-state';
 
 export class GridOfflineHelper<T> {
   static getData<T>(data: T[], state: FilterState, paging: Paging): T[] {
@@ -82,12 +82,14 @@ export class GridOfflineHelper<T> {
   static filterDate<T>(data: T[], filter: DateFilter): T[] {
     const filterDate = (row: T) => {
       const item = row as any;
-      return (filter.value.lessThan === null || filter.value.lessThan === undefined
-        ? true
-        : filter.value.lessThan.getTime() > item[filter.fieldName].getTime()) &&
+      return (
+        (filter.value.lessThan === null || filter.value.lessThan === undefined
+          ? true
+          : filter.value.lessThan.getTime() > item[filter.fieldName].getTime()) &&
         (filter.value.greaterThan === null || filter.value.greaterThan === undefined
           ? true
-          : filter.value.greaterThan.getTime() < item[filter.fieldName].getTime());
+          : filter.value.greaterThan.getTime() < item[filter.fieldName].getTime())
+      );
     };
     return data.filter(filterDate);
   }
@@ -95,15 +97,13 @@ export class GridOfflineHelper<T> {
   static filterNumber<T>(data: T[], filter: NumericFilter): T[] {
     const filterNumber = (row: T) => {
       const item = row as any;
-      return (filter.value.lessThan === null || filter.value.lessThan === undefined
-        ? true
-        : filter.value.lessThan > item[filter.fieldName]) &&
+      return (
+        (filter.value.lessThan === null || filter.value.lessThan === undefined ? true : filter.value.lessThan > item[filter.fieldName]) &&
         (filter.value.greaterThan === null || filter.value.greaterThan === undefined
           ? true
           : filter.value.greaterThan < item[filter.fieldName]) &&
-        (filter.value.equalsTo === null || filter.value.equalsTo === undefined
-          ? true
-          : filter.value.equalsTo === item[filter.fieldName]);
+        (filter.value.equalsTo === null || filter.value.equalsTo === undefined ? true : filter.value.equalsTo === item[filter.fieldName])
+      );
     };
     return data.filter(filterNumber);
   }
@@ -123,9 +123,8 @@ export class GridOfflineHelper<T> {
   }
 
   static sort<T>(data: T[], sortParam: SortParam): T[] {
-    if(sortParam.field)
-    return data.sort(sortParam.asc ? GridOfflineHelper.asc(sortParam.field) : GridOfflineHelper.desc(sortParam.field));
-    return data
+    if (sortParam.field) return data.sort(sortParam.asc ? GridOfflineHelper.asc(sortParam.field) : GridOfflineHelper.desc(sortParam.field));
+    return data;
   }
 
   static desc(field: string) {

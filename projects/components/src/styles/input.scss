@@ -18,7 +18,7 @@
         position: absolute;
         top: 50%;
         right: 0;
-        content: "";
+        content: '';
         margin: 0 $space-1;
         width: $space-2;
         height: map-get($borderSize, '1px');
@@ -117,7 +117,8 @@
       padding-right: $space-8;
     }
 
-    &::placeholder, &[disabled] {
+    &::placeholder,
+    &[disabled] {
       opacity: 0.5;
     }
   }

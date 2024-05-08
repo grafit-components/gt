@@ -1,23 +1,25 @@
-import {Injectable, Injector, TemplateRef, Type} from '@angular/core';
-import {ItskModalConfig} from '../model/itsk-modal-config';
-import {ItskCurrentModal} from '../model/itsk-current-modal';
-import {ItskDynamicData} from '../../../common/model/itsk-dynamic-data';
-import {ItskModalContainerComponent} from '../itsk-modal-container/itsk-modal-container.component';
-import {ItskModalInstance} from '../model/itsk-modal-instance';
-import {IModalResult} from '../model/imodal-result';
-import {ItskModalCloseReason} from '../model/itsk-modal-close-reason.enum';
-import {Subject} from 'rxjs';
-import {DynamicComponentFactory} from '../../../common/util/dynamic-component-factory';
+import { Injectable, Injector, TemplateRef, Type } from '@angular/core';
+import { Subject } from 'rxjs';
+import { ItskDynamicData } from '../../../common/model/itsk-dynamic-data';
+import { DynamicComponentFactory } from '../../../common/util/dynamic-component-factory';
+import { ItskModalContainerComponent } from '../itsk-modal-container/itsk-modal-container.component';
+import { IModalResult } from '../model/imodal-result';
+import { ItskCurrentModal } from '../model/itsk-current-modal';
+import { ItskModalCloseReason } from '../model/itsk-modal-close-reason.enum';
+import { ItskModalConfig } from '../model/itsk-modal-config';
+import { ItskModalInstance } from '../model/itsk-modal-instance';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ItskModalService {
   private stack$: ItskModalInstance[] = [];
   private modalChanged$ = new Subject<undefined>();
 
-  constructor(private injector$: Injector,
-              private factory$: DynamicComponentFactory) {
+  constructor(
+    private injector$: Injector,
+    private factory$: DynamicComponentFactory,
+  ) {
     this.modalChanged$.subscribe(() => {
       if (this.stack$ && this.stack$.length > 0) {
         this.focus(this.stack$[this.stack$.length - 1]);
@@ -29,7 +31,7 @@ export class ItskModalService {
     if (this.stack$ && this.stack$.length > 0) {
       this.stack$.forEach((instance: ItskModalInstance) => {
         instance.close({
-          reason: ItskModalCloseReason.Exit
+          reason: ItskModalCloseReason.Exit,
         });
       });
     }
@@ -39,10 +41,7 @@ export class ItskModalService {
     return this.stack$ && this.stack$.length > 0;
   }
 
-  create(content: string | TemplateRef<any> | Type<any>,
-         data?: any,
-         config?: ItskModalConfig,
-         injector?: Injector): ItskModalInstance {
+  create(content: string | TemplateRef<any> | Type<any>, data?: any, config?: ItskModalConfig, injector?: Injector): ItskModalInstance {
     if (content === null || content === undefined) {
       throw new Error('Specify template or component to render');
     }
@@ -71,11 +70,11 @@ export class ItskModalService {
       return {
         $implicit: {
           modal: currentModal,
-          ...context
+          ...context,
         },
         close(result: IModalResult) {
           currentModal.close(result);
-        }
+        },
       };
     }
     return context;
@@ -86,14 +85,14 @@ export class ItskModalService {
       providers: [
         {
           provide: ItskCurrentModal,
-          useValue: currentModal
+          useValue: currentModal,
         },
         {
           provide: ItskDynamicData,
-          useValue: data
-        }
+          useValue: data,
+        },
       ],
-      parent
+      parent,
     });
   }
 
@@ -119,6 +118,3 @@ export class ItskModalService {
     }
   }
 }
-
-
-

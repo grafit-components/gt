@@ -1,13 +1,13 @@
-import {Directive, ElementRef, HostBinding, Input, OnInit, Renderer2} from '@angular/core';
-import {NgControl} from '@angular/forms';
+import { Directive, ElementRef, HostBinding, Input, OnInit, Renderer2 } from '@angular/core';
+import { NgControl } from '@angular/forms';
 
 enum Level {
   error,
-  warning
+  warning,
 }
 
 @Directive({
-  selector: '[itskValidate]'
+  selector: '[itskValidate]',
 })
 export class ItskValidateDirective implements OnInit {
   private _wrap: any;
@@ -60,10 +60,11 @@ export class ItskValidateDirective implements OnInit {
     return this._warn;
   }
 
-  constructor(private _el: ElementRef,
-              private control: NgControl,
-              private _renderer: Renderer2) {
-  }
+  constructor(
+    private _el: ElementRef,
+    private control: NgControl,
+    private _renderer: Renderer2,
+  ) {}
 
   ngOnInit() {
     this.wrap();

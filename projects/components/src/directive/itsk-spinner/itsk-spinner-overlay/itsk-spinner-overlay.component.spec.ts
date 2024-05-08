@@ -8,9 +8,8 @@ describe('ItskSpinnerOverlayComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItskSpinnerOverlayComponent ]
-    })
-    .compileComponents();
+      declarations: [ItskSpinnerOverlayComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

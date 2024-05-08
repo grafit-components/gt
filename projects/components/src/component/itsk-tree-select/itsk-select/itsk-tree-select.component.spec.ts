@@ -8,9 +8,8 @@ describe('ItskSelectComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItskTreeSelectComponent ]
-    })
-    .compileComponents();
+      declarations: [ItskTreeSelectComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

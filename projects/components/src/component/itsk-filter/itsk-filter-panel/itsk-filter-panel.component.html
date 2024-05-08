@@ -11,9 +11,11 @@
       </div>
     </ng-template>
   </itsk-dropdown>
-  <itsk-select class="container_auto margin-h-3"
-               [virtual]="false"
-               [disabled]="templates === null || templates === undefined || templates.length < 1"></itsk-select>
+  <itsk-select
+    class="container_auto margin-h-3"
+    [virtual]="false"
+    [disabled]="templates === null || templates === undefined || templates.length < 1"
+  ></itsk-select>
   <itsk-toggle [(ngModel)]="showActive" [leftLabel]="true">Активные</itsk-toggle>
 </div>
 <div class="container container_column container_auto flex-shrink scrollbar">
@@ -23,22 +25,24 @@
         *ngIf="filter.filterable && filter.filterComponent && isLeaf(filter) && showFilter(filter, state$, showActive)"
         [column]="filter"
         [state]="state$"
-        (filterChanged)="filterChanged($event)"></itsk-filter-wrapper>
+        (filterChanged)="filterChanged($event)"
+      ></itsk-filter-wrapper>
       <itsk-filter-group-wrapper
         *ngIf="!isLeaf(filter) && hasFilterableLeafs(filter)"
         [showActive]="showActive"
         [column]="filter"
         [state]="state$"
-        (filterChanged)="filterChanged($event)"></itsk-filter-group-wrapper>
+        (filterChanged)="filterChanged($event)"
+      ></itsk-filter-group-wrapper>
     </div>
   </ng-container>
 </div>
 <div class="container align-center height-14 padding-h-8">
   <button class="button_secondary" (click)="clearAll()">
     <itsk-icon [name]="'icon-filter_clear-conus-x-filled'" class="margin-r-2"></itsk-icon>
-    {{(dict | async)?.clear}}
+    {{ (dict | async)?.clear }}
   </button>
   <div class="container container_column container_auto align-end">
-    <button class="button_primary" (click)="applyFilters()">{{(dict | async)?.apply}}</button>
+    <button class="button_primary" (click)="applyFilters()">{{ (dict | async)?.apply }}</button>
   </div>
 </div>

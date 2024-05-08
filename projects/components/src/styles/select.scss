@@ -14,7 +14,8 @@
   min-height: $space-8;
   line-height: $space-8;
 
-  &_disabled, &[disabled] {
+  &_disabled,
+  &[disabled] {
     opacity: 0.6;
   }
 
@@ -79,7 +80,7 @@
 
     &__title {
       margin: $space-1 0;
-      color: map-get($blocks, 'work', 'secondary', 'color')
+      color: map-get($blocks, 'work', 'secondary', 'color');
     }
 
     &__list {
@@ -95,21 +96,22 @@
 }
 
 itsk-select.ng-invalid .select__head {
-  border-color: map-get($blocks, 'work', 'error', 'color')
+  border-color: map-get($blocks, 'work', 'error', 'color');
 }
 
 @each $blockName, $blockItem in $blocks {
   .block-#{$blockName} {
-    &.select, & .select {
+    &.select,
+    & .select {
       &__head {
         @include selectBlock($blockItem);
       }
 
       &__values {
-         &__title {
-           color: map-get($blockItem, 'secondary', 'color');
-         }
-       }
+        &__title {
+          color: map-get($blockItem, 'secondary', 'color');
+        }
+      }
     }
 
     & itsk-select.ng-invalid .select__head {
@@ -128,7 +130,8 @@ itsk-select.ng-invalid .select__head {
 
 @each $blockName, $blockItem in $blocks {
   .block-#{$blockName} {
-    &.options, & .options {
+    &.options,
+    & .options {
       @include listBlock($blockItem);
     }
   }
@@ -147,7 +150,9 @@ select {
 }
 
 @each $blockName, $blockItem in $blocks {
-  select.block-#{$blockName}, .block-#{$blockName}__select, .block-#{$blockName} select {
+  select.block-#{$blockName},
+  .block-#{$blockName}__select,
+  .block-#{$blockName} select {
     @include selectBlock($blockItem);
   }
 }
@@ -161,7 +166,9 @@ option {
 }
 
 @each $blockName, $blockItem in $blocks {
-  option.block-#{$blockName}, .block-#{$blockName}__option, .block-#{$blockName} option {
-    @include listBlock($blockItem)
+  option.block-#{$blockName},
+  .block-#{$blockName}__option,
+  .block-#{$blockName} option {
+    @include listBlock($blockItem);
   }
 }

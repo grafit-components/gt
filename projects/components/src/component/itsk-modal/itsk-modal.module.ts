@@ -1,14 +1,9 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ItskModalContainerComponent} from './itsk-modal-container/itsk-modal-container.component';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ItskModalContainerComponent } from './itsk-modal-container/itsk-modal-container.component';
 
 @NgModule({
-    declarations: [
-        ItskModalContainerComponent
-    ],
-    imports: [
-        CommonModule
-    ]
+  declarations: [ItskModalContainerComponent],
+  imports: [CommonModule],
 })
-export class ItskModalModule {
-}
+export class ItskModalModule {}

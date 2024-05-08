@@ -1,10 +1,12 @@
-@import "./color.scss";
+@import './color.scss';
 @each $blockName, $blockItem in $blocks {
   .block-#{$blockName} {
     @each $accentName, $accent in $blockItem {
       @each $parameter, $value in $accent {
-        &__#{$parameter}_#{$accentName}, &.#{$parameter}_#{$accentName}, & .#{$parameter}_#{$accentName} {
-          #{$parameter}: $value !important
+        &__#{$parameter}_#{$accentName},
+        &.#{$parameter}_#{$accentName},
+        & .#{$parameter}_#{$accentName} {
+          #{$parameter}: $value !important;
         }
       }
     }

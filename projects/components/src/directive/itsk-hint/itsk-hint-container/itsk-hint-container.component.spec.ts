@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import {ItskHintContainerComponent} from './itsk-hint-container.component';
+import { ItskHintContainerComponent } from './itsk-hint-container.component';
 
 describe('ItskHintContainerComponent', () => {
   let component: ItskHintContainerComponent;
@@ -7,9 +7,8 @@ describe('ItskHintContainerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskHintContainerComponent]
-    })
-      .compileComponents();
+      declarations: [ItskHintContainerComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

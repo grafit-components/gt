@@ -1,25 +1,27 @@
-import {Inject, Injectable, Renderer2, RendererFactory2} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
-import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs/operators';
+import { DOCUMENT } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ItskIconService {
   private loadedSprites$: string[] = [];
   private renderer$: Renderer2;
 
-  constructor(@Inject(DOCUMENT) protected document$: any,
-              private rendererFactory$: RendererFactory2,
-              private http$: HttpClient) {
+  constructor(
+    @Inject(DOCUMENT) protected document$: any,
+    private rendererFactory$: RendererFactory2,
+    private http$: HttpClient,
+  ) {
     this.renderer$ = this.rendererFactory$.createRenderer(null, null);
   }
 
   addSprite(url: string) {
     if (this.loadedSprites$.indexOf(url) < 0) {
-      this.getSVG(url).subscribe(_ => {
+      this.getSVG(url).subscribe((_) => {
         this.loadedSprites$.push(url);
         this.renderer$.insertBefore(this.document$.body, _, this.document$.body.firstChild);
       });
@@ -34,13 +36,12 @@ export class ItskIconService {
   }
 
   getSVG(url: string): Observable<SVGElement> {
-    return this.http$.get(url, {responseType: 'text'})
-      .pipe(
-        map((svgText: string) => {
-          const svgEl = this._svgElementFromString(svgText);
-          return this._cloneSVG(svgEl);
-        })
-      );
+    return this.http$.get(url, { responseType: 'text' }).pipe(
+      map((svgText: string) => {
+        const svgEl = this._svgElementFromString(svgText);
+        return this._cloneSVG(svgEl);
+      }),
+    );
   }
 
   private _svgElementFromString(str: string): SVGElement | never {

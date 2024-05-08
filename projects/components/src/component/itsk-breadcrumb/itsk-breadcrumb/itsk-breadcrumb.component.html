@@ -1,32 +1,32 @@
 <ng-container *ngIf="breadcrumbItems$ | async as breadcrumbItems">
-    <ng-container *ngFor="let breadcrumbItem of breadcrumbItems">
-        <itsk-dropdown style="flex-grow: 0" [fixed]="true">
-            <ng-template itskDropdownHead>
-                <itsk-icon class="breadcrumb__delimiter" [name]="'icon-chevron_right-arrow-outline'"></itsk-icon>
-                <span class="breadcrumb__item-name"
-                      (click)="navigate(breadcrumbItem.active)">
-                {{breadcrumbItem.active.name}}
-                </span>
-            </ng-template>
-
-
-            <ng-template itskDropdownContent>
-                <div class="list">
-                    <div class="list__item"
-                         (click)="navigate(menuItem)"
-                         [class.list__item_active]="menuItem === breadcrumbItem.active"
-                         *ngFor="let menuItem of breadcrumbItem.items">
-                        {{menuItem.name}}
-                    </div>
-                </div>
-            </ng-template>
-        </itsk-dropdown>
-    </ng-container>
-
-    <ng-container *ngIf="!breadcrumbItems.length">
+  <ng-container *ngFor="let breadcrumbItem of breadcrumbItems">
+    <itsk-dropdown style="flex-grow: 0" [fixed]="true">
+      <ng-template itskDropdownHead>
         <itsk-icon class="breadcrumb__delimiter" [name]="'icon-chevron_right-arrow-outline'"></itsk-icon>
-        <span class="breadcrumb__item-name">
-        {{defaultTitle}}
+        <span class="breadcrumb__item-name" (click)="navigate(breadcrumbItem.active)">
+          {{ breadcrumbItem.active.name }}
+        </span>
+      </ng-template>
+
+      <ng-template itskDropdownContent>
+        <div class="list">
+          <div
+            class="list__item"
+            (click)="navigate(menuItem)"
+            [class.list__item_active]="menuItem === breadcrumbItem.active"
+            *ngFor="let menuItem of breadcrumbItem.items"
+          >
+            {{ menuItem.name }}
+          </div>
+        </div>
+      </ng-template>
+    </itsk-dropdown>
+  </ng-container>
+
+  <ng-container *ngIf="!breadcrumbItems.length">
+    <itsk-icon class="breadcrumb__delimiter" [name]="'icon-chevron_right-arrow-outline'"></itsk-icon>
+    <span class="breadcrumb__item-name">
+      {{ defaultTitle }}
     </span>
-    </ng-container>
+  </ng-container>
 </ng-container>

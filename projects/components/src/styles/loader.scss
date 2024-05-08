@@ -1,4 +1,4 @@
-@use "sass:math";
+@use 'sass:math';
 @import 'util/loader-util.scss';
 
 .loader {
@@ -78,7 +78,6 @@
   }
 }
 
-
 @-moz-keyframes loader {
   0% {
     transform: rotate(30deg);
@@ -87,7 +86,6 @@
     transform: rotate(390deg);
   }
 }
-
 
 @-ms-keyframes loader {
   0% {
@@ -98,7 +96,6 @@
   }
 }
 
-
 @-o-keyframes loader {
   0% {
     transform: rotate(30deg);
@@ -107,7 +104,6 @@
     transform: rotate(390deg);
   }
 }
-
 
 @keyframes loader {
   0% {

@@ -1,11 +1,11 @@
-import {AnyObject} from '../../itsk-shared/any-object';
+import { AnyObject } from '../../itsk-shared/any-object';
 
 export class ItskTreeControl {
   data: AnyObject[] = [];
   expanded: AnyObject[] = [];
-  getChildren: (item: AnyObject) => (AnyObject[] | null | undefined);
+  getChildren: (item: AnyObject) => AnyObject[] | null | undefined;
 
-  constructor(data: AnyObject[], open?: boolean, getChildren?: (item: AnyObject) => (AnyObject[] | null | undefined)) {
+  constructor(data: AnyObject[], open?: boolean, getChildren?: (item: AnyObject) => AnyObject[] | null | undefined) {
     this.data = data;
     if (getChildren) {
       this.getChildren = getChildren;
@@ -28,7 +28,6 @@ export class ItskTreeControl {
     });
     return result;
   }
-
 
   isExpanded(item: AnyObject): boolean {
     return this.expanded && this.expanded.indexOf(item) >= 0;

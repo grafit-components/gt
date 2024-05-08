@@ -1,4 +1,4 @@
-import {IItskMenuItem} from './i-itsk-menu-item';
+import { IItskMenuItem } from './i-itsk-menu-item';
 
 export interface ItskMenuItemOptions {
   id?: number | undefined | null;

@@ -1,13 +1,13 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FilterState, GridOfflineHelper } from '@grafit/angular';
 import * as Highcharts from 'highcharts';
-import {DataService} from '../../service/data.service';
-import {DataModel} from '../../model/data-model';
-import {FilterState, GridColumn, GridOfflineHelper, GridRow} from '@grafit/angular';
+import { DataModel } from '../../model/data-model';
+import { DataService } from '../../service/data.service';
 
 @Component({
   selector: 'app-data-chart',
   templateUrl: './data-chart.component.html',
-  styleUrls: ['./data-chart.component.styl']
+  styleUrls: ['./data-chart.component.styl'],
 })
 export class DataChartComponent implements OnInit {
   Highcharts = Highcharts;
@@ -33,7 +33,7 @@ export class DataChartComponent implements OnInit {
   data: DataModel[] = [];
 
   constructor(private svc: DataService) {
-    this.svc.data.subscribe(_ => {
+    this.svc.data.subscribe((_) => {
       this.data = _;
       this.filterData();
     });
@@ -45,9 +45,7 @@ export class DataChartComponent implements OnInit {
     this.chartOptions = this.getChart(result);
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   chartCallback(chart: Highcharts.Chart) {
     this.chart = chart;
@@ -56,62 +54,66 @@ export class DataChartComponent implements OnInit {
   getChart(data: DataModel[]): Highcharts.Options {
     return {
       credits: {
-        enabled: false
+        enabled: false,
       },
       legend: {
-        enabled: true
+        enabled: true,
       },
       title: {
-        text: ''
+        text: '',
       },
       tooltip: {
-        animation: false
+        animation: false,
       },
       xAxis: {
         type: 'category',
-        categories: data.map(_ => _.well),
+        categories: data.map((_) => _.well),
         title: {
-          text: ''
-        }
+          text: '',
+        },
       },
       yAxis: {
         title: {
-          text: ''
-        }
+          text: '',
+        },
       },
-      series: this.getSeries(data)
+      series: this.getSeries(data),
     };
   }
 
   getSeries(data: DataModel[]): any {
-    const a = [{
-      type: 'line',
-      name: 'Qж',
-      data: data.map((item) => {
-        return {
-          name: item.well,
-          y: item.liq
-        };
-      })
-    }, {
-      type: 'line',
-      name: 'Qн',
-      data: data.map((item) => {
-        return {
-          name: item.well,
-          y: item.oil
-        };
-      })
-    }, {
-      type: 'line',
-      name: 'Рпл',
-      data: data.map((item) => {
-        return {
-          name: item.well,
-          y: item.pressure
-        };
-      })
-    }];
+    const a = [
+      {
+        type: 'line',
+        name: 'Qж',
+        data: data.map((item) => {
+          return {
+            name: item.well,
+            y: item.liq,
+          };
+        }),
+      },
+      {
+        type: 'line',
+        name: 'Qн',
+        data: data.map((item) => {
+          return {
+            name: item.well,
+            y: item.oil,
+          };
+        }),
+      },
+      {
+        type: 'line',
+        name: 'Рпл',
+        data: data.map((item) => {
+          return {
+            name: item.well,
+            y: item.pressure,
+          };
+        }),
+      },
+    ];
     return a;
   }
 }

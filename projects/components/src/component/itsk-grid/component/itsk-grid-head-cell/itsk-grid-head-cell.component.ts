@@ -7,25 +7,25 @@ import {
   HostListener,
   Input,
   OnDestroy,
-  OnInit
+  OnInit,
 } from '@angular/core';
-import {GridColumn} from '../../model/grid-column';
-import {GridSortEvent} from '../../model/grid-sort-event';
-import {FilterState} from '../../model/filter-state';
-import {ItskGridService} from '../../service/itsk-grid.service';
-import {FilterType} from '../../../itsk-filter/model/enum/filter-type.enum';
-import {ColumnResizeEvent} from '../../model/column-resize-event';
-import {ItskAlign} from '../../../../common/model/itsk-align.enum';
-import {IId} from '../../model/grid-row';
-import {takeWhile} from 'rxjs/operators';
-import {ItskGridSelectRowsByType} from '../../model/enum/itsk-grid-select-rows-by-type';
-import {ItskGridSelectType} from '../../model/enum/itsk-grid-select-type';
+import { takeWhile } from 'rxjs/operators';
+import { ItskAlign } from '../../../../common/model/itsk-align.enum';
+import { FilterType } from '../../../itsk-filter/model/enum/filter-type.enum';
+import { ColumnResizeEvent } from '../../model/column-resize-event';
+import { ItskGridSelectRowsByType } from '../../model/enum/itsk-grid-select-rows-by-type';
+import { ItskGridSelectType } from '../../model/enum/itsk-grid-select-type';
+import { FilterState } from '../../model/filter-state';
+import { GridColumn } from '../../model/grid-column';
+import { IId } from '../../model/grid-row';
+import { GridSortEvent } from '../../model/grid-sort-event';
+import { ItskGridService } from '../../service/itsk-grid.service';
 
 @Component({
   selector: 'itsk-grid-head-cell',
   templateUrl: './itsk-grid-head-cell.component.html',
   styleUrls: ['./itsk-grid-head-cell.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestroy {
   state$?: FilterState;
@@ -57,8 +57,7 @@ export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestr
   @HostListener('drop', ['$event']) drop(event: DragEvent) {
     const move = event.dataTransfer && event.dataTransfer.getData('text');
     if (move === 'move') {
-      if(this.column)
-      this.svc$.reorderColumn(this.column);
+      if (this.column) this.svc$.reorderColumn(this.column);
     }
   }
 
@@ -70,21 +69,21 @@ export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestr
     if (event && event.dataTransfer) {
       event.dataTransfer.setData('text', 'move');
     }
-    if(this.column)
-    this.svc$.dragStart(this.column);
+    if (this.column) this.svc$.dragStart(this.column);
   }
 
-  constructor(private svc$: ItskGridService<T>,
-              private cdr$: ChangeDetectorRef,
-              private element$: ElementRef) {
-    this.svc$.selectedRows.pipe(takeWhile(_ => this.alive)).subscribe(_ => {
+  constructor(
+    private svc$: ItskGridService<T>,
+    private cdr$: ChangeDetectorRef,
+    private element$: ElementRef,
+  ) {
+    this.svc$.selectedRows.pipe(takeWhile((_) => this.alive)).subscribe((_) => {
       this.cdr$.markForCheck();
     });
   }
 
   selectAll(value: boolean) {
     return this.svc$.selectAll(value);
-
   }
 
   allSelected() {
@@ -95,8 +94,7 @@ export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestr
     event.stopPropagation();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.alive = false;
@@ -153,10 +151,13 @@ export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestr
           const filter = this.state$.numericFilters.find((x) => {
             return x.fieldName === this.column?.filterField;
           });
-          if (filter && filter.value &&
-            (filter.value.lessThan !== null && filter.value.lessThan !== undefined ||
-              filter.value.greaterThan !== null && filter.value.greaterThan !== undefined ||
-              filter.value.equalsTo !== null && filter.value.equalsTo !== undefined)) {
+          if (
+            filter &&
+            filter.value &&
+            ((filter.value.lessThan !== null && filter.value.lessThan !== undefined) ||
+              (filter.value.greaterThan !== null && filter.value.greaterThan !== undefined) ||
+              (filter.value.equalsTo !== null && filter.value.equalsTo !== undefined))
+          ) {
             this.filtered = true;
           }
         }
@@ -166,9 +167,12 @@ export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestr
           const filter = this.state$.dateFilters.find((x) => {
             return x.fieldName === this.column?.filterField;
           });
-          if (filter && filter.value &&
-            (filter.value.lessThan !== null && filter.value.lessThan !== undefined ||
-              filter.value.greaterThan !== null && filter.value.greaterThan !== undefined)) {
+          if (
+            filter &&
+            filter.value &&
+            ((filter.value.lessThan !== null && filter.value.lessThan !== undefined) ||
+              (filter.value.greaterThan !== null && filter.value.greaterThan !== undefined))
+          ) {
             this.filtered = true;
           }
         }
@@ -177,8 +181,7 @@ export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestr
   }
 
   sortColumn(event: MouseEvent): void {
-    if(this.column)
-    this.svc$.sort(new GridSortEvent(this.column, event.shiftKey));
+    if (this.column) this.svc$.sort(new GridSortEvent(this.column, event.shiftKey));
   }
 
   dragStart(event: DragEvent) {
@@ -190,15 +193,13 @@ export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestr
     this.dragEndPx = event.pageX;
     const parent = (event.target as HTMLElement).parentElement;
     if (parent) {
-      if(this.column)
-      this.svc$.resizeColumn(new ColumnResizeEvent(this.column, parent.clientWidth, this.dragEndPx - this.dragStartPx));
+      if (this.column) this.svc$.resizeColumn(new ColumnResizeEvent(this.column, parent.clientWidth, this.dragEndPx - this.dragStartPx));
     }
   }
 
   columnSettings(event: MouseEvent) {
     setTimeout(() => {
-      if(this.column)
-      this.svc$.openColumnMenu(this.column, this.element$.nativeElement.getBoundingClientRect());
+      if (this.column) this.svc$.openColumnMenu(this.column, this.element$.nativeElement.getBoundingClientRect());
     }, 0);
   }
 }

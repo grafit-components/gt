@@ -6,17 +6,17 @@ import {
   ComponentRef,
   Input,
   OnInit,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
-import {GridColumn} from '../../../model/grid-column';
-import {GridRow, IId} from '../../../model/grid-row';
-import {GroupRowComponentBase} from '../../../model/group-row-component-base';
+import { GridColumn } from '../../../model/grid-column';
+import { GridRow, IId } from '../../../model/grid-row';
+import { GroupRowComponentBase } from '../../../model/group-row-component-base';
 
 @Component({
   selector: 'itsk-group-row-wrapper',
   template: '',
   styleUrls: ['./group-row-wrapper.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GroupRowWrapperComponent<T extends IId> implements OnInit {
   init = false;
@@ -54,9 +54,10 @@ export class GroupRowWrapperComponent<T extends IId> implements OnInit {
     return this.row$;
   }
 
-  constructor(private viewContainerRef: ViewContainerRef,
-              private componentFactoryResolver: ComponentFactoryResolver) {
-  }
+  constructor(
+    private viewContainerRef: ViewContainerRef,
+    private componentFactoryResolver: ComponentFactoryResolver,
+  ) {}
 
   ngOnInit() {
     if (!GroupRowComponentBase.isPrototypeOf(this.groupRowComponent)) {

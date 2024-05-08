@@ -3,15 +3,14 @@
 @each $blockName, $blockItem in $blocks {
   .block-#{$blockName} {
     a {
-      color: map-get($blockItem, "info", "color");
+      color: map-get($blockItem, 'info', 'color');
     }
   }
 }
 
-
 a {
   text-decoration: none;
-  color: map-get($blocks, "work", "info", "color");;
+  color: map-get($blocks, 'work', 'info', 'color');
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

@@ -1,4 +1,4 @@
-import {ItskMenuItemDirective} from './itsk-menu-item.directive';
+import { ItskMenuItemDirective } from './itsk-menu-item.directive';
 
 describe('ItskMenuItemDirective', () => {
   it('should create an instance', () => {

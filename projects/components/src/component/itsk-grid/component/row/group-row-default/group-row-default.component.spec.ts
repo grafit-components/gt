@@ -8,9 +8,8 @@ describe('GroupRowDefaultComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ GroupRowDefaultComponent ]
-    })
-    .compileComponents();
+      declarations: [GroupRowDefaultComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

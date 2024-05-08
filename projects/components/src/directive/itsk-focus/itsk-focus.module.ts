@@ -1,13 +1,10 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ItskFocusDirective} from './itsk-focus.directive';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ItskFocusDirective } from './itsk-focus.directive';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [ItskFocusDirective],
-  exports: [ItskFocusDirective]
+  exports: [ItskFocusDirective],
 })
-export class ItskFocusModule {
-}
+export class ItskFocusModule {}

@@ -11,16 +11,11 @@ export function getPrecision(a: number) {
   return p;
 }
 
-export function formatNumber(value: any,
-                             decimalLength: number,
-                             chunkDelimiter: string,
-                             decimalDelimiter: string,
-                             chunkLength: number) {
+export function formatNumber(value: any, decimalLength: number, chunkDelimiter: string, decimalDelimiter: string, chunkLength: number) {
   const precision = Math.min(getPrecision(value), Math.floor(decimalLength));
   const result = '\\d(?=(\\d{' + chunkLength + '})+' + (precision > 0 ? '\\D' : '$') + ')';
   const num = value.toFixed(precision);
-  return (decimalDelimiter ? num.replace('.', decimalDelimiter) : num)
-    .replace(new RegExp(result, 'g'), '$&' + chunkDelimiter);
+  return (decimalDelimiter ? num.replace('.', decimalDelimiter) : num).replace(new RegExp(result, 'g'), '$&' + chunkDelimiter);
 }
 
 export function prependZero(input: number, length: number) {

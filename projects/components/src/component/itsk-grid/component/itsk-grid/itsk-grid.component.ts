@@ -3,48 +3,55 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ElementRef, EventEmitter,
-  HostBinding, HostListener,
-  Input, OnChanges, OnDestroy,
-  OnInit, Output, SimpleChanges,
-  Type, ViewChild
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  Type,
+  ViewChild,
 } from '@angular/core';
-import {GridRow, IId} from '../../model/grid-row';
-import {ItskGridService} from '../../service/itsk-grid.service';
-import {ItskGridEditEvent} from '../../model/enum/itsk-grid-edit-event.enum';
-import {IGrid} from '../../model/grid/i-grid';
-import {GridColumn} from '../../model/grid-column';
-import {FilterState} from '../../model/filter-state';
-import {AdditionalComponentBase} from '../../model/additional-component-base';
-import {AggregateComponentBase} from '../../model/aggregate-component-base';
-import {ICellCoordinates, ICellEvent} from '../../model/cell-coordinates';
-import {BooleanFunc, BooleanPromiseFunc, boolFuncOrPromiseCallback} from '../../../../util/object-util';
-import {ItskGridEditType} from '../../model/enum/itsk-grid-edit-type.enum';
-import {ItskGridEditMode} from '../../model/enum/itsk-grid-edit-mode.enum';
-import {takeWhile} from 'rxjs/operators';
-import {GridSortEvent} from '../../model/grid-sort-event';
-import {DateUtil} from '../../../../util/date-util';
-import {SortParam} from '../../../itsk-filter/model/sort-param';
-import {FilterType} from '../../../itsk-filter/model/enum/filter-type.enum';
-import {DateFilter} from '../../../itsk-filter/model/date-filter';
-import {DateFilterValue} from '../../../itsk-filter/model/date-filter-value';
-import {StringFilter} from '../../../itsk-filter/model/string-filter';
-import {NumericFilter} from '../../../itsk-filter/model/numeric-filter';
-import {NumericFilterValue} from '../../../itsk-filter/model/numeric-filter-value';
-import {ListFilter} from '../../../itsk-filter/model/list-filter';
-import {ListFilterType} from '../../../itsk-filter/model/enum/list-filter-type.enum';
-import {GroupingType} from '../../model/enum/grouping-type.enum';
-import {GroupRowComponentBase} from '../../model/group-row-component-base';
-import {GroupRowDefaultComponent} from '../row/group-row-default/group-row-default.component';
-import {ItskGridSelectRowsByType} from '../../model/enum/itsk-grid-select-rows-by-type';
-import {ItskGridSelectType} from '../../model/enum/itsk-grid-select-type';
+import { takeWhile } from 'rxjs/operators';
+import { DateUtil } from '../../../../util/date-util';
+import { BooleanFunc, BooleanPromiseFunc, boolFuncOrPromiseCallback } from '../../../../util/object-util';
+import { DateFilter } from '../../../itsk-filter/model/date-filter';
+import { DateFilterValue } from '../../../itsk-filter/model/date-filter-value';
+import { FilterType } from '../../../itsk-filter/model/enum/filter-type.enum';
+import { ListFilterType } from '../../../itsk-filter/model/enum/list-filter-type.enum';
+import { ListFilter } from '../../../itsk-filter/model/list-filter';
+import { NumericFilter } from '../../../itsk-filter/model/numeric-filter';
+import { NumericFilterValue } from '../../../itsk-filter/model/numeric-filter-value';
+import { SortParam } from '../../../itsk-filter/model/sort-param';
+import { StringFilter } from '../../../itsk-filter/model/string-filter';
+import { AdditionalComponentBase } from '../../model/additional-component-base';
+import { AggregateComponentBase } from '../../model/aggregate-component-base';
+import { ICellCoordinates, ICellEvent } from '../../model/cell-coordinates';
+import { GroupingType } from '../../model/enum/grouping-type.enum';
+import { ItskGridEditEvent } from '../../model/enum/itsk-grid-edit-event.enum';
+import { ItskGridEditMode } from '../../model/enum/itsk-grid-edit-mode.enum';
+import { ItskGridEditType } from '../../model/enum/itsk-grid-edit-type.enum';
+import { ItskGridSelectRowsByType } from '../../model/enum/itsk-grid-select-rows-by-type';
+import { ItskGridSelectType } from '../../model/enum/itsk-grid-select-type';
+import { FilterState } from '../../model/filter-state';
+import { GridColumn } from '../../model/grid-column';
+import { GridRow, IId } from '../../model/grid-row';
+import { GridSortEvent } from '../../model/grid-sort-event';
+import { IGrid } from '../../model/grid/i-grid';
+import { GroupRowComponentBase } from '../../model/group-row-component-base';
+import { ItskGridService } from '../../service/itsk-grid.service';
+import { GroupRowDefaultComponent } from '../row/group-row-default/group-row-default.component';
 
 @Component({
   selector: 'itsk-grid',
   templateUrl: './itsk-grid.component.html',
   styleUrls: ['./itsk-grid.component.scss'],
   providers: [ItskGridService],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, AfterViewInit, OnDestroy, OnChanges {
   alive = true;
@@ -52,9 +59,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
 
   @HostBinding('class.grid') gridClass = true;
 
-  /**
-   * Данные для отображения в таблице
-   */
+  /** Данные для отображения в таблице */
   data$?: GridRow<T>[];
   @Input()
   set data(data: GridRow<T>[]) {
@@ -63,9 +68,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
 
   @Input() aggregate?: GridRow<T>;
 
-  /**
-   * Столбцы таблицы
-   */
+  /** Столбцы таблицы */
   @Input() columns?: GridColumn[];
 
   /** Состояние сортировки и фильтрации */
@@ -136,9 +139,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
   @Input() groupRowComponent: Type<GroupRowComponentBase<T>> = GroupRowDefaultComponent;
   @Input() openLevels: number = 0;
   @Input() tree: boolean = false;
-  /**
-   * Тип отображения группировки
-   */
+  /** Тип отображения группировки */
   @Input() groupingType: GroupingType = GroupingType.Row;
 
   private rowSelectable$: boolean | BooleanFunc<GridRow<T>> | BooleanPromiseFunc<GridRow<T>> = true;
@@ -163,7 +164,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
 
   @Input() editMode?: ItskGridEditMode;
 
-  @ViewChild('gridBody', {read: ElementRef}) gridBody?: ElementRef;
+  @ViewChild('gridBody', { read: ElementRef }) gridBody?: ElementRef;
 
   protected element: ElementRef;
 
@@ -178,39 +179,37 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
   private currentEditRow: GridRow<T> | null = null;
   private currentEditCell: ICellCoordinates<T> | null = null;
 
-  constructor(protected svc$: ItskGridService<T>,
-              elementRef: ElementRef,
-              protected cdr$: ChangeDetectorRef) {
+  constructor(
+    protected svc$: ItskGridService<T>,
+    elementRef: ElementRef,
+    protected cdr$: ChangeDetectorRef,
+  ) {
     this.element = elementRef;
     this.svc$.rowSelectable = true;
     this.svc$.selectType = this.selectType;
-    this.svc$.sortEvent.pipe(takeWhile(_ => this.alive)).subscribe((event: GridSortEvent) => {
+    this.svc$.sortEvent.pipe(takeWhile((_) => this.alive)).subscribe((event: GridSortEvent) => {
       this.sortColumn(event);
     });
 
-    this.svc$.stateChanged.pipe(takeWhile(_ => this.alive)).subscribe((event: FilterState) => {
+    this.svc$.stateChanged.pipe(takeWhile((_) => this.alive)).subscribe((event: FilterState) => {
       this.setState(event);
     });
 
-    this.svc$.filterClear.pipe(takeWhile(_ => this.alive)).subscribe((event: GridColumn) => {
+    this.svc$.filterClear.pipe(takeWhile((_) => this.alive)).subscribe((event: GridColumn) => {
       this.clearFilter(event);
     });
 
-    this.svc$.columnsUpdate.pipe(takeWhile(_ => this.alive)).subscribe(() => {
+    this.svc$.columnsUpdate.pipe(takeWhile((_) => this.alive)).subscribe(() => {
       this.updateColumns();
     });
 
-    this.svc$.selectedRows
-      .pipe(takeWhile(_ => this.alive))
-      .subscribe((rows: GridRow<T>[]) => {
-        this.selectedRowsChange.emit(rows);
-      });
+    this.svc$.selectedRows.pipe(takeWhile((_) => this.alive)).subscribe((rows: GridRow<T>[]) => {
+      this.selectedRowsChange.emit(rows);
+    });
 
-    this.svc$.valueChanged
-      .pipe(takeWhile(_ => this.alive))
-      .subscribe((coordinates) => {
-        this.valueChange.emit(coordinates);
-      });
+    this.svc$.valueChanged.pipe(takeWhile((_) => this.alive)).subscribe((coordinates) => {
+      this.valueChange.emit(coordinates);
+    });
   }
 
   private startEditRowOrCell(coordinates: ICellCoordinates<any>): void {
@@ -223,8 +222,10 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
   }
 
   private canStartEditCell(coordinates: ICellCoordinates<any>): boolean {
-    return this.editType === ItskGridEditType.Cell
-      && (this.currentEditCell?.row !== coordinates.row || this.currentEditCell?.column.name !== coordinates.column.name);
+    return (
+      this.editType === ItskGridEditType.Cell &&
+      (this.currentEditCell?.row !== coordinates.row || this.currentEditCell?.column.name !== coordinates.column.name)
+    );
   }
 
   private canStartEditRow(coordinates: ICellCoordinates<any>): boolean {
@@ -234,7 +235,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
   @HostListener('document:click', ['$event']) handleClickOutside(event: MouseEvent) {
     if (event.composedPath !== undefined) {
       const path = event.composedPath();
-      if (path.find(_ => _ === this.element.nativeElement)) {
+      if (path.find((_) => _ === this.element.nativeElement)) {
         return;
       }
       this.leaveBody();
@@ -274,8 +275,11 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
       if (this.editType === ItskGridEditType.Row && this.currentEditRow && this.currentEditRow !== coordinates.row) {
         this.stopEditRow(this.currentEditRow);
       }
-      if (this.editType === ItskGridEditType.Cell && this.currentEditCell
-        && (this.currentEditCell.row !== coordinates.row || this.currentEditCell.column.name !== coordinates.column.name)) {
+      if (
+        this.editType === ItskGridEditType.Cell &&
+        this.currentEditCell &&
+        (this.currentEditCell.row !== coordinates.row || this.currentEditCell.column.name !== coordinates.column.name)
+      ) {
         this.stopEditCell(this.currentEditCell);
       }
 
@@ -382,18 +386,27 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
       const cellList: HTMLElement[] = Array.from(overallElement.querySelectorAll('itsk-grid-cell'));
       if (isTabAction) {
         const maxReflectIndex = cellList[cellList.length - 1].getAttribute('ng-reflect-index');
-        return cellList.find(_ => (
-          (_.getAttribute('data-row') === cellRowIndex) &&
-          (_.getAttribute('ng-reflect-index') === (parseInt(cellReflectIndex || '', 10) + (isNextSibling ? 1 : -1)).toString())
-        )) || cellList.find(_ => (
-          (_.getAttribute('data-row') === (parseInt(cellRowIndex || '', 10) + (isNextSibling ? 1 : -1)).toString()) &&
-          (_.getAttribute('ng-reflect-index') === (isNextSibling ? '0' : maxReflectIndex))
-        )) || null;
+        return (
+          cellList.find(
+            (_) =>
+              _.getAttribute('data-row') === cellRowIndex &&
+              _.getAttribute('ng-reflect-index') === (parseInt(cellReflectIndex || '', 10) + (isNextSibling ? 1 : -1)).toString(),
+          ) ||
+          cellList.find(
+            (_) =>
+              _.getAttribute('data-row') === (parseInt(cellRowIndex || '', 10) + (isNextSibling ? 1 : -1)).toString() &&
+              _.getAttribute('ng-reflect-index') === (isNextSibling ? '0' : maxReflectIndex),
+          ) ||
+          null
+        );
       } else {
-        return cellList.find(_ => (
-          (_.getAttribute('data-row') === cellRowIndex) &&
-          (_.getAttribute('ng-reflect-index') === (parseInt(cellReflectIndex || '', 10) + (isNextSibling ? 1 : -1)).toString())
-        )) || null;
+        return (
+          cellList.find(
+            (_) =>
+              _.getAttribute('data-row') === cellRowIndex &&
+              _.getAttribute('ng-reflect-index') === (parseInt(cellReflectIndex || '', 10) + (isNextSibling ? 1 : -1)).toString(),
+          ) || null
+        );
       }
     }
     if (!element.parentElement) {
@@ -414,10 +427,13 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
     }
     if (element.parentElement.parentElement) {
       const cellList: HTMLElement[] = Array.from(element.parentElement.parentElement.querySelectorAll('itsk-grid-cell'));
-      return cellList.find(_ => (
-        (_.getAttribute('data-row') === (parseInt(cellRowIndex || '', 10) + (isNextSibling ? 1 : -1)).toString()) &&
-        (_.getAttribute('ng-reflect-index') === cellReflectIndex)
-      )) || null;
+      return (
+        cellList.find(
+          (_) =>
+            _.getAttribute('data-row') === (parseInt(cellRowIndex || '', 10) + (isNextSibling ? 1 : -1)).toString() &&
+            _.getAttribute('ng-reflect-index') === cellReflectIndex,
+        ) || null
+      );
     }
     return this.getSiblingColumnCell(element.parentElement, isNextSibling);
   }
@@ -433,7 +449,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
         return {
           row,
           column: column ? column : new GridColumn(),
-          event
+          event,
         };
       }
     }
@@ -523,8 +539,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
       const newState = localStorage.getItem(`${this.cookieName}_hidden`) || 'null';
       const hidden = JSON.parse(newState);
       if (hidden !== null && hidden !== undefined && hidden.length > 0) {
-        if(this.columns)
-        this.columns = this.setHidden(this.columns, hidden);
+        if (this.columns) this.columns = this.setHidden(this.columns, hidden);
       }
     }
   }
@@ -552,8 +567,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
   ngOnInit() {
     this.restoreHiddenState();
     this.restoreFilters();
-    if(this.state$)
-    this.setState(this.state$);
+    if (this.state$) this.setState(this.state$);
   }
 
   ngAfterViewInit() {
@@ -562,18 +576,16 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
     this.leftBottom = this.element.nativeElement.querySelector('.grid__body__left');
     this.rightBottom = this.element.nativeElement.querySelector('.grid__body__right');
     this.aggregateRight = this.element.nativeElement.querySelector('.grid__aggregate_right');
-    if(this.rightBottom)
-    this.rightBottom.addEventListener('scroll', this.bindScrollCallback);
+    if (this.rightBottom) this.rightBottom.addEventListener('scroll', this.bindScrollCallback);
   }
 
   ngOnDestroy() {
-    if(this.rightBottom)
-    this.rightBottom.removeEventListener('scroll', this.bindScrollCallback);
+    if (this.rightBottom) this.rightBottom.removeEventListener('scroll', this.bindScrollCallback);
     this.alive = false;
   }
 
   sortColumn(sortEvent: GridSortEvent): void {
-    if(!this.state$)return;
+    if (!this.state$) return;
     const column = sortEvent.column;
     const shiftKey = sortEvent.shiftKey;
     if (!column.sortable) {
@@ -586,7 +598,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
       if (!shiftKey) {
         this.state$.sortParams.length = 0;
       }
-      this.state$.sortParams.push(new SortParam({field: column.sortField, asc: true, order: 0}));
+      this.state$.sortParams.push(new SortParam({ field: column.sortField, asc: true, order: 0 }));
     } else {
       if (!sort.asc) {
         this.state$.sortParams = this.clearSort(sort, this.state$.sortParams);
@@ -607,37 +619,45 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
   }
 
   clearFilter(column: GridColumn) {
-    if(!this.state$) return;
+    if (!this.state$) return;
     if (column !== null && column !== undefined && column.filterable) {
       switch (column.filterType) {
         case FilterType.Date:
-          this.state$.addDateFilter(new DateFilter({
-            name: column.name,
-            fieldName: column.filterField,
-            value: new DateFilterValue()
-          }));
+          this.state$.addDateFilter(
+            new DateFilter({
+              name: column.name,
+              fieldName: column.filterField,
+              value: new DateFilterValue(),
+            }),
+          );
           break;
         case FilterType.String:
-          this.state$.addStringFilter(new StringFilter({
-            name: column.name,
-            fieldName: column.filterField,
-            value: ''
-          }));
+          this.state$.addStringFilter(
+            new StringFilter({
+              name: column.name,
+              fieldName: column.filterField,
+              value: '',
+            }),
+          );
           break;
         case FilterType.Number:
-          this.state$.addNumericFilter(new NumericFilter({
-            name: column.name,
-            fieldName: column.filterField,
-            value: new NumericFilterValue()
-          }));
+          this.state$.addNumericFilter(
+            new NumericFilter({
+              name: column.name,
+              fieldName: column.filterField,
+              value: new NumericFilterValue(),
+            }),
+          );
           break;
         case FilterType.List:
-          this.state$.addListFilter(new ListFilter({
-            name: column.name,
-            fieldName: column.filterField,
-            value: [],
-            type: ListFilterType.None
-          }));
+          this.state$.addListFilter(
+            new ListFilter({
+              name: column.name,
+              fieldName: column.filterField,
+              value: [],
+              type: ListFilterType.None,
+            }),
+          );
           break;
       }
       this.setState(this.state$);
@@ -651,13 +671,12 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
 
   private setState(state: FilterState) {
     this.state$ = new FilterState(state);
-    if(this.cookieName)
-    this.state$.save(this.cookieName);
+    if (this.cookieName) this.state$.save(this.cookieName);
     this.stateChange.emit(this.state$);
   }
 
   onScroll() {
-    if(this.rightTop && this.rightBottom) {
+    if (this.rightTop && this.rightBottom) {
       const left = this.rightBottom.scrollLeft;
       this.rightTop.style.transform = `translateX(${'-' + left + 'px'})`;
       this.left = left;
@@ -698,8 +717,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
 
     if (changes.hasOwnProperty('selectedRows')) {
       if (changes['selectedRows'].previousValue !== changes['selectedRows'].currentValue) {
-        if(this.selectedRows)
-        this.svc$.selectRows(this.selectedRows);
+        if (this.selectedRows) this.svc$.selectRows(this.selectedRows);
       }
     }
 

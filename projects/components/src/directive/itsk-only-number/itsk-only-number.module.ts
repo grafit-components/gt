@@ -1,13 +1,10 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ItskOnlyNumberDirective} from './itsk-only-number.directive';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ItskOnlyNumberDirective } from './itsk-only-number.directive';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [ItskOnlyNumberDirective],
-  exports: [ItskOnlyNumberDirective]
+  exports: [ItskOnlyNumberDirective],
 })
-export class ItskOnlyNumberModule {
-}
+export class ItskOnlyNumberModule {}

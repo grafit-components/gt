@@ -9,52 +9,50 @@ import {
   Output,
   QueryList,
   Type,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
-import {GridRow, IId} from '../../model/grid-row';
-import {GridPanelButtonDirective} from '../../directive/grid-panel-button.directive';
-import {GridCustomPanelDirective} from '../../directive/grid-custom-panel.directive';
-import {GridPanelContentDirective} from '../../directive/grid-panel-content.directive';
-import {ItskGridService} from '../../service/itsk-grid.service';
-import {ItskGridComponent} from '../itsk-grid/itsk-grid.component';
-import {IGridWrapper} from '../../model/grid/i-grid-wrapper';
-import {GridColumn} from '../../model/grid-column';
-import {FilterState} from '../../model/filter-state';
-import {DetailComponentBase} from '../../model/detail-component-base';
-import {AdditionalComponentBase} from '../../model/additional-component-base';
-import {AggregateComponentBase} from '../../model/aggregate-component-base';
-import {ItskGridEditType} from '../../model/enum/itsk-grid-edit-type.enum';
-import {ItskGridEditEvent} from '../../model/enum/itsk-grid-edit-event.enum';
-import {ItskGridEditMode} from '../../model/enum/itsk-grid-edit-mode.enum';
-import {Paging} from '../../../itsk-pager/model/paging';
-import {BooleanFunc, BooleanPromiseFunc} from '../../../../util/object-util';
-import {ICellCoordinates, ICellEvent} from '../../model/cell-coordinates';
-import {GroupingType} from '../../model/enum/grouping-type.enum';
-import {GroupRowComponentBase} from '../../model/group-row-component-base';
-import {GroupRowDefaultComponent} from '../row/group-row-default/group-row-default.component';
-import {ItskGridSelectRowsByType} from '../../model/enum/itsk-grid-select-rows-by-type';
-import {ItskGridSelectType} from '../../model/enum/itsk-grid-select-type';
+import { BooleanFunc, BooleanPromiseFunc } from '../../../../util/object-util';
+import { Paging } from '../../../itsk-pager/model/paging';
+import { GridCustomPanelDirective } from '../../directive/grid-custom-panel.directive';
+import { GridPanelButtonDirective } from '../../directive/grid-panel-button.directive';
+import { GridPanelContentDirective } from '../../directive/grid-panel-content.directive';
+import { AdditionalComponentBase } from '../../model/additional-component-base';
+import { AggregateComponentBase } from '../../model/aggregate-component-base';
+import { ICellCoordinates, ICellEvent } from '../../model/cell-coordinates';
+import { DetailComponentBase } from '../../model/detail-component-base';
+import { GroupingType } from '../../model/enum/grouping-type.enum';
+import { ItskGridEditEvent } from '../../model/enum/itsk-grid-edit-event.enum';
+import { ItskGridEditMode } from '../../model/enum/itsk-grid-edit-mode.enum';
+import { ItskGridEditType } from '../../model/enum/itsk-grid-edit-type.enum';
+import { ItskGridSelectRowsByType } from '../../model/enum/itsk-grid-select-rows-by-type';
+import { ItskGridSelectType } from '../../model/enum/itsk-grid-select-type';
+import { FilterState } from '../../model/filter-state';
+import { GridColumn } from '../../model/grid-column';
+import { GridRow, IId } from '../../model/grid-row';
+import { IGridWrapper } from '../../model/grid/i-grid-wrapper';
+import { GroupRowComponentBase } from '../../model/group-row-component-base';
+import { ItskGridService } from '../../service/itsk-grid.service';
+import { ItskGridComponent } from '../itsk-grid/itsk-grid.component';
+import { GroupRowDefaultComponent } from '../row/group-row-default/group-row-default.component';
 
 @Component({
   selector: 'itsk-grid-wrapper',
   templateUrl: './itsk-grid-wrapper.component.html',
   styleUrls: ['./itsk-grid-wrapper.component.scss'],
   providers: [ItskGridService],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskGridWrapperComponent<T extends IId> implements IGridWrapper<T> {
   @HostBinding('class.grid-wrapper') gridClass = true;
-  /**
-   * Данные для отображения в таблице
-   */
+  /** Данные для отображения в таблице */
   @Input() data?: GridRow<T>[];
   @Input() aggregate?: GridRow<T>;
 
   // hoveredColumn: string;
 
-  @ContentChildren(GridPanelButtonDirective, {descendants: false}) panelButtons?: QueryList<GridPanelButtonDirective>;
-  @ContentChildren(GridCustomPanelDirective, {descendants: false}) panelCustom?: QueryList<GridCustomPanelDirective>;
-  @ContentChild(GridPanelContentDirective, {static: false}) panelContent?: GridPanelContentDirective;
+  @ContentChildren(GridPanelButtonDirective, { descendants: false }) panelButtons?: QueryList<GridPanelButtonDirective>;
+  @ContentChildren(GridCustomPanelDirective, { descendants: false }) panelCustom?: QueryList<GridCustomPanelDirective>;
+  @ContentChild(GridPanelContentDirective, { static: false }) panelContent?: GridPanelContentDirective;
 
   @ViewChild(ItskGridComponent) grid?: ItskGridComponent<T>;
 
@@ -115,8 +113,7 @@ export class ItskGridWrapperComponent<T extends IId> implements IGridWrapper<T> 
   @Input() openLevels?: number;
   @Input() tree: boolean = false;
 
-  constructor() {
-  }
+  constructor() {}
 
   setShowFilter(val: boolean) {
     this.showFilter = val;
@@ -145,8 +142,7 @@ export class ItskGridWrapperComponent<T extends IId> implements IGridWrapper<T> 
 
   setState(state: FilterState) {
     this.state = new FilterState(state);
-    if(this.cookieName)
-    this.state.save(this.cookieName);
+    if (this.cookieName) this.state.save(this.cookieName);
     this.stateChange.emit(this.state);
   }
 }

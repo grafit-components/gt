@@ -1,15 +1,9 @@
 export class NumericFilterValue {
-  /**
-   * Значение должно быть меньше чем
-   */
+  /** Значение должно быть меньше чем */
   lessThan: number | null | undefined;
-  /**
-   * Значение должно быть больше чем
-   */
+  /** Значение должно быть больше чем */
   greaterThan: number | null | undefined;
-  /**
-   * Значение должно быть равно
-   */
+  /** Значение должно быть равно */
   equalsTo: number | null | undefined;
 
   constructor(options?: {

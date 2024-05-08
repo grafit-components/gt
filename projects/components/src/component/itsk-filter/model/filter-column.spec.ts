@@ -1,4 +1,4 @@
-import {FilterColumn} from './filter-column';
+import { FilterColumn } from './filter-column';
 
 describe('FilterField', () => {
   it('should create an instance', () => {

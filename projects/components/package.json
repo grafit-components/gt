@@ -32,7 +32,12 @@
   "sideEffects": false,
   "description": "Система проектирования интерфейсов",
   "homepage": "https://grafit-components.github.io/gt",
-  "keywords": ["angular", "grafit", "gt", "components"],
+  "keywords": [
+    "angular",
+    "grafit",
+    "gt",
+    "components"
+  ],
   "repository": {
     "url": "https://github.com/grafit-components/gt.git",
     "type": "git"

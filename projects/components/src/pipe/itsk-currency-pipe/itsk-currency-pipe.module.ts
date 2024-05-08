@@ -1,13 +1,10 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ItskCurrencyPipe} from './itsk-currency.pipe';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ItskCurrencyPipe } from './itsk-currency.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [ItskCurrencyPipe],
-  exports: [ItskCurrencyPipe]
+  exports: [ItskCurrencyPipe],
 })
-export class ItskCurrencyPipeModule {
-}
+export class ItskCurrencyPipeModule {}

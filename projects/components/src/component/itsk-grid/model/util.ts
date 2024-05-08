@@ -1,4 +1,4 @@
-import {GridColumn} from './grid-column';
+import { GridColumn } from './grid-column';
 
 export class GridUtil {
   static flattenColumns(columns: GridColumn[]): GridColumn[] {
@@ -22,5 +22,4 @@ export class GridUtil {
     }
     return result;
   }
-
 }

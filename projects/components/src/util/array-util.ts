@@ -1,7 +1,7 @@
 export class ArrayUtil {
   public static getSequence(start: number, end: number): number[] {
     if (end <= start) {
-      throw new Error(('Can\'t calculate sequence for given params'));
+      throw new Error("Can't calculate sequence for given params");
     }
     const sequence = [];
     for (let i = start; i <= end; i++) {

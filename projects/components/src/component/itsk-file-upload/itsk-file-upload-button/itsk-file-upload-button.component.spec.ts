@@ -8,9 +8,8 @@ describe('ItskFileUploadButtonComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItskFileUploadButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [ItskFileUploadButtonComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

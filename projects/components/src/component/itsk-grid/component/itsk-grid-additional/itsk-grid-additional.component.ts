@@ -6,17 +6,17 @@ import {
   Input,
   OnInit,
   Type,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
-import {GridRow, IId} from '../../model/grid-row';
-import {GridColumn} from '../../model/grid-column';
-import {AdditionalComponentBase} from '../../model/additional-component-base';
+import { AdditionalComponentBase } from '../../model/additional-component-base';
+import { GridColumn } from '../../model/grid-column';
+import { GridRow, IId } from '../../model/grid-row';
 
 @Component({
   selector: 'itsk-grid-additional',
   template: '',
   styleUrls: ['./itsk-grid-additional.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskGridAdditionalComponent<T extends IId> implements OnInit {
   private componentRef?: ComponentRef<any>;
@@ -36,16 +36,16 @@ export class ItskGridAdditionalComponent<T extends IId> implements OnInit {
 
   @Input() additionalComponent?: Type<AdditionalComponentBase<T>>;
 
-  constructor(private viewContainerRef: ViewContainerRef,
-              private componentFactoryResolver: ComponentFactoryResolver) {
-  }
+  constructor(
+    private viewContainerRef: ViewContainerRef,
+    private componentFactoryResolver: ComponentFactoryResolver,
+  ) {}
 
   ngOnInit() {
     if (!this.additionalComponent || !AdditionalComponentBase.isPrototypeOf(this.additionalComponent)) {
       throw new Error('Additional component must extend AdditionalComponentBase');
     }
-    const compFactory =
-      this.componentFactoryResolver.resolveComponentFactory<AdditionalComponentBase<T>>(this.additionalComponent);
+    const compFactory = this.componentFactoryResolver.resolveComponentFactory<AdditionalComponentBase<T>>(this.additionalComponent);
     this.componentRef = this.viewContainerRef.createComponent<AdditionalComponentBase<T>>(compFactory);
     this.componentRef.instance.locked = this.locked;
     this.componentRef.instance.row = this.row;

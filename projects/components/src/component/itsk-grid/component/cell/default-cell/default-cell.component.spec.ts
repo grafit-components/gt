@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import {DefaultCellComponent} from './default-cell.component';
+import { DefaultCellComponent } from './default-cell.component';
 
 describe('DefaultCellComponent', () => {
   let component: DefaultCellComponent<any>;
@@ -8,9 +8,8 @@ describe('DefaultCellComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [DefaultCellComponent]
-    })
-      .compileComponents();
+      declarations: [DefaultCellComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -8,9 +8,8 @@ describe('ItskMenuButtonComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItskMenuButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [ItskMenuButtonComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

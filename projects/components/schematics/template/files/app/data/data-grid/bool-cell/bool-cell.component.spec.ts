@@ -8,9 +8,8 @@ describe('BoolCellComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BoolCellComponent ]
-    })
-    .compileComponents();
+      declarations: [BoolCellComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

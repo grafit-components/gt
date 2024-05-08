@@ -1,7 +1,7 @@
-import {ItskCardComponent} from './itsk-card/itsk-card.component';
+import { ItskCardComponent } from './itsk-card/itsk-card.component';
 
-export default { title: 'Card' }
+export default { title: 'Card' };
 
 export const ItskCard = () => ({
-    component: ItskCardComponent
+  component: ItskCardComponent,
 });

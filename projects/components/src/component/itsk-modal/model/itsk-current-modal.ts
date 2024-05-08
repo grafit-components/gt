@@ -1,4 +1,4 @@
-import {IModalResult} from './imodal-result';
+import { IModalResult } from './imodal-result';
 
 export class ItskCurrentModal {
   close: (result?: IModalResult) => void = () => {};

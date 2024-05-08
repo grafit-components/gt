@@ -1,23 +1,23 @@
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  HostBinding,
-  Input,
   ChangeDetectorRef,
-  TemplateRef,
-  forwardRef,
-  HostListener,
+  Component,
+  ContentChild,
   ElementRef,
+  HostBinding,
+  HostListener,
+  Input,
+  OnInit,
+  TemplateRef,
   ViewChild,
-  ContentChild
+  forwardRef,
 } from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Subject, Subscription} from 'rxjs';
-import {debounceTime} from 'rxjs/operators';
-import {CdkVirtualScrollViewport} from '@angular/cdk/scrolling';
-import {ItskSelectValueDirective} from '../directive/itsk-select-value.directive';
-import {ItskSelectOptionDirective} from '../directive/itsk-select-option.directive';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { ItskSelectOptionDirective } from '../directive/itsk-select-option.directive';
+import { ItskSelectValueDirective } from '../directive/itsk-select-value.directive';
 
 enum ViewType {
   inline,
@@ -37,10 +37,10 @@ enum ViewType {
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ItskSelectComponent),
-      multi: true
+      multi: true,
     },
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskSelectComponent implements ControlValueAccessor, OnInit {
   private items$?: any[];
@@ -61,12 +61,11 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
   itemsCount = 0;
   private panelOpen$ = false;
 
+  @ViewChild('searchInput', { static: false }) private searchInput$?: ElementRef<HTMLInputElement>;
+  @ViewChild(CdkVirtualScrollViewport, { static: false }) private virtualViewport$?: CdkVirtualScrollViewport;
 
-  @ViewChild('searchInput', {static: false}) private searchInput$?: ElementRef<HTMLInputElement>;
-  @ViewChild(CdkVirtualScrollViewport, {static: false}) private virtualViewport$?: CdkVirtualScrollViewport;
-
-  @ContentChild(ItskSelectValueDirective, {static: true}) valueTemplate?: ItskSelectValueDirective;
-  @ContentChild(ItskSelectOptionDirective, {static: true}) optionTemplate?: ItskSelectOptionDirective;
+  @ContentChild(ItskSelectValueDirective, { static: true }) valueTemplate?: ItskSelectValueDirective;
+  @ContentChild(ItskSelectOptionDirective, { static: true }) optionTemplate?: ItskSelectOptionDirective;
 
   //#region Inputs
 
@@ -77,9 +76,7 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
   /** Высота в `px` элемента выпадающего списка */
   @Input() itemSize = 32;
 
-  /**
-   * Максимальная высота области прокрутки
-   */
+  /** Максимальная высота области прокрутки */
   @Input() height = this.itemSize * 8;
 
   @Input() fixed = false;
@@ -111,7 +108,6 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-
   /** Поиск по элементам */
   @Input() searchRef?: string | ((item: any) => string);
 
@@ -121,12 +117,11 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
   /** Для отображения выделенного */
   @Input() selectedRef?: TemplateRef<any> | 'block';
 
-  /** спользовать virtual scroll */
+  /** Спользовать virtual scroll */
   @Input() virtual = false;
 
   /** Возможность стереть значение(я) */
   @Input() showClearButton = false;
-
 
   private valueRef$ = (item: any) => item;
 
@@ -134,7 +129,7 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
   @Input() set valueRef(value: ((item: any) => any) | string) {
     switch (typeof value) {
       case 'string':
-        this.valueRef$ = item => this.fetchFromObject(item, value);
+        this.valueRef$ = (item) => this.fetchFromObject(item, value);
         break;
       case 'function':
         this.valueRef$ = value;
@@ -153,7 +148,7 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
     if (val instanceof TemplateRef) {
       this.textTemplate$ = val;
     }
-    if (typeof (val) === 'string') {
+    if (typeof val === 'string') {
       this.textPath$ = val;
     }
   }
@@ -173,7 +168,8 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
 
   /** Возможность множественного выбора, по умолчанию `false` */
   @HostBinding('class.select_multiple')
-  @Input() set multiple(value: boolean) {
+  @Input()
+  set multiple(value: boolean) {
     if (this.multiple$ !== value) {
       if (this.selectedItem$) {
         throw new Error('Нельзя менять режим `multiple` после инициализации');
@@ -205,47 +201,41 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
     return this.searchText$;
   }
 
-
   //#endregion
 
   //#region Angular
 
   constructor(
     private changeDetector: ChangeDetectorRef,
-    public elementRef: ElementRef
-  ) {
-  }
+    public elementRef: ElementRef,
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   //#endregion
 
   //#region ControlValueAccessor
 
-
   /** Writes a new value to the element. */
   writeValue(obj: any | any[]): void {
     this.rawNgModel$ = obj;
     if (this.multiple) {
-      this.selectedItem$ = obj && this.items ? this.items.filter(item => obj.indexOf(this.valueRef$(item)) > -1) : [];
+      this.selectedItem$ = obj && this.items ? this.items.filter((item) => obj.indexOf(this.valueRef$(item)) > -1) : [];
     } else {
-      this.selectedItem$ = this.items && this.items.find(item => this.valueRef$(item) === obj);
+      this.selectedItem$ = this.items && this.items.find((item) => this.valueRef$(item) === obj);
     }
     this.changeDetector.markForCheck();
   }
 
-  /** model callback вызовется когда модель измениться из ui */
-  onChange: (value: any) => void = () => {
-  };
+  /** Model callback вызовется когда модель измениться из ui */
+  onChange: (value: any) => void = () => {};
 
   /** Registers a callback function that should be called when the control's value changes in the UI */
   registerOnChange(fn: (value: any) => void): void {
     this.onChange = fn;
   }
 
-  onTouched = () => {
-  };
+  onTouched = () => {};
 
   /** Registers a callback function that should be called when the control receives a blur event. */
   registerOnTouched(fn: () => {}): void {
@@ -276,14 +266,11 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
     this.panelOpen$ = true;
     this.changeDetector.markForCheck();
     if (this.hasSearch) {
-      this.searchTextSubscription$ = this.searchTextSub$
-        .pipe(debounceTime(300))
-        .subscribe(text => this.search(text));
+      this.searchTextSubscription$ = this.searchTextSub$.pipe(debounceTime(300)).subscribe((text) => this.search(text));
 
       setTimeout(() => {
         this.searchInput$?.nativeElement.focus();
       }, 0);
-
     }
   }
 
@@ -318,7 +305,6 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
   }
 
   private fetchFromObject(obj: any, prop: string): any {
-
     if (typeof obj === 'undefined') {
       return null;
     }
@@ -389,8 +375,7 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
   }
 
   get hasValue() {
-    return this.multiple ? this.selectedItem$.length > 0 :
-        (this.selectedItem$ !== null && typeof this.selectedItem$ !== 'undefined');
+    return this.multiple ? this.selectedItem$.length > 0 : this.selectedItem$ !== null && typeof this.selectedItem$ !== 'undefined';
   }
 
   clear(event: MouseEvent) {
@@ -416,7 +401,7 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
 
   @HostListener('focusout', ['$event'])
   focusoutHandler(event: FocusEvent) {
-    if (this.focused$ && !event.relatedTarget || !this._isDescendant(this.elementRef.nativeElement, event.relatedTarget)) {
+    if ((this.focused$ && !event.relatedTarget) || !this._isDescendant(this.elementRef.nativeElement, event.relatedTarget)) {
       this.focused$ = false;
       this.close();
       this.onTouched();
@@ -443,7 +428,7 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
 
   //#region Поиск
 
-  private search(searchText: string|null) {
+  private search(searchText: string | null) {
     if (!this.items) {
       return;
     }
@@ -468,12 +453,11 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
       .toLowerCase()
       .replace(pattern, '\\$&')
       .split(' ')
-      .filter(t => t.length > 0)
-      .map(t => `(?=.*${t})`)
+      .filter((t) => t.length > 0)
+      .map((t) => `(?=.*${t})`)
       .join('');
 
-    this.viewItems$ = this.items.filter(
-      item => getSearchStr(item)?.search(new RegExp(searchWithOutRegExp, 'i')) > -1);
+    this.viewItems$ = this.items.filter((item) => getSearchStr(item)?.search(new RegExp(searchWithOutRegExp, 'i')) > -1);
 
     this.changeDetector.markForCheck();
   }

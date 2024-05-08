@@ -1,13 +1,10 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ItskClickOutsideDirective} from './itsk-click-outside.directive';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ItskClickOutsideDirective } from './itsk-click-outside.directive';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [ItskClickOutsideDirective],
-  exports: [ItskClickOutsideDirective]
+  exports: [ItskClickOutsideDirective],
 })
-export class ItskClickOutsideModule {
-}
+export class ItskClickOutsideModule {}

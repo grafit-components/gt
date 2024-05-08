@@ -1,23 +1,15 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  ViewChild
-} from '@angular/core';
-import {CellComponentBase} from '../../../model/cell-component-base';
-import {GridColumn} from '../../../model/grid-column';
-import {GridRow, IId} from '../../../model/grid-row';
-import {ItskGridService} from '../../../service/itsk-grid.service';
-import {ItskSelectComponent} from '../../../../itsk-select/itsk-select/itsk-select.component';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ItskSelectComponent } from '../../../../itsk-select/itsk-select/itsk-select.component';
+import { CellComponentBase } from '../../../model/cell-component-base';
+import { GridColumn } from '../../../model/grid-column';
+import { GridRow, IId } from '../../../model/grid-row';
+import { ItskGridService } from '../../../service/itsk-grid.service';
 
 @Component({
   selector: 'itsk-list-cell',
   templateUrl: './list-cell.component.html',
   styleUrls: ['./list-cell.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
   column$?: GridColumn;
@@ -46,12 +38,16 @@ export class ListCellComponent<T extends IId> extends CellComponentBase<T> imple
     return this.getValue();
   }
 
-  @ViewChild('input', {static: false}) input?: ItskSelectComponent;
+  @ViewChild('input', { static: false }) input?: ItskSelectComponent;
 
   // edit: boolean;
 
   getValue() {
-    if (this.column$?.filterOptions === null || this.column$?.filterOptions === undefined || !(this.column$.filterOptions instanceof Array)) {
+    if (
+      this.column$?.filterOptions === null ||
+      this.column$?.filterOptions === undefined ||
+      !(this.column$.filterOptions instanceof Array)
+    ) {
       return '';
     }
     const item = this.column$?.filterOptions.find((option) => {

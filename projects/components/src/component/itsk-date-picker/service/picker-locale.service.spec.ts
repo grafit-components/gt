@@ -4,7 +4,7 @@ import { PickerLocaleService } from './picker-locale.service';
 describe('PickerLocaleService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [PickerLocaleService]
+      providers: [PickerLocaleService],
     });
   });
 

@@ -1,12 +1,12 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FilterState, GridColumn, GridOfflineHelper, GridRow} from "@grafit/angular";
-import {DataModel} from "../../model/data-model";
-import {DataService} from "../../service/data.service";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FilterState, GridColumn, GridOfflineHelper, GridRow } from '@grafit/angular';
+import { DataModel } from '../../model/data-model';
+import { DataService } from '../../service/data.service';
 
 @Component({
   selector: 'app-data-grid',
   templateUrl: './data-grid.component.html',
-  styleUrls: ['./data-grid.component.styl']
+  styleUrls: ['./data-grid.component.styl'],
 })
 export class DataGridComponent implements OnInit {
   @Input() config: GridColumn[] = [];
@@ -28,10 +28,10 @@ export class DataGridComponent implements OnInit {
   filtered: GridRow<DataModel>[] = [];
 
   constructor(private svc: DataService) {
-    this.svc.data.subscribe(_ => {
+    this.svc.data.subscribe((_) => {
       this.data = _;
       this.filterData();
-    })
+    });
   }
 
   setState(state: FilterState) {
@@ -42,9 +42,8 @@ export class DataGridComponent implements OnInit {
   filterData() {
     let result = GridOfflineHelper.filterData(this.data, this.state);
     result = GridOfflineHelper.sortData(result, this.state);
-    this.filtered = result.map(_ => new GridRow<DataModel>(_));
+    this.filtered = result.map((_) => new GridRow<DataModel>(_));
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

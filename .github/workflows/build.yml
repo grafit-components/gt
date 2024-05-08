@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -15,21 +15,21 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
-          cache: 'npm'
+          node-version: "18.x"
+          cache: "npm"
       - name: Install packages
       - run: npm ci
       - name: Build components
       - run: npm run build components
       - name: Build app
       - run: npm run build app
-      
+
       # - name: Archive app artifacts
       #   uses: actions/upload-artifact@v3
       #   with:
       #     name: app
       #     path: dist/app
-          
+
       # - name: Archive components artifacts
       #   uses: actions/upload-artifact@v3
       #   with:

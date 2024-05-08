@@ -1,24 +1,16 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output
-} from '@angular/core';
-import {FilterComponentBase} from '../model/filter-component-base';
-import {NumericFilter} from '../model/numeric-filter';
-import {NumericFilterValue} from '../model/numeric-filter-value';
-import {FilterState} from '../../itsk-grid/model/filter-state';
-import {FilterBase} from '../model/filter-base';
-import {FilterColumn} from '../model/filter-column';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FilterState } from '../../itsk-grid/model/filter-state';
+import { FilterBase } from '../model/filter-base';
+import { FilterColumn } from '../model/filter-column';
+import { FilterComponentBase } from '../model/filter-component-base';
+import { NumericFilter } from '../model/numeric-filter';
+import { NumericFilterValue } from '../model/numeric-filter-value';
 
 @Component({
   selector: 'itsk-numeric-filter',
   templateUrl: './numeric-filter.component.html',
   styleUrls: ['./numeric-filter.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NumericFilterComponent extends FilterComponentBase implements OnInit {
   filter: NumericFilter = new NumericFilter();
@@ -52,11 +44,13 @@ export class NumericFilterComponent extends FilterComponentBase implements OnIni
       return f.fieldName === this.column.filterField;
     });
     if (filter === null || filter === undefined) {
-      filter = this.state.addNumericFilter(new NumericFilter({
-        value: new NumericFilterValue(),
-        fieldName: this.column.filterField,
-        name: this.column.name
-      }));
+      filter = this.state.addNumericFilter(
+        new NumericFilter({
+          value: new NumericFilterValue(),
+          fieldName: this.column.filterField,
+          name: this.column.name,
+        }),
+      );
     }
     return filter;
   }

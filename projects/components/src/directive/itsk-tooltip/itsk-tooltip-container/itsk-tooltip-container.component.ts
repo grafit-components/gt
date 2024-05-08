@@ -1,11 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {IItskTooltipConfig} from '../model/i-itsk-tooltip-config';
-import {ItskTooltipPosition} from '../model/itsk-tooltip-position.enum';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IItskTooltipConfig } from '../model/i-itsk-tooltip-config';
+import { ItskTooltipPosition } from '../model/itsk-tooltip-position.enum';
 
 @Component({
   selector: 'itsk-tooltip-container',
   templateUrl: './itsk-tooltip-container.component.html',
-  styleUrls: ['./itsk-tooltip-container.component.styl']
+  styleUrls: ['./itsk-tooltip-container.component.styl'],
 })
 export class ItskTooltipContainerComponent implements OnInit {
   ItskTooltipPosition = ItskTooltipPosition;
@@ -13,8 +13,7 @@ export class ItskTooltipContainerComponent implements OnInit {
   @Output() destroyed: EventEmitter<boolean> = new EventEmitter();
   ready: boolean = false;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     setTimeout(() => {

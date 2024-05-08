@@ -15,7 +15,8 @@
     @include baseRadius();
     z-index: 1;
 
-    &::before, &::after {
+    &::before,
+    &::after {
       position: absolute;
       display: block;
       content: '';

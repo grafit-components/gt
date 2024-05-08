@@ -1,120 +1,111 @@
-<itsk-dropdown
-        [autoClose]="true"
-        [(open)]="panelOpen"
-        [canOpen]="!disabled"
-        [fixed]="fixed">
-    <ng-template itskDropdownHead>
-        <div class="select__head"
-             [class.select__head_focus]="focused$"
-             [class.select__head-clear]="showClearButton && hasValue && !disabled"
-             [ngSwitch]="viewType">
-            <ng-container *ngIf="valueTemplate">
-                <ng-container
-                        *ngTemplateOutlet="valueTemplate.templateRef; context: {$implicit:selectedItem$}"></ng-container>
-            </ng-container>
-            <ng-container *ngSwitchCase="viewTypeEnum$.inline">
-                <ng-container
-                        *ngTemplateOutlet="textTemplate$ || defaultTextTemplate; context: {item : selectedItem$}"></ng-container>
-            </ng-container>
-            <ng-container *ngSwitchCase="viewTypeEnum$.template">
-                <ng-container *ngTemplateOutlet="selectedRef; context: {item : selectedItem$}"></ng-container>
-            </ng-container>
-            <ng-container *ngSwitchCase="viewTypeEnum$.inlineMulti">
-                    <span class="select__head__text container_auto"
-                          [title]="getInlineMulti()"
-                    >{{getInlineMulti()}}</span>
-            </ng-container>
-            <ng-container *ngSwitchCase="viewTypeEnum$.block">
-                <div class="select__values">
-                    <div class="select__values__title">Выбрано - {{selectedItem$.length}} из {{itemsCount}}</div>
-                    <div class="select__values__list">
-                        <div *ngFor="let item of selectedItem$"
-                             class="button_default margin-r-1 margin-b-1 padding-l-0">
-                            <div class="padding-2 container align-center"
-                                 *ngIf="!disabled"
-                                 (click)="_select(item); elementRef.nativeElement.focus(); $event.stopPropagation();"
-                                 tabindex="-1">
-                                <itsk-icon [name]="'icon-x-close-outline'"></itsk-icon>
-                            </div>
-                            <ng-container
-                                    *ngTemplateOutlet="textTemplate$ || defaultTextTemplate; context: {item : item}"></ng-container>
-                        </div>
-                    </div>
-                </div>
-            </ng-container>
-            <ng-container *ngSwitchCase="viewTypeEnum$.templateMulti">
-                <div style="display: flex;">
-                    <ng-container *ngFor="let item of selectedItem$">
-                        <ng-container *ngTemplateOutlet="selectedRef; context: {item : item}"></ng-container>
-                    </ng-container>
-                </div>
-            </ng-container>
-            <ng-container *ngSwitchCase="viewTypeEnum$.notSelected">
-                <span class="select_placeholder">{{placeholder}}</span>
-            </ng-container>
-            <ng-container *ngSwitchCase="viewTypeEnum$.notSelectedTemplate">
-                <ng-container *ngTemplateOutlet="placeholder"></ng-container>
-            </ng-container>
-            <itsk-icon [name]="'icon-x-close-outline'"
-                       class="select__icon-delete select__icon"
-                       *ngIf="showClearButton && hasValue && !disabled"
-                       (click)="clear($event)"
-            ></itsk-icon>
-            <itsk-icon [name]="'icon-triangle-down-arrow-filled'"
-                       class="select__icon"
-            ></itsk-icon>
-        </div>
-    </ng-template>
-    <ng-template itskDropdownContent>
-        <div class="options">
-            <div class="padding-3" *ngIf="hasSearch">
-                <input #searchInput
-                       class="input__field"
-                       type="search"
-                       [(ngModel)]="searchText"
-                       (focusout)="searchFocusout($event)"
-                       tabindex="-1">
+<itsk-dropdown [autoClose]="true" [(open)]="panelOpen" [canOpen]="!disabled" [fixed]="fixed">
+  <ng-template itskDropdownHead>
+    <div
+      class="select__head"
+      [class.select__head_focus]="focused$"
+      [class.select__head-clear]="showClearButton && hasValue && !disabled"
+      [ngSwitch]="viewType"
+    >
+      <ng-container *ngIf="valueTemplate">
+        <ng-container *ngTemplateOutlet="valueTemplate.templateRef; context: { $implicit: selectedItem$ }"></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="viewTypeEnum$.inline">
+        <ng-container *ngTemplateOutlet="textTemplate$ || defaultTextTemplate; context: { item: selectedItem$ }"></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="viewTypeEnum$.template">
+        <ng-container *ngTemplateOutlet="selectedRef; context: { item: selectedItem$ }"></ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="viewTypeEnum$.inlineMulti">
+        <span class="select__head__text container_auto" [title]="getInlineMulti()">{{ getInlineMulti() }}</span>
+      </ng-container>
+      <ng-container *ngSwitchCase="viewTypeEnum$.block">
+        <div class="select__values">
+          <div class="select__values__title">Выбрано - {{ selectedItem$.length }} из {{ itemsCount }}</div>
+          <div class="select__values__list">
+            <div *ngFor="let item of selectedItem$" class="button_default margin-r-1 margin-b-1 padding-l-0">
+              <div
+                class="padding-2 container align-center"
+                *ngIf="!disabled"
+                (click)="_select(item); elementRef.nativeElement.focus(); $event.stopPropagation()"
+                tabindex="-1"
+              >
+                <itsk-icon [name]="'icon-x-close-outline'"></itsk-icon>
+              </div>
+              <ng-container *ngTemplateOutlet="textTemplate$ || defaultTextTemplate; context: { item: item }"></ng-container>
             </div>
-            <div class="scrollbar" [style.max-height.px]="height" *ngIf="!virtual">
-                <div class="options__item"
-                     [class.options__item_active]="_isSelected(item)"
-                     [class.options__item_focus]="index==focusedIndex$"
-                     [style.height.px]="itemSize"
-                     (click)="_select(item)"
-                     [itskMark]="searchText"
-                     *ngFor="let item of viewItems$; let index = index;">
-                    <ng-container
-                            *ngTemplateOutlet="textTemplate$ || defaultTextTemplate; context: {item : item}"></ng-container>
-                </div>
-            </div>
-            <cdk-virtual-scroll-viewport
-                    *ngIf="virtual"
-                    class="scrollbar"
-                    [style.height.px]="height"
-                    [itemSize]="itemSize"
-                    minBufferPx="200" maxBufferPx="500">
-                <div class="options__item"
-                     [class.options__item_active]="_isSelected(item)"
-                     [class.options__item_focus]="index==focusedIndex$"
-                     (click)="_select(item)"
-                     [itskMark]="searchText"
-                     *cdkVirtualFor="let item of viewItems$; let index = index;templateCacheSize: 0;">
-                    <ng-container
-                            *ngTemplateOutlet="textTemplate$ || defaultTextTemplate; context: {item : item}"></ng-container>
-                    <itsk-icon
-                            name="icon-checkbox_marker-check-outline"
-                            class="options__item__checkbox"
-                            *ngIf="multiple && !textTemplate$ &&_isSelected(item)"
-                    ></itsk-icon>
-                    <ng-container *ngIf="optionTemplate">
-                        <ng-container
-                                *ngTemplateOutlet="optionTemplate.templateRef; context: {item : item}"></ng-container>
-                    </ng-container>
-                </div>
-            </cdk-virtual-scroll-viewport>
+          </div>
         </div>
-    </ng-template>
+      </ng-container>
+      <ng-container *ngSwitchCase="viewTypeEnum$.templateMulti">
+        <div style="display: flex">
+          <ng-container *ngFor="let item of selectedItem$">
+            <ng-container *ngTemplateOutlet="selectedRef; context: { item: item }"></ng-container>
+          </ng-container>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="viewTypeEnum$.notSelected">
+        <span class="select_placeholder">{{ placeholder }}</span>
+      </ng-container>
+      <ng-container *ngSwitchCase="viewTypeEnum$.notSelectedTemplate">
+        <ng-container *ngTemplateOutlet="placeholder"></ng-container>
+      </ng-container>
+      <itsk-icon
+        [name]="'icon-x-close-outline'"
+        class="select__icon-delete select__icon"
+        *ngIf="showClearButton && hasValue && !disabled"
+        (click)="clear($event)"
+      ></itsk-icon>
+      <itsk-icon [name]="'icon-triangle-down-arrow-filled'" class="select__icon"></itsk-icon>
+    </div>
+  </ng-template>
+  <ng-template itskDropdownContent>
+    <div class="options">
+      <div class="padding-3" *ngIf="hasSearch">
+        <input #searchInput class="input__field" type="search" [(ngModel)]="searchText" (focusout)="searchFocusout($event)" tabindex="-1" />
+      </div>
+      <div class="scrollbar" [style.max-height.px]="height" *ngIf="!virtual">
+        <div
+          class="options__item"
+          [class.options__item_active]="_isSelected(item)"
+          [class.options__item_focus]="index == focusedIndex$"
+          [style.height.px]="itemSize"
+          (click)="_select(item)"
+          [itskMark]="searchText"
+          *ngFor="let item of viewItems$; let index = index"
+        >
+          <ng-container *ngTemplateOutlet="textTemplate$ || defaultTextTemplate; context: { item: item }"></ng-container>
+        </div>
+      </div>
+      <cdk-virtual-scroll-viewport
+        *ngIf="virtual"
+        class="scrollbar"
+        [style.height.px]="height"
+        [itemSize]="itemSize"
+        minBufferPx="200"
+        maxBufferPx="500"
+      >
+        <div
+          class="options__item"
+          [class.options__item_active]="_isSelected(item)"
+          [class.options__item_focus]="index == focusedIndex$"
+          (click)="_select(item)"
+          [itskMark]="searchText"
+          *cdkVirtualFor="let item of viewItems$; let index = index; templateCacheSize: 0"
+        >
+          <ng-container *ngTemplateOutlet="textTemplate$ || defaultTextTemplate; context: { item: item }"></ng-container>
+          <itsk-icon
+            name="icon-checkbox_marker-check-outline"
+            class="options__item__checkbox"
+            *ngIf="multiple && !textTemplate$ && _isSelected(item)"
+          ></itsk-icon>
+          <ng-container *ngIf="optionTemplate">
+            <ng-container *ngTemplateOutlet="optionTemplate.templateRef; context: { item: item }"></ng-container>
+          </ng-container>
+        </div>
+      </cdk-virtual-scroll-viewport>
+    </div>
+  </ng-template>
 </itsk-dropdown>
 <ng-template #defaultTextTemplate let-item="item">
-    <span class="select__head__text container_auto" [title]="getText(item)">{{getText(item)}}</span>
+  <span class="select__head__text container_auto" [title]="getText(item)">{{ getText(item) }}</span>
 </ng-template>

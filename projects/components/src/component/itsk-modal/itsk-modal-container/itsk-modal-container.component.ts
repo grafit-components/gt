@@ -1,12 +1,12 @@
-import {Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnInit, Output} from '@angular/core';
-import {ItskModalConfig} from '../model/itsk-modal-config';
-import {IModalResult} from '../model/imodal-result';
-import {ItskModalCloseReason} from '../model/itsk-modal-close-reason.enum';
+import { Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnInit, Output } from '@angular/core';
+import { IModalResult } from '../model/imodal-result';
+import { ItskModalCloseReason } from '../model/itsk-modal-close-reason.enum';
+import { ItskModalConfig } from '../model/itsk-modal-config';
 
 @Component({
   selector: 'itsk-modal-container',
   templateUrl: './itsk-modal-container.component.html',
-  styleUrls: ['./itsk-modal-container.component.scss']
+  styleUrls: ['./itsk-modal-container.component.scss'],
 })
 export class ItskModalContainerComponent implements OnInit {
   @Input() config?: ItskModalConfig;
@@ -34,7 +34,7 @@ export class ItskModalContainerComponent implements OnInit {
 
       if (key === 'Escape' || key === 'Esc' || key === 27) {
         this.closeEvent.emit({
-          reason: ItskModalCloseReason.Esc
+          reason: ItskModalCloseReason.Esc,
         });
       }
     }
@@ -43,14 +43,12 @@ export class ItskModalContainerComponent implements OnInit {
   @HostListener('click', ['$event']) click(event: MouseEvent) {
     if (this.config?.backdrop === true && this.elRef$.nativeElement === event.target) {
       this.closeEvent.emit({
-        reason: ItskModalCloseReason.Backdrop
+        reason: ItskModalCloseReason.Backdrop,
       });
     }
   }
 
-  constructor(private elRef$: ElementRef) {
-  }
+  constructor(private elRef$: ElementRef) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

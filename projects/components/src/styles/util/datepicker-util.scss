@@ -4,7 +4,10 @@
 @import './button-util.scss';
 
 @mixin datepicker($blockItem) {
-  &.datepicker, &__datepicker, & .datepicker, & > .datepicker {
+  &.datepicker,
+  &__datepicker,
+  & .datepicker,
+  & > .datepicker {
     @include datePickerBlock($blockItem);
   }
 }

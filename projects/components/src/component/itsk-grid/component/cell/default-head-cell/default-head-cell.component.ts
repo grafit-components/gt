@@ -1,12 +1,12 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Input, OnInit} from '@angular/core';
-import {HeadCellComponentBase} from '../../../model/head-cell-component-base';
-import {GridColumn} from '../../../model/grid-column';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { GridColumn } from '../../../model/grid-column';
+import { HeadCellComponentBase } from '../../../model/head-cell-component-base';
 
 @Component({
   selector: 'itsk-default-head-cell',
   templateUrl: './default-head-cell.component.html',
   styleUrls: ['./default-head-cell.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DefaultHeadCellComponent extends HeadCellComponentBase implements OnInit {
   private column$?: GridColumn;
@@ -57,11 +57,9 @@ export class DefaultHeadCellComponent extends HeadCellComponentBase implements O
     return this.filtered$;
   }
 
-
   constructor(private cdr$: ChangeDetectorRef) {
     super();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }
