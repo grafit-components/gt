@@ -2,6 +2,7 @@
   class="menu__item"
   [class.menu__item_open]="isOpen"
   (mouseenter)="openItem(item$)"
+  (mouseleave)="clearTimeout()"
   (click)="navigate(item$)"
   [routerLinkActive]="'menu__item_active'"
   [routerLinkActiveOptions]="{ exact: item$.url === '' || item$.url === '/' || item$.match === 'exact' }"

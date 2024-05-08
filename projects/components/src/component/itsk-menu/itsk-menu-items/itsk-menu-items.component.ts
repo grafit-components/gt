@@ -78,6 +78,9 @@ export class ItskMenuItemsComponent<T extends IItskMenuItem> implements OnInit, 
   }
 
   openItem(item: T) {
+    if(this.openChild === item) {
+      return;
+    }
     if (this.openChild) {
       this.openChild.open = false;
     }
