@@ -21,8 +21,6 @@
         "$source": "projectName"
       }
     }
-   },
-  "required": [
-    "name"
-  ]
+  },
+  "required": ["name"]
 }

@@ -1,15 +1,12 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ItskCardComponent} from './itsk-card/itsk-card.component';
-import { ItskCardHeaderComponent } from './itsk-card-header/itsk-card-header.component';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { ItskCardContentComponent } from './itsk-card-content/itsk-card-content.component';
+import { ItskCardHeaderComponent } from './itsk-card-header/itsk-card-header.component';
+import { ItskCardComponent } from './itsk-card/itsk-card.component';
 
 @NgModule({
   declarations: [ItskCardComponent, ItskCardHeaderComponent, ItskCardContentComponent],
   exports: [ItskCardComponent, ItskCardHeaderComponent, ItskCardContentComponent],
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule],
 })
-export class ItskCardModule {
-}
+export class ItskCardModule {}

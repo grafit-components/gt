@@ -1,4 +1,4 @@
-import {ItskHintDirective} from './itsk-hint.directive';
+import { ItskHintDirective } from './itsk-hint.directive';
 
 describe('ItskHintDirective', () => {
   it('should create an instance', () => {

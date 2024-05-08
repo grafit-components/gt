@@ -1,11 +1,11 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {iconName} from '../icon-name';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { iconName } from '../icon-name';
 
 @Component({
   selector: 'itsk-icon',
   templateUrl: './itsk-icon.component.html',
   styleUrls: ['./itsk-icon.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskIconComponent implements OnInit {
   @Input()
@@ -18,9 +18,7 @@ export class ItskIconComponent implements OnInit {
   @Input()
   cssClass?: string;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

@@ -43,7 +43,8 @@
     background: darkOrLight($color, 10%);
   }
 
-  &_disabled, &[disabled] {
+  &_disabled,
+  &[disabled] {
     opacity: 0.6;
     &:hover {
       background: $color;

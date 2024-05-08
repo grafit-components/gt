@@ -8,15 +8,15 @@ import {
   Input,
   OnDestroy,
   TemplateRef,
-  Type
+  Type,
 } from '@angular/core';
-import {DynamicComponentFactory} from '../../common/util/dynamic-component-factory';
-import {ItskHintContainerComponent} from './itsk-hint-container/itsk-hint-container.component';
-import {OverlayContainerService} from '../../common/service/overlay-container.service';
-import {getRealPosition} from '../../util/dom-util';
+import { OverlayContainerService } from '../../common/service/overlay-container.service';
+import { DynamicComponentFactory } from '../../common/util/dynamic-component-factory';
+import { getRealPosition } from '../../util/dom-util';
+import { ItskHintContainerComponent } from './itsk-hint-container/itsk-hint-container.component';
 
 @Directive({
-  selector: '[itskHint]'
+  selector: '[itskHint]',
 })
 export class ItskHintDirective implements OnDestroy {
   @HostBinding('class.position-relative') relative = true;
@@ -41,10 +41,12 @@ export class ItskHintDirective implements OnDestroy {
     this.destroy();
   }
 
-  constructor(private elementRef$: ElementRef,
-              private injector$: Injector,
-              private factory$: DynamicComponentFactory,
-              private overlay$: OverlayContainerService) {
+  constructor(
+    private elementRef$: ElementRef,
+    private injector$: Injector,
+    private factory$: DynamicComponentFactory,
+    private overlay$: OverlayContainerService,
+  ) {
     this.element$ = this.elementRef$.nativeElement;
   }
 
@@ -52,9 +54,7 @@ export class ItskHintDirective implements OnDestroy {
     this.destroy();
   }
 
-  create(content: string | TemplateRef<any> | Type<any>,
-         data?: any,
-         injector?: Injector): ComponentRef<ItskHintContainerComponent> {
+  create(content: string | TemplateRef<any> | Type<any>, data?: any, injector?: Injector): ComponentRef<ItskHintContainerComponent> {
     if (content === null || content === undefined) {
       throw new Error('Specify template or component to render');
     }
@@ -62,13 +62,9 @@ export class ItskHintDirective implements OnDestroy {
       injector = this.injector$;
     }
     const contentInstance = this.factory$.createContent(content, injector);
-    const hint = this.factory$.createComponent(ItskHintContainerComponent,
-      contentInstance,
-      injector,
-      this.overlay$.getContainer());
+    const hint = this.factory$.createComponent(ItskHintContainerComponent, contentInstance, injector, this.overlay$.getContainer());
     const rect = getRealPosition(this.element$);
-    if(this.itskHintClass)
-    hint.instance.class = this.itskHintClass;
+    if (this.itskHintClass) hint.instance.class = this.itskHintClass;
     hint.instance.zIndex = this.zIndex;
     hint.instance.bottom = window.innerHeight - rect.top;
     hint.instance.left = rect.left;

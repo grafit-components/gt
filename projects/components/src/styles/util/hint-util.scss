@@ -2,7 +2,9 @@
 
 @mixin hint($blockItem) {
   @each $accentName, $accent in $blockItem {
-    &__hint__container_#{$accentName}, &.hint__container_#{$accentName}, & .hint__container_#{$accentName} {
+    &__hint__container_#{$accentName},
+    &.hint__container_#{$accentName},
+    & .hint__container_#{$accentName} {
       @include baseShape($accent);
     }
   }

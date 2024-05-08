@@ -1,9 +1,6 @@
-import {
-  Component, OnInit, ChangeDetectionStrategy,
-  ChangeDetectorRef, Input, forwardRef, HostBinding, HostListener
-} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {ItskRadioButtonComponent} from '../itsk-radio-button/itsk-radio-button.component';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, HostListener, Input, OnInit, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ItskRadioButtonComponent } from '../itsk-radio-button/itsk-radio-button.component';
 
 type ButtonOrNullOrUndefined = ItskRadioButtonComponent | undefined | null;
 
@@ -15,13 +12,12 @@ type ButtonOrNullOrUndefined = ItskRadioButtonComponent | undefined | null;
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ItskRadioComponent),
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskRadioComponent implements OnInit, ControlValueAccessor {
-
   //#region Props
   private buttons$: ItskRadioButtonComponent[] = [];
   private checkedButton$: ButtonOrNullOrUndefined;
@@ -37,13 +33,14 @@ export class ItskRadioComponent implements OnInit, ControlValueAccessor {
 
   /** Менять значение при изменении выбранного */
   @Input()
-  @HostBinding('class.radio_inline') inline: boolean = false;
+  @HostBinding('class.radio_inline')
+  inline: boolean = false;
 
   @Input() checkChangeSelected = true;
 
   @Input() set disabled(val: boolean) {
     this.disabled$ = val;
-    this.buttons$.forEach(b => b.disabled = this.disabled);
+    this.buttons$.forEach((b) => (b.disabled = this.disabled));
   }
 
   get disabled() {
@@ -61,17 +58,12 @@ export class ItskRadioComponent implements OnInit, ControlValueAccessor {
     this.writeValue(val);
   }
 
-
   //#endregion
 
   //#region Angular
-  constructor(
-    private changeDetector: ChangeDetectorRef
-  ) {
-  }
+  constructor(private changeDetector: ChangeDetectorRef) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   //#endregion
 
@@ -254,24 +246,22 @@ export class ItskRadioComponent implements OnInit, ControlValueAccessor {
       this.checkedButton$.checked = false;
     }
 
-    this.checkedButton$ = this.buttons$.find(b => b.value === obj);
+    this.checkedButton$ = this.buttons$.find((b) => b.value === obj);
     if (this.checkedButton$) {
       this.checkedButton$.checked = true;
     }
     this.changeDetector.markForCheck();
   }
 
-  /** model callback вызовется когда модель измениться из ui */
-  _onChange: (value: any) => void = () => {
-  };
+  /** Model callback вызовется когда модель измениться из ui */
+  _onChange: (value: any) => void = () => {};
 
   /** Registers a callback function that should be called when the control's value changes in the UI */
   registerOnChange(fn: (value: any) => void): void {
     this._onChange = fn;
   }
 
-  _onTouched = () => {
-  };
+  _onTouched = () => {};
 
   /** Registers a callback function that should be called when the control receives a blur event. */
   registerOnTouched(fn: () => {}): void {
@@ -285,5 +275,4 @@ export class ItskRadioComponent implements OnInit, ControlValueAccessor {
   }
 
   //#endregion
-
 }

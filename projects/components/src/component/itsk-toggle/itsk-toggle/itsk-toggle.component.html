@@ -1,19 +1,9 @@
-<span class="toggle__icon"
-      [ngStyle]="getStyle()"
-      [class.toggle__icon_checked]="value$"
-      *ngIf="!leftLabel">
-    <span class="toggle__icon__circle"
-          [class.toggle__icon__circle_checked]="value$"
-          [class.toggle__icon__circle_unchecked]="!value$"></span>
-  </span>
+<span class="toggle__icon" [ngStyle]="getStyle()" [class.toggle__icon_checked]="value$" *ngIf="!leftLabel">
+  <span class="toggle__icon__circle" [class.toggle__icon__circle_checked]="value$" [class.toggle__icon__circle_unchecked]="!value$"></span>
+</span>
 <span class="toggle__label" [class.toggle__label_left]="leftLabel">
-    <ng-content></ng-content>
-  </span>
-<span class="toggle__icon"
-      [ngStyle]="getStyle()"
-      [class.toggle__icon_checked]="value$"
-      *ngIf="leftLabel">
-  <span class="toggle__icon__circle"
-        [class.toggle__icon__circle_checked]="value$"
-        [class.toggle__icon__circle_unchecked]="!value$"></span>
+  <ng-content></ng-content>
+</span>
+<span class="toggle__icon" [ngStyle]="getStyle()" [class.toggle__icon_checked]="value$" *ngIf="leftLabel">
+  <span class="toggle__icon__circle" [class.toggle__icon__circle_checked]="value$" [class.toggle__icon__circle_unchecked]="!value$"></span>
 </span>

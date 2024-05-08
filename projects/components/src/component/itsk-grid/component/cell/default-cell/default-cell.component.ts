@@ -1,27 +1,19 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  ViewChild
-} from '@angular/core';
-import {CellComponentBase} from '../../../model/cell-component-base';
-import {GridColumn} from '../../../model/grid-column';
-import {GridRow, IId} from '../../../model/grid-row';
-import {ItskGridService} from '../../../service/itsk-grid.service';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { CellComponentBase } from '../../../model/cell-component-base';
+import { GridColumn } from '../../../model/grid-column';
+import { GridRow, IId } from '../../../model/grid-row';
+import { ItskGridService } from '../../../service/itsk-grid.service';
 
 @Component({
   selector: 'itsk-default-cell',
   templateUrl: './default-cell.component.html',
   styleUrls: ['./default-cell.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DefaultCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
   @Input() column?: GridColumn;
   @Input() row?: GridRow<T>;
-  @ViewChild('input', {static: false}) input?: ElementRef;
+  @ViewChild('input', { static: false }) input?: ElementRef;
 
   // edit: boolean;
 

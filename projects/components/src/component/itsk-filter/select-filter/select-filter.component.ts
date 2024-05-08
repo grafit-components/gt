@@ -1,25 +1,16 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output
-} from '@angular/core';
-import {FilterComponentBase} from '../model/filter-component-base';
-import {ListFilter} from '../model/list-filter';
-import {FilterColumn} from '../model/filter-column';
-import {FilterBase} from '../model/filter-base';
-import {FilterState} from '../../itsk-grid/model/filter-state';
-import {ListFilterType} from '../model/enum/list-filter-type.enum';
-import {GridColumn} from "../../itsk-grid/model/grid-column";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FilterState } from '../../itsk-grid/model/filter-state';
+import { ListFilterType } from '../model/enum/list-filter-type.enum';
+import { FilterBase } from '../model/filter-base';
+import { FilterColumn } from '../model/filter-column';
+import { FilterComponentBase } from '../model/filter-component-base';
+import { ListFilter } from '../model/list-filter';
 
 @Component({
   selector: 'itsk-select-filter',
   templateUrl: './select-filter.component.html',
   styleUrls: ['./select-filter.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectFilterComponent extends FilterComponentBase implements OnInit {
   filter: ListFilter = new ListFilter();
@@ -46,8 +37,7 @@ export class SelectFilterComponent extends FilterComponentBase implements OnInit
     super();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   setType() {
     this.excluded = !this.excluded;
@@ -64,12 +54,14 @@ export class SelectFilterComponent extends FilterComponentBase implements OnInit
       return f.fieldName === this.column.filterField;
     });
     if (!filter) {
-      filter = this.state.addListFilter(new ListFilter({
-        fieldName: this.column.filterField,
-        value: [],
-        type: this.column.listFilterType,
-        name: this.column.name
-      }));
+      filter = this.state.addListFilter(
+        new ListFilter({
+          fieldName: this.column.filterField,
+          value: [],
+          type: this.column.listFilterType,
+          name: this.column.name,
+        }),
+      );
     }
     this.excluded = filter.type === ListFilterType.Excluded;
     return filter;

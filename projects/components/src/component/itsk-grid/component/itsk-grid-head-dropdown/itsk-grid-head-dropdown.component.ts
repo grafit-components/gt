@@ -1,27 +1,19 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  Input,
-  OnDestroy,
-  OnInit
-} from '@angular/core';
-import {GridColumn} from '../../model/grid-column';
-import {ItskGridService} from '../../service/itsk-grid.service';
-import {ItskGridDictionary} from '../../model/itsk-grid-dictionary';
-import {Observable} from 'rxjs';
-import {FilterState} from '../../model/filter-state';
-import {ItskGridConfigService} from '../../service/itsk-grid-config.service';
-import {ClickOutsideBase} from '../../../../directive/itsk-click-outside/click-outside-base';
-import {IId} from '../../model/grid-row';
-import {takeWhile} from 'rxjs/operators';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { takeWhile } from 'rxjs/operators';
+import { ClickOutsideBase } from '../../../../directive/itsk-click-outside/click-outside-base';
+import { FilterState } from '../../model/filter-state';
+import { GridColumn } from '../../model/grid-column';
+import { IId } from '../../model/grid-row';
+import { ItskGridDictionary } from '../../model/itsk-grid-dictionary';
+import { ItskGridConfigService } from '../../service/itsk-grid-config.service';
+import { ItskGridService } from '../../service/itsk-grid.service';
 
 @Component({
   selector: 'itsk-grid-head-dropdown',
   templateUrl: './itsk-grid-head-dropdown.component.html',
   styleUrls: ['./itsk-grid-head-dropdown.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskGridHeadDropdownComponent<T extends IId> extends ClickOutsideBase implements OnInit, OnDestroy {
   private subs = true;
@@ -69,21 +61,23 @@ export class ItskGridHeadDropdownComponent<T extends IId> extends ClickOutsideBa
 
   dict: Observable<ItskGridDictionary>;
 
-  constructor(private svc$: ItskGridService<T>,
-              private cdr$: ChangeDetectorRef,
-              private config$: ItskGridConfigService,
-              private element$: ElementRef) {
+  constructor(
+    private svc$: ItskGridService<T>,
+    private cdr$: ChangeDetectorRef,
+    private config$: ItskGridConfigService,
+    private element$: ElementRef,
+  ) {
     super(element$.nativeElement);
     this.dict = this.config$.dict;
   }
 
   ngOnInit() {
-    this.svc$.columnMenu.pipe(takeWhile(_ => this.subs)).subscribe((data) => {
+    this.svc$.columnMenu.pipe(takeWhile((_) => this.subs)).subscribe((data) => {
       this.position$ = data.position;
       this.setPosition();
       this.column = data.column;
     });
-    this.svc$.columns.pipe(takeWhile(_ => this.subs)).subscribe((columns) => {
+    this.svc$.columns.pipe(takeWhile((_) => this.subs)).subscribe((columns) => {
       this.allColumns = columns;
     });
   }
@@ -102,8 +96,7 @@ export class ItskGridHeadDropdownComponent<T extends IId> extends ClickOutsideBa
   }
 
   applyFilter(event: MouseEvent) {
-    if (this.state$)
-    this.svc$.setState(this.state$);
+    if (this.state$) this.svc$.setState(this.state$);
   }
 
   changeColumns(event: GridColumn[]) {
@@ -115,7 +108,7 @@ export class ItskGridHeadDropdownComponent<T extends IId> extends ClickOutsideBa
   };
 
   private setPosition() {
-    if(!this.position$) return;
+    if (!this.position$) return;
     const leftPosition = this.position$.left + window.pageXOffset;
     const topPosition = this.position$.bottom + window.pageYOffset;
     const pageWidth = window.innerWidth;

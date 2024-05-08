@@ -1,20 +1,18 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
-import {Paging} from '../model/paging';
-import {Observable} from 'rxjs';
-import {ItskPagerConfig} from '../model/itsk-pager-config';
-import {ItskPagerConfigService} from '../itsk-pager-config.service';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ItskPagerConfigService } from '../itsk-pager-config.service';
+import { ItskPagerConfig } from '../model/itsk-pager-config';
+import { Paging } from '../model/paging';
 
 @Component({
   selector: 'itsk-pager',
   templateUrl: './itsk-pager.component.html',
   styleUrls: ['./itsk-pager.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskPagerComponent implements OnInit {
-  /**
-   * Настройки пагинатора
-   */
+  /** Настройки пагинатора */
   private paging$: Paging = new Paging();
   @HostBinding('class.pager') pagerClass = true;
 
@@ -39,16 +37,12 @@ export class ItskPagerComponent implements OnInit {
     return [25, 50, 75, 100];
   }
 
-  /**
-   * Обратный вызов обновления настроек пагинатора
-   */
+  /** Обратный вызов обновления настроек пагинатора */
   @Output() pagingChange = new EventEmitter<any>();
 
   pageNum: number = 0;
 
-  /**
-   * Выбор страницы в процессе
-   */
+  /** Выбор страницы в процессе */
   pageSelection = false;
 
   config: Observable<ItskPagerConfig>;
@@ -67,21 +61,21 @@ export class ItskPagerComponent implements OnInit {
   }
 
   paginateToPage(page: number) {
-    this.paginate(Object.assign(
-      this.paging,
-      {
-        page
-      }));
+    this.paginate(
+      Object.assign(this.paging, {
+        page,
+      }),
+    );
   }
 
   setPageSize(pageSize: number) {
-    this.paginate(Object.assign(
-      this.paging,
-      {
+    this.paginate(
+      Object.assign(this.paging, {
         pageSize,
         count: Math.ceil(this.paging.totalCount / pageSize),
-        page: 0
-      }));
+        page: 0,
+      }),
+    );
     this.endPageSelection();
   }
 

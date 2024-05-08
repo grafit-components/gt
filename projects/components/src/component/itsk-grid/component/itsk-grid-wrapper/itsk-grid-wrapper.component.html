@@ -3,21 +3,19 @@
   class="grid-wrapper__panel"
   [panelButtons]="panelButtons"
   [panelContent]="panelContent"
-
   [showDetails]="showDetails"
   [showFilter]="showFilter"
   [showColumns]="showColumns"
   [showCustom]="showCustom"
-
   [showDetailsButton]="showDetailsButton"
   [showFilterButton]="showFilterButton"
   [showColumnsButton]="showColumnsButton"
   [detailComponent]="detailComponent"
-
   (showDetailsChange)="setShowDetails($event)"
   (showFilterChange)="setShowFilter($event)"
   (showColumnsChange)="setShowColumns($event)"
-  (showCustomChange)="setShowCustom($event)">
+  (showCustomChange)="setShowCustom($event)"
+>
 </itsk-grid-panel>
 <div class="grid-wrapper__container">
   <div class="grid-wrapper__sidebar" *ngIf="showFilter || showColumns || showCustom">
@@ -26,12 +24,14 @@
       *ngIf="showFilter"
       [columns]="columns"
       [state]="state"
-      (stateChange)="setState($event)"></itsk-filter-panel>
+      (stateChange)="setState($event)"
+    ></itsk-filter-panel>
     <itsk-grid-columns-settings
       class="container container_column container_auto scrollbar"
       *ngIf="showColumns"
       [columns]="columns"
-      (columnsChange)="columns=$event"></itsk-grid-columns-settings>
+      (columnsChange)="columns = $event"
+    ></itsk-grid-columns-settings>
     <ng-container *ngIf="showCustom">
       <ng-container *ngFor="let custom of panelCustom">
         <ng-template [ngTemplateOutlet]="custom.templateRef"></ng-template>
@@ -46,13 +46,13 @@
     [data]="data"
     [columns]="columns"
     [activeRow]="activeRow"
-    (activeRowChange)="activeRow = $event;activeRowChange.emit($event)"
+    (activeRowChange)="activeRow = $event; activeRowChange.emit($event)"
     [selectedRows]="selectedRows"
     (selectedRowsChange)="selectedRows = $event; selectedRowsChange.emit($event)"
     [selectRowsBy]="selectRowsBy"
     [selectType]="selectType"
     [state]="state"
-    (stateChange)="state = $event;stateChange.emit($event)"
+    (stateChange)="state = $event; stateChange.emit($event)"
     (rowClick)="rowClick.emit($event)"
     (rowDoubleClick)="rowDoubleClick.emit($event)"
     (rowLeft)="rowLeft.emit($event)"
@@ -79,17 +79,13 @@
     [rowEditable]="rowEditable"
     [cellEditable]="cellEditable"
     [rowSelectable]="rowSelectable"
-    [stateful]="stateful">
+    [stateful]="stateful"
+  >
   </itsk-grid>
   <div class="grid-wrapper__sidebar grid-wrapper__sidebar_detail" *ngIf="showDetails && detailComponent">
-    <itsk-grid-detail
-      [row]="activeRow"
-      [columns]="columns"
-      [detailComponent]="detailComponent"></itsk-grid-detail>
+    <itsk-grid-detail [row]="activeRow" [columns]="columns" [detailComponent]="detailComponent"></itsk-grid-detail>
   </div>
 </div>
 <div class="grid-wrapper__pager" *ngIf="showPager">
-  <itsk-pager
-    [paging]="paging"
-    (pagingChange)="updatePaging($event)"></itsk-pager>
+  <itsk-pager [paging]="paging" (pagingChange)="updatePaging($event)"></itsk-pager>
 </div>

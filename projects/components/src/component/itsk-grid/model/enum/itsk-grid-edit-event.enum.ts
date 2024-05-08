@@ -3,5 +3,5 @@ export enum ItskGridEditEvent {
   DoubleClick,
   Focus,
   None,
-  Enter
+  Enter,
 }

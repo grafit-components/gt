@@ -1,9 +1,9 @@
-import {ItskTabsModule} from './itsk-tabs.module';
+import { ItskTabsModule } from './itsk-tabs.module';
 
-export default { title: 'Tabs (old)' }
+export default { title: 'Tabs (old)' };
 
 export const itskTabs = () => ({
-    template: `<itsk-tabs>
+  template: `<itsk-tabs>
         <itsk-tab>
           <ng-template itskTabTitle>
             First tab
@@ -23,7 +23,7 @@ export const itskTabs = () => ({
           </ng-template>
         </itsk-tab>
       </itsk-tabs>`,
-    moduleMetadata: {
-      imports: [ItskTabsModule]
-    }
+  moduleMetadata: {
+    imports: [ItskTabsModule],
+  },
 });

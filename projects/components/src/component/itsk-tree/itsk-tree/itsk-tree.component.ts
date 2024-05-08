@@ -1,35 +1,28 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, ContentChild, HostBinding, Input, OnInit} from '@angular/core';
-import {ItskTreeControl} from '../model/itsk-tree-control';
-import {ItskTreeTemplateDirective} from '../itsk-tree-template.directive';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChild, HostBinding, Input, OnInit } from '@angular/core';
+import { ItskTreeTemplateDirective } from '../itsk-tree-template.directive';
+import { ItskTreeControl } from '../model/itsk-tree-control';
 
 @Component({
   selector: 'itsk-tree',
   templateUrl: './itsk-tree.component.html',
   styleUrls: ['./itsk-tree.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskTreeComponent implements OnInit, AfterViewInit {
-  /**
-   * Tree data
-   */
+  /** Tree data */
   @Input() data: any[] = [];
 
-  /**
-   * All child nodes are open at the beginning
-   */
+  /** All child nodes are open at the beginning */
   @Input() open: boolean = false;
 
-  /**
-   * All child nodes are open at the beginning
-   */
+  /** All child nodes are open at the beginning */
   @Input() control?: ItskTreeControl;
 
   @HostBinding('class.tree__container') treeContainer = true;
 
-  @ContentChild(ItskTreeTemplateDirective, {static: false}) template?: ItskTreeTemplateDirective;
+  @ContentChild(ItskTreeTemplateDirective, { static: false }) template?: ItskTreeTemplateDirective;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     if (this.control === null || this.control === undefined) {
@@ -37,6 +30,5 @@ export class ItskTreeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngAfterViewInit(): void {
-  }
+  ngAfterViewInit(): void {}
 }

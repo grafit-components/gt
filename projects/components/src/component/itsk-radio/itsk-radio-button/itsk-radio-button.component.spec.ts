@@ -8,9 +8,8 @@ describe('ItskRadioButtonComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItskRadioButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [ItskRadioButtonComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

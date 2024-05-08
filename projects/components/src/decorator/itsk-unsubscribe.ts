@@ -5,10 +5,8 @@ const doUnsubscribe = (property: any) => {
   }
 };
 
-/**
- * Clears subscription objects of your component
- */
-export function ItskUnsubscribe({watchArrays = false}) {
+/** Clears subscription objects of your component */
+export function ItskUnsubscribe({ watchArrays = false }) {
   return (target: any) => {
     const onDestroy = target.prototype.ngOnDestroy;
 
@@ -16,7 +14,7 @@ export function ItskUnsubscribe({watchArrays = false}) {
       throw new Error('@ItskUnsubscribe on class that does not implement OnDestroy');
     }
 
-    target.prototype.ngOnDestroy = function() {
+    target.prototype.ngOnDestroy = function () {
       for (const key in this) {
         if (this.hasOwnProperty(key)) {
           const prop = this[key];

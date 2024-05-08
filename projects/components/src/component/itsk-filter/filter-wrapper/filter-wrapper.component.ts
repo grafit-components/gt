@@ -1,29 +1,34 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
-  ComponentFactoryResolver, ComponentRef,
+  ComponentFactoryResolver,
+  ComponentRef,
   EventEmitter,
-  Input, OnChanges, OnDestroy,
+  Input,
+  OnChanges,
+  OnDestroy,
   OnInit,
-  Output, SimpleChanges,
-  ViewContainerRef
+  Output,
+  SimpleChanges,
+  ViewContainerRef,
 } from '@angular/core';
-import {FilterComponentBase} from '../model/filter-component-base';
-import {FilterState} from '../../itsk-grid/model/filter-state';
-import {FilterBase} from '../model/filter-base';
-import {takeWhile} from 'rxjs/operators';
-import {FilterColumn} from '../model/filter-column';
-import {FilterType} from '../model/enum/filter-type.enum';
-import {NumericFilterComponent} from '../numeric-filter/numeric-filter.component';
-import {ListFilterComponent} from '../list-filter/list-filter.component';
-import {DateFilterComponent} from '../date-filter/date-filter.component';
-import {StringFilterComponent} from '../string-filter/string-filter.component';
+import { takeWhile } from 'rxjs/operators';
+import { FilterState } from '../../itsk-grid/model/filter-state';
+import { DateFilterComponent } from '../date-filter/date-filter.component';
+import { ListFilterComponent } from '../list-filter/list-filter.component';
+import { FilterType } from '../model/enum/filter-type.enum';
+import { FilterBase } from '../model/filter-base';
+import { FilterColumn } from '../model/filter-column';
+import { FilterComponentBase } from '../model/filter-component-base';
+import { NumericFilterComponent } from '../numeric-filter/numeric-filter.component';
+import { StringFilterComponent } from '../string-filter/string-filter.component';
 
 @Component({
   selector: 'itsk-filter-wrapper',
   template: '',
   styleUrls: ['./filter-wrapper.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterWrapperComponent implements OnInit, OnDestroy, OnChanges {
   private subs = true;
@@ -54,20 +59,23 @@ export class FilterWrapperComponent implements OnInit, OnDestroy, OnChanges {
   private componentRef?: ComponentRef<any>;
   private init: boolean = false;
 
-  constructor(private viewContainerRef: ViewContainerRef,
-              private componentFactoryResolver: ComponentFactoryResolver) {
-  }
+  constructor(
+    private viewContainerRef: ViewContainerRef,
+    private componentFactoryResolver: ComponentFactoryResolver,
+  ) {}
 
-  ngOnChanges(changes: SimpleChanges) {
-  }
+  ngOnChanges(changes: SimpleChanges) {}
 
   private getFilterComponent(column: FilterColumn) {
-    if (column.filterComponent === null || column.filterComponent === undefined
-      || !FilterComponentBase.isPrototypeOf(column.filterComponent)) {
+    if (
+      column.filterComponent === null ||
+      column.filterComponent === undefined ||
+      !FilterComponentBase.isPrototypeOf(column.filterComponent)
+    ) {
       switch (column.filterType) {
-        case FilterType.Number :
+        case FilterType.Number:
           return NumericFilterComponent;
-        case FilterType.List :
+        case FilterType.List:
           return ListFilterComponent;
         case FilterType.Date:
           return DateFilterComponent;
@@ -85,7 +93,7 @@ export class FilterWrapperComponent implements OnInit, OnDestroy, OnChanges {
     this.componentRef.instance.column = this.column$;
     this.componentRef.instance.state = this.state$;
     this.init = true;
-    this.componentRef.instance.filterChanged.pipe(takeWhile(_ => this.subs)).subscribe((filter: FilterBase) => {
+    this.componentRef.instance.filterChanged.pipe(takeWhile((_) => this.subs)).subscribe((filter: FilterBase) => {
       this.filterChanged.emit(filter);
     });
   }

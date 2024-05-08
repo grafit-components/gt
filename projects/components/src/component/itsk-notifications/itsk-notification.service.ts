@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {ItskNotification} from './model/itsk-notification';
-import {Observable, Subject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { ItskNotification } from './model/itsk-notification';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ItskNotificationService {
   private _notifications = new Subject<ItskNotification>();

@@ -11,15 +11,15 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import {ItskNotification} from '../../model/itsk-notification';
-import {ItskNotificationLevel} from '../../model/itsk-notification-level.enum';
+import { ItskNotification } from '../../model/itsk-notification';
+import { ItskNotificationLevel } from '../../model/itsk-notification-level.enum';
 
 @Component({
   selector: 'itsk-notification-item',
   templateUrl: './itsk-notification-item.component.html',
   styleUrls: ['./itsk-notification-item.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskNotificationItemComponent implements AfterViewInit, OnDestroy {
   ItskNotificationLevel = ItskNotificationLevel;
@@ -29,7 +29,7 @@ export class ItskNotificationItemComponent implements AfterViewInit, OnDestroy {
   @Input() template?: TemplateRef<any>;
   @Output() closed: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('container', {static: false}) containerViewChild?: ElementRef;
+  @ViewChild('container', { static: false }) containerViewChild?: ElementRef;
 
   timeout: any;
 
@@ -42,7 +42,7 @@ export class ItskNotificationItemComponent implements AfterViewInit, OnDestroy {
       this.timeout = setTimeout(() => {
         this.closed.emit({
           index: this.index,
-          message: this.notification
+          message: this.notification,
         });
       }, this.notification.duration);
     }
@@ -60,7 +60,7 @@ export class ItskNotificationItemComponent implements AfterViewInit, OnDestroy {
 
     this.closed.emit({
       index: this.index,
-      message: this.notification
+      message: this.notification,
     });
 
     event.preventDefault();

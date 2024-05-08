@@ -1,12 +1,12 @@
-import {ChangeDetectionStrategy, Component, ComponentFactoryResolver, ComponentRef, Input, OnInit, ViewContainerRef} from '@angular/core';
-import {GridColumn} from '../../../model/grid-column';
-import {HeadCellComponentBase} from '../../../model/head-cell-component-base';
-import {DefaultHeadCellComponent} from '../default-head-cell/default-head-cell.component';
+import { ChangeDetectionStrategy, Component, ComponentFactoryResolver, ComponentRef, Input, OnInit, ViewContainerRef } from '@angular/core';
+import { GridColumn } from '../../../model/grid-column';
+import { HeadCellComponentBase } from '../../../model/head-cell-component-base';
+import { DefaultHeadCellComponent } from '../default-head-cell/default-head-cell.component';
 
 @Component({
   selector: 'itsk-head-cell',
   template: '',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeadCellComponent implements OnInit {
   private componentRef?: ComponentRef<HeadCellComponentBase>;
@@ -44,14 +44,17 @@ export class HeadCellComponent implements OnInit {
     }
   }
 
-  constructor(private viewContainerRef: ViewContainerRef,
-              private componentFactoryResolver: ComponentFactoryResolver) {
-  }
+  constructor(
+    private viewContainerRef: ViewContainerRef,
+    private componentFactoryResolver: ComponentFactoryResolver,
+  ) {}
 
   private getHeadCellComponent(column: GridColumn) {
-    if (column.headCellComponent === null
-      || column.headCellComponent === undefined
-      || !HeadCellComponentBase.isPrototypeOf(column.headCellComponent)) {
+    if (
+      column.headCellComponent === null ||
+      column.headCellComponent === undefined ||
+      !HeadCellComponentBase.isPrototypeOf(column.headCellComponent)
+    ) {
       return DefaultHeadCellComponent;
     }
     return column.headCellComponent;

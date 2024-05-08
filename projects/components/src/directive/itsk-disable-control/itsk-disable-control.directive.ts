@@ -1,8 +1,8 @@
-import {Directive, Input} from '@angular/core';
-import {NgControl} from '@angular/forms';
+import { Directive, Input } from '@angular/core';
+import { NgControl } from '@angular/forms';
 
 @Directive({
-  selector: '[itskDisableControl]'
+  selector: '[itskDisableControl]',
 })
 export class ItskDisableControlDirective {
   @Input() set itskDisableControl(val: boolean) {
@@ -15,6 +15,5 @@ export class ItskDisableControlDirective {
     }
   }
 
-  constructor(private ngControl: NgControl) {
-  }
+  constructor(private ngControl: NgControl) {}
 }

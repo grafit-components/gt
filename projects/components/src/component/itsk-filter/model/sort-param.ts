@@ -1,25 +1,13 @@
 export class SortParam {
-  /**
-   * Поле сортировки
-   */
+  /** Поле сортировки */
   field?: string;
-  /**
-   * Направление (true: Asc, false: Desc)
-   */
+  /** Направление (true: Asc, false: Desc) */
   asc: boolean = false;
-  /**
-   * Порядок сортировки
-   */
+  /** Порядок сортировки */
   order?: number;
 
-  /**
-   * Инициализация из анонимного объекта
-   */
-  constructor(options?: {
-    field?: string;
-    asc?: boolean;
-    order?: number;
-  }) {
+  /** Инициализация из анонимного объекта */
+  constructor(options?: { field?: string; asc?: boolean; order?: number }) {
     if (options) {
       this.field = options.field;
       this.asc = options.asc || false;

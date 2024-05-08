@@ -1,4 +1,4 @@
-import {ItskSpinnerDirective} from './itsk-spinner.directive';
+import { ItskSpinnerDirective } from './itsk-spinner.directive';
 
 describe('ItskSpinnerDirective', () => {
   it('should create an instance', () => {

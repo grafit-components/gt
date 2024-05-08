@@ -1,21 +1,13 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  forwardRef,
-  Input,
-  OnInit
-} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {ItskRange} from '../model/itsk-range';
-import {NumberUtil} from '../../../util/number-util';
-import {ArrayUtil} from '../../../util/array-util';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, forwardRef, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ArrayUtil } from '../../../util/array-util';
+import { NumberUtil } from '../../../util/number-util';
+import { ItskRange } from '../model/itsk-range';
 
 export const TIME_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => ItskTimeInputComponent),
-  multi: true
+  multi: true,
 };
 
 @Component({
@@ -23,17 +15,12 @@ export const TIME_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   templateUrl: './itsk-time-input.component.html',
   styleUrls: ['./itsk-time-input.component.scss'],
   providers: [TIME_INPUT_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush
-
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
-  /**
-   * Компонент неактивен
-   */
+  /** Компонент неактивен */
   @Input() disabled: boolean = false;
-  /**
-   * Отображать ввод секунд
-   */
+  /** Отображать ввод секунд */
   @Input() showSecond = false;
 
   get showFormat(): boolean {
@@ -46,7 +33,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
   public formatValue: any = {
     HH: '__',
     mm: '__',
-    ss: '__'
+    ss: '__',
   };
   allowableRange: any = {
     HH: [0, 23],
@@ -56,13 +43,9 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
   element?: HTMLElement;
   inputElement?: HTMLElement;
   isWindowPressEventListenerRegistered = false;
-  /**
-   * активная часть контролла даты
-   */
+  /** Активная часть контролла даты */
   currentFormatPart$ = '';
-  /**
-   * формат отображения даты
-   */
+  /** Формат отображения даты */
   format$?: string;
   formatList$: string[] = [];
   formatEssentialList$: string[] = [];
@@ -77,9 +60,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     this.format$ = value;
   }
 
-  /**
-   * Текущая дата
-   */
+  /** Текущая дата */
   value$: Date | null = null;
 
   get value(): Date | null {
@@ -92,17 +73,13 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     if (vIsNull && valueIsNull) {
       return;
     }
-    if ((v && !this.value$) ||
-      (!v && this.value$) ||
-      (v && this.value$ && v.getTime() !== this.value$.getTime())) {
+    if ((v && !this.value$) || (!v && this.value$) || (v && this.value$ && v.getTime() !== this.value$.getTime())) {
       this.value$ = v;
       this.onChange(v);
     }
   }
 
-  /**
-   * Текущий год
-   */
+  /** Текущий год */
   currentYear$: number = 0;
 
   get currentYear(): number {
@@ -115,9 +92,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  /**
-   * Текущий месяц
-   */
+  /** Текущий месяц */
   currentMonth$: number = 0;
 
   get currentMonth(): number {
@@ -133,9 +108,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  /**
-   * Текущий день
-   */
+  /** Текущий день */
   currentDate$: number = 0;
 
   get currentDate(): number {
@@ -151,9 +124,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  /**
-   * Текущий час
-   */
+  /** Текущий час */
   currentHour$: number = 0;
 
   get currentHour(): number {
@@ -172,9 +143,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     this.formatValue.HH = this.formatTime(v);
   }
 
-  /**
-   * Текущая минута
-   */
+  /** Текущая минута */
   currentMinute$: number = 0;
 
   get currentMinute(): number {
@@ -193,9 +162,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     this.formatValue.mm = this.formatTime(v);
   }
 
-  /**
-   * Текущая секунда
-   */
+  /** Текущая секунда */
   currentSecond$: number = 0;
 
   get currentSecond(): number {
@@ -218,8 +185,10 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     return this.formatEssentialList$.every((_: any) => this.formatValue[_].split('').every((__: any) => __ === '_'));
   }
 
-  constructor(private elementRef$: ElementRef,
-              private cdr$: ChangeDetectorRef) {
+  constructor(
+    private elementRef$: ElementRef,
+    private cdr$: ChangeDetectorRef,
+  ) {
     this.setDefaults();
   }
 
@@ -230,11 +199,9 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     this.cdr$.markForCheck();
   }
 
-  onChange = (_: any) => {
-  };
+  onChange = (_: any) => {};
 
-  onTouched = () => {
-  };
+  onTouched = () => {};
 
   registerOnChange(fn: (_: any) => void): void {
     this.onChange = fn;
@@ -279,7 +246,14 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
   }
 
   private getInputDate(): Date {
-    return new Date(this.currentYear, this.currentMonth, this.currentDate, +this.formatValue.HH, +this.formatValue.mm, +this.formatValue.ss);
+    return new Date(
+      this.currentYear,
+      this.currentMonth,
+      this.currentDate,
+      +this.formatValue.HH,
+      +this.formatValue.mm,
+      +this.formatValue.ss,
+    );
   }
 
   private getPrevFormat(currentFormat: string, format: string): ItskRange | null {
@@ -295,7 +269,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     return {
       name: exec[0].split('').reverse().join(''),
       start: format.length - exec.index,
-      end: format.length - (exec.index + exec[0].length)
+      end: format.length - (exec.index + exec[0].length),
     };
   }
 
@@ -310,7 +284,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     return {
       name: exec[0],
       start: exec.index,
-      end: exec.index + exec[0].length
+      end: exec.index + exec[0].length,
     };
   }
 
@@ -336,7 +310,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
 
   saveInput(valueList: string[], format: string, transitionToNextFormat: boolean = true): void {
     this.formatValue[format] = valueList.join('');
-    if (valueList.every(_ => NumberUtil.isNumeric(+_))) {
+    if (valueList.every((_) => NumberUtil.isNumeric(+_))) {
       if (transitionToNextFormat) {
         this.goToNextFormat(format);
       }
@@ -412,13 +386,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
       return;
     }
 
-    if (key === 'ArrowRight'
-      || key === 'right'
-      || key === 39
-      || key === ','
-      || key === 188
-      || key === '.'
-      || key === 190) {
+    if (key === 'ArrowRight' || key === 'right' || key === 39 || key === ',' || key === 188 || key === '.' || key === 190) {
       if (valueList.every((_: any) => NumberUtil.isNumeric(+_))) {
         this.saveInput(valueList, this.currentFormatPart$);
       } else {
@@ -434,15 +402,14 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
       }
     }
 
-    if (key === 'Backspace' || key === 8 ||
-      key === 'Delete' || key === 'Del' || key === 46) {
+    if (key === 'Backspace' || key === 8 || key === 'Delete' || key === 'Del' || key === 46) {
       if (valueList.every((_: any) => _ === '_')) {
         this.goToPrevFormat(this.currentFormatPart$);
       } else {
         valueList = valueList.map(() => '_');
         this.saveInput(valueList, this.currentFormatPart$);
         this.jumpToFormat({
-          name: this.currentFormatPart$
+          name: this.currentFormatPart$,
         });
       }
     }
@@ -525,7 +492,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     e.preventDefault();
     if (this.currentFormatPart$ !== format) {
       this.jumpToFormat({
-        name: format
+        name: format,
       });
     }
     this.appendToFormat(format, e.deltaY > 0 ? 1 : -1);
@@ -542,12 +509,12 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     const [minRange, maxRange] = band;
     const capacity = maxRange.toString().length;
     if (valueList.length !== capacity) {
-      throw new Error('Can\'t identity belong of value to range');
+      throw new Error("Can't identity belong of value to range");
     }
     const rangeList = ArrayUtil.getSequence(minRange, maxRange);
     const capacityList = ArrayUtil.getSequence(1, capacity);
 
-    if (valueList.every(_ => NumberUtil.isNumeric(+_))) {
+    if (valueList.every((_) => NumberUtil.isNumeric(+_))) {
       const value = +valueList.join('');
       return rangeList.indexOf(value) !== -1;
     }
@@ -556,7 +523,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
       return capacityList.every((digit) => {
         const valueIndex = capacity - digit;
         // tslint:disable-next-line:no-bitwise
-        return isNaN(+valueList[valueIndex]) || +valueList[valueIndex] === (((_ / Math.pow(10, digit - 1)) % 10) | 0);
+        return isNaN(+valueList[valueIndex]) || +valueList[valueIndex] === ((_ / Math.pow(10, digit - 1)) % 10 | 0);
       });
     });
   };
@@ -567,7 +534,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
       this.formatValue = {
         HH: this.formatTime(value.getHours()),
         mm: this.formatTime(value.getMinutes()),
-        ss: this.formatTime(value.getSeconds())
+        ss: this.formatTime(value.getSeconds()),
       };
     } else {
       this.formatValue = this.formatEssentialList$.reduce((sum: any, current) => {
@@ -590,7 +557,6 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     return false;
   };
 
-
   formatTime = (time: number, length: number = 2): string => {
     let result = '';
     if (time === null || time === undefined || isNaN(time)) {
@@ -601,7 +567,6 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
     return result;
   };
 
-
   activate(value: boolean) {
     if (this.disabled || this.active === value) {
       return;
@@ -611,7 +576,7 @@ export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
       this.windowPressEventListenerRegister();
       window.setTimeout(() => {
         this.jumpToFormat({
-          name: this.currentFormatPart$ || 'HH'
+          name: this.currentFormatPart$ || 'HH',
         });
       }, 200);
     } else {

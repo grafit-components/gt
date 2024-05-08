@@ -1,8 +1,8 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ItskDropdownComponent} from './itsk-dropdown/itsk-dropdown.component';
-import {ItskDropdownHeadDirective} from './itsk-dropdown-head.directive';
-import {ItskDropdownContentDirective} from './itsk-dropdown-content.directive';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ItskDropdownContentDirective } from './itsk-dropdown-content.directive';
+import { ItskDropdownHeadDirective } from './itsk-dropdown-head.directive';
+import { ItskDropdownComponent } from './itsk-dropdown/itsk-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -10,15 +10,9 @@ import {ItskDropdownContentDirective} from './itsk-dropdown-content.directive';
     // ItskDropdownHeadComponent,
     // ItskDropdownContentComponent,
     ItskDropdownHeadDirective,
-    ItskDropdownContentDirective],
-  imports: [
-    CommonModule
+    ItskDropdownContentDirective,
   ],
-  exports: [
-    ItskDropdownComponent,
-    ItskDropdownHeadDirective,
-    ItskDropdownContentDirective
-  ]
+  imports: [CommonModule],
+  exports: [ItskDropdownComponent, ItskDropdownHeadDirective, ItskDropdownContentDirective],
 })
-export class ItskDropdownModule {
-}
+export class ItskDropdownModule {}

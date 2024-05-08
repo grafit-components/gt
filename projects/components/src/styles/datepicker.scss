@@ -8,7 +8,7 @@ $datePickerWithTimeMinWidth: 170px;
 $datePickerWithSecondMinWidth: 150px;
 
 .datepicker {
-  @include datePickerBlock(map-get($blocks, "work"));
+  @include datePickerBlock(map-get($blocks, 'work'));
   display: inline-flex;
 
   &__input {
@@ -140,6 +140,6 @@ $datePickerWithSecondMinWidth: 150px;
 
 @each $blockName, $blockItem in $blocks {
   .block-#{$blockName} {
-    @include datepicker($blockItem)
+    @include datepicker($blockItem);
   }
 }

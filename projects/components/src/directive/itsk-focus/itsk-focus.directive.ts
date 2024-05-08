@@ -1,7 +1,7 @@
-import {Directive, ElementRef, Input, OnInit} from '@angular/core';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 @Directive({
-  selector: '[itskFocus]'
+  selector: '[itskFocus]',
 })
 export class ItskFocusDirective implements OnInit {
   element: HTMLElement;
@@ -23,8 +23,7 @@ export class ItskFocusDirective implements OnInit {
     this.element = this._elementRef.nativeElement as HTMLElement;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   focus() {
     this.element.focus();

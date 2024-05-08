@@ -1,14 +1,14 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
-import {FilterState} from '../../model/filter-state';
-import {GridColumn} from '../../model/grid-column';
-import {ItskGridSelectRowsByType} from '../../model/enum/itsk-grid-select-rows-by-type';
-import {ItskGridSelectType} from '../../model/enum/itsk-grid-select-type';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ItskGridSelectRowsByType } from '../../model/enum/itsk-grid-select-rows-by-type';
+import { ItskGridSelectType } from '../../model/enum/itsk-grid-select-type';
+import { FilterState } from '../../model/filter-state';
+import { GridColumn } from '../../model/grid-column';
 
 @Component({
   selector: 'itsk-grid-head-group',
   templateUrl: './itsk-grid-head-group.component.html',
   styleUrls: ['./itsk-grid-head-group.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskGridHeadGroupComponent implements OnInit {
   private column$?: GridColumn;
@@ -37,11 +37,9 @@ export class ItskGridHeadGroupComponent implements OnInit {
   //   this.hoveredColumn.emit(null);
   // }
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   // columnHover(name: string | null) {
   //   this.hoveredColumn.emit(name);

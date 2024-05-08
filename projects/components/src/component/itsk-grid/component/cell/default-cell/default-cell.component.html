@@ -1,10 +1,12 @@
 <span [style.display]="edit ? 'none' : 'block'" class="grid__cell_text">
-  {{row && row.data[column?.name]}}
+  {{ row && row.data[column?.name] }}
 </span>
-<input #input
-       *ngIf="edit"
-       type="text"
-       class="input__field container_auto"
-       style="width: 0"
-       [ngModel]="row && row.data[column?.name]"
-       (ngModelChange)="row.data[column.name]=$event"/>
+<input
+  #input
+  *ngIf="edit"
+  type="text"
+  class="input__field container_auto"
+  style="width: 0"
+  [ngModel]="row && row.data[column?.name]"
+  (ngModelChange)="row.data[column.name] = $event"
+/>

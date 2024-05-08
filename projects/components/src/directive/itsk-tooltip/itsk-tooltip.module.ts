@@ -1,21 +1,12 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ItskTooltipDirective} from './itsk-tooltip.directive';
-import {ItskTooltipContainerComponent} from './itsk-tooltip-container/itsk-tooltip-container.component';
-import {ItskClickOutsideModule} from '../itsk-click-outside/itsk-click-outside.module';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ItskClickOutsideModule } from '../itsk-click-outside/itsk-click-outside.module';
+import { ItskTooltipContainerComponent } from './itsk-tooltip-container/itsk-tooltip-container.component';
+import { ItskTooltipDirective } from './itsk-tooltip.directive';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        ItskClickOutsideModule
-    ],
-    declarations: [
-        ItskTooltipDirective,
-        ItskTooltipContainerComponent
-    ],
-    exports: [
-        ItskTooltipDirective
-    ]
+  imports: [CommonModule, ItskClickOutsideModule],
+  declarations: [ItskTooltipDirective, ItskTooltipContainerComponent],
+  exports: [ItskTooltipDirective],
 })
-export class ItskTooltipModule {
-}
+export class ItskTooltipModule {}

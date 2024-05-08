@@ -1,17 +1,10 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ItskDisableControlDirective} from './itsk-disable-control.directive';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ItskDisableControlDirective } from './itsk-disable-control.directive';
 
 @NgModule({
-  declarations: [
-    ItskDisableControlDirective
-  ],
-  exports: [
-    ItskDisableControlDirective
-  ],
-  imports: [
-    CommonModule
-  ]
+  declarations: [ItskDisableControlDirective],
+  exports: [ItskDisableControlDirective],
+  imports: [CommonModule],
 })
-export class ItskDisableControlModule {
-}
+export class ItskDisableControlModule {}

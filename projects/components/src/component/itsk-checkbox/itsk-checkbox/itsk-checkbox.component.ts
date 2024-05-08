@@ -1,19 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  forwardRef,
-  HostBinding,
-  HostListener,
-  Input,
-  OnInit
-} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export const CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => ItskCheckboxComponent),
-  multi: true
+  multi: true,
 };
 
 @Component({
@@ -21,35 +12,24 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
   templateUrl: './itsk-checkbox.component.html',
   styleUrls: ['./itsk-checkbox.component.scss'],
   providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskCheckboxComponent implements ControlValueAccessor, OnInit {
   @HostBinding('attr.tabindex') tabindex = 0;
   @HostBinding('class.checkbox') checkboxClass = true;
-  /**
-   * компонент неактивен
-   */
+  /** Компонент неактивен */
   @HostBinding('class.checkbox_disabled')
-  @Input() disabled?: boolean;
-  /**
-   * true/false или list
-   */
+  @Input()
+  disabled?: boolean;
+  /** True/false или list */
   @Input() value: any;
-  /**
-   * true/false или list
-   */
+  /** True/false или list */
   @Input() binary?: boolean;
-  /**
-   * значение, которое должена принимать модель, чтобы чекбокс был отмечен
-   */
+  /** Значение, которое должена принимать модель, чтобы чекбокс был отмечен */
   @Input() trueValue: any = true;
-  /**
-   * значение, которое должена принимать модель, чтобы чекбокс был отмечен
-   */
+  /** Значение, которое должена принимать модель, чтобы чекбокс был отмечен */
   @Input() falseValue: any = false;
-  /**
-   * Значение
-   */
+  /** Значение */
   private model$: any = null;
 
   get model(): any {
@@ -65,8 +45,7 @@ export class ItskCheckboxComponent implements ControlValueAccessor, OnInit {
 
   checked: boolean = false;
 
-  constructor(private cdr: ChangeDetectorRef) {
-  }
+  constructor(private cdr: ChangeDetectorRef) {}
 
   @HostListener('click')
   changeValue() {
@@ -119,14 +98,11 @@ export class ItskCheckboxComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  onChange(_: any) {
-  }
+  onChange(_: any) {}
 
-  onTouched() {
-  }
+  onTouched() {}
 
   registerOnChange(fn: (_: any) => void): void {
     this.onChange = fn;

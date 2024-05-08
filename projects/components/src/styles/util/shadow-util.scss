@@ -13,4 +13,3 @@
 @mixin shadow-r($shadowBlock) {
   box-shadow: map-get($shadowBlock, 'offset') 0 map-get($shadowBlock, 'blur') map-get($shadowBlock, 'color');
 }
-

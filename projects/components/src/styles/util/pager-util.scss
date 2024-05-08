@@ -2,7 +2,9 @@
 @import 'shape-util.scss';
 
 @mixin pager($blockItem) {
-  &_pager, &.pager, & .pager {
+  &_pager,
+  &.pager,
+  & .pager {
     background: map-get($blockItem, 'default', 'background-color');
     color: map-get($blockItem, 'default', 'color');
 

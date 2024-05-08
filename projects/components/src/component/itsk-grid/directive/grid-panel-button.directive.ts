@@ -1,9 +1,8 @@
-import {Directive, TemplateRef} from '@angular/core';
+import { Directive, TemplateRef } from '@angular/core';
 
 @Directive({
-  selector: '[itskGridPanelButton]'
+  selector: '[itskGridPanelButton]',
 })
 export class GridPanelButtonDirective {
-  constructor(public templateRef: TemplateRef<any>) {
-  }
+  constructor(public templateRef: TemplateRef<any>) {}
 }

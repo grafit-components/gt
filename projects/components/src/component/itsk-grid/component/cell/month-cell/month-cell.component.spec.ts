@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import {MonthCellComponent} from './month-cell.component';
+import { MonthCellComponent } from './month-cell.component';
 
 describe('MonthCellComponent', () => {
   let component: MonthCellComponent<any>;
@@ -8,9 +8,8 @@ describe('MonthCellComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [MonthCellComponent]
-    })
-      .compileComponents();
+      declarations: [MonthCellComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

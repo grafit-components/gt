@@ -8,9 +8,8 @@ describe('ItskNavigationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItskNavigationComponent ]
-    })
-    .compileComponents();
+      declarations: [ItskNavigationComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

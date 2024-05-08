@@ -1,11 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { ItskSwitchComponent } from './itsk-switch/itsk-switch.component';
 
 @NgModule({
   declarations: [ItskSwitchComponent],
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule],
 })
-export class ItskSwitchModule { }
+export class ItskSwitchModule {}

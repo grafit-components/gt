@@ -1,20 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  TemplateRef
-} from '@angular/core';
-import {IItskMenuItem} from '../model/i-itsk-menu-item';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef } from '@angular/core';
+import { IItskMenuItem } from '../model/i-itsk-menu-item';
 
 @Component({
   selector: 'itsk-menu-item',
   templateUrl: './itsk-menu-item.component.html',
   styleUrls: ['./itsk-menu-item.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskMenuItemComponent<T extends IItskMenuItem> implements OnInit, OnDestroy {
   item$?: T;
@@ -37,8 +28,7 @@ export class ItskMenuItemComponent<T extends IItskMenuItem> implements OnInit, O
 
   @Output() itemToggle = new EventEmitter<T>();
 
-  constructor() {
-  }
+  constructor() {}
 
   navigate(item: T) {
     if (item.navigate) {
@@ -51,11 +41,9 @@ export class ItskMenuItemComponent<T extends IItskMenuItem> implements OnInit, O
     this.itemToggle.emit(item);
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnDestroy(): void {
-    if(this.item$)
-    this.item$.open = false;
+    if (this.item$) this.item$.open = false;
   }
 }

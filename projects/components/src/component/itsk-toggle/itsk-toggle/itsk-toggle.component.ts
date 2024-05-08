@@ -1,19 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  forwardRef,
-  HostBinding,
-  HostListener,
-  Input,
-  OnInit
-} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export const TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => ItskToggleComponent),
-  multi: true
+  multi: true,
 };
 
 @Component({
@@ -21,7 +12,7 @@ export const TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
   templateUrl: './itsk-toggle.component.html',
   styleUrls: ['./itsk-toggle.component.scss'],
   providers: [TOGGLE_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskToggleComponent implements ControlValueAccessor, OnInit {
   @HostBinding('class.toggle') toggleClass = true;
@@ -29,18 +20,13 @@ export class ItskToggleComponent implements ControlValueAccessor, OnInit {
   @Input() leftLabel?: boolean;
   @Input() trueColor?: string;
   @Input() falseColor?: string;
-  /**
-   * css класс, который будет применен к input
-   */
+  /** Css класс, который будет применен к input */
   @Input() className?: string[];
-  /**
-   * компонент неактивен
-   */
+  /** Компонент неактивен */
   @HostBinding('class.toggle_disabled')
-  @Input() disabled?: boolean;
-  /**
-   * значение
-   */
+  @Input()
+  disabled?: boolean;
+  /** Значение */
   value$ = false;
 
   get value(): any {
@@ -54,8 +40,7 @@ export class ItskToggleComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  constructor(private cdr: ChangeDetectorRef) {
-  }
+  constructor(private cdr: ChangeDetectorRef) {}
 
   @HostListener('click')
   changeValue = () => {
@@ -70,14 +55,11 @@ export class ItskToggleComponent implements ControlValueAccessor, OnInit {
     this.cdr.markForCheck();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  onChange = (_: any) => {
-  };
+  onChange = (_: any) => {};
 
-  onTouched = () => {
-  };
+  onTouched = () => {};
 
   registerOnChange(fn: (_: any) => void): void {
     this.onChange = fn;
@@ -95,12 +77,12 @@ export class ItskToggleComponent implements ControlValueAccessor, OnInit {
   getStyle() {
     if (this.value$ && this.trueColor) {
       return {
-        background: this.trueColor
+        background: this.trueColor,
       };
     }
     if (!this.value$ && this.falseColor) {
       return {
-        background: this.falseColor
+        background: this.falseColor,
       };
     }
     return null;

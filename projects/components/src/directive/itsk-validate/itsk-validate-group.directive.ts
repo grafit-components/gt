@@ -1,15 +1,8 @@
-import {
-  AfterContentChecked,
-  ContentChildren,
-  Directive,
-  EventEmitter,
-  Output,
-  QueryList
-} from '@angular/core';
-import {ItskValidateDirective} from './itsk-validate.directive';
+import { AfterContentChecked, ContentChildren, Directive, EventEmitter, Output, QueryList } from '@angular/core';
+import { ItskValidateDirective } from './itsk-validate.directive';
 
 @Directive({
-  selector: '[itskValidateGroup]'
+  selector: '[itskValidateGroup]',
 })
 export class ItskValidateGroupDirective implements AfterContentChecked {
   @Output() itskValidateGroup: EventEmitter<boolean> = new EventEmitter();
@@ -20,8 +13,7 @@ export class ItskValidateGroupDirective implements AfterContentChecked {
   @ContentChildren(ItskValidateDirective) validators?: QueryList<ItskValidateDirective>;
   invalid: boolean = false;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngAfterContentChecked() {
     setTimeout(() => {
@@ -35,14 +27,18 @@ export class ItskValidateGroupDirective implements AfterContentChecked {
         this.invalid = invalid && invalid.length > 0;
         this.itskValidateGroup.emit(this.invalid);
         if (invalid) {
-          this.errors.emit(invalid.map((x) => {
-            return x.errorMessage ?? '';
-          }));
+          this.errors.emit(
+            invalid.map((x) => {
+              return x.errorMessage ?? '';
+            }),
+          );
         }
         if (warnings && warnings.length) {
-          this.warnings.emit(warnings.map((x) => {
-            return x.warningMessage ?? '';
-          }));
+          this.warnings.emit(
+            warnings.map((x) => {
+              return x.warningMessage ?? '';
+            }),
+          );
         }
       }
     });

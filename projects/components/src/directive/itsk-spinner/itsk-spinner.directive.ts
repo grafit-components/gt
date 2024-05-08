@@ -1,7 +1,7 @@
-import {Directive, ElementRef, Input, OnInit} from '@angular/core';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 @Directive({
-  selector: '[itskSpinner]'
+  selector: '[itskSpinner]',
 })
 export class ItskSpinnerDirective implements OnInit {
   private element$: HTMLElement;
@@ -28,8 +28,7 @@ export class ItskSpinnerDirective implements OnInit {
     this.element$.classList.add('relative');
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   showMask() {
     if (this.spinner$ === null || this.spinner$ === undefined) {

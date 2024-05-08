@@ -1,4 +1,4 @@
-import {FilterColumn} from '../model/filter-column';
+import { FilterColumn } from '../model/filter-column';
 
 export class FilterGroupHelper {
   static isLeaf(filterColumn: FilterColumn) {
@@ -6,7 +6,7 @@ export class FilterGroupHelper {
   }
 
   static hasFilterableLeafs(filterColumn: FilterColumn) {
-    const found = filterColumn.columns?.find(_ => _.filterable && FilterGroupHelper.isLeaf(_));
+    const found = filterColumn.columns?.find((_) => _.filterable && FilterGroupHelper.isLeaf(_));
     if (found) {
       return true;
     } else {

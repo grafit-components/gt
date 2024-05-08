@@ -24,7 +24,6 @@ export function findScrollableParentX(node: HTMLElement) {
   return null;
 }
 
-
 export function findTransformedParent(node: HTMLElement) {
   while (node !== null && node.tagName !== 'BODY') {
     const style = getComputedStyle(node);
@@ -37,12 +36,12 @@ export function findTransformedParent(node: HTMLElement) {
 }
 
 export function getRealPosition(node: HTMLElement): {
-  top: number,
-  left: number,
-  right: number,
-  bottom: number,
-  width: number,
-  height: number
+  top: number;
+  left: number;
+  right: number;
+  bottom: number;
+  width: number;
+  height: number;
 } {
   const rect = node.getBoundingClientRect();
   const leftPosition = rect.left + window.pageXOffset;
@@ -53,6 +52,6 @@ export function getRealPosition(node: HTMLElement): {
     width: rect.width,
     height: rect.height,
     right: leftPosition + rect.width,
-    bottom: topPosition + rect.height
+    bottom: topPosition + rect.height,
   };
 }

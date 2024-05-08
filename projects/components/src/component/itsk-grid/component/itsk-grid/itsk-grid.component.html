@@ -1,11 +1,7 @@
-<itsk-grid-head-dropdown
-  [state]="state$"></itsk-grid-head-dropdown>
-<itsk-grid-head
-  class="grid__head"
-  [state]="state$"
-  [selectType]="selectType"
-  [selectRowsBy]="selectRowsBy"></itsk-grid-head>
-<itsk-grid-body #gridBody
+<itsk-grid-head-dropdown [state]="state$"></itsk-grid-head-dropdown>
+<itsk-grid-head class="grid__head" [state]="state$" [selectType]="selectType" [selectRowsBy]="selectRowsBy"></itsk-grid-head>
+<itsk-grid-body
+  #gridBody
   class="grid__body"
   [virtual]="virtual"
   [editOn]="editOn"
@@ -17,9 +13,11 @@
   [openLevels]="openLevels"
   [selectType]="selectType"
   [selectRowsBy]="selectRowsBy"
-  [tree]="tree"></itsk-grid-body>
+  [tree]="tree"
+></itsk-grid-body>
 <itsk-grid-aggregate
   *ngIf="aggregateComponent"
   [data]="aggregate"
   [aggregateComponent]="aggregateComponent"
-  class="grid__aggregate"></itsk-grid-aggregate>
+  class="grid__aggregate"
+></itsk-grid-aggregate>

@@ -1,9 +1,9 @@
-import {ItskNotificationLevel} from './itsk-notification-level.enum';
+import { ItskNotificationLevel } from './itsk-notification-level.enum';
 
 export class ItskNotification {
-  name: string| null | undefined;
+  name: string | null | undefined;
   head: string | null | undefined;
-  text: string| null | undefined;
+  text: string | null | undefined;
   infinite: boolean = false;
   duration = 5000;
   className: string | string[] | null | undefined;

@@ -1,23 +1,14 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  forwardRef,
-  Input,
-  OnDestroy,
-  OnInit
-} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {ItskPickerLocaleModel} from '../model/itsk-picker-locale-model';
-import {PickerLocaleService} from '../service/picker-locale.service';
-import {takeWhile} from 'rxjs/operators';
-import {ItskDatePickerMode} from '../model/itsk-date-picker-mode.enum';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { takeWhile } from 'rxjs/operators';
+import { ItskDatePickerMode } from '../model/itsk-date-picker-mode.enum';
+import { ItskPickerLocaleModel } from '../model/itsk-picker-locale-model';
+import { PickerLocaleService } from '../service/picker-locale.service';
 
 export const MONTH_PICKER_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => ItskMonthPickerComponent),
-  multi: true
+  multi: true,
 };
 
 @Component({
@@ -25,47 +16,29 @@ export const MONTH_PICKER_CONTROL_VALUE_ACCESSOR: any = {
   templateUrl: './itsk-month-picker.component.html',
   styleUrls: ['./itsk-month-picker.component.scss'],
   providers: [MONTH_PICKER_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskMonthPickerComponent implements ControlValueAccessor, OnInit, OnDestroy {
   ItskDatePickerMode = ItskDatePickerMode;
   subs = true;
   open: boolean = false;
-  /**
-   * показать иконку
-   */
+  /** Показать иконку */
   @Input() showIcon = true;
-  /**
-   * показать кнопку очистки
-   */
+  /** Показать кнопку очистки */
   @Input() showClear = true;
-  /**
-   * класс иконки (из библиотеки font-awesome)
-   */
+  /** Класс иконки (из библиотеки font-awesome) */
   @Input() icon = 'icon-calendar_16';
-  /**
-   * css класс, который будет применен к input
-   */
+  /** Css класс, который будет применен к input */
   @Input() className: string[] = [];
-  /**
-   * компонент неактивен
-   */
+  /** Компонент неактивен */
   @Input() disabled: boolean = false;
-  /**
-   * Минимальная доступная дата
-   */
+  /** Минимальная доступная дата */
   @Input() minDate?: Date;
-  /**
-   * Максимальная доступная дата
-   */
+  /** Максимальная доступная дата */
   @Input() maxDate?: Date;
-  /**
-   * Показывать конпку выбора "сегодня"
-   */
+  /** Показывать конпку выбора "сегодня" */
   @Input() showToday = true;
-  /**
-   * Использовать position: fixes
-   */
+  /** Использовать position: fixes */
   @Input() fixed = true;
 
   locale?: ItskPickerLocaleModel;
@@ -74,9 +47,7 @@ export class ItskMonthPickerComponent implements ControlValueAccessor, OnInit, O
 
   displayMode: ItskDatePickerMode = ItskDatePickerMode.Month;
 
-  /**
-   * Текущая дата
-   */
+  /** Текущая дата */
   value$: Date | null = null;
 
   get value(): any {
@@ -90,9 +61,7 @@ export class ItskMonthPickerComponent implements ControlValueAccessor, OnInit, O
     }
   }
 
-  /**
-   * Текущий месяц
-   */
+  /** Текущий месяц */
   currentMonth$: number | null = null;
 
   get currentMonth(): number | null {
@@ -108,9 +77,7 @@ export class ItskMonthPickerComponent implements ControlValueAccessor, OnInit, O
     }
   }
 
-  /**
-   * Текущий год
-   */
+  /** Текущий год */
   currentYear$: number | null = null;
 
   get currentYear(): number | null {
@@ -123,13 +90,13 @@ export class ItskMonthPickerComponent implements ControlValueAccessor, OnInit, O
     }
   }
 
-  constructor(public localeService: PickerLocaleService,
-              private cdr$: ChangeDetectorRef) {
-    localeService.locale
-      .pipe(takeWhile(_ => this.subs))
-      .subscribe((locale: ItskPickerLocaleModel) => {
-        this.locale = locale;
-      });
+  constructor(
+    public localeService: PickerLocaleService,
+    private cdr$: ChangeDetectorRef,
+  ) {
+    localeService.locale.pipe(takeWhile((_) => this.subs)).subscribe((locale: ItskPickerLocaleModel) => {
+      this.locale = locale;
+    });
     this.setDefaults();
   }
 
@@ -154,11 +121,9 @@ export class ItskMonthPickerComponent implements ControlValueAccessor, OnInit, O
     this.currentYear = null;
   }
 
-  onChange = (_: any) => {
-  };
+  onChange = (_: any) => {};
 
-  onTouched = () => {
-  };
+  onTouched = () => {};
 
   registerOnChange(fn: (_: any) => void): void {
     this.onChange = fn;

@@ -1,9 +1,9 @@
-import {ItskSelectComponent} from './itsk-select/itsk-select.component';
-import {ItskDropdownModule} from '../itsk-dropdown/itsk-dropdown.module';
-import {ScrollingModule} from '@angular/cdk/scrolling';
-import {ItskMarkDirective} from '../itsk-shared/itsk-mark.directive';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ItskDropdownModule } from '../itsk-dropdown/itsk-dropdown.module';
+import { ItskMarkDirective } from '../itsk-shared/itsk-mark.directive';
+import { ItskSelectComponent } from './itsk-select/itsk-select.component';
 
-export default {title: 'Select (old)'};
+export default { title: 'Select (old)' };
 
 export const itskSelect = () => ({
   component: ItskSelectComponent,
@@ -11,12 +11,12 @@ export const itskSelect = () => ({
     items: ['First', 'Second', 'Third'],
     searchRef: '',
     placeholder: 'empty',
-    selectedRef: 'block'
+    selectedRef: 'block',
   },
   moduleMetadata: {
     imports: [ItskDropdownModule, ScrollingModule],
-    declarations: [ItskMarkDirective]
-  }
+    declarations: [ItskMarkDirective],
+  },
 });
 
 export const itskSelectMultiple = () => ({
@@ -30,8 +30,8 @@ export const itskSelectMultiple = () => ({
   },
   moduleMetadata: {
     imports: [ItskDropdownModule, ScrollingModule],
-    declarations: [ItskMarkDirective]
-  }
+    declarations: [ItskMarkDirective],
+  },
 });
 
 export const itskSelectDisabled = () => ({
@@ -41,10 +41,10 @@ export const itskSelectDisabled = () => ({
     searchRef: '',
     placeholder: 'empty',
     selectedRef: 'block',
-    disabled: true
+    disabled: true,
   },
   moduleMetadata: {
     imports: [ItskDropdownModule, ScrollingModule],
-    declarations: [ItskMarkDirective]
-  }
+    declarations: [ItskMarkDirective],
+  },
 });

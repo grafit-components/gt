@@ -1,43 +1,22 @@
 export class Paging {
-  /**
-   * Текущая страница
-   */
+  /** Текущая страница */
   page = 0;
 
-  /**
-   * Количество записей на странице
-   */
+  /** Количество записей на странице */
   pageSize = 30;
-  /**
-   * Количество страниц
-   */
+  /** Количество страниц */
   count: number = 0;
-  /**
-   * Количество записей
-   */
+  /** Количество записей */
   totalCount: number = 0;
-  /**
-   * первая видимая страница
-   */
+  /** Первая видимая страница */
   start: number = 0;
-  /**
-   * Последняя видимая страница
-   */
+  /** Последняя видимая страница */
   end: number = 0;
-  /**
-   * Список страниц
-   */
+  /** Список страниц */
   pages: number[] = [];
 
-  /**
-   * Инициализация из анонимного объекта
-   */
-  constructor(options?: {
-    page?: number;
-    pageSize?: number;
-    count?: number;
-    totalCount?: number;
-  }) {
+  /** Инициализация из анонимного объекта */
+  constructor(options?: { page?: number; pageSize?: number; count?: number; totalCount?: number }) {
     if (options) {
       this.pageSize = options.pageSize || 30;
       this.count = options.count !== null && options.count !== undefined ? options.count : this.count;

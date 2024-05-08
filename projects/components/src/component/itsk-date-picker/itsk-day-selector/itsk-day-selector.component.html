@@ -1,23 +1,27 @@
 <div class="datepicker__panel__week">
-  <div class="datepicker__panel__week__item"
-       [class.datepicker__panel__week__item__holiday]="day === 0 || day === 6"
-       *ngFor="let day of weekDays">{{locale.dayNamesMin[day]}}
+  <div
+    class="datepicker__panel__week__item"
+    [class.datepicker__panel__week__item__holiday]="day === 0 || day === 6"
+    *ngFor="let day of weekDays"
+  >
+    {{ locale.dayNamesMin[day] }}
   </div>
 </div>
-<div class="datepicker__picker"
-     (wheel)="scrollMonth($event)">
+<div class="datepicker__picker" (wheel)="scrollMonth($event)">
   <div class="datepicker__picker__week" *ngFor="let weekItem of weeks">
-    <div *ngFor="let day of weekItem"
-         class="datepicker__picker__day"
-         (click)="setDate(day, $event);"
-         (dblclick)="applyValue(day, $event)"
-         [class.datepicker__picker__day_other]="!day.isCurrentMonth"
-         [class.datepicker__picker__day_active]="day.selected"
-         [class.datepicker__picker__day_disabled]="day.disabled"
-         [class.datepicker__picker__day_weekend]="day.weekend"
-         [class.datepicker__picker__day_today]="day.today">
+    <div
+      *ngFor="let day of weekItem"
+      class="datepicker__picker__day"
+      (click)="setDate(day, $event)"
+      (dblclick)="applyValue(day, $event)"
+      [class.datepicker__picker__day_other]="!day.isCurrentMonth"
+      [class.datepicker__picker__day_active]="day.selected"
+      [class.datepicker__picker__day_disabled]="day.disabled"
+      [class.datepicker__picker__day_weekend]="day.weekend"
+      [class.datepicker__picker__day_today]="day.today"
+    >
       <ng-container *ngIf="day !== null && day !== undefined">
-        {{day.date.getDate()}}
+        {{ day.date.getDate() }}
       </ng-container>
     </div>
   </div>

@@ -1,20 +1,20 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild} from '@angular/core';
-import {CellComponentBase} from '../../../model/cell-component-base';
-import {GridColumn} from '../../../model/grid-column';
-import {GridRow, IId} from '../../../model/grid-row';
-import {ItskDatePickerComponent} from '../../../../itsk-date-picker/itsk-date-picker/itsk-date-picker.component';
-import {ItskGridService} from '../../../service/itsk-grid.service';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ItskDatePickerComponent } from '../../../../itsk-date-picker/itsk-date-picker/itsk-date-picker.component';
+import { CellComponentBase } from '../../../model/cell-component-base';
+import { GridColumn } from '../../../model/grid-column';
+import { GridRow, IId } from '../../../model/grid-row';
+import { ItskGridService } from '../../../service/itsk-grid.service';
 
 @Component({
   selector: 'itsk-date-cell',
   templateUrl: './date-cell.component.html',
   styleUrls: ['./date-cell.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
   @Input() column?: GridColumn;
   @Input() row?: GridRow<any>;
-  @ViewChild('input', {static: false}) input?: ItskDatePickerComponent;
+  @ViewChild('input', { static: false }) input?: ItskDatePickerComponent;
 
   constructor(svc$: ItskGridService<T>, cdr$: ChangeDetectorRef) {
     super(svc$, cdr$);
@@ -25,8 +25,7 @@ export class DateCellComponent<T extends IId> extends CellComponentBase<T> imple
   }
 
   setValue(value: Date) {
-    if(this.row && this.column)
-    this.row.data[this.column.name] = value;
+    if (this.row && this.column) this.row.data[this.column.name] = value;
     this.valueChanged();
   }
 

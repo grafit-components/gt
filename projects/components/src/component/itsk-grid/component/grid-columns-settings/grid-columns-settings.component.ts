@@ -1,12 +1,12 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {GridColumn} from '../../model/grid-column';
-import {ItskTreeControl} from '../../../itsk-tree/model/itsk-tree-control';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ItskTreeControl } from '../../../itsk-tree/model/itsk-tree-control';
+import { GridColumn } from '../../model/grid-column';
 
 @Component({
   selector: 'itsk-grid-columns-settings',
   templateUrl: './grid-columns-settings.component.html',
   styleUrls: ['./grid-columns-settings.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GridColumnsSettingsComponent implements OnInit {
   treeControl: ItskTreeControl;
@@ -20,7 +20,6 @@ export class GridColumnsSettingsComponent implements OnInit {
   }
 
   @Output() columnsChange: EventEmitter<GridColumn[]> = new EventEmitter<GridColumn[]>();
-
 
   constructor() {
     this.treeControl = new ItskTreeControl(this.columns$, true, this.getChildren);
@@ -59,18 +58,17 @@ export class GridColumnsSettingsComponent implements OnInit {
 
   hideParents(column: GridColumn) {
     const parent = this.findParent(column, this.columns$);
-    if (parent && !parent.hidden && parent.columns && parent.columns.every((_ : any) => _.hidden)) {
+    if (parent && !parent.hidden && parent.columns && parent.columns.every((_: any) => _.hidden)) {
       parent.hidden = true;
       this.hideParents(parent);
     }
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   private findParent(column: GridColumn, columns: GridColumn[]): GridColumn | null {
     const found = columns.find((x) => {
-      return x.columns && x.columns.some(_ => _.name === column.name);
+      return x.columns && x.columns.some((_) => _.name === column.name);
     });
     if (found !== null && found !== undefined) {
       return found;
@@ -86,7 +84,6 @@ export class GridColumnsSettingsComponent implements OnInit {
     }
     return null;
   }
-
 
   getChildren = (item: any) => {
     return item.columns;

@@ -2,18 +2,18 @@ import * as stories from './grid.stories.ts';
 import { Story } from '@storybook/addon-docs/blocks';
 
 # Импорт модуля
+
 ```javascript
 @NgModule({
   declarations: [],
   exports: [],
-  imports: [
-    ItskGridModule
-  ]
+  imports: [ItskGridModule],
 })
-export class YourModule {
-}
+export class YourModule {}
 ```
+
 # Настройка константных текстов в гриде
+
 ```javascript
 export class AppComponent implements OnInit {
   constructor(private gridConfig$: ItskGridConfigService) {
@@ -29,7 +29,9 @@ export class AppComponent implements OnInit {
   }
 }
 ```
+
 Если у вас в приложении есть переводы - вызывайте setConfig при смене языка, передавая нужные переводы
+
 ```javascript
 export class AppComponent implements OnInit {
   constructor(private gridConfig$: ItskGridConfigService,

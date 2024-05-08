@@ -1,23 +1,21 @@
-import {GridColumn} from './grid-column';
-import { ChangeDetectorRef, HostListener, Input, OnDestroy, OnInit, Type, Directive } from '@angular/core';
-import {GridRow, IId} from './grid-row';
-import {GridUtil} from './util';
-import {AdditionalComponentBase} from './additional-component-base';
-import {GroupingType} from './enum/grouping-type.enum';
-import {GroupRowComponentBase} from './group-row-component-base';
-import {ItskGridService} from '../service/itsk-grid.service';
-import {takeWhile} from 'rxjs/operators';
-import {ItskGridEditEvent} from './enum/itsk-grid-edit-event.enum';
-import {ItskGridSelectRowsByType} from '../model/enum/itsk-grid-select-rows-by-type';
-import {ItskGridSelectType} from '../model/enum/itsk-grid-select-type';
+import { ChangeDetectorRef, Directive, HostListener, Input, OnDestroy, OnInit, Type } from '@angular/core';
+import { takeWhile } from 'rxjs/operators';
+import { ItskGridSelectRowsByType } from '../model/enum/itsk-grid-select-rows-by-type';
+import { ItskGridSelectType } from '../model/enum/itsk-grid-select-type';
+import { ItskGridService } from '../service/itsk-grid.service';
+import { AdditionalComponentBase } from './additional-component-base';
+import { GroupingType } from './enum/grouping-type.enum';
+import { ItskGridEditEvent } from './enum/itsk-grid-edit-event.enum';
+import { GridColumn } from './grid-column';
+import { GridRow, IId } from './grid-row';
+import { GroupRowComponentBase } from './group-row-component-base';
+import { GridUtil } from './util';
 
 @Directive()
 export class GridBodyBase<T extends IId> implements OnInit, OnDestroy {
   alive = true;
   GroupingType = GroupingType;
-  /**
-   * Описание колонок таблицы
-   */
+  /** Описание колонок таблицы */
 
   selectedRows: GridRow<T>[] = [];
 
@@ -47,47 +45,43 @@ export class GridBodyBase<T extends IId> implements OnInit, OnDestroy {
     return this.columns$;
   }
 
-  /**
-   * Настройки грида
-   */
+  /** Настройки грида */
   @Input() additionalComponent?: Type<AdditionalComponentBase<T>>;
-  /**
-   * Данные для отображения
-   */
+  /** Данные для отображения */
   data?: GridRow<T>[];
 
   @Input() tree: boolean = false;
 
   @Input() grouping: boolean = false;
-  /**
-   * Тип отображения группировки
-   */
+  /** Тип отображения группировки */
   @Input() groupingType: GroupingType = GroupingType.SingleGroupCell;
   @Input() groupRowComponent?: Type<GroupRowComponentBase<T>>;
-  @Input() openLevels: number =0;
+  @Input() openLevels: number = 0;
 
   @Input() selectRowsBy: ItskGridSelectRowsByType = 'mouse';
   @Input() selectType: ItskGridSelectType = 'single';
   @Input() editOn?: ItskGridEditEvent;
 
-  constructor(protected svc$: ItskGridService<T>, protected cdr$: ChangeDetectorRef) {
-    this.svc$.selectedRows.pipe(takeWhile(_ => this.alive)).subscribe(_ => {
+  constructor(
+    protected svc$: ItskGridService<T>,
+    protected cdr$: ChangeDetectorRef,
+  ) {
+    this.svc$.selectedRows.pipe(takeWhile((_) => this.alive)).subscribe((_) => {
       this.selectedRows = _;
       this.cdr$.markForCheck();
     });
 
-    this.svc$.visibleColumns.pipe(takeWhile(_ => this.alive)).subscribe(_ => {
+    this.svc$.visibleColumns.pipe(takeWhile((_) => this.alive)).subscribe((_) => {
       this.columns = _;
       this.cdr$.markForCheck();
     });
-    this.svc$.visibleData.pipe(takeWhile(_ => this.alive)).subscribe(_ => {
+    this.svc$.visibleData.pipe(takeWhile((_) => this.alive)).subscribe((_) => {
       this.data = _;
       this.cdr$.markForCheck();
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.alive = false;

@@ -1,5 +1,6 @@
 @mixin toolbar($blockItem) {
-  &.toolbar, & .toolbar {
+  &.toolbar,
+  & .toolbar {
     @include toolbarBlock($blockItem);
   }
 }

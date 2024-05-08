@@ -1,9 +1,8 @@
-import {Directive, TemplateRef} from '@angular/core';
+import { Directive, TemplateRef } from '@angular/core';
 
 @Directive({
-  selector: '[itskGridPanelContent]'
+  selector: '[itskGridPanelContent]',
 })
 export class GridPanelContentDirective {
-  constructor(public templateRef: TemplateRef<any>) {
-  }
+  constructor(public templateRef: TemplateRef<any>) {}
 }

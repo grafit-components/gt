@@ -9,7 +9,5 @@
     "allowSyntheticDefaultImports": true, // todo remove with moment mini
     "types": []
   },
-  "exclude": [
-    "**/*.spec.ts"
-  ]
+  "exclude": ["**/*.spec.ts"]
 }

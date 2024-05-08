@@ -1,14 +1,14 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, TemplateRef} from '@angular/core';
-import {CellComponentBase} from '../../../model/cell-component-base';
-import {GridRow, IId} from '../../../model/grid-row';
-import {GridColumn} from '../../../model/grid-column';
-import {ItskGridService} from '../../../service/itsk-grid.service';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { CellComponentBase } from '../../../model/cell-component-base';
+import { GridColumn } from '../../../model/grid-column';
+import { GridRow, IId } from '../../../model/grid-row';
+import { ItskGridService } from '../../../service/itsk-grid.service';
 
 @Component({
   selector: 'itsk-template-cell',
   templateUrl: './template-cell.component.html',
   styleUrls: ['./template-cell.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TemplateCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
   @Input() column?: GridColumn;

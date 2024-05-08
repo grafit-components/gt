@@ -1,5 +1,6 @@
 @mixin checkbox($blockItem) {
-  &.checkbox, & .checkbox {
+  &.checkbox,
+  & .checkbox {
     @include checkboxBlock($blockItem);
   }
 }
@@ -33,7 +34,8 @@
 }
 
 @mixin toggle($blockItem) {
-  &.toggle, & .toggle {
+  &.toggle,
+  & .toggle {
     @include toggleBlock($blockItem);
   }
 }
@@ -77,7 +79,8 @@
 }
 
 @mixin radio($blockItem) {
-  &.radio, & .radio {
+  &.radio,
+  & .radio {
     @include radioBlock($blockItem);
   }
 }

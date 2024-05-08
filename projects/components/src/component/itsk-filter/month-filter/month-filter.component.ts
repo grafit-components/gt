@@ -1,25 +1,16 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output
-} from '@angular/core';
-import {FilterComponentBase} from '../model/filter-component-base';
-import {DateFilter} from '../model/date-filter';
-import {FilterColumn} from '../model/filter-column';
-import {FilterBase} from '../model/filter-base';
-import {FilterState} from '../../itsk-grid/model/filter-state';
-import {DateFilterValue} from '../model/date-filter-value';
-import {GridColumn} from "../../itsk-grid/model/grid-column";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FilterState } from '../../itsk-grid/model/filter-state';
+import { DateFilter } from '../model/date-filter';
+import { DateFilterValue } from '../model/date-filter-value';
+import { FilterBase } from '../model/filter-base';
+import { FilterColumn } from '../model/filter-column';
+import { FilterComponentBase } from '../model/filter-component-base';
 
 @Component({
   selector: 'itsk-month-filter',
   templateUrl: './month-filter.component.html',
   styleUrls: ['./month-filter.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MonthFilterComponent extends FilterComponentBase implements OnInit {
   filter: DateFilter = this.getFilter();
@@ -54,11 +45,13 @@ export class MonthFilterComponent extends FilterComponentBase implements OnInit 
       return f.fieldName === this.column.filterField;
     });
     if (filter === null || filter === undefined) {
-      filter = this.state.addDateFilter(new DateFilter({
-        value: new DateFilterValue(),
-        fieldName: this.column.filterField,
-        name: this.column.name
-      }));
+      filter = this.state.addDateFilter(
+        new DateFilter({
+          value: new DateFilterValue(),
+          fieldName: this.column.filterField,
+          name: this.column.name,
+        }),
+      );
     }
     return filter;
   }

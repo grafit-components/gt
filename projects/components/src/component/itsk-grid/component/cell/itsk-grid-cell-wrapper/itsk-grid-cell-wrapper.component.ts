@@ -1,25 +1,27 @@
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component, ComponentFactoryResolver,
+  Component,
+  ComponentFactoryResolver,
   ComponentRef,
   Input,
   OnDestroy,
-  OnInit, ViewContainerRef
+  OnInit,
+  ViewContainerRef,
 } from '@angular/core';
-import {GridRow, IId} from '../../../model/grid-row';
-import {CellComponentBase} from '../../../model/cell-component-base';
-import {GridColumn} from '../../../model/grid-column';
-import {FilterType} from '../../../../itsk-filter/model/enum/filter-type.enum';
-import {NumericCellComponent} from '../numeric-cell/numeric-cell.component';
-import {ListCellComponent} from '../list-cell/list-cell.component';
-import {DateCellComponent} from '../date-cell/date-cell.component';
-import {DefaultCellComponent} from '../default-cell/default-cell.component';
+import { FilterType } from '../../../../itsk-filter/model/enum/filter-type.enum';
+import { CellComponentBase } from '../../../model/cell-component-base';
+import { GridColumn } from '../../../model/grid-column';
+import { GridRow, IId } from '../../../model/grid-row';
+import { DateCellComponent } from '../date-cell/date-cell.component';
+import { DefaultCellComponent } from '../default-cell/default-cell.component';
+import { ListCellComponent } from '../list-cell/list-cell.component';
+import { NumericCellComponent } from '../numeric-cell/numeric-cell.component';
 
 @Component({
   selector: 'itsk-grid-cell-wrapper',
   template: '',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskGridCellWrapperComponent<T extends IId> implements OnInit, OnDestroy {
   init = false;
@@ -55,15 +57,16 @@ export class ItskGridCellWrapperComponent<T extends IId> implements OnInit, OnDe
     return this.row$;
   }
 
-  constructor(private viewContainerRef: ViewContainerRef,
-              private componentFactoryResolver: ComponentFactoryResolver) {
-  }
+  constructor(
+    private viewContainerRef: ViewContainerRef,
+    private componentFactoryResolver: ComponentFactoryResolver,
+  ) {}
   private getCellComponent(column: GridColumn) {
     if (column.cellComponent === null || column.cellComponent === undefined || !CellComponentBase.isPrototypeOf(column.cellComponent)) {
       switch (column.filterType) {
-        case FilterType.Number :
+        case FilterType.Number:
           return NumericCellComponent;
-        case FilterType.List :
+        case FilterType.List:
           return ListCellComponent;
         case FilterType.Date:
           return DateCellComponent;
@@ -77,7 +80,7 @@ export class ItskGridCellWrapperComponent<T extends IId> implements OnInit, OnDe
     // if (!CellComponentBase.isPrototypeOf(this.column.cellComponent)) {
     //   throw new Error('Cell component must extend CellComponentBase');
     // }
-    if(!this.column) {
+    if (!this.column) {
       return;
     }
     this.column.cellComponent = this.getCellComponent(this.column);
@@ -88,6 +91,5 @@ export class ItskGridCellWrapperComponent<T extends IId> implements OnInit, OnDe
     this.init = true;
   }
 
-  ngOnDestroy() {
-  }
+  ngOnDestroy() {}
 }

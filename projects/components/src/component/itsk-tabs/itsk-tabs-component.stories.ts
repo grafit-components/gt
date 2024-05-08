@@ -1,20 +1,20 @@
-import {ItskTabsModule} from './itsk-tabs.module';
-import {ItskTabsComponent} from './itsk-tabs/itsk-tabs.component';
+import { ItskTabsModule } from './itsk-tabs.module';
+import { ItskTabsComponent } from './itsk-tabs/itsk-tabs.component';
 
 export default {
-    component: ItskTabsComponent,
-    title: 'ItskTabsComponent',
-    args: {
-        activeId: 'second'
-    }
-}
+  component: ItskTabsComponent,
+  title: 'ItskTabsComponent',
+  args: {
+    activeId: 'second',
+  },
+};
 
 export const Default = (args: ItskTabsComponent) => ({
-    moduleMetadata: {
-        imports: [ItskTabsModule]
-    },
-    props: args,
-    template: `<itsk-tabs [activeId]="activeId">
+  moduleMetadata: {
+    imports: [ItskTabsModule],
+  },
+  props: args,
+  template: `<itsk-tabs [activeId]="activeId">
         <itsk-tab [id]="'first'">
           <ng-template itskTabTitle>
             First tab

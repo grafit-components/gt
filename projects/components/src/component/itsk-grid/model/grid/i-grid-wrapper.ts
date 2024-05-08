@@ -1,7 +1,7 @@
-import {EventEmitter, Type} from '@angular/core';
-import {DetailComponentBase} from '../detail-component-base';
-import {IId} from '../grid-row';
-import {IGrid} from './i-grid';
+import { EventEmitter, Type } from '@angular/core';
+import { DetailComponentBase } from '../detail-component-base';
+import { IId } from '../grid-row';
+import { IGrid } from './i-grid';
 
 export interface IGridWrapper<T extends IId> extends IGrid<T> {
   showPager: boolean;

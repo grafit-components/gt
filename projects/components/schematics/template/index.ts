@@ -1,18 +1,20 @@
-import {join, Path} from '@angular-devkit/core';
+import { join, Path } from '@angular-devkit/core';
 import {
-  Rule,
-  MergeStrategy,
-  Tree,
-  SchematicContext,
-  forEach,
   apply,
-  url,
-  move,
   chain,
-  mergeWith, schematic, SchematicsException
+  forEach,
+  MergeStrategy,
+  mergeWith,
+  move,
+  Rule,
+  schematic,
+  SchematicContext,
+  SchematicsException,
+  Tree,
+  url,
 } from '@angular-devkit/schematics';
-import {getWorkspace} from '@schematics/angular/utility/config';
-import {Schema as ProjectTemplateOptions} from '../utils/schema';
+import { getWorkspace } from '@schematics/angular/utility/config';
+import { Schema as ProjectTemplateOptions } from '../utils/schema';
 
 function deleteFile(host: Tree, path: string) {
   if (host.exists(path)) {
@@ -22,7 +24,7 @@ function deleteFile(host: Tree, path: string) {
 
 function overwriteFiles(path: Path) {
   return (host: Tree) => {
-    ['app.module.ts'].forEach(filename => {
+    ['app.module.ts'].forEach((filename) => {
       deleteFile(host, join(path, filename));
     });
     return host;
@@ -41,18 +43,18 @@ function modifyAngularJson(options: ProjectTemplateOptions, context: SchematicCo
       const angular = JSON.parse(angularStr);
       angular.projects[options.project].architect.build.options.extractCss = true;
       angular.projects[options.project].architect.build.options.styles.push(
-          {
-            input: 'src/theme-default/styles.styl',
-            bundleName: 'theme-default',
-            lazy: true,
-            inject: true
-          },
-          {
-            input: 'src/theme-green/styles.styl',
-            bundleName: 'theme-green',
-            lazy: true,
-            inject: true
-          }
+        {
+          input: 'src/theme-default/styles.styl',
+          bundleName: 'theme-default',
+          lazy: true,
+          inject: true,
+        },
+        {
+          input: 'src/theme-green/styles.styl',
+          bundleName: 'theme-green',
+          lazy: true,
+          inject: true,
+        },
       );
       context.logger.info('overwrite angular json');
       host.overwrite('angular.json', JSON.stringify(angular, null, '\t'));
@@ -71,19 +73,22 @@ export function template(options: ProjectTemplateOptions): Rule {
     const rule = chain([
       overwriteFiles(sourcePath),
       modifyAngularJson(options, context),
-      mergeWith(apply(url('./files'), [
-        move(sourcePath),
-        forEach(fileEntry => {
-          const destPath = join(options.path, fileEntry.path);
-          if (tree.exists(destPath)) {
-            tree.overwrite(destPath, fileEntry.content);
-          } else {
-            tree.create(destPath, fileEntry.content);
-          }
-          return null;
-        })
-      ]), MergeStrategy.Overwrite),
-      schematic('itskPackages', options)
+      mergeWith(
+        apply(url('./files'), [
+          move(sourcePath),
+          forEach((fileEntry) => {
+            const destPath = join(options.path, fileEntry.path);
+            if (tree.exists(destPath)) {
+              tree.overwrite(destPath, fileEntry.content);
+            } else {
+              tree.create(destPath, fileEntry.content);
+            }
+            return null;
+          }),
+        ]),
+        MergeStrategy.Overwrite,
+      ),
+      schematic('itskPackages', options),
     ]);
 
     return rule(tree, context);

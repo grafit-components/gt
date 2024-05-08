@@ -1,45 +1,33 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {ItskPickerDayModel} from '../model/itsk-picker-day-model';
-import {ItskDatePeriod} from '../model/itsk-date-period';
-import {PickerLocaleService} from '../service/picker-locale.service';
-import {takeUntil} from 'rxjs/operators';
-import {ItskPickerLocaleModel} from '../model/itsk-picker-locale-model';
-import {Subject} from 'rxjs';
-import {ItskDatePickerHelper} from '../itsk-date-picker-helper';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { ItskDatePickerHelper } from '../itsk-date-picker-helper';
+import { ItskDatePeriod } from '../model/itsk-date-period';
+import { ItskPickerDayModel } from '../model/itsk-picker-day-model';
+import { ItskPickerLocaleModel } from '../model/itsk-picker-locale-model';
+import { PickerLocaleService } from '../service/picker-locale.service';
 
 @Component({
   selector: 'itsk-day-selector',
   templateUrl: './itsk-day-selector.component.html',
   styleUrls: ['./itsk-day-selector.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskDaySelectorComponent implements OnInit, OnDestroy {
   protected stop: Subject<boolean> = new Subject<boolean>();
-  /**
-   * Первый день недели
-   */
+  /** Первый день недели */
   @Input() firstDayOfWeek = 1;
 
-  /**
-   * Даты, недоступные для выбора
-   */
+  /** Даты, недоступные для выбора */
   @Input() disabledDates?: Date[];
 
-  /**
-   * Периоды, недоступные для выбора
-   */
+  /** Периоды, недоступные для выбора */
   @Input() disabledPeriods?: ItskDatePeriod[];
-  /**
-   * Дни недели, недоступные для выбора
-   */
+  /** Дни недели, недоступные для выбора */
   @Input() disabledDays?: number[];
-  /**
-   * Минимальная доступная дата
-   */
+  /** Минимальная доступная дата */
   @Input() minDate?: Date;
-  /**
-   * Максимальная доступная дата
-   */
+  /** Максимальная доступная дата */
   @Input() maxDate?: Date;
 
   @Output() dateSelected = new EventEmitter<Date>();
@@ -52,9 +40,7 @@ export class ItskDaySelectorComponent implements OnInit, OnDestroy {
 
   locale?: ItskPickerLocaleModel;
 
-  /**
-   * Текущая дата
-   */
+  /** Текущая дата */
   currentDate$: number = 0;
 
   @Input()
@@ -67,9 +53,7 @@ export class ItskDaySelectorComponent implements OnInit, OnDestroy {
     return this.currentDate$;
   }
 
-  /**
-   * Текущий месяц
-   */
+  /** Текущий месяц */
   currentMonth$: number = 0;
 
   @Input()
@@ -82,9 +66,7 @@ export class ItskDaySelectorComponent implements OnInit, OnDestroy {
     return this.currentMonth$;
   }
 
-  /**
-   * Текущий год
-   */
+  /** Текущий год */
   currentYear$: number = 0;
 
   @Input()
@@ -100,12 +82,13 @@ export class ItskDaySelectorComponent implements OnInit, OnDestroy {
   weeks?: Array<Array<ItskPickerDayModel>>;
   weekDays: number[] = [];
 
-  constructor(public localeService: PickerLocaleService, private cdr$: ChangeDetectorRef) {
-    localeService.locale
-      .pipe(takeUntil(this.stop))
-      .subscribe((locale: ItskPickerLocaleModel) => {
-        this.locale = locale;
-      });
+  constructor(
+    public localeService: PickerLocaleService,
+    private cdr$: ChangeDetectorRef,
+  ) {
+    localeService.locale.pipe(takeUntil(this.stop)).subscribe((locale: ItskPickerLocaleModel) => {
+      this.locale = locale;
+    });
   }
 
   ngOnInit() {
@@ -123,11 +106,10 @@ export class ItskDaySelectorComponent implements OnInit, OnDestroy {
     let dayIndex = this.firstDayOfWeek;
     for (let i = 0; i < 7; i++) {
       result.push(dayIndex);
-      dayIndex = (dayIndex === 6) ? 0 : ++dayIndex;
+      dayIndex = dayIndex === 6 ? 0 : ++dayIndex;
     }
     return result;
   }
-
 
   applyValue(day: ItskPickerDayModel, event: MouseEvent) {
     this.preventEvent(event);
@@ -163,18 +145,22 @@ export class ItskDaySelectorComponent implements OnInit, OnDestroy {
       this.maxDate as any,
       this.disabledDates as any,
       this.disabledDays as any,
-      this.disabledPeriods as any);
+      this.disabledPeriods as any,
+    );
     this.weeks = ItskDatePickerHelper.sliceArrayIntoGroups<ItskPickerDayModel>(days, 7);
   }
 
   checkDays() {
     if (this.weeks) {
-      this.weeks = this.weeks.map(week => week.map((dat: ItskPickerDayModel) => ({
-        ...dat,
-        selected: dat.date?.getFullYear() === this.currentYear$
-          && dat.date.getMonth() === this.currentMonth$
-          && dat.date.getDate() === this.currentDate$
-      })));
+      this.weeks = this.weeks.map((week) =>
+        week.map((dat: ItskPickerDayModel) => ({
+          ...dat,
+          selected:
+            dat.date?.getFullYear() === this.currentYear$ &&
+            dat.date.getMonth() === this.currentMonth$ &&
+            dat.date.getDate() === this.currentDate$,
+        })),
+      );
     }
   }
 

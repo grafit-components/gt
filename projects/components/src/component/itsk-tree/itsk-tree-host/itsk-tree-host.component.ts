@@ -1,10 +1,10 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {ItskTreeControl} from '../model/itsk-tree-control';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { ItskTreeControl } from '../model/itsk-tree-control';
 
 @Component({
   selector: 'itsk-tree-host',
   templateUrl: './itsk-tree-host.component.html',
-  styleUrls: ['./itsk-tree-host.component.scss']
+  styleUrls: ['./itsk-tree-host.component.scss'],
 })
 export class ItskTreeHostComponent implements OnInit {
   @Input() data: any[] = [];
@@ -13,9 +13,7 @@ export class ItskTreeHostComponent implements OnInit {
 
   @HostBinding('class.tree__host') treeHost = true;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

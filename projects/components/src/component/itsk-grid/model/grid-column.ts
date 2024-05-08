@@ -1,100 +1,55 @@
-import {FilterType} from '../../itsk-filter/model/enum/filter-type.enum';
-import {StringFilterType} from '../../itsk-filter/model/enum/string-filter-type.enum';
-import {ListFilterType} from '../../itsk-filter/model/enum/list-filter-type.enum';
-import {FilterColumn} from '../../itsk-filter/model/filter-column';
-import {GridRow} from './grid-row';
+import { FilterType } from '../../itsk-filter/model/enum/filter-type.enum';
+import { ListFilterType } from '../../itsk-filter/model/enum/list-filter-type.enum';
+import { StringFilterType } from '../../itsk-filter/model/enum/string-filter-type.enum';
+import { FilterColumn } from '../../itsk-filter/model/filter-column';
+import { GridRow } from './grid-row';
 
 export class GridColumn extends FilterColumn {
-  /**
-   * Ширина
-   */
+  /** Ширина */
   width = 100;
-  /**
-   * Коэффициент растяжения ячейки
-   */
+  /** Коэффициент растяжения ячейки */
   flex = 0;
-  /**
-   * Высота
-   */
+  /** Высота */
   height?: number;
-  /**
-   * Высота в шапке таблицы
-   */
+  /** Высота в шапке таблицы */
   headerHeight?: number;
-  /**
-   * Стобец закреплен
-   */
+  /** Стобец закреплен */
   locked: boolean = false;
-  /**
-   * Название столбца в строке результатов
-   */
+  /** Название столбца в строке результатов */
   override name: string = '';
-  /**
-   * Название столбца для заголовка таблицы
-   */
+  /** Название столбца для заголовка таблицы */
   override caption: string = '';
-  /**
-   * Единицы измерения
-   */
+  /** Единицы измерения */
   unit?: string;
-  /**
-   * Возможность скрыть столбец
-   */
+  /** Возможность скрыть столбец */
   disableable: boolean = false;
-  /**
-   * список css классов для шапки таблицы
-   */
+  /** Список css классов для шапки таблицы */
   headCellClass?: string[];
-  /**
-   * список css классов для ячейки таблицы
-   */
+  /** Список css классов для ячейки таблицы */
   cellClass?: string[];
-  /**
-   * Дополнительные данные, свободное описание, доступны внутри компонета ячейки, можно прокинуть callback например
-   */
+  /** Дополнительные данные, свободное описание, доступны внутри компонета ячейки, можно прокинуть callback например */
   parameters: any;
-  /**
-   * Доступно для редактирования
-   */
+  /** Доступно для редактирования */
   editable: boolean = false; // | ((row: GridRow<any>, column: GridColumn) => boolean);
-  /**
-   * Колонка скрыта
-   */
+  /** Колонка скрыта */
   hidden: boolean = false;
 
-  /**
-   * В данном столбце содержатся объекты
-   */
+  /** В данном столбце содержатся объекты */
   objectType: boolean = false;
 
-  /**
-   * Компонент для рендера ячейки
-   */
+  /** Компонент для рендера ячейки */
   cellComponent: any;
-  /**
-   * Компонент для рендера заголовка столбца ячейки
-   */
+  /** Компонент для рендера заголовка столбца ячейки */
   headCellComponent: any;
-  /**
-   * Группировать по этому столбцу
-   */
+  /** Группировать по этому столбцу */
   groupBy: boolean = false;
-  /**
-   * Порядок группировки
-   */
+  /** Порядок группировки */
   groupingOrder = 0;
-  /**
-   *
-   */
   groupByFn: ((row: GridRow<any>) => string) | undefined;
-  /**
-   * Дочерние колонки
-   */
+  /** Дочерние колонки */
   // columns: GridColumn[] = [];
 
-  /**
-   * Инициализация из анонимного объекта
-   */
+  /** Инициализация из анонимного объекта */
   constructor(options?: {
     width?: number;
     flex?: number;

@@ -8,9 +8,8 @@ describe('FilterWrapperComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FilterWrapperComponent ]
-    })
-    .compileComponents();
+      declarations: [FilterWrapperComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

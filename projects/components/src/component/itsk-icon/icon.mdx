@@ -2,6 +2,7 @@ import * as stories from './icon.stories.ts';
 import { Story } from '@storybook/addon-docs/blocks';
 
 # Добавление файла с иконками в проект
+
 В файле `angular.json` в секцию assets добавьте файлы из пакета itsk-ng-lib
 
 ```json
@@ -15,6 +16,7 @@ import { Story } from '@storybook/addon-docs/blocks';
 ```
 
 # Добавление спрайта с иконками в документ
+
 В `app.component` добавьте сервис работы с иконками, и включите спрайт в документ
 
 ```javascript
@@ -29,21 +31,17 @@ constructor(private iconsService: ItskIconService) {
 @NgModule({
   declarations: [],
   exports: [],
-  imports: [
-    ItskIconModule
-  ]
+  imports: [ItskIconModule],
 })
-export class YourModule {
-}
+export class YourModule {}
 ```
 
 # Использование иконок в шаблоне
 
 ```html
-    <itsk-icon [name]="'icon-name'"></itsk-icon>
+<itsk-icon [name]="'icon-name'"></itsk-icon>
 ```
 
 # Названия доступных иконок смотрите в story
 
-<Story id="icon--icon-list" height="700px"/>
-
+<Story id="icon--icon-list" height="700px" />

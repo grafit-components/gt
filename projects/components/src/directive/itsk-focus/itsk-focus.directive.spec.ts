@@ -1,4 +1,4 @@
-import {ItskFocusDirective} from './itsk-focus.directive';
+import { ItskFocusDirective } from './itsk-focus.directive';
 
 describe('ItskFocusDirective', () => {
   it('should create an instance', () => {

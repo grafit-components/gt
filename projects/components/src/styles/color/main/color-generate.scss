@@ -1,66 +1,66 @@
 $blockItem: (
-        'n': 0%,
-        'base': #000,
-        'normal': #216293,
-        'info': #F08200,
-        'success': #00891E,
-        'warning': #C3D300,
-        'error': #FF465C,
-        'focus': #02A7F0
+  'n': 0%,
+  'base': #000,
+  'normal': #216293,
+  'info': #f08200,
+  'success': #00891e,
+  'warning': #c3d300,
+  'error': #ff465c,
+  'focus': #02a7f0,
 );
 $default: (
-        'background-color': mix(map-get($blockItem, 'normal'), map-get($blockItem, 'base'), map-get($blockItem, 'n')),
-        'color': #D2D9DE,
-        'border-color': #1F5986
+  'background-color': mix(map-get($blockItem, 'normal'), map-get($blockItem, 'base'), map-get($blockItem, 'n')),
+  'color': #d2d9de,
+  'border-color': #1f5986,
 );
 $secondary: (
-        'secondary':  undefined ,
-        'color': #FFFFFF,
-        'border-color': #1F5986
+  'secondary': undefined,
+  'color': #ffffff,
+  'border-color': #1f5986,
 );
 $primary: (
-        'background-color':  undefined ,
-        'color': #FFFFFF,
-        'border-color': #F08200
+  'background-color': undefined,
+  'color': #ffffff,
+  'border-color': #f08200,
 );
 $ghost: (
-        'background-color': map-get($blockItem, 'normal'),
-        'color': map-get($blockItem, 'normal'),
-        'border-color': map-get($blockItem, 'normal')
+  'background-color': map-get($blockItem, 'normal'),
+  'color': map-get($blockItem, 'normal'),
+  'border-color': map-get($blockItem, 'normal'),
 );
 $success: (
-        'background-color':  undefined ,
-        'color': #fff,
-        'border-color': #00891E
+  'background-color': undefined,
+  'color': #fff,
+  'border-color': #00891e,
 );
 $warning: (
-        'background-color':  undefined ,
-        'color': #000,
-        'border-color': #E3B100
+  'background-color': undefined,
+  'color': #000,
+  'border-color': #e3b100,
 );
 $error: (
-        'background-color':  undefined ,
-        'color': #fff,
-        'border-color': #FF465C
+  'background-color': undefined,
+  'color': #fff,
+  'border-color': #ff465c,
 );
 $info: (
-        'background-color': #558A8D,
-        'color': #fff,
-        'border-color': #558A8D
+  'background-color': #558a8d,
+  'color': #fff,
+  'border-color': #558a8d,
 );
 $focus: (
-        'background-color': #02A7F0,
-        'color': #02A7F0,
-        'border-color': #02A7F0
+  'background-color': #02a7f0,
+  'color': #02a7f0,
+  'border-color': #02a7f0,
 );
 $main: (
-        'default': $default,
-        'secondary': $secondary,
-        'primary': $primary,
-        'ghost': $ghost,
-        'success': $success,
-        'warning': $warning,
-        'error': $error,
-        'info': $info,
-        'focus': $focus
+  'default': $default,
+  'secondary': $secondary,
+  'primary': $primary,
+  'ghost': $ghost,
+  'success': $success,
+  'warning': $warning,
+  'error': $error,
+  'info': $info,
+  'focus': $focus,
 );

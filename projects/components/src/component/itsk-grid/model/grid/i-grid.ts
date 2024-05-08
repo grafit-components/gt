@@ -1,18 +1,18 @@
-import {GridColumn} from '../grid-column';
-import {GridRow, IId} from '../grid-row';
-import {EventEmitter, Type} from '@angular/core';
-import {FilterState} from '../filter-state';
-import {AdditionalComponentBase} from '../additional-component-base';
-import {AggregateComponentBase} from '../aggregate-component-base';
-import {ItskGridEditType} from '../enum/itsk-grid-edit-type.enum';
-import {ItskGridEditEvent} from '../enum/itsk-grid-edit-event.enum';
-import {ItskGridEditMode} from '../enum/itsk-grid-edit-mode.enum';
-import {GroupingType} from '../enum/grouping-type.enum';
-import {GroupRowComponentBase} from '../group-row-component-base';
-import {ICellCoordinates, ICellEvent} from '../cell-coordinates';
-import {BooleanFunc, BooleanPromiseFunc} from '../../../../util/object-util';
-import {ItskGridSelectRowsByType} from '../../model/enum/itsk-grid-select-rows-by-type';
-import {ItskGridSelectType} from '../../model/enum/itsk-grid-select-type';
+import { EventEmitter, Type } from '@angular/core';
+import { BooleanFunc, BooleanPromiseFunc } from '../../../../util/object-util';
+import { ItskGridSelectRowsByType } from '../../model/enum/itsk-grid-select-rows-by-type';
+import { ItskGridSelectType } from '../../model/enum/itsk-grid-select-type';
+import { AdditionalComponentBase } from '../additional-component-base';
+import { AggregateComponentBase } from '../aggregate-component-base';
+import { ICellCoordinates, ICellEvent } from '../cell-coordinates';
+import { GroupingType } from '../enum/grouping-type.enum';
+import { ItskGridEditEvent } from '../enum/itsk-grid-edit-event.enum';
+import { ItskGridEditMode } from '../enum/itsk-grid-edit-mode.enum';
+import { ItskGridEditType } from '../enum/itsk-grid-edit-type.enum';
+import { FilterState } from '../filter-state';
+import { GridColumn } from '../grid-column';
+import { GridRow, IId } from '../grid-row';
+import { GroupRowComponentBase } from '../group-row-component-base';
 
 export interface IGrid<T extends IId> {
   columns?: GridColumn[];

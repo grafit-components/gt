@@ -3,8 +3,7 @@ export abstract class ClickOutsideBase {
 
   abstract get visible(): boolean;
 
-  protected constructor(private element: any) {
-  }
+  protected constructor(private element: any) {}
 
   abstract clickedOutside: (click: MouseEvent) => any;
 

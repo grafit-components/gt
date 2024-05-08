@@ -1,8 +1,6 @@
-<ng-container *ngFor="let item of data; let index=index;">
-  <ng-container *ngTemplateOutlet="template.template; context: {$implicit: item, control: control, index: index}"></ng-container>
+<ng-container *ngFor="let item of data; let index = index">
+  <ng-container *ngTemplateOutlet="template.template; context: { $implicit: item, control: control, index: index }"></ng-container>
   <ng-container *ngIf="control.getChildren(item) && control.isExpanded(item)">
-    <itsk-tree-host [data]="control.getChildren(item)"
-                    [template]="template"
-                    [control]="control"></itsk-tree-host>
+    <itsk-tree-host [data]="control.getChildren(item)" [template]="template" [control]="control"></itsk-tree-host>
   </ng-container>
 </ng-container>

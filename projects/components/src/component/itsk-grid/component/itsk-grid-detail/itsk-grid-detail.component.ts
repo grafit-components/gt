@@ -2,21 +2,22 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ComponentFactoryResolver, ComponentRef,
+  ComponentFactoryResolver,
+  ComponentRef,
   Input,
   OnInit,
   Type,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
-import {GridRow, IId} from '../../model/grid-row';
-import {GridColumn} from '../../model/grid-column';
-import {DetailComponentBase} from '../../model/detail-component-base';
+import { DetailComponentBase } from '../../model/detail-component-base';
+import { GridColumn } from '../../model/grid-column';
+import { GridRow, IId } from '../../model/grid-row';
 
 @Component({
   selector: 'itsk-grid-detail',
   template: '',
   styleUrls: ['./itsk-grid-detail.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskGridDetailComponent<T extends IId> implements OnInit {
   private componentRef?: ComponentRef<DetailComponentBase<T>>;
@@ -26,7 +27,7 @@ export class ItskGridDetailComponent<T extends IId> implements OnInit {
 
   @Input()
   set row(value: GridRow<T> | undefined) {
-    if(!value)return
+    if (!value) return;
     this.row$ = value;
     if (this.init && this.componentRef) {
       this.componentRef.instance.row = value;
@@ -42,7 +43,7 @@ export class ItskGridDetailComponent<T extends IId> implements OnInit {
 
   @Input()
   set columns(value: GridColumn[] | undefined) {
-    if(!value) return;
+    if (!value) return;
     this.columns$ = value;
     if (this.init && this.componentRef) {
       this.componentRef.instance.columns = value;
@@ -56,9 +57,10 @@ export class ItskGridDetailComponent<T extends IId> implements OnInit {
 
   @Input() detailComponent?: Type<DetailComponentBase<T>>;
 
-  constructor(private viewContainerRef: ViewContainerRef,
-              private componentFactoryResolver: ComponentFactoryResolver) {
-  }
+  constructor(
+    private viewContainerRef: ViewContainerRef,
+    private componentFactoryResolver: ComponentFactoryResolver,
+  ) {}
 
   ngOnInit() {
     if (!this.detailComponent || !DetailComponentBase.isPrototypeOf(this.detailComponent)) {
@@ -66,10 +68,8 @@ export class ItskGridDetailComponent<T extends IId> implements OnInit {
     }
     const compFactory = this.componentFactoryResolver.resolveComponentFactory<DetailComponentBase<T>>(this.detailComponent);
     this.componentRef = this.viewContainerRef.createComponent<DetailComponentBase<T>>(compFactory);
-    if(this.row)
-    this.componentRef.instance.row = this.row;
-    if(this.columns)
-    this.componentRef.instance.columns = this.columns;
+    if (this.row) this.componentRef.instance.row = this.row;
+    if (this.columns) this.componentRef.instance.columns = this.columns;
     this.componentRef.changeDetectorRef.markForCheck();
     this.init = true;
   }

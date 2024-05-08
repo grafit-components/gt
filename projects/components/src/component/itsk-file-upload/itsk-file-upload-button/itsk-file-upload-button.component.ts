@@ -1,9 +1,9 @@
-import {Component, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, ViewChild} from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'itsk-file-upload-button',
   templateUrl: './itsk-file-upload-button.component.html',
-  styleUrls: ['./itsk-file-upload-button.component.scss']
+  styleUrls: ['./itsk-file-upload-button.component.scss'],
 })
 export class ItskFileUploadButtonComponent implements OnInit {
   @HostBinding('class.file-upload-button') fileUpload = true;
@@ -13,15 +13,13 @@ export class ItskFileUploadButtonComponent implements OnInit {
 
   @Output() upload: EventEmitter<FileList> = new EventEmitter();
 
-  @ViewChild('fileUpload', {static: false}) input?: ElementRef;
+  @ViewChild('fileUpload', { static: false }) input?: ElementRef;
 
   files: any;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   fileChanged(event: any) {
     if (event.target && event.target.files && this.input) {

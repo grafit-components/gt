@@ -1,11 +1,22 @@
-import {ComponentRef, Directive, ElementRef, HostBinding, HostListener, Injector, Input, OnDestroy, TemplateRef, Type} from '@angular/core';
-import {IItskTooltipConfig} from './model/i-itsk-tooltip-config';
-import {DynamicComponentFactory} from '../../common/util/dynamic-component-factory';
-import {ItskDynamicData} from '../../common/model/itsk-dynamic-data';
-import {ItskTooltipContainerComponent} from './itsk-tooltip-container/itsk-tooltip-container.component';
+import {
+  ComponentRef,
+  Directive,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  Injector,
+  Input,
+  OnDestroy,
+  TemplateRef,
+  Type,
+} from '@angular/core';
+import { ItskDynamicData } from '../../common/model/itsk-dynamic-data';
+import { DynamicComponentFactory } from '../../common/util/dynamic-component-factory';
+import { ItskTooltipContainerComponent } from './itsk-tooltip-container/itsk-tooltip-container.component';
+import { IItskTooltipConfig } from './model/i-itsk-tooltip-config';
 
 @Directive({
-  selector: '[itskTooltip]'
+  selector: '[itskTooltip]',
 })
 export class ItskTooltipDirective implements OnDestroy {
   @HostBinding('class.position-relative') relative = true;
@@ -38,9 +49,11 @@ export class ItskTooltipDirective implements OnDestroy {
     }
   }
 
-  constructor(private elementRef$: ElementRef,
-              private injector$: Injector,
-              private factory$: DynamicComponentFactory) {
+  constructor(
+    private elementRef$: ElementRef,
+    private injector$: Injector,
+    private factory$: DynamicComponentFactory,
+  ) {
     this.element$ = this.elementRef$.nativeElement;
   }
 
@@ -48,9 +61,7 @@ export class ItskTooltipDirective implements OnDestroy {
     this.destroy();
   }
 
-  create(content: string | TemplateRef<any> | Type<any>,
-         data?: any,
-         injector?: Injector): ComponentRef<ItskTooltipContainerComponent> {
+  create(content: string | TemplateRef<any> | Type<any>, data?: any, injector?: Injector): ComponentRef<ItskTooltipContainerComponent> {
     if (content === null || content === undefined) {
       throw new Error('Specify template or component to render');
     }
@@ -62,14 +73,14 @@ export class ItskTooltipDirective implements OnDestroy {
     injector = this.getInjector(modalData, injector);
     const contentInstance = this.factory$.createContent(content, injector, this.getContext(content, modalData));
     const tooltip = this.factory$.createComponent(ItskTooltipContainerComponent, contentInstance, injector, this.element$);
-    if (this.itskTooltipConfig)tooltip.instance.config = this.itskTooltipConfig;
+    if (this.itskTooltipConfig) tooltip.instance.config = this.itskTooltipConfig;
     return tooltip;
   }
 
   private getContext(content: string | TemplateRef<any> | Type<any>, context: any) {
     if (content instanceof TemplateRef) {
       return {
-        $implicit: context
+        $implicit: context,
       };
     }
     return context;
@@ -80,10 +91,10 @@ export class ItskTooltipDirective implements OnDestroy {
       providers: [
         {
           provide: ItskDynamicData,
-          useValue: data
-        }
+          useValue: data,
+        },
       ],
-      parent
+      parent,
     });
   }
 

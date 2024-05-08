@@ -2,7 +2,8 @@
 @import 'shape-util.scss';
 
 @mixin tabs($blockItem) {
-  &.tabs, & .tabs {
+  &.tabs,
+  & .tabs {
     @include tabsBlock($blockItem);
   }
 }

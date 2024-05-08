@@ -1,15 +1,15 @@
 <div class="app">
-  <div class="block-main toolbar shadow shadow-b-2" style="z-index: 3;">
-    <img [routerLink]="'/'" src="assets/projectName.png" class="cursor_pointer" alt="">
+  <div class="block-main toolbar shadow shadow-b-2" style="z-index: 3">
+    <img [routerLink]="'/'" src="assets/projectName.png" class="cursor_pointer" alt="" />
     <!--    <itsk-breadcrumb [menuItems]="menu" [currentItem]="current"></itsk-breadcrumb>-->
     <div style="margin-left: auto">
-<!--      <app-theme-switch></app-theme-switch>-->
+      <!--      <app-theme-switch></app-theme-switch>-->
     </div>
   </div>
   <div class="container container_auto overflow-hidden">
     <div class="container border-r-1px border-color_default">
       <itsk-menu [menu]="menu"></itsk-menu>
-<!--      <code-example></code-example>-->
+      <!--      <code-example></code-example>-->
     </div>
     <div class="container container_column container_auto scrollbar">
       <router-outlet></router-outlet>

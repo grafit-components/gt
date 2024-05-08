@@ -1,21 +1,19 @@
-import {Component, Input, OnDestroy, OnInit, Type} from '@angular/core';
-import {GridColumn} from '../../model/grid-column';
-import {GridRow, IId} from '../../model/grid-row';
-import {GridUtil} from '../../model/util';
-import {AggregateComponentBase} from '../../model/aggregate-component-base';
-import {ItskGridService} from '../../service/itsk-grid.service';
-import {takeWhile} from 'rxjs/operators';
+import { Component, Input, OnDestroy, OnInit, Type } from '@angular/core';
+import { takeWhile } from 'rxjs/operators';
+import { AggregateComponentBase } from '../../model/aggregate-component-base';
+import { GridColumn } from '../../model/grid-column';
+import { GridRow, IId } from '../../model/grid-row';
+import { GridUtil } from '../../model/util';
+import { ItskGridService } from '../../service/itsk-grid.service';
 
 @Component({
   selector: 'itsk-grid-aggregate',
   templateUrl: './itsk-grid-aggregate.component.html',
-  styleUrls: ['./itsk-grid-aggregate.component.scss']
+  styleUrls: ['./itsk-grid-aggregate.component.scss'],
 })
 export class ItskGridAggregateComponent<T extends IId> implements OnInit, OnDestroy {
   private alive = true;
-  /**
-   * Описание колонок таблицы
-   */
+  /** Описание колонок таблицы */
   private columns$: GridColumn[] = [];
 
   locked: GridColumn[] = [];
@@ -26,7 +24,7 @@ export class ItskGridAggregateComponent<T extends IId> implements OnInit, OnDest
   unlockedFlex?: number;
 
   set columns(columns: GridColumn[]) {
-    this.columns$ = GridUtil.flattenColumns(columns).filter(_ => _.hidden !== true);
+    this.columns$ = GridUtil.flattenColumns(columns).filter((_) => _.hidden !== true);
     this.locked = GridUtil.initLockedColumns(this.columns$, true);
     this.unlocked = GridUtil.initLockedColumns(this.columns$, false);
     this.lockedBasis = this.getBasis(this.locked);
@@ -35,25 +33,18 @@ export class ItskGridAggregateComponent<T extends IId> implements OnInit, OnDest
     this.unlockedFlex = this.getFlex(this.unlocked);
   }
 
-  /**
-   * Настройки грида
-   */
+  /** Настройки грида */
   @Input() aggregateComponent?: Type<AggregateComponentBase<T>>;
-  /**
-   * Данные для отображения
-   */
+  /** Данные для отображения */
   @Input() data?: GridRow<T>;
 
   // @Input() hoveredColumn: string;
 
   constructor(protected svc$: ItskGridService<T>) {
-    this.svc$.visibleColumns.pipe(takeWhile(_ => this.alive)).subscribe(_ => this.columns = _);
-
+    this.svc$.visibleColumns.pipe(takeWhile((_) => this.alive)).subscribe((_) => (this.columns = _));
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.alive = false;

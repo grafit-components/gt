@@ -8,9 +8,8 @@ describe('ItskTreeHostComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItskTreeHostComponent ]
-    })
-    .compileComponents();
+      declarations: [ItskTreeHostComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

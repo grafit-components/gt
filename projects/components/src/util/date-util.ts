@@ -1,7 +1,5 @@
 export class DateUtil {
-  /**
-   * Получить дату из строки
-   */
+  /** Получить дату из строки */
   public static ParseString(dat: string) {
     const from = dat.split('.');
     const parsedDate = new Date(parseInt(from[2], 10), parseInt(from[1], 10) - 1, parseInt(from[0], 10));
@@ -11,9 +9,7 @@ export class DateUtil {
     return parsedDate;
   }
 
-  /**
-   * Привести дату к строке
-   */
+  /** Привести дату к строке */
   public static ToString(dat: Date) {
     if (!dat || !(dat instanceof Date)) {
       return '';
@@ -23,9 +19,7 @@ export class DateUtil {
     return dat.getDate().toString() + '.' + montString + '.' + dat.getFullYear().toString();
   }
 
-  /**
-   * Подготовка даты к отправке на сервер, чтобы небыло смещения часов
-   */
+  /** Подготовка даты к отправке на сервер, чтобы небыло смещения часов */
   public static ConvertUTC2DateLocal(date?: Date): Date | null {
     if (date && date instanceof Date) {
       const timezoneOffsetMs: number = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTimezoneOffset() * 60000;
@@ -34,9 +28,7 @@ export class DateUtil {
     return null;
   }
 
-  /**
-   * Подготовка даты к отправке на сервер, чтобы небыло смещения часов
-   */
+  /** Подготовка даты к отправке на сервер, чтобы небыло смещения часов */
   public static ConvertDateLocal2UTC(date?: Date): Date | null {
     if (date && date instanceof Date) {
       const timezoneOffsetMs: number = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTimezoneOffset() * 60000;
@@ -153,6 +145,6 @@ export class DateUtil {
   }
 
   public static ToISOString(date: number): string {
-    return ((new Date(date - (new Date()).getTimezoneOffset() * 60000)).toISOString().slice(0, -5) + 'Z');
+    return new Date(date - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -5) + 'Z';
   }
 }

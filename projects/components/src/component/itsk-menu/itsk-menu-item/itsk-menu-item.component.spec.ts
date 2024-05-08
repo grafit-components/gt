@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import {ItskMenuItemComponent} from './itsk-menu-item.component';
+import { ItskMenuItemComponent } from './itsk-menu-item.component';
 
 describe('ItskMenuItemComponent', () => {
   let component: ItskMenuItemComponent<any>;
@@ -8,9 +8,8 @@ describe('ItskMenuItemComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskMenuItemComponent]
-    })
-      .compileComponents();
+      declarations: [ItskMenuItemComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

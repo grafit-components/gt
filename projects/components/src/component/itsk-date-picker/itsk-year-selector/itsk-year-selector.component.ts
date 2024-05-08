@@ -1,10 +1,10 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'itsk-year-selector',
   templateUrl: './itsk-year-selector.component.html',
   styleUrls: ['./itsk-year-selector.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskYearSelectorComponent implements OnInit, OnDestroy {
   @Input() currentYear?: number;
@@ -24,8 +24,7 @@ export class ItskYearSelectorComponent implements OnInit, OnDestroy {
   decreaseInterval?: number;
   increaseInterval?: number;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     const [minRange, maxRange] = this.allowableRange;
@@ -98,16 +97,20 @@ export class ItskYearSelectorComponent implements OnInit, OnDestroy {
   };
 
   checkRanges = () => {
-    if (this.years?.some((year) => {
-      const dat = new Date(year, 0, 1);
-      return this.isMinYear(dat);
-    })) {
+    if (
+      this.years?.some((year) => {
+        const dat = new Date(year, 0, 1);
+        return this.isMinYear(dat);
+      })
+    ) {
       this.years = this.minYearList;
     }
-    if (this.years?.some((year) => {
-      const dat = new Date(year, 0, 1);
-      return this.isMaxYear(dat);
-    })) {
+    if (
+      this.years?.some((year) => {
+        const dat = new Date(year, 0, 1);
+        return this.isMaxYear(dat);
+      })
+    ) {
       this.years = this.maxYearList;
     }
   };
@@ -120,7 +123,7 @@ export class ItskYearSelectorComponent implements OnInit, OnDestroy {
   };
 
   decreaseYearSelector = (step: number = 3) => {
-    const dat = new Date(this.years ?this.years[0]:0 - step, 0, 1);
+    const dat = new Date(this.years ? this.years[0] : 0 - step, 0, 1);
     if (this.isMinYear(dat)) {
       this.years = this.minYearList;
       return;
@@ -132,7 +135,7 @@ export class ItskYearSelectorComponent implements OnInit, OnDestroy {
   };
 
   increaseYearSelector = (step: number = 3) => {
-    const dat = new Date((this.years ? this.years[this.years.length - 1]:0) + step, 0, 1);
+    const dat = new Date((this.years ? this.years[this.years.length - 1] : 0) + step, 0, 1);
     if (this.isMaxYear(dat)) {
       this.years = this.maxYearList;
       return;

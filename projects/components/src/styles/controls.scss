@@ -99,7 +99,7 @@
   }
 }
 
-  // @include toggle(map-get($blocks, 'work'));
+// @include toggle(map-get($blocks, 'work'));
 
 @each $blockName, $blockItem in $blocks {
   .block-#{$blockName} {
@@ -130,7 +130,6 @@
     }
   }
 
-
   &__icon {
     flex-shrink: 0;
     height: $space-4;
@@ -155,92 +154,92 @@
   }
 }
 
-@-webkit-keyframes uncheck  {
-  0%  {
+@-webkit-keyframes uncheck {
+  0% {
     left: 1px;
   }
-  100%  {
+  100% {
     right: 1px;
   }
 }
 
-@-moz-keyframes uncheck  {
-  0%  {
+@-moz-keyframes uncheck {
+  0% {
     left: 1px;
   }
-  100%  {
+  100% {
     right: 1px;
   }
 }
 
-@-ms-keyframes uncheck  {
-  0%  {
+@-ms-keyframes uncheck {
+  0% {
     left: 1px;
   }
-  100%  {
+  100% {
     right: 1px;
   }
 }
 
-@-o-keyframes uncheck  {
-  0%  {
+@-o-keyframes uncheck {
+  0% {
     left: 1px;
   }
-  100%  {
+  100% {
     right: 1px;
   }
 }
 
-@keyframes uncheck  {
-  0%  {
+@keyframes uncheck {
+  0% {
     left: 1px;
   }
-  100%  {
+  100% {
     right: 1px;
   }
 }
 
-@-webkit-keyframes check  {
-  0%  {
+@-webkit-keyframes check {
+  0% {
     left: 1px;
   }
-  100%  {
+  100% {
     right: 1px;
   }
 }
 
-@-moz-keyframes check  {
-  0%  {
+@-moz-keyframes check {
+  0% {
     left: 1px;
   }
-  100%  {
+  100% {
     right: 1px;
   }
 }
 
-@-ms-keyframes check  {
-  0%  {
+@-ms-keyframes check {
+  0% {
     left: 1px;
   }
-  100%  {
+  100% {
     right: 1px;
   }
 }
 
-@-o-keyframes check  {
-  0%  {
+@-o-keyframes check {
+  0% {
     left: 1px;
   }
-  100%  {
+  100% {
     right: 1px;
   }
 }
 
-@keyframes check  {
-  0%  {
+@keyframes check {
+  0% {
     left: 1px;
   }
-  100%  {
+  100% {
     right: 1px;
   }
 }

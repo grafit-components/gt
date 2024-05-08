@@ -1,19 +1,18 @@
 <div class="button__group">
-  <button *ngIf="showFilterButton"
-          (click)="changeFilters()"
-          [class.button_secondary]="!_showFilter"
-          [class.button_primary]="_showFilter">
-    <itsk-icon [class.color_secondary]="!_showFilter"
-               [class.color_primary]="_showFilter"
-               [name]="'icon-filter-conus-filled'"></itsk-icon>
+  <button *ngIf="showFilterButton" (click)="changeFilters()" [class.button_secondary]="!_showFilter" [class.button_primary]="_showFilter">
+    <itsk-icon [class.color_secondary]="!_showFilter" [class.color_primary]="_showFilter" [name]="'icon-filter-conus-filled'"></itsk-icon>
   </button>
-  <button *ngIf="showColumnsButton"
-          (click)="changeColumns()"
-          [class.button_secondary]="!_showColumns"
-          [class.button_primary]="_showColumns">
-    <itsk-icon [class.color_secondary]="!_showColumns"
-               [class.color_primary]="_showColumns"
-               [name]="'icon-wrench-repair-filled'"></itsk-icon>
+  <button
+    *ngIf="showColumnsButton"
+    (click)="changeColumns()"
+    [class.button_secondary]="!_showColumns"
+    [class.button_primary]="_showColumns"
+  >
+    <itsk-icon
+      [class.color_secondary]="!_showColumns"
+      [class.color_primary]="_showColumns"
+      [name]="'icon-wrench-repair-filled'"
+    ></itsk-icon>
   </button>
   <ng-container *ngFor="let button of panelButtons">
     <ng-template [ngTemplateOutlet]="button.templateRef"></ng-template>
@@ -24,11 +23,8 @@
   <ng-template [ngTemplateOutlet]="panelContent.templateRef"></ng-template>
 </ng-container>
 
-<div class="container container_column container_auto align-end"
-     *ngIf="showDetailsButton && detailComponent">
-  <button (click)="changeDetails()"
-          [class.button_secondary]="!_showDetails"
-          [class.button_primary]="_showDetails">
-    {{(dict | async)?.detail}}
+<div class="container container_column container_auto align-end" *ngIf="showDetailsButton && detailComponent">
+  <button (click)="changeDetails()" [class.button_secondary]="!_showDetails" [class.button_primary]="_showDetails">
+    {{ (dict | async)?.detail }}
   </button>
 </div>

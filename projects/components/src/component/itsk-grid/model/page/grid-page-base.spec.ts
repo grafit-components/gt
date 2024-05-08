@@ -1,4 +1,4 @@
-import {GridPageBase} from './grid-page-base';
+import { GridPageBase } from './grid-page-base';
 
 describe('GridPageBase', () => {
   it('should create an instance', () => {

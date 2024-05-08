@@ -3,7 +3,9 @@
 @import './shape-util.scss';
 
 @mixin grid($blockItem) {
-  &.grid, & .grid, & > .grid {
+  &.grid,
+  & .grid,
+  & > .grid {
     @include gridBlock($blockItem);
   }
 }
@@ -104,7 +106,7 @@
       color: adjust-color(map-get($blockItem, 'default', 'color'), $alpha: 0.7);
 
       &:hover {
-        @include hoverFunc(map-get($blockItem, 'default', 'background-color'), 5%)
+        @include hoverFunc(map-get($blockItem, 'default', 'background-color'), 5%);
       }
 
       &__sorted {
@@ -126,7 +128,6 @@
       }
 
       &__resize {
-
         &:hover {
           background: map-get($blockItem, 'secondary', 'background-color');
         }
@@ -156,7 +157,9 @@
 }
 
 @mixin gridWrapper($blockItem) {
-  &.grid-wrapper, & .grid-wrapper, & > .grid-wrapper {
+  &.grid-wrapper,
+  & .grid-wrapper,
+  & > .grid-wrapper {
     @include gridWrapperBlock($blockItem);
   }
 }

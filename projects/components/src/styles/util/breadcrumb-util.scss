@@ -1,7 +1,8 @@
 @import '../vars.scss';
 
 @mixin breadcrumb($blockItem) {
-  &.breadcrumb, & .breadcrumb {
+  &.breadcrumb,
+  & .breadcrumb {
     color: map-get($blockItem, 'default', 'color');
     &__item-name {
       color: map-get($blockItem, 'default', 'color');

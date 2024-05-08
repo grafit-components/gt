@@ -7,16 +7,16 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  TemplateRef
+  TemplateRef,
 } from '@angular/core';
-import {ItskMenuGroup} from '../model/itsk-menu-group';
-import {IItskMenuItem} from '../model/i-itsk-menu-item';
+import { IItskMenuItem } from '../model/i-itsk-menu-item';
+import { ItskMenuGroup } from '../model/itsk-menu-group';
 
 @Component({
   selector: 'itsk-menu-items',
   templateUrl: './itsk-menu-items.component.html',
   styleUrls: ['./itsk-menu-items.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItskMenuItemsComponent<T extends IItskMenuItem> implements OnInit, OnDestroy {
   allItems: T[] = [];
@@ -40,14 +40,11 @@ export class ItskMenuItemsComponent<T extends IItskMenuItem> implements OnInit, 
 
   openChild: IItskMenuItem | null = null;
 
-  constructor(private cdr$: ChangeDetectorRef) {
-  }
+  constructor(private cdr$: ChangeDetectorRef) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  ngOnDestroy() {
-  }
+  ngOnDestroy() {}
 
   private getMenu(): T[] {
     return this.allItems.filter((item) => {
@@ -65,10 +62,12 @@ export class ItskMenuItemsComponent<T extends IItskMenuItem> implements OnInit, 
         return x.name === item.group;
       });
       if (found === null || found === undefined) {
-        result.push(new ItskMenuGroup<T>({
-          name: item.group || '',
-          items: groupedItems.filter(x => x.group === item.group)
-        }));
+        result.push(
+          new ItskMenuGroup<T>({
+            name: item.group || '',
+            items: groupedItems.filter((x) => x.group === item.group),
+          }),
+        );
       }
     });
     return result;
@@ -83,7 +82,7 @@ export class ItskMenuItemsComponent<T extends IItskMenuItem> implements OnInit, 
       this.openChild.open = false;
     }
 
-    if (this.openChild === item || !(item.children?.filter(i => !i.hidden)?.length)) {
+    if (this.openChild === item || !item.children?.filter((i) => !i.hidden)?.length) {
       this.openChild = null;
     } else {
       this.openChild = item;

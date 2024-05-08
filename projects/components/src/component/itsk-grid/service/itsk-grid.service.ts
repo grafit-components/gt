@@ -1,16 +1,16 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject, ReplaySubject, Subject} from 'rxjs';
-import {GridSortEvent} from '../model/grid-sort-event';
-import {FilterState} from '../model/filter-state';
-import {GridColumn} from '../model/grid-column';
-import {ColumnResizeEvent} from '../model/column-resize-event';
-import {ColumnReorderEvent} from '../model/column-reorder-event';
-import {GridRow, IId} from '../model/grid-row';
-import {IColumnPosition} from '../model/column-position';
-import {ICellCoordinates} from '../model/cell-coordinates';
-import {BooleanFunc, BooleanPromiseFunc, boolFuncOrPromiseCallback} from '../../../util/object-util';
-import {GridUtil} from '../model/util';
-import {ArrayUtil} from '../../../util/array-util';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
+import { ArrayUtil } from '../../../util/array-util';
+import { BooleanFunc, BooleanPromiseFunc, boolFuncOrPromiseCallback } from '../../../util/object-util';
+import { ICellCoordinates } from '../model/cell-coordinates';
+import { IColumnPosition } from '../model/column-position';
+import { ColumnReorderEvent } from '../model/column-reorder-event';
+import { ColumnResizeEvent } from '../model/column-resize-event';
+import { FilterState } from '../model/filter-state';
+import { GridColumn } from '../model/grid-column';
+import { GridRow, IId } from '../model/grid-row';
+import { GridSortEvent } from '../model/grid-sort-event';
+import { GridUtil } from '../model/util';
 
 @Injectable()
 export class ItskGridService<T extends IId> {
@@ -30,7 +30,6 @@ export class ItskGridService<T extends IId> {
   private flatColumns: GridColumn[] = [];
   private visibleColumns$: ReplaySubject<GridColumn[]> = new ReplaySubject<GridColumn[]>(1);
   visibleColumns = this.visibleColumns$.asObservable();
-
 
   rowSelectable: boolean | BooleanFunc<GridRow<T>> | BooleanPromiseFunc<GridRow<T>> = false;
   selectType: 'single' | 'multiple' | 'none' = 'none';
@@ -85,8 +84,7 @@ export class ItskGridService<T extends IId> {
   private selectedRows$ = new BehaviorSubject<GridRow<T>[]>([]);
   selectedRows = this.selectedRows$.asObservable();
 
-  constructor() {
-  }
+  constructor() {}
 
   setData(value: GridRow<T>[]) {
     this.data = value;
@@ -101,14 +99,16 @@ export class ItskGridService<T extends IId> {
   }
 
   setColumns(value: GridColumn[]) {
-    this.allColumns = value.map(_ => new GridColumn(_));
+    this.allColumns = value.map((_) => new GridColumn(_));
     this.columns$.next(this.allColumns);
     this.flatColumns = GridUtil.flattenColumns(this.allColumns);
-    this.visibleColumns$.next(this.flatColumns.filter(_ => _.hidden !== true));
+    this.visibleColumns$.next(this.flatColumns.filter((_) => _.hidden !== true));
     if (this.grouping) {
-      this.groupColumns = this.flatColumns.filter(_ => _.groupBy).sort((a: GridColumn, b: GridColumn) => {
-        return a.groupingOrder > b.groupingOrder ? 1 : -1;
-      });
+      this.groupColumns = this.flatColumns
+        .filter((_) => _.groupBy)
+        .sort((a: GridColumn, b: GridColumn) => {
+          return a.groupingOrder > b.groupingOrder ? 1 : -1;
+        });
     }
   }
 
@@ -148,7 +148,7 @@ export class ItskGridService<T extends IId> {
   }
 
   reorderColumn(column: GridColumn) {
-    if(!this.dragSource$) {
+    if (!this.dragSource$) {
       return;
     }
     const event = new ColumnReorderEvent(this.dragSource$, column);
@@ -172,7 +172,7 @@ export class ItskGridService<T extends IId> {
   openColumnMenu(column: GridColumn, position: DOMRect) {
     this.columnMenu$.next({
       column,
-      position
+      position,
     });
   }
 
@@ -217,7 +217,7 @@ export class ItskGridService<T extends IId> {
   selectGroup(row: GridRow<T>, val: boolean) {
     if (this.grouping && row.groupColumn) {
       const groupColumn = this.getColumnByName(row.groupColumn);
-      const groupChildren = this.data.filter(_ => {
+      const groupChildren = this.data.filter((_) => {
         return row.groupValue.every((groupValue: any, index: number) => {
           return _.groupValue.indexOf(groupValue) === index;
         });
@@ -227,9 +227,11 @@ export class ItskGridService<T extends IId> {
         if (val) {
           this.selectedRows$.next([...value, ...groupChildren]);
         } else {
-          this.selectedRows$.next(value.filter(_ => {
-            return groupChildren.indexOf(_) < 0;
-          }));
+          this.selectedRows$.next(
+            value.filter((_) => {
+              return groupChildren.indexOf(_) < 0;
+            }),
+          );
         }
       }
     }
@@ -238,7 +240,7 @@ export class ItskGridService<T extends IId> {
   isGroupSelected(row: GridRow<T>) {
     if (this.grouping) {
       const getGroupChildren = this.getGroupChildren(row);
-      if (getGroupChildren && getGroupChildren.every(_ => this.selectedRows$.value.indexOf(_) >= 0)) {
+      if (getGroupChildren && getGroupChildren.every((_) => this.selectedRows$.value.indexOf(_) >= 0)) {
         return true;
       }
     }
@@ -247,7 +249,7 @@ export class ItskGridService<T extends IId> {
 
   areAllSelected() {
     const all = ArrayUtil.flatten(this.data, 'children', false);
-    if (all && all.length && all.every(_ => this.selectedRows$.value.indexOf(_) >= 0)) {
+    if (all && all.length && all.every((_) => this.selectedRows$.value.indexOf(_) >= 0)) {
       return true;
     }
     return false;
@@ -266,7 +268,7 @@ export class ItskGridService<T extends IId> {
     if (this.grouping && row.groupColumn) {
       const groupColumn = this.getColumnByName(row.groupColumn);
       if (groupColumn) {
-        return this.data.filter(_ => {
+        return this.data.filter((_) => {
           return row.groupValue.every((value: any, index: number) => {
             return _.groupValue.indexOf(value) === index;
           });
@@ -291,12 +293,11 @@ export class ItskGridService<T extends IId> {
 
   private addOrRemove<G>(needle: G, list: G[]): G[] {
     if (list.indexOf(needle) >= 0) {
-      return list.filter(_ => _ !== needle);
+      return list.filter((_) => _ !== needle);
     } else {
       return [...list, needle];
     }
   }
-
 
   private initGroupedData(data: GridRow<T>[], groupColumns: GridColumn[]): GridRow<T>[] {
     let result: GridRow<T>[] = [];
@@ -309,13 +310,15 @@ export class ItskGridService<T extends IId> {
     previousData: GridRow<T>[],
     groupColumns: GridColumn[],
     level: number,
-    parentGroupValue?: any[]
+    parentGroupValue?: any[],
   ): GridRow<T>[] {
     const result: GridRow<T>[] = [];
     data.forEach((row: GridRow<T>) => {
       const needle = result.find((resultItem) => {
-        return resultItem.groupColumn === groupColumns[level].name
-          && resultItem.groupValue[level] === this.getGroupValue(row, groupColumns[level]);
+        return (
+          resultItem.groupColumn === groupColumns[level].name &&
+          resultItem.groupValue[level] === this.getGroupValue(row, groupColumns[level])
+        );
       });
       if (!needle) {
         const group = new GridRow<T>({});
@@ -326,14 +329,16 @@ export class ItskGridService<T extends IId> {
         group.level = level;
         group.isGroup = true;
         result.push(group);
-        group.children.push(...data.filter((_: GridRow<T>) => {
-          return group?.groupValue[level] === this.getGroupValue(_, groupColumns[level]);
-        }));
-        group.children.forEach(_ => {
+        group.children.push(
+          ...data.filter((_: GridRow<T>) => {
+            return group?.groupValue[level] === this.getGroupValue(_, groupColumns[level]);
+          }),
+        );
+        group.children.forEach((_) => {
           _.groupValue = group.groupValue;
           _.level = group.level + 1;
         });
-        const previousDataGroup = previousData?.find(_ => (_.isGroup && _.groupValue.toString() === group.groupValue.toString()));
+        const previousDataGroup = previousData?.find((_) => _.isGroup && _.groupValue.toString() === group.groupValue.toString());
         if (previousDataGroup?.expanded ?? this.openLevels > level) {
           group.expanded = true;
           if (groupColumns.length > level + 1) {
@@ -347,14 +352,12 @@ export class ItskGridService<T extends IId> {
     return result;
   }
 
-
   private getGroupValue(row: GridRow<T>, column: GridColumn) {
     if (column.groupByFn !== null && column.groupByFn !== undefined) {
       return column.groupByFn(row);
     }
     return row.data[column.name];
   }
-
 
   private initTreeData(data: GridRow<T>[]): GridRow<T>[] {
     let result: GridRow<T>[] = [];
@@ -379,20 +382,24 @@ export class ItskGridService<T extends IId> {
   private toggleGroup(row: GridRow<T>) {
     if (row.expanded) {
       if (this.groupColumns.length > row.level + 1) {
-        this.displayData.splice(this.displayData.indexOf(row) + 1,
+        this.displayData.splice(
+          this.displayData.indexOf(row) + 1,
           0,
-          ...this.createGroups(row.children, [], this.groupColumns, row.level + 1, row.groupValue));
+          ...this.createGroups(row.children, [], this.groupColumns, row.level + 1, row.groupValue),
+        );
       } else {
         this.displayData.splice(this.displayData.indexOf(row) + 1, 0, ...row.children);
       }
       this.displayData = [...this.displayData];
     } else {
-      const groupColumn = this.groupColumns.find(x => x.name === row.groupColumn);
+      const groupColumn = this.groupColumns.find((x) => x.name === row.groupColumn);
       if (groupColumn) {
-        this.displayData = this.displayData.filter(_ => {
-          return !row.groupValue.every((value: any, index: number) => {
-            return _.groupValue.indexOf(value) === index;
-          }) || row === _;
+        this.displayData = this.displayData.filter((_) => {
+          return (
+            !row.groupValue.every((value: any, index: number) => {
+              return _.groupValue.indexOf(value) === index;
+            }) || row === _
+          );
         });
       }
     }
@@ -405,12 +412,11 @@ export class ItskGridService<T extends IId> {
       this.displayData.splice(this.displayData.indexOf(row) + 1, 0, ...children);
       this.displayData = [...this.displayData];
     } else {
-      this.displayData = this.displayData.filter(_ => {
+      this.displayData = this.displayData.filter((_) => {
         return _.parents.indexOf(row) < 0 || row === _;
       });
     }
     this.visibleData$.next(this.displayData);
-
   }
 
   private getOpenChildren(row: GridRow<T>) {

@@ -21,16 +21,19 @@
   display: inline-flex;
   align-items: center;
 
-  & > button, div {
+  & > button,
+  div {
     border-radius: 0 !important;
   }
 
-  & > button:first-child, div:first-child {
+  & > button:first-child,
+  div:first-child {
     border-top-left-radius: 4px !important;
     border-bottom-left-radius: 4px !important;
   }
 
-  & > button:last-child, div:last-child {
+  & > button:last-child,
+  div:last-child {
     border-top-right-radius: 4px !important;
     border-bottom-right-radius: 4px !important;
   }

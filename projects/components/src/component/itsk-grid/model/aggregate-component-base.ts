@@ -1,5 +1,5 @@
-import {GridRow, IId} from './grid-row';
-import {GridColumn} from './grid-column';
+import { GridColumn } from './grid-column';
+import { GridRow, IId } from './grid-row';
 
 export abstract class AggregateComponentBase<T extends IId> {
   abstract locked: boolean;

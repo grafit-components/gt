@@ -7,12 +7,12 @@ export class ItskPickerLocaleModel {
   today: string = '';
 
   public constructor(options?: {
-    dayNames: string[],
-    dayNamesShort: string[],
-    dayNamesMin: string[],
-    monthNames: string[],
-    monthNamesShort: string[],
-    today: string
+    dayNames: string[];
+    dayNamesShort: string[];
+    dayNamesMin: string[];
+    monthNames: string[];
+    monthNamesShort: string[];
+    today: string;
   }) {
     if (options) {
       this.dayNames = options.dayNames;

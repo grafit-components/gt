@@ -1,101 +1,101 @@
-@import "util/font-util.scss";
-@import "vars.scss";
+@import 'util/font-util.scss';
+@import 'vars.scss';
 
 $font-h1: (
   font-size: $font-size-h1,
   line-height: $line-height-h1,
   font-weight: 300,
-  font-style: normal
+  font-style: normal,
 );
 $font-h2: (
   font-size: $font-size-h2,
   line-height: $line-height-h2,
   font-weight: 300,
-  font-style: normal
+  font-style: normal,
 );
 $font-h3: (
   font-size: $font-size-h3,
   line-height: $line-height-h3,
   font-weight: 300,
-  font-style: normal
+  font-style: normal,
 );
 $font-h4: (
   font-size: $font-size-h4,
   line-height: $line-height-h4,
   font-weight: normal,
-  font-style: normal
+  font-style: normal,
 );
 $font-h5: (
   font-size: $font-size-h5,
   line-height: $line-height-h5,
   font-weight: normal,
-  font-style: normal
+  font-style: normal,
 );
 $font-h6: (
   font-size: $font-size-h6,
   line-height: $line-height-h6,
   font-weight: 500,
-  font-style: normal
+  font-style: normal,
 );
 $font-title1: (
   font-size: $font-size-title1,
   line-height: $line-height-title1,
   font-weight: normal,
-  font-style: normal
+  font-style: normal,
 );
 $font-title2: (
   font-size: $font-size-title2,
   line-height: $line-height-title2,
   font-weight: 500,
-  font-style: normal
+  font-style: normal,
 );
 $font-title3: (
   font-size: $font-size-title3,
   line-height: $line-height-title3,
   font-weight: bold,
-  font-style: normal
+  font-style: normal,
 );
 $font-body1: (
   font-size: $font-size-body1,
   line-height: $line-height-body1,
   font-weight: normal,
-  font-style: normal
+  font-style: normal,
 );
 $font-body2: (
   font-size: $font-size-body2,
   line-height: $line-height-body2,
   font-weight: normal,
-  font-style: normal
+  font-style: normal,
 );
 $font-body3: (
   font-size: $font-size-body3,
   line-height: $line-height-body3,
   font-weight: normal,
-  font-style: normal
+  font-style: normal,
 );
 $font-button1: (
   font-size: $font-size-button1,
   line-height: $line-height-button1,
   font-weight: 500,
-  font-style: normal
+  font-style: normal,
 );
 $font-button2: (
   font-size: $font-size-button2,
   line-height: $line-height-button2,
   font-weight: 500,
-  font-style: normal
+  font-style: normal,
 );
 $font-button3: (
   font-size: $font-size-button3,
   line-height: $line-height-button3,
   font-weight: normal,
-  font-style: normal
+  font-style: normal,
 );
 $font-caption: (
   font-size: $font-size-caption,
   line-height: $line-height-caption,
   font-weight: normal,
-  font-style: normal
+  font-style: normal,
 );
 $font-overline: (
   font-size: $font-size-overline,
@@ -103,7 +103,7 @@ $font-overline: (
   font-weight: normal,
   font-style: normal,
   letter-spacing: 0.04rem,
-  text-transform: uppercase
+  text-transform: uppercase,
 );
 
 $fonts-hash: (
@@ -126,10 +126,9 @@ $fonts-hash: (
   'overline': $font-overline,
 );
 
-
 @each $fontName, $fontHash in $fonts-hash {
   .font-#{$fontName} {
-    @include fontHelperImportant($fontHash)
+    @include fontHelperImportant($fontHash);
   }
 }
 

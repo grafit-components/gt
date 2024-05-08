@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {iconsList} from '../../icons-list';
-import {ItskIconService} from '../../itsk-icon.service';
+import { Component, OnInit } from '@angular/core';
+import { iconsList } from '../../icons-list';
+import { ItskIconService } from '../../itsk-icon.service';
 
 @Component({
   selector: 'itsk-icon-sample',
   templateUrl: './icon-sample.component.html',
-  styleUrls: ['./icon-sample.component.scss']
+  styleUrls: ['./icon-sample.component.scss'],
 })
 export class IconSampleComponent implements OnInit {
   icons = iconsList;
@@ -14,7 +14,5 @@ export class IconSampleComponent implements OnInit {
     this.iconsService.addSprite('assets/icon.svg');
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
