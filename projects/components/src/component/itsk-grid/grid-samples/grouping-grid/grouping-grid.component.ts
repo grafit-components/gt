@@ -7,9 +7,10 @@ import { GridRow } from '../../model/grid-row';
 import { FakeDataService } from '../fake-data.service';
 
 @Component({
-  selector: 'itsk-grouping-grid',
-  templateUrl: './grouping-grid.component.html',
-  styleUrls: ['./grouping-grid.component.scss'],
+    selector: 'itsk-grouping-grid',
+    templateUrl: './grouping-grid.component.html',
+    styleUrls: ['./grouping-grid.component.scss'],
+    standalone: false
 })
 export class GroupingGridComponent implements OnInit {
   startData: any[];

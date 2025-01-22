@@ -5,11 +5,12 @@ import { ItskPagerConfig } from '../model/itsk-pager-config';
 import { Paging } from '../model/paging';
 
 @Component({
-  selector: 'itsk-pager',
-  templateUrl: './itsk-pager.component.html',
-  styleUrls: ['./itsk-pager.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-pager',
+    templateUrl: './itsk-pager.component.html',
+    styleUrls: ['./itsk-pager.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskPagerComponent implements OnInit {
   /** Настройки пагинатора */

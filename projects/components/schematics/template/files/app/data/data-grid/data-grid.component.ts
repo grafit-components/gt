@@ -4,9 +4,10 @@ import { DataModel } from '../../model/data-model';
 import { DataService } from '../../service/data.service';
 
 @Component({
-  selector: 'app-data-grid',
-  templateUrl: './data-grid.component.html',
-  styleUrls: ['./data-grid.component.styl'],
+    selector: 'app-data-grid',
+    templateUrl: './data-grid.component.html',
+    styleUrls: ['./data-grid.component.styl'],
+    standalone: false
 })
 export class DataGridComponent implements OnInit {
   @Input() config: GridColumn[] = [];

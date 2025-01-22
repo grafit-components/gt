@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnI
 import { IItskMenuItem } from '../model/i-itsk-menu-item';
 
 @Component({
-  selector: 'itsk-menu-item',
-  templateUrl: './itsk-menu-item.component.html',
-  styleUrls: ['./itsk-menu-item.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-menu-item',
+    templateUrl: './itsk-menu-item.component.html',
+    styleUrls: ['./itsk-menu-item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskMenuItemComponent<T extends IItskMenuItem> implements OnInit, OnDestroy {
   private timer: any;

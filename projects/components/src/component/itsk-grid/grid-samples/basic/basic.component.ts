@@ -11,9 +11,10 @@ import { GridRow } from '../../model/grid-row';
 import { FakeDataService } from '../fake-data.service';
 
 @Component({
-  selector: 'itsk-basic',
-  templateUrl: './basic.component.html',
-  styleUrls: ['./basic.component.scss'],
+    selector: 'itsk-basic',
+    templateUrl: './basic.component.html',
+    styleUrls: ['./basic.component.scss'],
+    standalone: false
 })
 export class BasicComponent implements OnInit {
   startData: any[];

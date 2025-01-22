@@ -25,10 +25,11 @@ import { NumericFilterComponent } from '../numeric-filter/numeric-filter.compone
 import { StringFilterComponent } from '../string-filter/string-filter.component';
 
 @Component({
-  selector: 'itsk-filter-wrapper',
-  template: '',
-  styleUrls: ['./filter-wrapper.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-filter-wrapper',
+    template: '',
+    styleUrls: ['./filter-wrapper.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FilterWrapperComponent implements OnInit, OnDestroy, OnChanges {
   private subs = true;

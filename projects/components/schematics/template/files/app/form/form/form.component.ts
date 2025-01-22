@@ -20,9 +20,10 @@ export class WellDatesValidator {
 }
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.styl'],
+    selector: 'app-form',
+    templateUrl: './form.component.html',
+    styleUrls: ['./form.component.styl'],
+    standalone: false
 })
 export class FormComponent implements OnInit {
   form: FormGroup;

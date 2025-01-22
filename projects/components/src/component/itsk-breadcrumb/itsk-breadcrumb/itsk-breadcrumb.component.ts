@@ -11,10 +11,11 @@ interface BreadcrumbItem {
 }
 
 @Component({
-  selector: 'itsk-breadcrumb',
-  templateUrl: './itsk-breadcrumb.component.html',
-  styleUrls: ['./itsk-breadcrumb.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-breadcrumb',
+    templateUrl: './itsk-breadcrumb.component.html',
+    styleUrls: ['./itsk-breadcrumb.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskBreadcrumbComponent {
   @HostBinding('class.breadcrumb') breadcrumb = true;

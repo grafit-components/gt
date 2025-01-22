@@ -5,10 +5,11 @@ import { GridRow, IId } from '../../../model/grid-row';
 import { ItskGridService } from '../../../service/itsk-grid.service';
 
 @Component({
-  selector: 'itsk-numeric-cell',
-  templateUrl: './numeric-cell.component.html',
-  styleUrls: ['./numeric-cell.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-numeric-cell',
+    templateUrl: './numeric-cell.component.html',
+    styleUrls: ['./numeric-cell.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class NumericCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
   @Input() column?: GridColumn;

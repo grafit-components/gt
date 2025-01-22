@@ -7,9 +7,10 @@ import { GridRow } from '../../model/grid-row';
 import { FakeDataService } from '../fake-data.service';
 
 @Component({
-  selector: 'itsk-custom-components',
-  templateUrl: './custom-components.component.html',
-  styleUrls: ['./custom-components.component.scss'],
+    selector: 'itsk-custom-components',
+    templateUrl: './custom-components.component.html',
+    styleUrls: ['./custom-components.component.scss'],
+    standalone: false
 })
 export class CustomComponentsComponent implements OnInit {
   startData: any[];

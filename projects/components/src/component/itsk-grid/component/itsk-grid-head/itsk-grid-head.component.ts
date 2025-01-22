@@ -8,10 +8,11 @@ import { GridUtil } from '../../model/util';
 import { ItskGridService } from '../../service/itsk-grid.service';
 
 @Component({
-  selector: 'itsk-grid-head',
-  templateUrl: './itsk-grid-head.component.html',
-  styleUrls: ['./itsk-grid-head.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-grid-head',
+    templateUrl: './itsk-grid-head.component.html',
+    styleUrls: ['./itsk-grid-head.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskGridHeadComponent implements OnInit, OnDestroy {
   private alive = true;

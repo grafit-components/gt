@@ -47,11 +47,12 @@ import { ItskGridService } from '../../service/itsk-grid.service';
 import { GroupRowDefaultComponent } from '../row/group-row-default/group-row-default.component';
 
 @Component({
-  selector: 'itsk-grid',
-  templateUrl: './itsk-grid.component.html',
-  styleUrls: ['./itsk-grid.component.scss'],
-  providers: [ItskGridService],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-grid',
+    templateUrl: './itsk-grid.component.html',
+    styleUrls: ['./itsk-grid.component.scss'],
+    providers: [ItskGridService],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, AfterViewInit, OnDestroy, OnChanges {
   alive = true;

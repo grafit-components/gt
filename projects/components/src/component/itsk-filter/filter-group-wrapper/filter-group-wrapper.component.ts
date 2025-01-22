@@ -6,9 +6,10 @@ import { ItskFilterHelper } from '../model/itsk-filter-helper';
 import { FilterGroupHelper } from './filter-group-helper';
 
 @Component({
-  selector: 'itsk-filter-group-wrapper',
-  templateUrl: './filter-group-wrapper.component.html',
-  styleUrls: ['./filter-group-wrapper.component.scss'],
+    selector: 'itsk-filter-group-wrapper',
+    templateUrl: './filter-group-wrapper.component.html',
+    styleUrls: ['./filter-group-wrapper.component.scss'],
+    standalone: false
 })
 export class FilterGroupWrapperComponent implements OnInit {
   @Input()

@@ -24,10 +24,11 @@ import { NumericFilter } from '../model/numeric-filter';
 import { StringFilter } from '../model/string-filter';
 
 @Component({
-  selector: 'itsk-filter-panel',
-  templateUrl: './itsk-filter-panel.component.html',
-  styleUrls: ['./itsk-filter-panel.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-filter-panel',
+    templateUrl: './itsk-filter-panel.component.html',
+    styleUrls: ['./itsk-filter-panel.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskFilterPanelComponent implements OnInit, OnChanges {
   filters$: FilterColumn[] = [];

@@ -20,11 +20,11 @@ import { ItskNotificationService } from '../itsk-notification.service';
 import { ItskNotification } from '../model/itsk-notification';
 
 @Component({
-  selector: 'itsk-notifications',
-  templateUrl: './itsk-notifications.component.html',
-  styleUrls: ['./itsk-notifications.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  // changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'itsk-notifications',
+    templateUrl: './itsk-notifications.component.html',
+    styleUrls: ['./itsk-notifications.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class ItskNotificationsComponent implements OnInit, AfterContentInit, OnDestroy {
   @Input() align: ItskAlign = ItskAlign.Right;

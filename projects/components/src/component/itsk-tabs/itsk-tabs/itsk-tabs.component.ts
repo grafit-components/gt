@@ -18,10 +18,11 @@ export interface IItskTabChangeEvent {
 }
 
 @Component({
-  selector: 'itsk-tabs',
-  templateUrl: './itsk-tabs.component.html',
-  styleUrls: ['./itsk-tabs.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-tabs',
+    templateUrl: './itsk-tabs.component.html',
+    styleUrls: ['./itsk-tabs.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskTabsComponent implements AfterContentChecked {
   @HostBinding('class.tabs') classTabs = true;

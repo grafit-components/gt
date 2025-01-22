@@ -36,11 +36,12 @@ import { ItskGridComponent } from '../itsk-grid/itsk-grid.component';
 import { GroupRowDefaultComponent } from '../row/group-row-default/group-row-default.component';
 
 @Component({
-  selector: 'itsk-grid-wrapper',
-  templateUrl: './itsk-grid-wrapper.component.html',
-  styleUrls: ['./itsk-grid-wrapper.component.scss'],
-  providers: [ItskGridService],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-grid-wrapper',
+    templateUrl: './itsk-grid-wrapper.component.html',
+    styleUrls: ['./itsk-grid-wrapper.component.scss'],
+    providers: [ItskGridService],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskGridWrapperComponent<T extends IId> implements IGridWrapper<T> {
   @HostBinding('class.grid-wrapper') gridClass = true;

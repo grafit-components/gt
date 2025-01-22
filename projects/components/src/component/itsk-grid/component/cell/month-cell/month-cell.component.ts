@@ -6,9 +6,10 @@ import { GridRow, IId } from '../../../model/grid-row';
 import { ItskGridService } from '../../../service/itsk-grid.service';
 
 @Component({
-  selector: 'itsk-month-cell',
-  templateUrl: './month-cell.component.html',
-  styleUrls: ['./month-cell.component.scss'],
+    selector: 'itsk-month-cell',
+    templateUrl: './month-cell.component.html',
+    styleUrls: ['./month-cell.component.scss'],
+    standalone: false
 })
 export class MonthCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
   @Input() column?: GridColumn;

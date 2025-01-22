@@ -5,10 +5,11 @@ import { GridRow, IId } from '../../../model/grid-row';
 import { ItskGridService } from '../../../service/itsk-grid.service';
 
 @Component({
-  selector: 'itsk-focus-cell',
-  templateUrl: './focus-cell.component.html',
-  styleUrls: ['./focus-cell.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-focus-cell',
+    templateUrl: './focus-cell.component.html',
+    styleUrls: ['./focus-cell.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FocusCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
   @Input() column?: GridColumn;

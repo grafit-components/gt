@@ -10,10 +10,11 @@ import { ItskGridConfigService } from '../../service/itsk-grid-config.service';
 import { ItskGridService } from '../../service/itsk-grid.service';
 
 @Component({
-  selector: 'itsk-grid-head-dropdown',
-  templateUrl: './itsk-grid-head-dropdown.component.html',
-  styleUrls: ['./itsk-grid-head-dropdown.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-grid-head-dropdown',
+    templateUrl: './itsk-grid-head-dropdown.component.html',
+    styleUrls: ['./itsk-grid-head-dropdown.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskGridHeadDropdownComponent<T extends IId> extends ClickOutsideBase implements OnInit, OnDestroy {
   private subs = true;

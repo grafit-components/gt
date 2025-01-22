@@ -12,11 +12,12 @@ export const MONTH_PICKER_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  selector: 'itsk-month-picker',
-  templateUrl: './itsk-month-picker.component.html',
-  styleUrls: ['./itsk-month-picker.component.scss'],
-  providers: [MONTH_PICKER_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-month-picker',
+    templateUrl: './itsk-month-picker.component.html',
+    styleUrls: ['./itsk-month-picker.component.scss'],
+    providers: [MONTH_PICKER_CONTROL_VALUE_ACCESSOR],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskMonthPickerComponent implements ControlValueAccessor, OnInit, OnDestroy {
   ItskDatePickerMode = ItskDatePickerMode;

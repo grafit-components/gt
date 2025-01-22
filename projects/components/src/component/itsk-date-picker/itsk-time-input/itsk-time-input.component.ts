@@ -11,11 +11,12 @@ export const TIME_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  selector: 'itsk-time-input',
-  templateUrl: './itsk-time-input.component.html',
-  styleUrls: ['./itsk-time-input.component.scss'],
-  providers: [TIME_INPUT_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-time-input',
+    templateUrl: './itsk-time-input.component.html',
+    styleUrls: ['./itsk-time-input.component.scss'],
+    providers: [TIME_INPUT_CONTROL_VALUE_ACCESSOR],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
   /** Компонент неактивен */

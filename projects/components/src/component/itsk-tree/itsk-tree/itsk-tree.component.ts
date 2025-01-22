@@ -3,10 +3,11 @@ import { ItskTreeTemplateDirective } from '../itsk-tree-template.directive';
 import { ItskTreeControl } from '../model/itsk-tree-control';
 
 @Component({
-  selector: 'itsk-tree',
-  templateUrl: './itsk-tree.component.html',
-  styleUrls: ['./itsk-tree.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-tree',
+    templateUrl: './itsk-tree.component.html',
+    styleUrls: ['./itsk-tree.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskTreeComponent implements OnInit, AfterViewInit {
   /** Tree data */

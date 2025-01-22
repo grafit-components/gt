@@ -3,8 +3,9 @@ import {GridColumn, GridOptions, <% if(grouped){%>GroupData<%}else{%>GridRow<%}%
 import { <%= classify(name) %>Service } from './<%=dasherize(name)%>.service';
 
 @Component({
-        selector: 'app-<%=dasherize(name)%>',
-        templateUrl: '<%=dasherize(name)%>.component.html'
+    selector: 'app-<%=dasherize(name)%>',
+    templateUrl: '<%=dasherize(name)%>.component.html',
+    standalone: false
 })
 export class <%= classify(name) %>Component implements OnInit{
     gridOptions: GridOptions;

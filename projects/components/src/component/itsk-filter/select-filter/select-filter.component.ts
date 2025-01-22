@@ -7,10 +7,11 @@ import { FilterComponentBase } from '../model/filter-component-base';
 import { ListFilter } from '../model/list-filter';
 
 @Component({
-  selector: 'itsk-select-filter',
-  templateUrl: './select-filter.component.html',
-  styleUrls: ['./select-filter.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-select-filter',
+    templateUrl: './select-filter.component.html',
+    styleUrls: ['./select-filter.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SelectFilterComponent extends FilterComponentBase implements OnInit {
   filter: ListFilter = new ListFilter();

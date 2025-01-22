@@ -11,11 +11,12 @@ export const DATE_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  selector: 'itsk-date-input',
-  templateUrl: './itsk-date-input.component.html',
-  styleUrls: ['./itsk-date-input.component.scss'],
-  providers: [DATE_INPUT_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-date-input',
+    templateUrl: './itsk-date-input.component.html',
+    styleUrls: ['./itsk-date-input.component.scss'],
+    providers: [DATE_INPUT_CONTROL_VALUE_ACCESSOR],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
   /** Компонент неактивен */

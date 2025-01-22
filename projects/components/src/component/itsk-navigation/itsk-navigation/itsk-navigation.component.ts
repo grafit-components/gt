@@ -3,8 +3,9 @@ import { NavigationEnd, Router } from '@angular/router';
 import { NavigationData } from '../model/itsk-navigation-data';
 
 @Component({
-  selector: 'itsk-navigation',
-  templateUrl: './itsk-navigation.component.html',
+    selector: 'itsk-navigation',
+    templateUrl: './itsk-navigation.component.html',
+    standalone: false
 })
 export class ItskNavigationComponent implements OnInit {
   @Input()

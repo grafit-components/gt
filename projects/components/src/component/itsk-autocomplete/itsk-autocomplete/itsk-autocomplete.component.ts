@@ -15,17 +15,18 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'itsk-autocomplete',
-  templateUrl: './itsk-autocomplete.component.html',
-  styleUrls: ['./itsk-autocomplete.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ItskAutocompleteComponent),
-      multi: true,
-    },
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-autocomplete',
+    templateUrl: './itsk-autocomplete.component.html',
+    styleUrls: ['./itsk-autocomplete.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ItskAutocompleteComponent),
+            multi: true,
+        },
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskAutocompleteComponent implements ControlValueAccessor, OnInit {
   private items: string[] = [];

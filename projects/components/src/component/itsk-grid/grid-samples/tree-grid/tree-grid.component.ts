@@ -7,9 +7,10 @@ import { GridRow } from '../../model/grid-row';
 import { FakeDataService } from '../fake-data.service';
 
 @Component({
-  selector: 'itsk-tree-grid',
-  templateUrl: './tree-grid.component.html',
-  styleUrls: ['./tree-grid.component.scss'],
+    selector: 'itsk-tree-grid',
+    templateUrl: './tree-grid.component.html',
+    styleUrls: ['./tree-grid.component.scss'],
+    standalone: false
 })
 export class TreeGridComponent implements OnInit {
   startData: any[];

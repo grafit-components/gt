@@ -5,9 +5,10 @@ import { DataModel } from '../../model/data-model';
 import { DataService } from '../../service/data.service';
 
 @Component({
-  selector: 'app-data-chart',
-  templateUrl: './data-chart.component.html',
-  styleUrls: ['./data-chart.component.styl'],
+    selector: 'app-data-chart',
+    templateUrl: './data-chart.component.html',
+    styleUrls: ['./data-chart.component.styl'],
+    standalone: false
 })
 export class DataChartComponent implements OnInit {
   Highcharts = Highcharts;

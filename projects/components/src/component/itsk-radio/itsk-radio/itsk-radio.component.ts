@@ -5,17 +5,18 @@ import { ItskRadioButtonComponent } from '../itsk-radio-button/itsk-radio-button
 type ButtonOrNullOrUndefined = ItskRadioButtonComponent | undefined | null;
 
 @Component({
-  selector: 'itsk-radio',
-  templateUrl: './itsk-radio.component.html',
-  styleUrls: ['./itsk-radio.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ItskRadioComponent),
-      multi: true,
-    },
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-radio',
+    templateUrl: './itsk-radio.component.html',
+    styleUrls: ['./itsk-radio.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ItskRadioComponent),
+            multi: true,
+        },
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskRadioComponent implements OnInit, ControlValueAccessor {
   //#region Props

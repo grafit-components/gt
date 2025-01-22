@@ -38,17 +38,18 @@ interface TreeSelectItem extends IItskTreeItem {
 }
 
 @Component({
-  selector: 'itsk-tree-select',
-  templateUrl: './itsk-tree-select.component.html',
-  styleUrls: ['./itsk-tree-select.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ItskTreeSelectComponent),
-      multi: true,
-    },
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-tree-select',
+    templateUrl: './itsk-tree-select.component.html',
+    styleUrls: ['./itsk-tree-select.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ItskTreeSelectComponent),
+            multi: true,
+        },
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
   private searchTextSub = new Subject<string | null | undefined>();

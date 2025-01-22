@@ -3,9 +3,10 @@ import { iconsList } from '../../icons-list';
 import { ItskIconService } from '../../itsk-icon.service';
 
 @Component({
-  selector: 'itsk-icon-sample',
-  templateUrl: './icon-sample.component.html',
-  styleUrls: ['./icon-sample.component.scss'],
+    selector: 'itsk-icon-sample',
+    templateUrl: './icon-sample.component.html',
+    styleUrls: ['./icon-sample.component.scss'],
+    standalone: false
 })
 export class IconSampleComponent implements OnInit {
   icons = iconsList;

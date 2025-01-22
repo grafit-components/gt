@@ -16,7 +16,8 @@ import { getRealPosition } from '../../util/dom-util';
 import { ItskHintContainerComponent } from './itsk-hint-container/itsk-hint-container.component';
 
 @Directive({
-  selector: '[itskHint]',
+    selector: '[itskHint]',
+    standalone: false
 })
 export class ItskHintDirective implements OnDestroy {
   @HostBinding('class.position-relative') relative = true;

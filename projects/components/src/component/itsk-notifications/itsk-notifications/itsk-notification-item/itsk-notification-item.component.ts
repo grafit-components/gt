@@ -15,11 +15,12 @@ import { ItskNotification } from '../../model/itsk-notification';
 import { ItskNotificationLevel } from '../../model/itsk-notification-level.enum';
 
 @Component({
-  selector: 'itsk-notification-item',
-  templateUrl: './itsk-notification-item.component.html',
-  styleUrls: ['./itsk-notification-item.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-notification-item',
+    templateUrl: './itsk-notification-item.component.html',
+    styleUrls: ['./itsk-notification-item.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskNotificationItemComponent implements AfterViewInit, OnDestroy {
   ItskNotificationLevel = ItskNotificationLevel;

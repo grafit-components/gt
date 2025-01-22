@@ -6,9 +6,10 @@ import { GridRow, IId } from '../../../model/grid-row';
 import { ItskGridService } from '../../../service/itsk-grid.service';
 
 @Component({
-  selector: 'itsk-datetime-cell',
-  templateUrl: './datetime-cell.component.html',
-  styleUrls: ['./datetime-cell.component.scss'],
+    selector: 'itsk-datetime-cell',
+    templateUrl: './datetime-cell.component.html',
+    styleUrls: ['./datetime-cell.component.scss'],
+    standalone: false
 })
 export class DatetimeCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
   @Input() column?: GridColumn;

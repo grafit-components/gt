@@ -3,10 +3,11 @@ import { ItskTreeControl } from '../../../itsk-tree/model/itsk-tree-control';
 import { GridColumn } from '../../model/grid-column';
 
 @Component({
-  selector: 'itsk-grid-columns-settings',
-  templateUrl: './grid-columns-settings.component.html',
-  styleUrls: ['./grid-columns-settings.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-grid-columns-settings',
+    templateUrl: './grid-columns-settings.component.html',
+    styleUrls: ['./grid-columns-settings.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class GridColumnsSettingsComponent implements OnInit {
   treeControl: ItskTreeControl;

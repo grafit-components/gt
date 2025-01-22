@@ -13,10 +13,11 @@ import { GridRow, IId } from '../../../model/grid-row';
 import { GroupRowComponentBase } from '../../../model/group-row-component-base';
 
 @Component({
-  selector: 'itsk-group-row-wrapper',
-  template: '',
-  styleUrls: ['./group-row-wrapper.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-group-row-wrapper',
+    template: '',
+    styleUrls: ['./group-row-wrapper.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class GroupRowWrapperComponent<T extends IId> implements OnInit {
   init = false;

@@ -7,10 +7,11 @@ import { FilterComponentBase } from '../model/filter-component-base';
 import { ListFilter } from '../model/list-filter';
 
 @Component({
-  selector: 'itsk-list-filter',
-  templateUrl: './list-filter.component.html',
-  styleUrls: ['./list-filter.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-list-filter',
+    templateUrl: './list-filter.component.html',
+    styleUrls: ['./list-filter.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ListFilterComponent extends FilterComponentBase implements OnInit {
   filter: ListFilter = new ListFilter();

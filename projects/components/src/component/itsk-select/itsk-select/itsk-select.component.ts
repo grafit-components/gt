@@ -30,17 +30,18 @@ enum ViewType {
 }
 
 @Component({
-  selector: 'itsk-select',
-  templateUrl: './itsk-select.component.html',
-  styleUrls: ['./itsk-select.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ItskSelectComponent),
-      multi: true,
-    },
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-select',
+    templateUrl: './itsk-select.component.html',
+    styleUrls: ['./itsk-select.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ItskSelectComponent),
+            multi: true,
+        },
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskSelectComponent implements ControlValueAccessor, OnInit {
   private items$?: any[];

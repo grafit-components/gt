@@ -3,9 +3,10 @@ import { IItskTooltipConfig } from '../model/i-itsk-tooltip-config';
 import { ItskTooltipPosition } from '../model/itsk-tooltip-position.enum';
 
 @Component({
-  selector: 'itsk-tooltip-container',
-  templateUrl: './itsk-tooltip-container.component.html',
-  styleUrls: ['./itsk-tooltip-container.component.styl'],
+    selector: 'itsk-tooltip-container',
+    templateUrl: './itsk-tooltip-container.component.html',
+    styleUrls: ['./itsk-tooltip-container.component.styl'],
+    standalone: false
 })
 export class ItskTooltipContainerComponent implements OnInit {
   ItskTooltipPosition = ItskTooltipPosition;

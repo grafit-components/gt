@@ -16,7 +16,8 @@ import { ItskTooltipContainerComponent } from './itsk-tooltip-container/itsk-too
 import { IItskTooltipConfig } from './model/i-itsk-tooltip-config';
 
 @Directive({
-  selector: '[itskTooltip]',
+    selector: '[itskTooltip]',
+    standalone: false
 })
 export class ItskTooltipDirective implements OnDestroy {
   @HostBinding('class.position-relative') relative = true;

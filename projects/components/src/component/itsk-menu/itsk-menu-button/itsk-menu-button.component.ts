@@ -11,10 +11,11 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'itsk-menu-button',
-  templateUrl: './itsk-menu-button.component.html',
-  styleUrls: ['./itsk-menu-button.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-menu-button',
+    templateUrl: './itsk-menu-button.component.html',
+    styleUrls: ['./itsk-menu-button.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskMenuButtonComponent implements OnInit {
   @Input() open: boolean = false;

@@ -7,10 +7,11 @@ import { FilterColumn } from '../model/filter-column';
 import { FilterComponentBase } from '../model/filter-component-base';
 
 @Component({
-  selector: 'itsk-date-filter',
-  templateUrl: './date-filter.component.html',
-  styleUrls: ['./date-filter.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-date-filter',
+    templateUrl: './date-filter.component.html',
+    styleUrls: ['./date-filter.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class DateFilterComponent extends FilterComponentBase implements OnInit {
   filter: DateFilter = new DateFilter();

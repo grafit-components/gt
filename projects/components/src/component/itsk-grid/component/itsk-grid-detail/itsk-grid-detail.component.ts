@@ -14,10 +14,11 @@ import { GridColumn } from '../../model/grid-column';
 import { GridRow, IId } from '../../model/grid-row';
 
 @Component({
-  selector: 'itsk-grid-detail',
-  template: '',
-  styleUrls: ['./itsk-grid-detail.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-grid-detail',
+    template: '',
+    styleUrls: ['./itsk-grid-detail.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskGridDetailComponent<T extends IId> implements OnInit {
   private componentRef?: ComponentRef<DetailComponentBase<T>>;

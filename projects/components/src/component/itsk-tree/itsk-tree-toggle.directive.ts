@@ -2,7 +2,8 @@ import { Directive, HostBinding, Input } from '@angular/core';
 import { ItskTreeControl } from './model/itsk-tree-control';
 
 @Directive({
-  selector: '[itskTreeToggle]',
+    selector: '[itskTreeToggle]',
+    standalone: false
 })
 export class ItskTreeToggleDirective {
   @Input() itskTreeToggleChildren: boolean = false;

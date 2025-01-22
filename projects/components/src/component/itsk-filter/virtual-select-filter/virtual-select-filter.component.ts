@@ -7,10 +7,11 @@ import { FilterComponentBase } from '../model/filter-component-base';
 import { ListFilter } from '../model/list-filter';
 
 @Component({
-  selector: 'itsk-virtual-select-filter',
-  templateUrl: './virtual-select-filter.component.html',
-  styleUrls: ['./virtual-select-filter.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-virtual-select-filter',
+    templateUrl: './virtual-select-filter.component.html',
+    styleUrls: ['./virtual-select-filter.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class VirtualSelectFilterComponent extends FilterComponentBase implements OnInit {
   filter?: ListFilter;

@@ -10,10 +10,11 @@ import { GridRow, IId } from '../../../model/grid-row';
 import { ItskGridService } from '../../../service/itsk-grid.service';
 
 @Component({
-  selector: 'itsk-grid-cell',
-  templateUrl: './itsk-grid-cell.component.html',
-  styleUrls: ['./itsk-grid-cell.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-grid-cell',
+    templateUrl: './itsk-grid-cell.component.html',
+    styleUrls: ['./itsk-grid-cell.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskGridCellComponent<T extends IId> implements OnInit, OnDestroy {
   GroupingType = GroupingType;

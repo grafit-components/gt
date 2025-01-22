@@ -2,10 +2,11 @@ import { Component, Host, HostBinding, HostListener, Input, OnDestroy, OnInit, V
 import { ItskRadioComponent } from '../itsk-radio/itsk-radio.component';
 
 @Component({
-  selector: 'itsk-radio-button',
-  templateUrl: './itsk-radio-button.component.html',
-  styleUrls: ['./itsk-radio-button.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'itsk-radio-button',
+    templateUrl: './itsk-radio-button.component.html',
+    styleUrls: ['./itsk-radio-button.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class ItskRadioButtonComponent implements OnInit, OnDestroy {
   private _value: any;

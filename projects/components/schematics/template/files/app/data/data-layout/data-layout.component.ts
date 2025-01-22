@@ -3,9 +3,10 @@ import { FilterState, GridColumn } from '@grafit/angular';
 import { DataService } from '../../service/data.service';
 
 @Component({
-  selector: 'app-data-layout',
-  templateUrl: './data-layout.component.html',
-  styleUrls: ['./data-layout.component.styl'],
+    selector: 'app-data-layout',
+    templateUrl: './data-layout.component.html',
+    styleUrls: ['./data-layout.component.styl'],
+    standalone: false
 })
 export class DataLayoutComponent implements OnInit {
   config: GridColumn[];

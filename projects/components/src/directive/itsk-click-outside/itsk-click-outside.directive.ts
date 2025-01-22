@@ -2,7 +2,8 @@ import { Directive, ElementRef, EventEmitter, Input, OnDestroy, Output } from '@
 import { ClickOutsideBase } from './click-outside-base';
 
 @Directive({
-  selector: '[itskClickOutside]',
+    selector: '[itskClickOutside]',
+    standalone: false
 })
 export class ItskClickOutsideDirective extends ClickOutsideBase implements OnDestroy {
   private visible$ = false;

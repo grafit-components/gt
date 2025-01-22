@@ -19,10 +19,11 @@ import { ItskDropdownContentDirective } from '../itsk-dropdown-content.directive
 import { ItskDropdownHeadDirective } from '../itsk-dropdown-head.directive';
 
 @Component({
-  selector: 'itsk-dropdown',
-  templateUrl: './itsk-dropdown.component.html',
-  styleUrls: ['./itsk-dropdown.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-dropdown',
+    templateUrl: './itsk-dropdown.component.html',
+    styleUrls: ['./itsk-dropdown.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskDropdownComponent extends ClickOutsideBase implements OnInit, OnDestroy {
   @HostBinding('class.dropdown') classDropdown = true;

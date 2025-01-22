@@ -13,10 +13,11 @@ import { IItskMenuItem } from '../model/i-itsk-menu-item';
 import { ItskMenuGroup } from '../model/itsk-menu-group';
 
 @Component({
-  selector: 'itsk-menu-items',
-  templateUrl: './itsk-menu-items.component.html',
-  styleUrls: ['./itsk-menu-items.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-menu-items',
+    templateUrl: './itsk-menu-items.component.html',
+    styleUrls: ['./itsk-menu-items.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskMenuItemsComponent<T extends IItskMenuItem> implements OnInit, OnDestroy {
   allItems: T[] = [];

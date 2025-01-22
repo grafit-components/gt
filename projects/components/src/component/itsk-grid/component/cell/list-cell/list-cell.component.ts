@@ -6,10 +6,11 @@ import { GridRow, IId } from '../../../model/grid-row';
 import { ItskGridService } from '../../../service/itsk-grid.service';
 
 @Component({
-  selector: 'itsk-list-cell',
-  templateUrl: './list-cell.component.html',
-  styleUrls: ['./list-cell.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-list-cell',
+    templateUrl: './list-cell.component.html',
+    styleUrls: ['./list-cell.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ListCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
   column$?: GridColumn;

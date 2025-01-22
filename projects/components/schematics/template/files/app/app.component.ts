@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { ItskMenuItem } from '@grafit/angular';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.styl'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.styl'],
+    standalone: false
 })
 export class AppComponent {
   menu: ItskMenuItem[] = [

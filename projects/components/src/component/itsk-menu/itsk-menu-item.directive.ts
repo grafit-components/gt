@@ -1,7 +1,8 @@
 import { Directive, TemplateRef } from '@angular/core';
 
 @Directive({
-  selector: '[itskMenuItem]',
+    selector: '[itskMenuItem]',
+    standalone: false
 })
 export class ItskMenuItemDirective {
   constructor(public _template: TemplateRef<any>) {}

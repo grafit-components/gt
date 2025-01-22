@@ -7,9 +7,10 @@ import { GridUtil } from '../../model/util';
 import { ItskGridService } from '../../service/itsk-grid.service';
 
 @Component({
-  selector: 'itsk-grid-aggregate',
-  templateUrl: './itsk-grid-aggregate.component.html',
-  styleUrls: ['./itsk-grid-aggregate.component.scss'],
+    selector: 'itsk-grid-aggregate',
+    templateUrl: './itsk-grid-aggregate.component.html',
+    styleUrls: ['./itsk-grid-aggregate.component.scss'],
+    standalone: false
 })
 export class ItskGridAggregateComponent<T extends IId> implements OnInit, OnDestroy {
   private alive = true;

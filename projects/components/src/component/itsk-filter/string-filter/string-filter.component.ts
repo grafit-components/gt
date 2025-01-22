@@ -6,10 +6,11 @@ import { FilterComponentBase } from '../model/filter-component-base';
 import { StringFilter } from '../model/string-filter';
 
 @Component({
-  selector: 'itsk-string-filter',
-  templateUrl: './string-filter.component.html',
-  styleUrls: ['./string-filter.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-string-filter',
+    templateUrl: './string-filter.component.html',
+    styleUrls: ['./string-filter.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class StringFilterComponent extends FilterComponentBase implements OnInit {
   filter: StringFilter = new StringFilter();

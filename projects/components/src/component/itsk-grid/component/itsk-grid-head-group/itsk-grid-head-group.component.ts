@@ -5,10 +5,11 @@ import { FilterState } from '../../model/filter-state';
 import { GridColumn } from '../../model/grid-column';
 
 @Component({
-  selector: 'itsk-grid-head-group',
-  templateUrl: './itsk-grid-head-group.component.html',
-  styleUrls: ['./itsk-grid-head-group.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-grid-head-group',
+    templateUrl: './itsk-grid-head-group.component.html',
+    styleUrls: ['./itsk-grid-head-group.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskGridHeadGroupComponent implements OnInit {
   private column$?: GridColumn;

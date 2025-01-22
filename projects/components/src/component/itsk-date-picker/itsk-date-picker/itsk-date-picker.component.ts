@@ -28,11 +28,12 @@ export const DATE_TIME_PICKER_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  selector: 'itsk-date-picker',
-  templateUrl: './itsk-date-picker.component.html',
-  styleUrls: ['./itsk-date-picker.component.scss'],
-  providers: [DATE_TIME_PICKER_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-date-picker',
+    templateUrl: './itsk-date-picker.component.html',
+    styleUrls: ['./itsk-date-picker.component.scss'],
+    providers: [DATE_TIME_PICKER_CONTROL_VALUE_ACCESSOR],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, OnDestroy {
   @HostBinding('class.datepicker') classDatepicker = true;

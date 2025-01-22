@@ -3,7 +3,8 @@ import { AnyObject } from '../itsk-shared/any-object';
 import { ItskTreeControl } from './model/itsk-tree-control';
 
 @Directive({
-  selector: '[itskTreeTemplate]',
+    selector: '[itskTreeTemplate]',
+    standalone: false
 })
 export class ItskTreeTemplateDirective {
   @Input() type?: string;

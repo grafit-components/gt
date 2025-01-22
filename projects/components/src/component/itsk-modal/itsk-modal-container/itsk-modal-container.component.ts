@@ -4,9 +4,10 @@ import { ItskModalCloseReason } from '../model/itsk-modal-close-reason.enum';
 import { ItskModalConfig } from '../model/itsk-modal-config';
 
 @Component({
-  selector: 'itsk-modal-container',
-  templateUrl: './itsk-modal-container.component.html',
-  styleUrls: ['./itsk-modal-container.component.scss'],
+    selector: 'itsk-modal-container',
+    templateUrl: './itsk-modal-container.component.html',
+    styleUrls: ['./itsk-modal-container.component.scss'],
+    standalone: false
 })
 export class ItskModalContainerComponent implements OnInit {
   @Input() config?: ItskModalConfig;

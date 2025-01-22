@@ -7,7 +7,8 @@ enum Level {
 }
 
 @Directive({
-  selector: '[itskValidate]',
+    selector: '[itskValidate]',
+    standalone: false
 })
 export class ItskValidateDirective implements OnInit {
   private _wrap: any;

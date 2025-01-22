@@ -8,11 +8,12 @@ export const TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  selector: 'itsk-toggle',
-  templateUrl: './itsk-toggle.component.html',
-  styleUrls: ['./itsk-toggle.component.scss'],
-  providers: [TOGGLE_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-toggle',
+    templateUrl: './itsk-toggle.component.html',
+    styleUrls: ['./itsk-toggle.component.scss'],
+    providers: [TOGGLE_CONTROL_VALUE_ACCESSOR],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskToggleComponent implements ControlValueAccessor, OnInit {
   @HostBinding('class.toggle') toggleClass = true;

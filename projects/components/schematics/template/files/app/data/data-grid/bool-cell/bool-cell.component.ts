@@ -3,9 +3,10 @@ import { CellComponentBase, GridColumn, GridRow, ItskGridService } from '@grafit
 import { DataModel } from '../../../model/data-model';
 
 @Component({
-  selector: 'app-bool-cell',
-  templateUrl: './bool-cell.component.html',
-  styleUrls: ['./bool-cell.component.styl'],
+    selector: 'app-bool-cell',
+    templateUrl: './bool-cell.component.html',
+    styleUrls: ['./bool-cell.component.styl'],
+    standalone: false
 })
 export class BoolCellComponent extends CellComponentBase<DataModel> implements OnInit {
   @Input() column: GridColumn;

@@ -3,10 +3,11 @@ import { GridRow, IId } from '../../model/grid-row';
 import { ItskGridService } from '../../service/itsk-grid.service';
 
 @Component({
-  selector: 'itsk-grid-expand',
-  templateUrl: './itsk-grid-expand.component.html',
-  styleUrls: ['./itsk-grid-expand.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-grid-expand',
+    templateUrl: './itsk-grid-expand.component.html',
+    styleUrls: ['./itsk-grid-expand.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskGridExpandComponent<T extends IId> implements OnInit {
   @Input() row?: GridRow<T>;

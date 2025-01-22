@@ -22,10 +22,11 @@ import { GridSortEvent } from '../../model/grid-sort-event';
 import { ItskGridService } from '../../service/itsk-grid.service';
 
 @Component({
-  selector: 'itsk-grid-head-cell',
-  templateUrl: './itsk-grid-head-cell.component.html',
-  styleUrls: ['./itsk-grid-head-cell.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-grid-head-cell',
+    templateUrl: './itsk-grid-head-cell.component.html',
+    styleUrls: ['./itsk-grid-head-cell.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestroy {
   state$?: FilterState;

@@ -1,7 +1,8 @@
 import { Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 
 @Directive({
-  selector: '[itskOnlyNumber]',
+    selector: '[itskOnlyNumber]',
+    standalone: false
 })
 export class ItskOnlyNumberDirective implements OnInit, OnDestroy {
   value: any;

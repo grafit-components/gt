@@ -7,10 +7,11 @@ import { NumericFilter } from '../model/numeric-filter';
 import { NumericFilterValue } from '../model/numeric-filter-value';
 
 @Component({
-  selector: 'itsk-numeric-filter',
-  templateUrl: './numeric-filter.component.html',
-  styleUrls: ['./numeric-filter.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-numeric-filter',
+    templateUrl: './numeric-filter.component.html',
+    styleUrls: ['./numeric-filter.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class NumericFilterComponent extends FilterComponentBase implements OnInit {
   filter: NumericFilter = new NumericFilter();

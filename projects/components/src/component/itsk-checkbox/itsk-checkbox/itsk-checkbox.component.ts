@@ -8,11 +8,12 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  selector: 'itsk-checkbox',
-  templateUrl: './itsk-checkbox.component.html',
-  styleUrls: ['./itsk-checkbox.component.scss'],
-  providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-checkbox',
+    templateUrl: './itsk-checkbox.component.html',
+    styleUrls: ['./itsk-checkbox.component.scss'],
+    providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskCheckboxComponent implements ControlValueAccessor, OnInit {
   @HostBinding('attr.tabindex') tabindex = 0;

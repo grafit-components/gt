@@ -1,7 +1,8 @@
 import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 @Directive({
-  selector: '[itskFocus]',
+    selector: '[itskFocus]',
+    standalone: false
 })
 export class ItskFocusDirective implements OnInit {
   element: HTMLElement;

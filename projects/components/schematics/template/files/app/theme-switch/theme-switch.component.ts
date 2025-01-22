@@ -1,9 +1,10 @@
 import { Component, HostListener } from '@angular/core';
 
 @Component({
-  selector: 'app-theme-switch',
-  templateUrl: './theme-switch.component.html',
-  styleUrls: ['./theme-switch.component.styl'],
+    selector: 'app-theme-switch',
+    templateUrl: './theme-switch.component.html',
+    styleUrls: ['./theme-switch.component.styl'],
+    standalone: false
 })
 export class ThemeSwitchComponent {
   private themeLink: any = document.querySelector('link#client-theme');

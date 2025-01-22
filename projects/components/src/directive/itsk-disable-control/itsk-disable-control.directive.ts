@@ -2,7 +2,8 @@ import { Directive, Input } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
 @Directive({
-  selector: '[itskDisableControl]',
+    selector: '[itskDisableControl]',
+    standalone: false
 })
 export class ItskDisableControlDirective {
   @Input() set itskDisableControl(val: boolean) {

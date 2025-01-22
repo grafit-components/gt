@@ -8,10 +8,11 @@ import { ItskPickerLocaleModel } from '../model/itsk-picker-locale-model';
 import { PickerLocaleService } from '../service/picker-locale.service';
 
 @Component({
-  selector: 'itsk-day-selector',
-  templateUrl: './itsk-day-selector.component.html',
-  styleUrls: ['./itsk-day-selector.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-day-selector',
+    templateUrl: './itsk-day-selector.component.html',
+    styleUrls: ['./itsk-day-selector.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskDaySelectorComponent implements OnInit, OnDestroy {
   protected stop: Subject<boolean> = new Subject<boolean>();

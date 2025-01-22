@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { ItskPickerLocaleModel } from '../model/itsk-picker-locale-model';
 
 @Component({
-  selector: 'itsk-month-selector',
-  templateUrl: './itsk-month-selector.component.html',
-  styleUrls: ['./itsk-month-selector.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-month-selector',
+    templateUrl: './itsk-month-selector.component.html',
+    styleUrls: ['./itsk-month-selector.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ItskMonthSelectorComponent implements OnInit {
   currentMonth$: number = 0;
