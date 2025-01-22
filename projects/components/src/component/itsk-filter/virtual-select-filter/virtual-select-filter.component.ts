@@ -5,13 +5,17 @@ import { FilterBase } from '../model/filter-base';
 import { FilterColumn } from '../model/filter-column';
 import { FilterComponentBase } from '../model/filter-component-base';
 import { ListFilter } from '../model/list-filter';
+import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
+import { NgIf } from '@angular/common';
+import { ItskSelectComponent } from '../../itsk-select/itsk-select/itsk-select.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'itsk-virtual-select-filter',
     templateUrl: './virtual-select-filter.component.html',
     styleUrls: ['./virtual-select-filter.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [ItskIconComponent, NgIf, ItskSelectComponent, FormsModule]
 })
 export class VirtualSelectFilterComponent extends FilterComponentBase implements OnInit {
   filter?: ListFilter;

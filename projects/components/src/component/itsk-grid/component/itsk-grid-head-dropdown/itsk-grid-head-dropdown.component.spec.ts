@@ -8,8 +8,8 @@ describe('ItskGridHeadDropdownComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskGridHeadDropdownComponent],
-    }).compileComponents();
+    imports: [ItskGridHeadDropdownComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

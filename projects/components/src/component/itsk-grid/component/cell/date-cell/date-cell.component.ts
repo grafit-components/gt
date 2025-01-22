@@ -4,13 +4,15 @@ import { CellComponentBase } from '../../../model/cell-component-base';
 import { GridColumn } from '../../../model/grid-column';
 import { GridRow, IId } from '../../../model/grid-row';
 import { ItskGridService } from '../../../service/itsk-grid.service';
+import { NgIf, DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'itsk-date-cell',
     templateUrl: './date-cell.component.html',
     styleUrls: ['./date-cell.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [NgIf, ItskDatePickerComponent, FormsModule, DatePipe]
 })
 export class DateCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
   @Input() column?: GridColumn;

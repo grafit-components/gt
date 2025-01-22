@@ -8,8 +8,8 @@ describe('ItskPagerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskPagerComponent],
-    }).compileComponents();
+    imports: [ItskPagerComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

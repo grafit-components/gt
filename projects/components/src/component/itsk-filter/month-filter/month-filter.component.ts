@@ -5,13 +5,15 @@ import { DateFilterValue } from '../model/date-filter-value';
 import { FilterBase } from '../model/filter-base';
 import { FilterColumn } from '../model/filter-column';
 import { FilterComponentBase } from '../model/filter-component-base';
+import { ItskMonthPickerComponent } from '../../itsk-date-picker/itsk-month-picker/itsk-month-picker.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'itsk-month-filter',
     templateUrl: './month-filter.component.html',
     styleUrls: ['./month-filter.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [ItskMonthPickerComponent, FormsModule]
 })
 export class MonthFilterComponent extends FilterComponentBase implements OnInit {
   filter: DateFilter = this.getFilter();

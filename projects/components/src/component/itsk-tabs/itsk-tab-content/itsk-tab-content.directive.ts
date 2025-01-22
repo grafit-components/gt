@@ -1,9 +1,6 @@
 import { Directive, TemplateRef } from '@angular/core';
 
-@Directive({
-    selector: '[itskTabContent]',
-    standalone: false
-})
+@Directive({ selector: '[itskTabContent]' })
 export class ItskTabContentDirective {
   constructor(public templateRef: TemplateRef<any>) {}
 }

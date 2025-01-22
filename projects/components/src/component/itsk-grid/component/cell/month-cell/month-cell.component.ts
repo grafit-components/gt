@@ -4,12 +4,15 @@ import { CellComponentBase } from '../../../model/cell-component-base';
 import { GridColumn } from '../../../model/grid-column';
 import { GridRow, IId } from '../../../model/grid-row';
 import { ItskGridService } from '../../../service/itsk-grid.service';
+import { NgIf, DatePipe } from '@angular/common';
+import { ItskMonthPickerComponent } from '../../../../itsk-date-picker/itsk-month-picker/itsk-month-picker.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'itsk-month-cell',
     templateUrl: './month-cell.component.html',
     styleUrls: ['./month-cell.component.scss'],
-    standalone: false
+    imports: [NgIf, ItskMonthPickerComponent, FormsModule, DatePipe]
 })
 export class MonthCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
   @Input() column?: GridColumn;

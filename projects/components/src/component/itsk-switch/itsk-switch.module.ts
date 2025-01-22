@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { ItskSwitchComponent } from './itsk-switch/itsk-switch.component';
 
 @NgModule({
-  declarations: [ItskSwitchComponent],
-  imports: [CommonModule],
+    imports: [CommonModule, ItskSwitchComponent],
 })
 export class ItskSwitchModule {}

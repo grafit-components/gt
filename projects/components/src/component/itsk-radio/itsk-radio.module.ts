@@ -4,8 +4,7 @@ import { ItskRadioButtonComponent } from './itsk-radio-button/itsk-radio-button.
 import { ItskRadioComponent } from './itsk-radio/itsk-radio.component';
 
 @NgModule({
-  declarations: [ItskRadioComponent, ItskRadioButtonComponent],
-  imports: [CommonModule],
-  exports: [ItskRadioComponent, ItskRadioButtonComponent],
+    imports: [CommonModule, ItskRadioComponent, ItskRadioButtonComponent],
+    exports: [ItskRadioComponent, ItskRadioButtonComponent],
 })
 export class ItskRadioModule {}

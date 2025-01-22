@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { ItskCurrencyPipe } from './itsk-currency.pipe';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [ItskCurrencyPipe],
-  exports: [ItskCurrencyPipe],
+    imports: [CommonModule, ItskCurrencyPipe],
+    exports: [ItskCurrencyPipe],
 })
 export class ItskCurrencyPipeModule {}

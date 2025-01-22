@@ -8,8 +8,8 @@ describe('MonthFilterComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [MonthFilterComponent],
-    }).compileComponents();
+    imports: [MonthFilterComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

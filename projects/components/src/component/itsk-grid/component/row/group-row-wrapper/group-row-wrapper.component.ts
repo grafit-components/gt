@@ -16,8 +16,7 @@ import { GroupRowComponentBase } from '../../../model/group-row-component-base';
     selector: 'itsk-group-row-wrapper',
     template: '',
     styleUrls: ['./group-row-wrapper.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GroupRowWrapperComponent<T extends IId> implements OnInit {
   init = false;

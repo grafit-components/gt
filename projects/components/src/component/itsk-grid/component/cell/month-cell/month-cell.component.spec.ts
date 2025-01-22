@@ -8,8 +8,8 @@ describe('MonthCellComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [MonthCellComponent],
-    }).compileComponents();
+    imports: [MonthCellComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

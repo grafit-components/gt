@@ -7,8 +7,7 @@ import { ItskSharedModule } from '../itsk-shared/itsk-shared.module';
 import { ItskAutocompleteComponent } from './itsk-autocomplete/itsk-autocomplete.component';
 
 @NgModule({
-  declarations: [ItskAutocompleteComponent],
-  exports: [ItskAutocompleteComponent],
-  imports: [CommonModule, FormsModule, ItskDropdownModule, ScrollingModule, ItskSharedModule],
+    exports: [ItskAutocompleteComponent],
+    imports: [CommonModule, FormsModule, ItskDropdownModule, ScrollingModule, ItskSharedModule, ItskAutocompleteComponent],
 })
 export class ItskAutocompleteModule {}

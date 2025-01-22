@@ -3,13 +3,15 @@ import { CellComponentBase } from '../../../model/cell-component-base';
 import { GridColumn } from '../../../model/grid-column';
 import { GridRow, IId } from '../../../model/grid-row';
 import { ItskGridService } from '../../../service/itsk-grid.service';
+import { NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'itsk-default-cell',
     templateUrl: './default-cell.component.html',
     styleUrls: ['./default-cell.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [NgIf, FormsModule]
 })
 export class DefaultCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
   @Input() column?: GridColumn;

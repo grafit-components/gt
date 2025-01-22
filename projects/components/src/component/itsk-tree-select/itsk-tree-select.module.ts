@@ -10,8 +10,7 @@ import { ItskTreeSelectValueDirective } from './directive/itsk-tree-select-value
 import { ItskTreeSelectComponent } from './itsk-select/itsk-tree-select.component';
 
 @NgModule({
-  declarations: [ItskTreeSelectComponent, ItskTreeSelectValueDirective, ItskTreeSelectOptionDirective],
-  imports: [CommonModule, ItskDropdownModule, FormsModule, ScrollingModule, ItskIconModule, ItskTreeModule],
-  exports: [ItskTreeSelectComponent, ItskTreeSelectValueDirective, ItskTreeSelectOptionDirective],
+    imports: [CommonModule, ItskDropdownModule, FormsModule, ScrollingModule, ItskIconModule, ItskTreeModule, ItskTreeSelectComponent, ItskTreeSelectValueDirective, ItskTreeSelectOptionDirective],
+    exports: [ItskTreeSelectComponent, ItskTreeSelectValueDirective, ItskTreeSelectOptionDirective],
 })
 export class ItskTreeSelectModule {}

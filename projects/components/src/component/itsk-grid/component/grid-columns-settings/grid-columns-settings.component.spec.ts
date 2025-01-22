@@ -8,8 +8,8 @@ describe('GridColumnsSettingsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [GridColumnsSettingsComponent],
-    }).compileComponents();
+    imports: [GridColumnsSettingsComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

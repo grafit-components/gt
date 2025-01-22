@@ -8,8 +8,8 @@ describe('VirtualSelectFilterComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [VirtualSelectFilterComponent],
-    }).compileComponents();
+    imports: [VirtualSelectFilterComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

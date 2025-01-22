@@ -8,8 +8,8 @@ describe('ItskTimeInputComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskTimeInputComponent],
-    }).compileComponents();
+    imports: [ItskTimeInputComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

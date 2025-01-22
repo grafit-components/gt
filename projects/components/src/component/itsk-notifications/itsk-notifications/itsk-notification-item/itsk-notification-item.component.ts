@@ -13,6 +13,8 @@ import {
 } from '@angular/core';
 import { ItskNotification } from '../../model/itsk-notification';
 import { ItskNotificationLevel } from '../../model/itsk-notification-level.enum';
+import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
+import { ItskIconComponent } from '../../../itsk-icon/itsk-icon/itsk-icon.component';
 
 @Component({
     selector: 'itsk-notification-item',
@@ -20,7 +22,7 @@ import { ItskNotificationLevel } from '../../model/itsk-notification-level.enum'
     styleUrls: ['./itsk-notification-item.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [NgClass, NgIf, ItskIconComponent, NgTemplateOutlet]
 })
 export class ItskNotificationItemComponent implements AfterViewInit, OnDestroy {
   ItskNotificationLevel = ItskNotificationLevel;

@@ -5,8 +5,7 @@ import { ItskSpinnerDirective } from './itsk-spinner.directive';
 import { ItskSpinnerComponent } from './itsk-spinner/itsk-spinner.component';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [ItskSpinnerDirective, ItskSpinnerComponent, ItskSpinnerOverlayComponent],
-  exports: [ItskSpinnerDirective, ItskSpinnerComponent, ItskSpinnerOverlayComponent],
+    imports: [CommonModule, ItskSpinnerDirective, ItskSpinnerComponent, ItskSpinnerOverlayComponent],
+    exports: [ItskSpinnerDirective, ItskSpinnerComponent, ItskSpinnerOverlayComponent],
 })
 export class ItskSpinnerModule {}

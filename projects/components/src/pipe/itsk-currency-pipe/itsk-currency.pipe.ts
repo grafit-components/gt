@@ -1,10 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { formatNumber } from '../number_func';
 
-@Pipe({
-    name: 'itskCurrency',
-    standalone: false
-})
+@Pipe({ name: 'itskCurrency' })
 export class ItskCurrencyPipe implements PipeTransform {
   transform(
     value: number,

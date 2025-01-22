@@ -8,8 +8,8 @@ describe('ItskGridHeadCellComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskGridHeadCellComponent],
-    }).compileComponents();
+    imports: [ItskGridHeadCellComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

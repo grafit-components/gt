@@ -8,8 +8,8 @@ describe('ItskCardContentComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskCardContentComponent],
-    }).compileComponents();
+    imports: [ItskCardContentComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

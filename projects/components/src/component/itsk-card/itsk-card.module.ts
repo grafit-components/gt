@@ -5,8 +5,7 @@ import { ItskCardHeaderComponent } from './itsk-card-header/itsk-card-header.com
 import { ItskCardComponent } from './itsk-card/itsk-card.component';
 
 @NgModule({
-  declarations: [ItskCardComponent, ItskCardHeaderComponent, ItskCardContentComponent],
-  exports: [ItskCardComponent, ItskCardHeaderComponent, ItskCardContentComponent],
-  imports: [CommonModule],
+    exports: [ItskCardComponent, ItskCardHeaderComponent, ItskCardContentComponent],
+    imports: [CommonModule, ItskCardComponent, ItskCardHeaderComponent, ItskCardContentComponent],
 })
 export class ItskCardModule {}

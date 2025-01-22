@@ -15,8 +15,7 @@ type ButtonOrNullOrUndefined = ItskRadioButtonComponent | undefined | null;
             multi: true,
         },
     ],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskRadioComponent implements OnInit, ControlValueAccessor {
   //#region Props

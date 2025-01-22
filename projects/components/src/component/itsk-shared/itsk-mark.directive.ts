@@ -1,9 +1,6 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 
-@Directive({
-    selector: '[itskMark]',
-    standalone: false
-})
+@Directive({ selector: '[itskMark]' })
 export class ItskMarkDirective {
   private temp$ = null;
 

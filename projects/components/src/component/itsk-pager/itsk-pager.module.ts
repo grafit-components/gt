@@ -5,8 +5,7 @@ import { ItskIconModule } from '../itsk-icon/itsk-icon.module';
 import { ItskPagerComponent } from './itsk-pager/itsk-pager.component';
 
 @NgModule({
-  declarations: [ItskPagerComponent],
-  exports: [ItskPagerComponent],
-  imports: [CommonModule, ItskClickOutsideModule, ItskIconModule],
+    exports: [ItskPagerComponent],
+    imports: [CommonModule, ItskClickOutsideModule, ItskIconModule, ItskPagerComponent],
 })
 export class ItskPagerModule {}

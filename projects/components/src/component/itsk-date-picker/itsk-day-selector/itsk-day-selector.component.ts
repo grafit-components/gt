@@ -6,13 +6,14 @@ import { ItskDatePeriod } from '../model/itsk-date-period';
 import { ItskPickerDayModel } from '../model/itsk-picker-day-model';
 import { ItskPickerLocaleModel } from '../model/itsk-picker-locale-model';
 import { PickerLocaleService } from '../service/picker-locale.service';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
     selector: 'itsk-day-selector',
     templateUrl: './itsk-day-selector.component.html',
     styleUrls: ['./itsk-day-selector.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [NgFor, NgIf]
 })
 export class ItskDaySelectorComponent implements OnInit, OnDestroy {
   protected stop: Subject<boolean> = new Subject<boolean>();

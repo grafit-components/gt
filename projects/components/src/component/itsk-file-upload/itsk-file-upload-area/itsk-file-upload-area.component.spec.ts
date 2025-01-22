@@ -8,8 +8,8 @@ describe('ItskFileUploadAreaComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskFileUploadAreaComponent],
-    }).compileComponents();
+    imports: [ItskFileUploadAreaComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

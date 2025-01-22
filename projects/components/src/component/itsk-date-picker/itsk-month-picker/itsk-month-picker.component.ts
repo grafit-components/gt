@@ -4,6 +4,13 @@ import { takeWhile } from 'rxjs/operators';
 import { ItskDatePickerMode } from '../model/itsk-date-picker-mode.enum';
 import { ItskPickerLocaleModel } from '../model/itsk-picker-locale-model';
 import { PickerLocaleService } from '../service/picker-locale.service';
+import { ItskDropdownComponent } from '../../itsk-dropdown/itsk-dropdown/itsk-dropdown.component';
+import { ItskDropdownHeadDirective } from '../../itsk-dropdown/itsk-dropdown-head.directive';
+import { NgClass, NgStyle, NgIf } from '@angular/common';
+import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
+import { ItskDropdownContentDirective } from '../../itsk-dropdown/itsk-dropdown-content.directive';
+import { ItskYearSelectorComponent } from '../itsk-year-selector/itsk-year-selector.component';
+import { ItskMonthSelectorComponent } from '../itsk-month-selector/itsk-month-selector.component';
 
 export const MONTH_PICKER_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -17,7 +24,7 @@ export const MONTH_PICKER_CONTROL_VALUE_ACCESSOR: any = {
     styleUrls: ['./itsk-month-picker.component.scss'],
     providers: [MONTH_PICKER_CONTROL_VALUE_ACCESSOR],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [ItskDropdownComponent, ItskDropdownHeadDirective, NgClass, NgStyle, NgIf, ItskIconComponent, ItskDropdownContentDirective, ItskYearSelectorComponent, ItskMonthSelectorComponent]
 })
 export class ItskMonthPickerComponent implements ControlValueAccessor, OnInit, OnDestroy {
   ItskDatePickerMode = ItskDatePickerMode;

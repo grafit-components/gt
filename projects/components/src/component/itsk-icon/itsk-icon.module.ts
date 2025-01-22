@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { ItskIconComponent } from './itsk-icon/itsk-icon.component';
 
 @NgModule({
-  declarations: [ItskIconComponent],
-  imports: [CommonModule],
-  exports: [ItskIconComponent],
+    imports: [CommonModule, ItskIconComponent],
+    exports: [ItskIconComponent],
 })
 export class ItskIconModule {}

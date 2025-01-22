@@ -5,12 +5,14 @@ import { GridColumn } from '../../model/grid-column';
 import { GridRow, IId } from '../../model/grid-row';
 import { GridUtil } from '../../model/util';
 import { ItskGridService } from '../../service/itsk-grid.service';
+import { NgIf } from '@angular/common';
+import { ItskGridAggregateWrapperComponent } from './itsk-grid-aggregate-wrapper/itsk-grid-aggregate-wrapper.component';
 
 @Component({
     selector: 'itsk-grid-aggregate',
     templateUrl: './itsk-grid-aggregate.component.html',
     styleUrls: ['./itsk-grid-aggregate.component.scss'],
-    standalone: false
+    imports: [NgIf, ItskGridAggregateWrapperComponent]
 })
 export class ItskGridAggregateComponent<T extends IId> implements OnInit, OnDestroy {
   private alive = true;

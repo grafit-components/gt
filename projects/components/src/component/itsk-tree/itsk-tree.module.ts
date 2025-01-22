@@ -8,8 +8,7 @@ import { ItskTreeToggleDirective } from './itsk-tree-toggle.directive';
 import { ItskTreeComponent } from './itsk-tree/itsk-tree.component';
 
 @NgModule({
-  declarations: [ItskTreeComponent, ItskTreeItemComponent, ItskTreeHostComponent, ItskTreeToggleDirective, ItskTreeTemplateDirective],
-  exports: [ItskTreeComponent, ItskTreeItemComponent, ItskTreeToggleDirective, ItskSharedModule, ItskTreeTemplateDirective],
-  imports: [CommonModule, ItskSharedModule],
+    exports: [ItskTreeComponent, ItskTreeItemComponent, ItskTreeToggleDirective, ItskSharedModule, ItskTreeTemplateDirective],
+    imports: [CommonModule, ItskSharedModule, ItskTreeComponent, ItskTreeItemComponent, ItskTreeHostComponent, ItskTreeToggleDirective, ItskTreeTemplateDirective],
 })
 export class ItskTreeModule {}

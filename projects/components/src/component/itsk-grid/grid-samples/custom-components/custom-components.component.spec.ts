@@ -8,8 +8,8 @@ describe('CustomComponentsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CustomComponentsComponent],
-    }).compileComponents();
+    imports: [CustomComponentsComponent],
+}).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,13 +1,20 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ItskTreeControl } from '../../../itsk-tree/model/itsk-tree-control';
 import { GridColumn } from '../../model/grid-column';
+import { ItskTreeComponent } from '../../../itsk-tree/itsk-tree/itsk-tree.component';
+import { ItskTreeTemplateDirective } from '../../../itsk-tree/itsk-tree-template.directive';
+import { ItskTreeItemComponent } from '../../../itsk-tree/itsk-tree-item/itsk-tree-item.component';
+import { NgIf } from '@angular/common';
+import { ItskIconComponent } from '../../../itsk-icon/itsk-icon/itsk-icon.component';
+import { ItskCheckboxComponent } from '../../../itsk-checkbox/itsk-checkbox/itsk-checkbox.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'itsk-grid-columns-settings',
     templateUrl: './grid-columns-settings.component.html',
     styleUrls: ['./grid-columns-settings.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [ItskTreeComponent, ItskTreeTemplateDirective, ItskTreeItemComponent, NgIf, ItskIconComponent, ItskCheckboxComponent, FormsModule]
 })
 export class GridColumnsSettingsComponent implements OnInit {
   treeControl: ItskTreeControl;

@@ -1,4 +1,4 @@
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, CdkVirtualForOf } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -13,11 +13,17 @@ import {
   ViewChild,
   forwardRef,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { ItskSelectOptionDirective } from '../directive/itsk-select-option.directive';
 import { ItskSelectValueDirective } from '../directive/itsk-select-value.directive';
+import { ItskDropdownComponent } from '../../itsk-dropdown/itsk-dropdown/itsk-dropdown.component';
+import { ItskDropdownHeadDirective } from '../../itsk-dropdown/itsk-dropdown-head.directive';
+import { NgSwitch, NgIf, NgTemplateOutlet, NgSwitchCase, NgFor } from '@angular/common';
+import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
+import { ItskDropdownContentDirective } from '../../itsk-dropdown/itsk-dropdown-content.directive';
+import { ItskMarkDirective } from '../../itsk-shared/itsk-mark.directive';
 
 enum ViewType {
   inline,
@@ -41,7 +47,7 @@ enum ViewType {
         },
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [ItskDropdownComponent, ItskDropdownHeadDirective, NgSwitch, NgIf, NgTemplateOutlet, NgSwitchCase, NgFor, ItskIconComponent, ItskDropdownContentDirective, FormsModule, ItskMarkDirective, CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, CdkVirtualForOf]
 })
 export class ItskSelectComponent implements ControlValueAccessor, OnInit {
   private items$?: any[];

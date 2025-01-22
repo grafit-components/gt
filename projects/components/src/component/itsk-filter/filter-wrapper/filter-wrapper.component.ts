@@ -28,8 +28,7 @@ import { StringFilterComponent } from '../string-filter/string-filter.component'
     selector: 'itsk-filter-wrapper',
     template: '',
     styleUrls: ['./filter-wrapper.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilterWrapperComponent implements OnInit, OnDestroy, OnChanges {
   private subs = true;

@@ -8,8 +8,8 @@ describe('ItskAutocompleteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ItskAutocompleteComponent],
-    }).compileComponents();
+    imports: [ItskAutocompleteComponent],
+}).compileComponents();
   });
 
   beforeEach(() => {

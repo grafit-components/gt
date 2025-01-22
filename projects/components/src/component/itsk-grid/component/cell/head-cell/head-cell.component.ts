@@ -6,8 +6,7 @@ import { DefaultHeadCellComponent } from '../default-head-cell/default-head-cell
 @Component({
     selector: 'itsk-head-cell',
     template: '',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeadCellComponent implements OnInit {
   private componentRef?: ComponentRef<HeadCellComponentBase>;

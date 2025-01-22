@@ -1,9 +1,6 @@
 import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
-@Directive({
-    selector: '[itskSpinner]',
-    standalone: false
-})
+@Directive({ selector: '[itskSpinner]' })
 export class ItskSpinnerDirective implements OnInit {
   private element$: HTMLElement;
   private spinner$: any;

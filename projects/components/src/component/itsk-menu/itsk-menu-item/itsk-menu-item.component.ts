@@ -1,12 +1,15 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef } from '@angular/core';
 import { IItskMenuItem } from '../model/i-itsk-menu-item';
+import { RouterLinkActive, RouterLink } from '@angular/router';
+import { NgIf, NgTemplateOutlet } from '@angular/common';
+import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
 
 @Component({
     selector: 'itsk-menu-item',
     templateUrl: './itsk-menu-item.component.html',
     styleUrls: ['./itsk-menu-item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [RouterLinkActive, NgIf, ItskIconComponent, RouterLink, NgTemplateOutlet]
 })
 export class ItskMenuItemComponent<T extends IItskMenuItem> implements OnInit, OnDestroy {
   private timer: any;

@@ -1,13 +1,15 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { GridColumn } from '../../../model/grid-column';
 import { HeadCellComponentBase } from '../../../model/head-cell-component-base';
+import { ItskHintDirective } from '../../../../../directive/itsk-hint/itsk-hint.directive';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'itsk-default-head-cell',
     templateUrl: './default-head-cell.component.html',
     styleUrls: ['./default-head-cell.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [ItskHintDirective, NgIf]
 })
 export class DefaultHeadCellComponent extends HeadCellComponentBase implements OnInit {
   private column$?: GridColumn;

@@ -8,8 +8,8 @@ describe('ItskTooltipContainerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskTooltipContainerComponent],
-    }).compileComponents();
+    imports: [ItskTooltipContainerComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

@@ -4,6 +4,11 @@ import { NavigationEnd, ResolveEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, filter, map, startWith, tap } from 'rxjs/operators';
 import { IItskMenuItem } from '../../itsk-menu/model/i-itsk-menu-item';
+import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { ItskDropdownComponent } from '../../itsk-dropdown/itsk-dropdown/itsk-dropdown.component';
+import { ItskDropdownHeadDirective } from '../../itsk-dropdown/itsk-dropdown-head.directive';
+import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
+import { ItskDropdownContentDirective } from '../../itsk-dropdown/itsk-dropdown-content.directive';
 
 interface BreadcrumbItem {
   active: IItskMenuItem;
@@ -15,7 +20,7 @@ interface BreadcrumbItem {
     templateUrl: './itsk-breadcrumb.component.html',
     styleUrls: ['./itsk-breadcrumb.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [NgIf, NgFor, ItskDropdownComponent, ItskDropdownHeadDirective, ItskIconComponent, ItskDropdownContentDirective, AsyncPipe]
 })
 export class ItskBreadcrumbComponent {
   @HostBinding('class.breadcrumb') breadcrumb = true;

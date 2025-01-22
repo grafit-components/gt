@@ -34,6 +34,12 @@ import { GroupRowComponentBase } from '../../model/group-row-component-base';
 import { ItskGridService } from '../../service/itsk-grid.service';
 import { ItskGridComponent } from '../itsk-grid/itsk-grid.component';
 import { GroupRowDefaultComponent } from '../row/group-row-default/group-row-default.component';
+import { NgIf, NgFor, NgTemplateOutlet } from '@angular/common';
+import { ItskGridPanelComponent } from '../itsk-grid-panel/itsk-grid-panel.component';
+import { ItskFilterPanelComponent } from '../../../itsk-filter/itsk-filter-panel/itsk-filter-panel.component';
+import { GridColumnsSettingsComponent } from '../grid-columns-settings/grid-columns-settings.component';
+import { ItskGridDetailComponent } from '../itsk-grid-detail/itsk-grid-detail.component';
+import { ItskPagerComponent } from '../../../itsk-pager/itsk-pager/itsk-pager.component';
 
 @Component({
     selector: 'itsk-grid-wrapper',
@@ -41,7 +47,7 @@ import { GroupRowDefaultComponent } from '../row/group-row-default/group-row-def
     styleUrls: ['./itsk-grid-wrapper.component.scss'],
     providers: [ItskGridService],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [NgIf, ItskGridPanelComponent, ItskFilterPanelComponent, GridColumnsSettingsComponent, NgFor, NgTemplateOutlet, ItskGridComponent, ItskGridDetailComponent, ItskPagerComponent]
 })
 export class ItskGridWrapperComponent<T extends IId> implements IGridWrapper<T> {
   @HostBinding('class.grid-wrapper') gridClass = true;

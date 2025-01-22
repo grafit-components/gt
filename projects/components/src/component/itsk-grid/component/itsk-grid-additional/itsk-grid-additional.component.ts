@@ -16,8 +16,7 @@ import { GridRow, IId } from '../../model/grid-row';
     selector: 'itsk-grid-additional',
     template: '',
     styleUrls: ['./itsk-grid-additional.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskGridAdditionalComponent<T extends IId> implements OnInit {
   private componentRef?: ComponentRef<any>;

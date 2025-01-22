@@ -8,8 +8,8 @@ describe('GroupRowWrapperComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [GroupRowWrapperComponent],
-    }).compileComponents();
+    imports: [GroupRowWrapperComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

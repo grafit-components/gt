@@ -8,8 +8,8 @@ describe('ItskFilterPanelComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskFilterPanelComponent],
-    }).compileComponents();
+    imports: [ItskFilterPanelComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

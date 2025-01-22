@@ -5,12 +5,13 @@ import { GridColumn } from '../../model/grid-column';
 import { GridOfflineHelper } from '../../model/grid-offline-helper';
 import { GridRow } from '../../model/grid-row';
 import { FakeDataService } from '../fake-data.service';
+import { ItskGridComponent } from '../../component/itsk-grid/itsk-grid.component';
 
 @Component({
     selector: 'itsk-custom-components',
     templateUrl: './custom-components.component.html',
     styleUrls: ['./custom-components.component.scss'],
-    standalone: false
+    imports: [ItskGridComponent]
 })
 export class CustomComponentsComponent implements OnInit {
   startData: any[];

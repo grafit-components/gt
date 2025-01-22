@@ -3,8 +3,7 @@ import { Component, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output
 @Component({
     selector: 'itsk-file-upload-area',
     templateUrl: './itsk-file-upload-area.component.html',
-    styleUrls: ['./itsk-file-upload-area.component.scss'],
-    standalone: false
+    styleUrls: ['./itsk-file-upload-area.component.scss']
 })
 export class ItskFileUploadAreaComponent implements OnInit {
   @HostBinding('class.file-upload') fileUpload = true;

@@ -7,8 +7,7 @@ import { GroupRowComponentBase } from '../../../model/group-row-component-base';
     selector: 'itsk-group-row-default',
     templateUrl: './group-row-default.component.html',
     styleUrls: ['./group-row-default.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GroupRowDefaultComponent<T extends IId> extends GroupRowComponentBase<T> implements OnInit {
   @Input() override row?: GridRow<T>;

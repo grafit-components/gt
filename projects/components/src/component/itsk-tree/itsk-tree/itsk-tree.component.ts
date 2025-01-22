@@ -1,13 +1,15 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChild, HostBinding, Input, OnInit } from '@angular/core';
 import { ItskTreeTemplateDirective } from '../itsk-tree-template.directive';
 import { ItskTreeControl } from '../model/itsk-tree-control';
+import { NgFor, NgTemplateOutlet, NgIf } from '@angular/common';
+import { ItskTreeHostComponent } from '../itsk-tree-host/itsk-tree-host.component';
 
 @Component({
     selector: 'itsk-tree',
     templateUrl: './itsk-tree.component.html',
     styleUrls: ['./itsk-tree.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [NgFor, NgTemplateOutlet, NgIf, ItskTreeHostComponent]
 })
 export class ItskTreeComponent implements OnInit, AfterViewInit {
   /** Tree data */

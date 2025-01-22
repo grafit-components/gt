@@ -4,8 +4,7 @@ import { ItskMarkDirective } from './itsk-mark.directive';
 import { ItskTemplateDirective } from './itsk-template.directive';
 
 @NgModule({
-  declarations: [ItskMarkDirective, ItskTemplateDirective],
-  imports: [CommonModule],
-  exports: [ItskMarkDirective, ItskTemplateDirective],
+    imports: [CommonModule, ItskMarkDirective, ItskTemplateDirective],
+    exports: [ItskMarkDirective, ItskTemplateDirective],
 })
 export class ItskSharedModule {}

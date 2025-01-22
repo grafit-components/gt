@@ -8,8 +8,8 @@ describe('ItskToggleComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskToggleComponent],
-    }).compileComponents();
+    imports: [ItskToggleComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

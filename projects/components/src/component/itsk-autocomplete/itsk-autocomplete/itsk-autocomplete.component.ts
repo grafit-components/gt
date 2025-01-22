@@ -1,4 +1,4 @@
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, CdkVirtualForOf } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -10,9 +10,14 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ItskDropdownComponent } from '../../itsk-dropdown/itsk-dropdown/itsk-dropdown.component';
+import { ItskDropdownHeadDirective } from '../../itsk-dropdown/itsk-dropdown-head.directive';
+import { ItskDropdownContentDirective } from '../../itsk-dropdown/itsk-dropdown-content.directive';
+import { NgIf, AsyncPipe } from '@angular/common';
+import { ItskMarkDirective } from '../../itsk-shared/itsk-mark.directive';
 
 @Component({
     selector: 'itsk-autocomplete',
@@ -26,7 +31,7 @@ import { map } from 'rxjs/operators';
         },
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [ItskDropdownComponent, ItskDropdownHeadDirective, FormsModule, ItskDropdownContentDirective, NgIf, CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, CdkVirtualForOf, ItskMarkDirective, AsyncPipe]
 })
 export class ItskAutocompleteComponent implements ControlValueAccessor, OnInit {
   private items: string[] = [];

@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { ItskNumberPipe } from './itsk-number.pipe';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [ItskNumberPipe],
-  exports: [ItskNumberPipe],
+    imports: [CommonModule, ItskNumberPipe],
+    exports: [ItskNumberPipe],
 })
 export class ItskNumberPipeModule {}

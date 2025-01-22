@@ -8,8 +8,8 @@ describe('GroupingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GroupingGridComponent],
-    }).compileComponents();
+    imports: [GroupingGridComponent],
+}).compileComponents();
   });
 
   beforeEach(() => {

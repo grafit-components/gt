@@ -4,8 +4,7 @@ import { ItskIconModule } from '../itsk-icon/itsk-icon.module';
 import { ItskCheckboxComponent } from './itsk-checkbox/itsk-checkbox.component';
 
 @NgModule({
-  declarations: [ItskCheckboxComponent],
-  exports: [ItskCheckboxComponent],
-  imports: [CommonModule, ItskIconModule],
+    exports: [ItskCheckboxComponent],
+    imports: [CommonModule, ItskIconModule, ItskCheckboxComponent],
 })
 export class ItskCheckboxModule {}

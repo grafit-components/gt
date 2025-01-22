@@ -1,9 +1,6 @@
 import { Directive, Input, TemplateRef } from '@angular/core';
 
-@Directive({
-    selector: '[itskTemplate]',
-    standalone: false
-})
+@Directive({ selector: '[itskTemplate]' })
 export class ItskTemplateDirective {
   @Input() type?: string;
   @Input('itskTemplate') name?: string;

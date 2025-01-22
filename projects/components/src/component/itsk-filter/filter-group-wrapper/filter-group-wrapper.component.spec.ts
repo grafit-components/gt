@@ -8,8 +8,8 @@ describe('FilterGroupWrapperComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [FilterGroupWrapperComponent],
-    }).compileComponents();
+    imports: [FilterGroupWrapperComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

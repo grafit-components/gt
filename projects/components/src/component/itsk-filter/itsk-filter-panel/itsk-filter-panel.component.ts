@@ -22,13 +22,23 @@ import { ItskFilterHelper } from '../model/itsk-filter-helper';
 import { ListFilter } from '../model/list-filter';
 import { NumericFilter } from '../model/numeric-filter';
 import { StringFilter } from '../model/string-filter';
+import { ItskDropdownComponent } from '../../itsk-dropdown/itsk-dropdown/itsk-dropdown.component';
+import { ItskDropdownHeadDirective } from '../../itsk-dropdown/itsk-dropdown-head.directive';
+import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
+import { ItskDropdownContentDirective } from '../../itsk-dropdown/itsk-dropdown-content.directive';
+import { ItskSelectComponent } from '../../itsk-select/itsk-select/itsk-select.component';
+import { ItskToggleComponent } from '../../itsk-toggle/itsk-toggle/itsk-toggle.component';
+import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf, AsyncPipe } from '@angular/common';
+import { FilterWrapperComponent } from '../filter-wrapper/filter-wrapper.component';
+import { FilterGroupWrapperComponent } from '../filter-group-wrapper/filter-group-wrapper.component';
 
 @Component({
     selector: 'itsk-filter-panel',
     templateUrl: './itsk-filter-panel.component.html',
     styleUrls: ['./itsk-filter-panel.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [ItskDropdownComponent, ItskDropdownHeadDirective, ItskIconComponent, ItskDropdownContentDirective, ItskSelectComponent, ItskToggleComponent, FormsModule, NgFor, NgIf, FilterWrapperComponent, FilterGroupWrapperComponent, AsyncPipe]
 })
 export class ItskFilterPanelComponent implements OnInit, OnChanges {
   filters$: FilterColumn[] = [];

@@ -1,10 +1,7 @@
 import { AfterContentChecked, ContentChildren, Directive, EventEmitter, Output, QueryList } from '@angular/core';
 import { ItskValidateDirective } from './itsk-validate.directive';
 
-@Directive({
-    selector: '[itskValidateGroup]',
-    standalone: false
-})
+@Directive({ selector: '[itskValidateGroup]' })
 export class ItskValidateGroupDirective implements AfterContentChecked {
   @Output() itskValidateGroup: EventEmitter<boolean> = new EventEmitter();
 

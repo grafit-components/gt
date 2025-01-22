@@ -8,8 +8,8 @@ describe('ItskGridAggregateComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskGridAggregateComponent],
-    }).compileComponents();
+    imports: [ItskGridAggregateComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

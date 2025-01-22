@@ -1,12 +1,13 @@
 import { Component, Host, HostBinding, HostListener, Input, OnDestroy, OnInit, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { ItskRadioComponent } from '../itsk-radio/itsk-radio.component';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'itsk-radio-button',
     templateUrl: './itsk-radio-button.component.html',
     styleUrls: ['./itsk-radio-button.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    standalone: false
+    imports: [NgIf]
 })
 export class ItskRadioButtonComponent implements OnInit, OnDestroy {
   private _value: any;

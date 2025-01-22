@@ -4,8 +4,7 @@ import { ItskFileUploadAreaComponent } from './itsk-file-upload-area/itsk-file-u
 import { ItskFileUploadButtonComponent } from './itsk-file-upload-button/itsk-file-upload-button.component';
 
 @NgModule({
-  declarations: [ItskFileUploadButtonComponent, ItskFileUploadAreaComponent],
-  exports: [ItskFileUploadButtonComponent, ItskFileUploadAreaComponent],
-  imports: [CommonModule],
+    exports: [ItskFileUploadButtonComponent, ItskFileUploadAreaComponent],
+    imports: [CommonModule, ItskFileUploadButtonComponent, ItskFileUploadAreaComponent],
 })
 export class ItskFileUploadModule {}
