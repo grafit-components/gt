@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ItskNotification, ItskNotificationLevel, ItskNotificationService } from '@grafit/angular';
-import { DataModel } from '../../model/data-model';
-import { Fields } from '../../model/fields';
-import { Layers } from '../../model/layers';
-import { DataService } from '../../service/data.service';
+import { ItskNotification, ItskNotificationLevel, ItskNotificationService } from '@grafit/components';
+import { DataModel } from './model/data-model';
+import { Fields } from './model/fields';
+import { Layers } from './model/layers';
 
 export class WellDatesValidator {
   static checkRepair(created: Date) {
@@ -20,10 +19,10 @@ export class WellDatesValidator {
 }
 
 @Component({
-    selector: 'app-form',
-    templateUrl: './form.component.html',
-    styleUrls: ['./form.component.styl'],
-    standalone: false
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.scss'],
+  standalone: true,
 })
 export class FormComponent implements OnInit {
   form: FormGroup;
@@ -31,10 +30,7 @@ export class FormComponent implements OnInit {
   layers = Layers;
   new = new DataModel({});
 
-  constructor(
-    private notifications: ItskNotificationService,
-    private data: DataService,
-  ) {
+  constructor(private notifications: ItskNotificationService) {
     this.form = new FormGroup({
       well: new FormControl(this.new.well, [Validators.required]),
       field: new FormControl(this.new.field, [Validators.required]),
@@ -42,14 +38,14 @@ export class FormComponent implements OnInit {
       liq: new FormControl(this.new.liq, [Validators.min(0)]),
       oil: new FormControl(this.new.oil, [Validators.min(0)]),
       pressure: new FormControl(this.new.pressure, [Validators.min(0)]),
-      repair: new FormControl(this.new.repair, [WellDatesValidator.checkRepair(this.new.created)]),
+      repair: new FormControl(this.new.repair, []),
       created: new FormControl(this.new.created, [Validators.required]),
     });
   }
 
   save() {
-    this.data.addRow(new DataModel(this.form.value));
-    this.form.reset();
+    // this.data.addRow(new DataModel(this.form.value));
+    // this.form.reset();
     this.notifications.add(
       new ItskNotification({
         level: ItskNotificationLevel.Success,
