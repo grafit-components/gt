@@ -19,23 +19,27 @@
   <itsk-toggle [(ngModel)]="showActive" [leftLabel]="true">Активные</itsk-toggle>
 </div>
 <div class="container container_column container_auto flex-shrink scrollbar">
-  <ng-container *ngFor="let filter of filters$">
-    <div *ngIf="filter.filterable || hasFilterableLeafs(filter)" class="padding-h-8 margin-b-3">
-      <itsk-filter-wrapper
-        *ngIf="filter.filterable && filter.filterComponent && isLeaf(filter) && showFilter(filter, state$, showActive)"
-        [column]="filter"
-        [state]="state$"
-        (filterChanged)="filterChanged($event)"
-      ></itsk-filter-wrapper>
-      <itsk-filter-group-wrapper
-        *ngIf="!isLeaf(filter) && hasFilterableLeafs(filter)"
-        [showActive]="showActive"
-        [column]="filter"
-        [state]="state$"
-        (filterChanged)="filterChanged($event)"
-      ></itsk-filter-group-wrapper>
-    </div>
-  </ng-container>
+  @for (filter of filters$; track filter) {
+    @if (filter.filterable || hasFilterableLeafs(filter)) {
+      <div class="padding-h-8 margin-b-3">
+        @if (filter.filterable && filter.filterComponent && isLeaf(filter) && showFilter(filter, state$, showActive)) {
+          <itsk-filter-wrapper
+            [column]="filter"
+            [state]="state$"
+            (filterChanged)="filterChanged($event)"
+          ></itsk-filter-wrapper>
+        }
+        @if (!isLeaf(filter) && hasFilterableLeafs(filter)) {
+          <itsk-filter-group-wrapper
+            [showActive]="showActive"
+            [column]="filter"
+            [state]="state$"
+            (filterChanged)="filterChanged($event)"
+          ></itsk-filter-group-wrapper>
+        }
+      </div>
+    }
+  }
 </div>
 <div class="container align-center height-14 padding-h-8">
   <button class="button_secondary" (click)="clearAll()">

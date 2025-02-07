@@ -1,5 +1,5 @@
-<ng-container *ngIf="breadcrumbItems$ | async as breadcrumbItems">
-  <ng-container *ngFor="let breadcrumbItem of breadcrumbItems">
+@if (breadcrumbItems$ | async; as breadcrumbItems) {
+  @for (breadcrumbItem of breadcrumbItems; track breadcrumbItem) {
     <itsk-dropdown style="flex-grow: 0" [fixed]="true">
       <ng-template itskDropdownHead>
         <itsk-icon class="breadcrumb__delimiter" [name]="'icon-chevron_right-arrow-outline'"></itsk-icon>
@@ -7,26 +7,25 @@
           {{ breadcrumbItem.active.name }}
         </span>
       </ng-template>
-
       <ng-template itskDropdownContent>
         <div class="list">
-          <div
-            class="list__item"
-            (click)="navigate(menuItem)"
-            [class.list__item_active]="menuItem === breadcrumbItem.active"
-            *ngFor="let menuItem of breadcrumbItem.items"
-          >
-            {{ menuItem.name }}
-          </div>
+          @for (menuItem of breadcrumbItem.items; track menuItem) {
+            <div
+              class="list__item"
+              (click)="navigate(menuItem)"
+              [class.list__item_active]="menuItem === breadcrumbItem.active"
+              >
+              {{ menuItem.name }}
+            </div>
+          }
         </div>
       </ng-template>
     </itsk-dropdown>
-  </ng-container>
-
-  <ng-container *ngIf="!breadcrumbItems.length">
+  }
+  @if (!breadcrumbItems.length) {
     <itsk-icon class="breadcrumb__delimiter" [name]="'icon-chevron_right-arrow-outline'"></itsk-icon>
     <span class="breadcrumb__item-name">
       {{ defaultTitle }}
     </span>
-  </ng-container>
-</ng-container>
+  }
+}

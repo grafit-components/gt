@@ -3,7 +3,7 @@ import { ItskGridSelectRowsByType } from '../../model/enum/itsk-grid-select-rows
 import { ItskGridSelectType } from '../../model/enum/itsk-grid-select-type';
 import { FilterState } from '../../model/filter-state';
 import { GridColumn } from '../../model/grid-column';
-import { NgIf, NgFor } from '@angular/common';
+
 import { ItskGridHeadCellComponent } from '../itsk-grid-head-cell/itsk-grid-head-cell.component';
 
 @Component({
@@ -11,7 +11,7 @@ import { ItskGridHeadCellComponent } from '../itsk-grid-head-cell/itsk-grid-head
     templateUrl: './itsk-grid-head-group.component.html',
     styleUrls: ['./itsk-grid-head-group.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgIf, NgFor, ItskGridHeadCellComponent]
+    imports: [ItskGridHeadCellComponent]
 })
 export class ItskGridHeadGroupComponent implements OnInit {
   private column$?: GridColumn;

@@ -7,7 +7,7 @@
   [fixed]="fixed"
   [align]="align"
   [visible]="showPicker"
->
+  >
   <ng-template itskDropdownHead>
     <div
       class="datepicker__input"
@@ -19,38 +19,42 @@
       (focus)="dataInputFocus($event)"
       (mousedown)="dataInputFocus($event)"
       (dblclick)="dataInputDoubleClick($event)"
-    >
-      <itsk-icon
-        *ngIf="showIcon"
-        [name]="'icon-calendar_today-date-filled'"
-        [cssClass]="'datepicker__button datepicker__button_clear'"
-        (click)="openPicker(true)"
-        class="datepicker__button datepicker__button_open"
-      ></itsk-icon>
-      <ng-container *ngFor="let format of formatList$">
-        <span
-          class="datepicker__input-part"
-          *ngIf="(showPicker || value || invalid) && !(!showPicker && !allowNull && isEmpty) && isEditableFormat(format)"
-          (mousedown)="dataPartDown($event, format)"
-          (wheel)="dataPartScroll($event, format)"
-          [attr.data-format]="format"
-        >
-          {{ formatValue[format] }}
-        </span>
-        <span
-          class="datepicker__input-part"
-          *ngIf="(showPicker || value || invalid) && !(!showPicker && !allowNull && isEmpty) && !isEditableFormat(format)"
-        >
-          {{ format }}
-        </span>
-      </ng-container>
-      <itsk-icon
-        *ngIf="showClear && !disabled && value$"
-        [name]="'icon-x-erase-clear-circle-filled'"
-        [cssClass]="'datepicker__button datepicker__button_clear'"
-        (click)="clearPicker()"
-        class="datepicker__button datepicker__button_clear"
-      ></itsk-icon>
+      >
+      @if (showIcon) {
+        <itsk-icon
+          [name]="'icon-calendar_today-date-filled'"
+          [cssClass]="'datepicker__button datepicker__button_clear'"
+          (click)="openPicker(true)"
+          class="datepicker__button datepicker__button_open"
+        ></itsk-icon>
+      }
+      @for (format of formatList$; track format) {
+        @if ((showPicker || value || invalid) && !(!showPicker && !allowNull && isEmpty) && isEditableFormat(format)) {
+          <span
+            class="datepicker__input-part"
+            (mousedown)="dataPartDown($event, format)"
+            (wheel)="dataPartScroll($event, format)"
+            [attr.data-format]="format"
+            >
+            {{ formatValue[format] }}
+          </span>
+        }
+        @if ((showPicker || value || invalid) && !(!showPicker && !allowNull && isEmpty) && !isEditableFormat(format)) {
+          <span
+            class="datepicker__input-part"
+            >
+            {{ format }}
+          </span>
+        }
+      }
+      @if (showClear && !disabled && value$) {
+        <itsk-icon
+          [name]="'icon-x-erase-clear-circle-filled'"
+          [cssClass]="'datepicker__button datepicker__button_clear'"
+          (click)="clearPicker()"
+          class="datepicker__button datepicker__button_clear"
+        ></itsk-icon>
+      }
     </div>
   </ng-template>
   <ng-template itskDropdownContent>
@@ -62,7 +66,7 @@
             (wheel)="scrollMonth($event)"
             class="button_secondary"
             [class.button_primary]="displayMode === ItskDatePickerMode.Month"
-          >
+            >
             {{ locale.monthNames[currentMonth$] }}
             <itsk-icon [name]="'icon-scroll-updown-arrow-filled'" class="margin-l-2"></itsk-icon>
           </button>
@@ -73,7 +77,7 @@
             (wheel)="scrollYear($event)"
             class="button_secondary"
             [class.button_primary]="displayMode === ItskDatePickerMode.Year"
-          >
+            >
             {{ currentYear$ }}
             <itsk-icon [name]="'icon-scroll-updown-arrow-filled'" class="margin-l-2"></itsk-icon>
           </button>
@@ -84,42 +88,45 @@
           </button>
         </div>
       </div>
-      <itsk-year-selector
-        *ngIf="displayMode === ItskDatePickerMode.Year"
-        [currentYear]="currentYear$"
-        [today]="today"
-        [size]="7"
-        [minDate]="minDate"
-        [maxDate]="maxDate"
-        (yearSelected)="setYear($event)"
-      >
-      </itsk-year-selector>
-      <itsk-month-selector
-        *ngIf="displayMode === ItskDatePickerMode.Month"
-        [currentMonth]="currentMonth$"
-        [locale]="locale"
-        [currentYear]="currentYear$"
-        [minDate]="minDate"
-        [maxDate]="maxDate"
-        (monthSelected)="setMonth($event)"
-      >
-      </itsk-month-selector>
-      <itsk-day-selector
-        *ngIf="displayMode === ItskDatePickerMode.Date"
-        [currentDate]="currentDate$"
-        [currentMonth]="currentMonth$"
-        [currentYear]="currentYear$"
-        (applyDate)="applyDate($event)"
-        (dateSelected)="setDate($event)"
-        (yearSelected)="setYear($event)"
-        (monthSelected)="setMonth($event)"
-        [minDate]="minDate"
-        [maxDate]="maxDate"
-        [firstDayOfWeek]="firstDayOfWeek"
-        [disabledDays]="disabledDays"
-        [disabledDates]="disabledDates"
-        [disabledPeriods]="disabledPeriods"
-      ></itsk-day-selector>
+      @if (displayMode === ItskDatePickerMode.Year) {
+        <itsk-year-selector
+          [currentYear]="currentYear$"
+          [today]="today"
+          [size]="7"
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+          (yearSelected)="setYear($event)"
+          >
+        </itsk-year-selector>
+      }
+      @if (displayMode === ItskDatePickerMode.Month) {
+        <itsk-month-selector
+          [currentMonth]="currentMonth$"
+          [locale]="locale"
+          [currentYear]="currentYear$"
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+          (monthSelected)="setMonth($event)"
+          >
+        </itsk-month-selector>
+      }
+      @if (displayMode === ItskDatePickerMode.Date) {
+        <itsk-day-selector
+          [currentDate]="currentDate$"
+          [currentMonth]="currentMonth$"
+          [currentYear]="currentYear$"
+          (applyDate)="applyDate($event)"
+          (dateSelected)="setDate($event)"
+          (yearSelected)="setYear($event)"
+          (monthSelected)="setMonth($event)"
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+          [firstDayOfWeek]="firstDayOfWeek"
+          [disabledDays]="disabledDays"
+          [disabledDates]="disabledDates"
+          [disabledPeriods]="disabledPeriods"
+        ></itsk-day-selector>
+      }
     </div>
   </ng-template>
 </itsk-dropdown>

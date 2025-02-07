@@ -4,14 +4,14 @@ import { FilterBase } from '../model/filter-base';
 import { FilterColumn } from '../model/filter-column';
 import { ItskFilterHelper } from '../model/itsk-filter-helper';
 import { FilterGroupHelper } from './filter-group-helper';
-import { NgFor, NgIf } from '@angular/common';
+
 import { FilterWrapperComponent } from '../filter-wrapper/filter-wrapper.component';
 
 @Component({
     selector: 'itsk-filter-group-wrapper',
     templateUrl: './filter-group-wrapper.component.html',
     styleUrls: ['./filter-group-wrapper.component.scss'],
-    imports: [NgFor, NgIf, FilterWrapperComponent]
+    imports: [FilterWrapperComponent]
 })
 export class FilterGroupWrapperComponent implements OnInit {
   @Input()

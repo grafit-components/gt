@@ -1,4 +1,6 @@
 <div class="radio__icon">
-  <div *ngIf="checked" class="radio__icon-inner"></div>
+  @if (checked) {
+    <div class="radio__icon-inner"></div>
+  }
 </div>
 <ng-content></ng-content>

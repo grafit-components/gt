@@ -1,6 +1,8 @@
 <div style="display: grid; grid-template-columns: repeat(3, auto)">
-  <div *ngFor="let icon of icons" style="display: flex; align-items: center" class="font-body-3 margin-b-2">
-    <itsk-icon [name]="icon"></itsk-icon>
-    <span class="padding-l-4">{{ icon }}</span>
-  </div>
+  @for (icon of icons; track icon) {
+    <div style="display: flex; align-items: center" class="font-body-3 margin-b-2">
+      <itsk-icon [name]="icon"></itsk-icon>
+      <span class="padding-l-4">{{ icon }}</span>
+    </div>
+  }
 </div>

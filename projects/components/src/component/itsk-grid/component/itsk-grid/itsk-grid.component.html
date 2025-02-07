@@ -15,9 +15,10 @@
   [selectRowsBy]="selectRowsBy"
   [tree]="tree"
 ></itsk-grid-body>
-<itsk-grid-aggregate
-  *ngIf="aggregateComponent"
-  [data]="aggregate"
-  [aggregateComponent]="aggregateComponent"
-  class="grid__aggregate"
-></itsk-grid-aggregate>
+@if (aggregateComponent) {
+  <itsk-grid-aggregate
+    [data]="aggregate"
+    [aggregateComponent]="aggregateComponent"
+    class="grid__aggregate"
+  ></itsk-grid-aggregate>
+}

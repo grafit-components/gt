@@ -29,7 +29,7 @@ import { ItskDropdownContentDirective } from '../../itsk-dropdown/itsk-dropdown-
 import { ItskSelectComponent } from '../../itsk-select/itsk-select/itsk-select.component';
 import { ItskToggleComponent } from '../../itsk-toggle/itsk-toggle/itsk-toggle.component';
 import { FormsModule } from '@angular/forms';
-import { NgFor, NgIf, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { FilterWrapperComponent } from '../filter-wrapper/filter-wrapper.component';
 import { FilterGroupWrapperComponent } from '../filter-group-wrapper/filter-group-wrapper.component';
 
@@ -38,7 +38,7 @@ import { FilterGroupWrapperComponent } from '../filter-group-wrapper/filter-grou
     templateUrl: './itsk-filter-panel.component.html',
     styleUrls: ['./itsk-filter-panel.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ItskDropdownComponent, ItskDropdownHeadDirective, ItskIconComponent, ItskDropdownContentDirective, ItskSelectComponent, ItskToggleComponent, FormsModule, NgFor, NgIf, FilterWrapperComponent, FilterGroupWrapperComponent, AsyncPipe]
+    imports: [ItskDropdownComponent, ItskDropdownHeadDirective, ItskIconComponent, ItskDropdownContentDirective, ItskSelectComponent, ItskToggleComponent, FormsModule, FilterWrapperComponent, FilterGroupWrapperComponent, AsyncPipe]
 })
 export class ItskFilterPanelComponent implements OnInit, OnChanges {
   filters$: FilterColumn[] = [];

@@ -6,7 +6,7 @@ import { FilterState } from '../../model/filter-state';
 import { GridColumn } from '../../model/grid-column';
 import { GridUtil } from '../../model/util';
 import { ItskGridService } from '../../service/itsk-grid.service';
-import { NgIf, NgFor } from '@angular/common';
+
 import { ItskGridHeadGroupComponent } from '../itsk-grid-head-group/itsk-grid-head-group.component';
 
 @Component({
@@ -14,7 +14,7 @@ import { ItskGridHeadGroupComponent } from '../itsk-grid-head-group/itsk-grid-he
     templateUrl: './itsk-grid-head.component.html',
     styleUrls: ['./itsk-grid-head.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgIf, NgFor, ItskGridHeadGroupComponent]
+    imports: [ItskGridHeadGroupComponent]
 })
 export class ItskGridHeadComponent implements OnInit, OnDestroy {
   private alive = true;

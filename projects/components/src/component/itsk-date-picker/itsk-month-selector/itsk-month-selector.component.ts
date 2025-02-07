@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ItskPickerLocaleModel } from '../model/itsk-picker-locale-model';
-import { NgFor } from '@angular/common';
+
 import { ItskPrependZeroPipe } from '../../../pipe/itsk-prepend-zero/itsk-prepend-zero.pipe';
 
 @Component({
@@ -8,7 +8,7 @@ import { ItskPrependZeroPipe } from '../../../pipe/itsk-prepend-zero/itsk-prepen
     templateUrl: './itsk-month-selector.component.html',
     styleUrls: ['./itsk-month-selector.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgFor, ItskPrependZeroPipe]
+    imports: [ItskPrependZeroPipe]
 })
 export class ItskMonthSelectorComponent implements OnInit {
   currentMonth$: number = 0;

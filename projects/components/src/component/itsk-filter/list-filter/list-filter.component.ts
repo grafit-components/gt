@@ -6,7 +6,7 @@ import { FilterColumn } from '../model/filter-column';
 import { FilterComponentBase } from '../model/filter-component-base';
 import { ListFilter } from '../model/list-filter';
 import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
-import { NgIf, NgFor } from '@angular/common';
+
 import { ItskCheckboxComponent } from '../../itsk-checkbox/itsk-checkbox/itsk-checkbox.component';
 import { FormsModule } from '@angular/forms';
 
@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
     templateUrl: './list-filter.component.html',
     styleUrls: ['./list-filter.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ItskIconComponent, NgIf, NgFor, ItskCheckboxComponent, FormsModule]
+    imports: [ItskIconComponent, ItskCheckboxComponent, FormsModule]
 })
 export class ListFilterComponent extends FilterComponentBase implements OnInit {
   filter: ListFilter = new ListFilter();

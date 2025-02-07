@@ -8,10 +8,12 @@
   [class.base-shape_error]="notification.level === ItskNotificationLevel.Error"
   (mouseenter)="reset()"
   (mouseleave)="init()"
->
+  >
   <div class="container align-center justify-content-between">
     <div class="container overflow-hidden">
-      <itsk-icon *ngIf="notification.iconName != null" [name]="notification.iconName" class="margin-r-2"></itsk-icon>
+      @if (notification.iconName != null) {
+        <itsk-icon [name]="notification.iconName" class="margin-r-2"></itsk-icon>
+      }
       <div class="font-title2 text-short">
         {{ notification.head }}
       </div>
