@@ -5,8 +5,7 @@ import { ItskMenuModule } from '../itsk-menu/itsk-menu.module';
 import { ItskNavigationComponent } from './itsk-navigation/itsk-navigation.component';
 
 @NgModule({
-  declarations: [ItskNavigationComponent],
-  imports: [CommonModule, ItskIconModule, ItskMenuModule],
-  exports: [ItskNavigationComponent],
+    imports: [CommonModule, ItskIconModule, ItskMenuModule, ItskNavigationComponent],
+    exports: [ItskNavigationComponent],
 })
 export class ItskNavigationModule {}

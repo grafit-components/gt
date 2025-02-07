@@ -10,8 +10,7 @@ import { ItskMenuItemsComponent } from './itsk-menu-items/itsk-menu-items.compon
 import { ItskMenuComponent } from './itsk-menu/itsk-menu.component';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, ItskClickOutsideModule, ItskIconModule],
-  declarations: [ItskMenuComponent, ItskMenuItemComponent, ItskMenuItemDirective, ItskMenuButtonComponent, ItskMenuItemsComponent],
-  exports: [ItskMenuComponent, ItskMenuItemComponent, ItskMenuItemDirective, ItskMenuButtonComponent],
+    imports: [CommonModule, RouterModule, ItskClickOutsideModule, ItskIconModule, ItskMenuComponent, ItskMenuItemComponent, ItskMenuItemDirective, ItskMenuButtonComponent, ItskMenuItemsComponent],
+    exports: [ItskMenuComponent, ItskMenuItemComponent, ItskMenuItemDirective, ItskMenuButtonComponent],
 })
 export class ItskMenuModule {}

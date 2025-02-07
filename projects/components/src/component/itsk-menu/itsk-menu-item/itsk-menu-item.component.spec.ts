@@ -8,8 +8,8 @@ describe('ItskMenuItemComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskMenuItemComponent],
-    }).compileComponents();
+    imports: [ItskMenuItemComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

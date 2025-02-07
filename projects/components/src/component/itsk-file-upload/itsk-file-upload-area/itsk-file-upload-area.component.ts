@@ -1,9 +1,9 @@
 import { Component, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'itsk-file-upload-area',
-  templateUrl: './itsk-file-upload-area.component.html',
-  styleUrls: ['./itsk-file-upload-area.component.scss'],
+    selector: 'itsk-file-upload-area',
+    templateUrl: './itsk-file-upload-area.component.html',
+    styleUrls: ['./itsk-file-upload-area.component.scss']
 })
 export class ItskFileUploadAreaComponent implements OnInit {
   @HostBinding('class.file-upload') fileUpload = true;

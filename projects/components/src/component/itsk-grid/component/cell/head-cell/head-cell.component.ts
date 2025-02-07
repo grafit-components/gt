@@ -4,9 +4,9 @@ import { HeadCellComponentBase } from '../../../model/head-cell-component-base';
 import { DefaultHeadCellComponent } from '../default-head-cell/default-head-cell.component';
 
 @Component({
-  selector: 'itsk-head-cell',
-  template: '',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-head-cell',
+    template: '',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeadCellComponent implements OnInit {
   private componentRef?: ComponentRef<HeadCellComponentBase>;

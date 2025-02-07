@@ -45,13 +45,19 @@ import { IGrid } from '../../model/grid/i-grid';
 import { GroupRowComponentBase } from '../../model/group-row-component-base';
 import { ItskGridService } from '../../service/itsk-grid.service';
 import { GroupRowDefaultComponent } from '../row/group-row-default/group-row-default.component';
+import { ItskGridHeadDropdownComponent } from '../itsk-grid-head-dropdown/itsk-grid-head-dropdown.component';
+import { ItskGridHeadComponent } from '../itsk-grid-head/itsk-grid-head.component';
+import { ItskGridBodyComponent } from '../itsk-grid-body/itsk-grid-body.component';
+import { NgIf } from '@angular/common';
+import { ItskGridAggregateComponent } from '../itsk-grid-aggregate/itsk-grid-aggregate.component';
 
 @Component({
-  selector: 'itsk-grid',
-  templateUrl: './itsk-grid.component.html',
-  styleUrls: ['./itsk-grid.component.scss'],
-  providers: [ItskGridService],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-grid',
+    templateUrl: './itsk-grid.component.html',
+    styleUrls: ['./itsk-grid.component.scss'],
+    providers: [ItskGridService],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [ItskGridHeadDropdownComponent, ItskGridHeadComponent, ItskGridBodyComponent, NgIf, ItskGridAggregateComponent]
 })
 export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, AfterViewInit, OnDestroy, OnChanges {
   alive = true;

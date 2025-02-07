@@ -9,12 +9,16 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { ItskClickOutsideDirective } from '../../../directive/itsk-click-outside/itsk-click-outside.directive';
+import { NgIf } from '@angular/common';
+import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
 
 @Component({
-  selector: 'itsk-menu-button',
-  templateUrl: './itsk-menu-button.component.html',
-  styleUrls: ['./itsk-menu-button.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-menu-button',
+    templateUrl: './itsk-menu-button.component.html',
+    styleUrls: ['./itsk-menu-button.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [ItskClickOutsideDirective, NgIf, ItskIconComponent]
 })
 export class ItskMenuButtonComponent implements OnInit {
   @Input() open: boolean = false;

@@ -5,12 +5,14 @@ import { FilterColumn } from '../model/filter-column';
 import { FilterComponentBase } from '../model/filter-component-base';
 import { NumericFilter } from '../model/numeric-filter';
 import { NumericFilterValue } from '../model/numeric-filter-value';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'itsk-numeric-filter',
-  templateUrl: './numeric-filter.component.html',
-  styleUrls: ['./numeric-filter.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-numeric-filter',
+    templateUrl: './numeric-filter.component.html',
+    styleUrls: ['./numeric-filter.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [FormsModule]
 })
 export class NumericFilterComponent extends FilterComponentBase implements OnInit {
   filter: NumericFilter = new NumericFilter();

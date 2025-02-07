@@ -4,8 +4,8 @@ import { GridColumn } from '../../../model/grid-column';
 import { GridRow, IId } from '../../../model/grid-row';
 
 @Component({
-  selector: 'itsk-itsk-grid-aggregate-wrapper',
-  template: '',
+    selector: 'itsk-itsk-grid-aggregate-wrapper',
+    template: ''
 })
 export class ItskGridAggregateWrapperComponent<T extends IId> implements OnInit {
   private componentRef?: ComponentRef<any>;

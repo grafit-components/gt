@@ -3,6 +3,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ArrayUtil } from '../../../util/array-util';
 import { NumberUtil } from '../../../util/number-util';
 import { ItskRange } from '../model/itsk-range';
+import { ItskClickOutsideDirective } from '../../../directive/itsk-click-outside/itsk-click-outside.directive';
+import { NgFor, NgIf } from '@angular/common';
 
 export const DATE_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -11,11 +13,12 @@ export const DATE_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  selector: 'itsk-date-input',
-  templateUrl: './itsk-date-input.component.html',
-  styleUrls: ['./itsk-date-input.component.scss'],
-  providers: [DATE_INPUT_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-date-input',
+    templateUrl: './itsk-date-input.component.html',
+    styleUrls: ['./itsk-date-input.component.scss'],
+    providers: [DATE_INPUT_CONTROL_VALUE_ACCESSOR],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [ItskClickOutsideDirective, NgFor, NgIf]
 })
 export class ItskDateInputComponent implements OnInit, ControlValueAccessor {
   /** Компонент неактивен */

@@ -4,12 +4,15 @@ import { CellComponentBase } from '../../../model/cell-component-base';
 import { GridColumn } from '../../../model/grid-column';
 import { GridRow, IId } from '../../../model/grid-row';
 import { ItskGridService } from '../../../service/itsk-grid.service';
+import { NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'itsk-list-cell',
-  templateUrl: './list-cell.component.html',
-  styleUrls: ['./list-cell.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-list-cell',
+    templateUrl: './list-cell.component.html',
+    styleUrls: ['./list-cell.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgIf, ItskSelectComponent, FormsModule]
 })
 export class ListCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
   column$?: GridColumn;

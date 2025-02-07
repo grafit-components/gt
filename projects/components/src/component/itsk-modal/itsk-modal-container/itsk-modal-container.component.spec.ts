@@ -8,8 +8,8 @@ describe('ItskModalContainerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskModalContainerComponent],
-    }).compileComponents();
+    imports: [ItskModalContainerComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

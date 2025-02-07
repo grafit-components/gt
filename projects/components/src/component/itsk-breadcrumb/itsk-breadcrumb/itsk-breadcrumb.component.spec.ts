@@ -8,8 +8,8 @@ describe('ItskBreadcrumbComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskBreadcrumbComponent],
-    }).compileComponents();
+    imports: [ItskBreadcrumbComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

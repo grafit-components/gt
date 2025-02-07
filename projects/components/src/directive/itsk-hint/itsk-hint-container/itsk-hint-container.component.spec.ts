@@ -7,8 +7,8 @@ describe('ItskHintContainerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskHintContainerComponent],
-    }).compileComponents();
+    imports: [ItskHintContainerComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

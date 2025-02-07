@@ -8,8 +8,8 @@ describe('ItskMonthPickerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskMonthPickerComponent],
-    }).compileComponents();
+    imports: [ItskMonthPickerComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

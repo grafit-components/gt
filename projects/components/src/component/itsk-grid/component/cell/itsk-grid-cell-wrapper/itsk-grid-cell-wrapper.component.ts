@@ -19,9 +19,9 @@ import { ListCellComponent } from '../list-cell/list-cell.component';
 import { NumericCellComponent } from '../numeric-cell/numeric-cell.component';
 
 @Component({
-  selector: 'itsk-grid-cell-wrapper',
-  template: '',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-grid-cell-wrapper',
+    template: '',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskGridCellWrapperComponent<T extends IId> implements OnInit, OnDestroy {
   init = false;

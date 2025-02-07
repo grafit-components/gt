@@ -20,12 +20,18 @@ import { GridColumn } from '../../model/grid-column';
 import { IId } from '../../model/grid-row';
 import { GridSortEvent } from '../../model/grid-sort-event';
 import { ItskGridService } from '../../service/itsk-grid.service';
+import { NgClass, NgIf } from '@angular/common';
+import { ItskCheckboxComponent } from '../../../itsk-checkbox/itsk-checkbox/itsk-checkbox.component';
+import { FormsModule } from '@angular/forms';
+import { ItskIconComponent } from '../../../itsk-icon/itsk-icon/itsk-icon.component';
+import { HeadCellComponent } from '../cell/head-cell/head-cell.component';
 
 @Component({
-  selector: 'itsk-grid-head-cell',
-  templateUrl: './itsk-grid-head-cell.component.html',
-  styleUrls: ['./itsk-grid-head-cell.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-grid-head-cell',
+    templateUrl: './itsk-grid-head-cell.component.html',
+    styleUrls: ['./itsk-grid-head-cell.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgClass, NgIf, ItskCheckboxComponent, FormsModule, ItskIconComponent, HeadCellComponent]
 })
 export class ItskGridHeadCellComponent<T extends IId> implements OnInit, OnDestroy {
   state$?: FilterState;

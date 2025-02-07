@@ -5,8 +5,7 @@ import { ItskTooltipContainerComponent } from './itsk-tooltip-container/itsk-too
 import { ItskTooltipDirective } from './itsk-tooltip.directive';
 
 @NgModule({
-  imports: [CommonModule, ItskClickOutsideModule],
-  declarations: [ItskTooltipDirective, ItskTooltipContainerComponent],
-  exports: [ItskTooltipDirective],
+    imports: [CommonModule, ItskClickOutsideModule, ItskTooltipDirective, ItskTooltipContainerComponent],
+    exports: [ItskTooltipDirective],
 })
 export class ItskTooltipModule {}

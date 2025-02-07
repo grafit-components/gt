@@ -18,13 +18,15 @@ import { ItskVerticalAlign } from '../../../common/model/itsk-vertical-align.enu
 import { ItskTemplateDirective } from '../../itsk-shared/itsk-template.directive';
 import { ItskNotificationService } from '../itsk-notification.service';
 import { ItskNotification } from '../model/itsk-notification';
+import { NgFor } from '@angular/common';
+import { ItskNotificationItemComponent } from './itsk-notification-item/itsk-notification-item.component';
 
 @Component({
-  selector: 'itsk-notifications',
-  templateUrl: './itsk-notifications.component.html',
-  styleUrls: ['./itsk-notifications.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  // changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'itsk-notifications',
+    templateUrl: './itsk-notifications.component.html',
+    styleUrls: ['./itsk-notifications.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [NgFor, ItskNotificationItemComponent]
 })
 export class ItskNotificationsComponent implements OnInit, AfterContentInit, OnDestroy {
   @Input() align: ItskAlign = ItskAlign.Right;

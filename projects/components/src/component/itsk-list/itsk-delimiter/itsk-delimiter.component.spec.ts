@@ -8,8 +8,8 @@ describe('ItskDelimiterComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskDelimiterComponent],
-    }).compileComponents();
+    imports: [ItskDelimiterComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

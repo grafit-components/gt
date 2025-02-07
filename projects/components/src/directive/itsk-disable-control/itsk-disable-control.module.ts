@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { ItskDisableControlDirective } from './itsk-disable-control.directive';
 
 @NgModule({
-  declarations: [ItskDisableControlDirective],
-  exports: [ItskDisableControlDirective],
-  imports: [CommonModule],
+    exports: [ItskDisableControlDirective],
+    imports: [CommonModule, ItskDisableControlDirective],
 })
 export class ItskDisableControlModule {}

@@ -8,8 +8,8 @@ describe('ItskGridCellWrapperComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskGridCellWrapperComponent],
-    }).compileComponents();
+    imports: [ItskGridCellWrapperComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

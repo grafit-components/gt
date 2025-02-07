@@ -6,9 +6,7 @@ enum Level {
   warning,
 }
 
-@Directive({
-  selector: '[itskValidate]',
-})
+@Directive({ selector: '[itskValidate]' })
 export class ItskValidateDirective implements OnInit {
   private _wrap: any;
   private _message: any;

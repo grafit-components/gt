@@ -6,12 +6,15 @@ import { DetailComponentBase } from '../../model/detail-component-base';
 import { IId } from '../../model/grid-row';
 import { ItskGridDictionary } from '../../model/itsk-grid-dictionary';
 import { ItskGridConfigService } from '../../service/itsk-grid-config.service';
+import { NgIf, NgFor, NgTemplateOutlet, AsyncPipe } from '@angular/common';
+import { ItskIconComponent } from '../../../itsk-icon/itsk-icon/itsk-icon.component';
 
 @Component({
-  selector: 'itsk-grid-panel',
-  templateUrl: './itsk-grid-panel.component.html',
-  styleUrls: ['./itsk-grid-panel.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-grid-panel',
+    templateUrl: './itsk-grid-panel.component.html',
+    styleUrls: ['./itsk-grid-panel.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgIf, ItskIconComponent, NgFor, NgTemplateOutlet, AsyncPipe]
 })
 export class ItskGridPanelComponent<T extends IId> implements OnInit {
   _showDetails: boolean = false;

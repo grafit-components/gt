@@ -8,8 +8,8 @@ describe('ItskTreeHostComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskTreeHostComponent],
-    }).compileComponents();
+    imports: [ItskTreeHostComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

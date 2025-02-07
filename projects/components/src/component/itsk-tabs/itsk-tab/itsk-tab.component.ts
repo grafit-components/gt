@@ -5,9 +5,9 @@ import { ItskTabTitleDirective } from '../itsk-tab-title/itsk-tab-title.directiv
 let nextId = 0;
 
 @Component({
-  selector: 'itsk-tab',
-  template: '',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-tab',
+    template: '',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItskTabComponent implements AfterContentChecked {
   /** Unique tab identifier. Must be unique for the entire document for proper accessibility support. */

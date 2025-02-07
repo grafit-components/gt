@@ -1,9 +1,7 @@
 import { Directive, Input } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
-@Directive({
-  selector: '[itskDisableControl]',
-})
+@Directive({ selector: '[itskDisableControl]' })
 export class ItskDisableControlDirective {
   @Input() set itskDisableControl(val: boolean) {
     if (this.ngControl.control) {

@@ -7,6 +7,6 @@ import { CustomComponentsComponent } from './custom-components/custom-components
 import { GroupingGridComponent } from './grouping-grid/grouping-grid.component';
 import { TreeGridComponent } from './tree-grid/tree-grid.component';
 
-@NgModule({ declarations: [BasicComponent, GroupingGridComponent, TreeGridComponent, CustomComponentsComponent],
-    exports: [BasicComponent, GroupingGridComponent, TreeGridComponent, CustomComponentsComponent], imports: [CommonModule, ItskGridModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+@NgModule({
+    exports: [BasicComponent, GroupingGridComponent, TreeGridComponent, CustomComponentsComponent], imports: [CommonModule, ItskGridModule, BasicComponent, GroupingGridComponent, TreeGridComponent, CustomComponentsComponent], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class GridSamplesModule {}

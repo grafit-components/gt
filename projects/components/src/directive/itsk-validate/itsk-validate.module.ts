@@ -4,8 +4,7 @@ import { ItskValidateGroupDirective } from './itsk-validate-group.directive';
 import { ItskValidateDirective } from './itsk-validate.directive';
 
 @NgModule({
-  declarations: [ItskValidateDirective, ItskValidateGroupDirective],
-  exports: [ItskValidateDirective, ItskValidateGroupDirective],
-  imports: [CommonModule],
+    exports: [ItskValidateDirective, ItskValidateGroupDirective],
+    imports: [CommonModule, ItskValidateDirective, ItskValidateGroupDirective],
 })
 export class ItskValidateModule {}

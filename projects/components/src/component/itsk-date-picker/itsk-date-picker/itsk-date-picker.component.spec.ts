@@ -8,8 +8,8 @@ describe('ItskDatePickerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ItskDatePickerComponent],
-    }).compileComponents();
+    imports: [ItskDatePickerComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

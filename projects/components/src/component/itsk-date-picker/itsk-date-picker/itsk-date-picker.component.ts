@@ -20,6 +20,15 @@ import { ItskDatePickerMode } from '../model/itsk-date-picker-mode.enum';
 import { ItskPickerLocaleModel } from '../model/itsk-picker-locale-model';
 import { ItskRange } from '../model/itsk-range';
 import { PickerLocaleService } from '../service/picker-locale.service';
+import { ItskDropdownComponent } from '../../itsk-dropdown/itsk-dropdown/itsk-dropdown.component';
+import { ItskClickOutsideDirective } from '../../../directive/itsk-click-outside/itsk-click-outside.directive';
+import { ItskDropdownHeadDirective } from '../../itsk-dropdown/itsk-dropdown-head.directive';
+import { NgIf, NgFor } from '@angular/common';
+import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
+import { ItskDropdownContentDirective } from '../../itsk-dropdown/itsk-dropdown-content.directive';
+import { ItskYearSelectorComponent } from '../itsk-year-selector/itsk-year-selector.component';
+import { ItskMonthSelectorComponent } from '../itsk-month-selector/itsk-month-selector.component';
+import { ItskDaySelectorComponent } from '../itsk-day-selector/itsk-day-selector.component';
 
 export const DATE_TIME_PICKER_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -28,11 +37,12 @@ export const DATE_TIME_PICKER_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  selector: 'itsk-date-picker',
-  templateUrl: './itsk-date-picker.component.html',
-  styleUrls: ['./itsk-date-picker.component.scss'],
-  providers: [DATE_TIME_PICKER_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-date-picker',
+    templateUrl: './itsk-date-picker.component.html',
+    styleUrls: ['./itsk-date-picker.component.scss'],
+    providers: [DATE_TIME_PICKER_CONTROL_VALUE_ACCESSOR],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [ItskDropdownComponent, ItskClickOutsideDirective, ItskDropdownHeadDirective, NgIf, ItskIconComponent, NgFor, ItskDropdownContentDirective, ItskYearSelectorComponent, ItskMonthSelectorComponent, ItskDaySelectorComponent]
 })
 export class ItskDatePickerComponent implements ControlValueAccessor, OnInit, OnDestroy {
   @HostBinding('class.datepicker') classDatepicker = true;

@@ -1,9 +1,9 @@
 import { Component, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'itsk-file-upload-button',
-  templateUrl: './itsk-file-upload-button.component.html',
-  styleUrls: ['./itsk-file-upload-button.component.scss'],
+    selector: 'itsk-file-upload-button',
+    templateUrl: './itsk-file-upload-button.component.html',
+    styleUrls: ['./itsk-file-upload-button.component.scss']
 })
 export class ItskFileUploadButtonComponent implements OnInit {
   @HostBinding('class.file-upload-button') fileUpload = true;

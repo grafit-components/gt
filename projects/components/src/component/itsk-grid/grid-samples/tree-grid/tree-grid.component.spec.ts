@@ -8,8 +8,8 @@ describe('TreeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TreeGridComponent],
-    }).compileComponents();
+    imports: [TreeGridComponent],
+}).compileComponents();
   });
 
   beforeEach(() => {

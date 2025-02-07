@@ -10,6 +10,7 @@ import {
   QueryList,
 } from '@angular/core';
 import { ItskTabComponent } from '../itsk-tab/itsk-tab.component';
+import { NgFor, NgTemplateOutlet, NgIf } from '@angular/common';
 
 export interface IItskTabChangeEvent {
   activeId: string | null | undefined;
@@ -18,10 +19,11 @@ export interface IItskTabChangeEvent {
 }
 
 @Component({
-  selector: 'itsk-tabs',
-  templateUrl: './itsk-tabs.component.html',
-  styleUrls: ['./itsk-tabs.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-tabs',
+    templateUrl: './itsk-tabs.component.html',
+    styleUrls: ['./itsk-tabs.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgFor, NgTemplateOutlet, NgIf]
 })
 export class ItskTabsComponent implements AfterContentChecked {
   @HostBinding('class.tabs') classTabs = true;

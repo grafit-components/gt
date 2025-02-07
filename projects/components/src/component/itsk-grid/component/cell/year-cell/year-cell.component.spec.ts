@@ -8,8 +8,8 @@ describe('YearCellComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [YearCellComponent],
-    }).compileComponents();
+    imports: [YearCellComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

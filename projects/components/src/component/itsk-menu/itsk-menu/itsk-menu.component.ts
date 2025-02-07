@@ -13,12 +13,14 @@ import {
 import { ItskMenuItemDirective } from '../itsk-menu-item.directive';
 import { IItskMenuItem } from '../model/i-itsk-menu-item';
 import { ItskMenuGroup } from '../model/itsk-menu-group';
+import { ItskMenuItemsComponent } from '../itsk-menu-items/itsk-menu-items.component';
 
 @Component({
-  selector: 'itsk-menu',
-  templateUrl: './itsk-menu.component.html',
-  styleUrls: ['./itsk-menu.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-menu',
+    templateUrl: './itsk-menu.component.html',
+    styleUrls: ['./itsk-menu.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [ItskMenuItemsComponent]
 })
 export class ItskMenuComponent<T extends IItskMenuItem> implements OnInit, AfterViewInit {
   @HostBinding('class.menu') classMenu = true;

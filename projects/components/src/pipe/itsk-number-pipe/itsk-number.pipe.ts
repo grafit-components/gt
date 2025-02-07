@@ -1,9 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { formatNumber } from '../number_func';
 
-@Pipe({
-  name: 'itskNumber',
-})
+@Pipe({ name: 'itskNumber' })
 export class ItskNumberPipe implements PipeTransform {
   transform(
     value: number,

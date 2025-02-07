@@ -5,12 +5,15 @@ import { DateFilterValue } from '../model/date-filter-value';
 import { FilterBase } from '../model/filter-base';
 import { FilterColumn } from '../model/filter-column';
 import { FilterComponentBase } from '../model/filter-component-base';
+import { ItskDatePickerComponent } from '../../itsk-date-picker/itsk-date-picker/itsk-date-picker.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'itsk-date-filter',
-  templateUrl: './date-filter.component.html',
-  styleUrls: ['./date-filter.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-date-filter',
+    templateUrl: './date-filter.component.html',
+    styleUrls: ['./date-filter.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [ItskDatePickerComponent, FormsModule]
 })
 export class DateFilterComponent extends FilterComponentBase implements OnInit {
   filter: DateFilter = new DateFilter();

@@ -1,8 +1,6 @@
 import { Directive, TemplateRef } from '@angular/core';
 
-@Directive({
-  selector: '[itskTreeSelectOption]',
-})
+@Directive({ selector: '[itskTreeSelectOption]' })
 export class ItskTreeSelectOptionDirective {
   constructor(public templateRef: TemplateRef<any>) {}
 }

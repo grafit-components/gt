@@ -4,6 +4,6 @@ import { NgModule } from '@angular/core';
 import { ItskIconModule } from '../itsk-icon.module';
 import { IconSampleComponent } from './icon-sample/icon-sample.component';
 
-@NgModule({ declarations: [IconSampleComponent],
-    exports: [IconSampleComponent], imports: [CommonModule, ItskIconModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+@NgModule({
+    exports: [IconSampleComponent], imports: [CommonModule, ItskIconModule, IconSampleComponent], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class IconSampleModule {}

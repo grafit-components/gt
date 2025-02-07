@@ -6,8 +6,7 @@ import { ItskIconModule } from '../itsk-icon/itsk-icon.module';
 import { ItskBreadcrumbComponent } from './itsk-breadcrumb/itsk-breadcrumb.component';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, ItskIconModule, ItskDropdownModule],
-  declarations: [ItskBreadcrumbComponent],
-  exports: [ItskBreadcrumbComponent],
+    imports: [CommonModule, RouterModule, ItskIconModule, ItskDropdownModule, ItskBreadcrumbComponent],
+    exports: [ItskBreadcrumbComponent],
 })
 export class ItskBreadcrumbModule {}

@@ -1,9 +1,7 @@
 import { Directive, ElementRef, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { ClickOutsideBase } from './click-outside-base';
 
-@Directive({
-  selector: '[itskClickOutside]',
-})
+@Directive({ selector: '[itskClickOutside]' })
 export class ItskClickOutsideDirective extends ClickOutsideBase implements OnDestroy {
   private visible$ = false;
   @Output() public itskClickOutside = new EventEmitter<MouseEvent>();

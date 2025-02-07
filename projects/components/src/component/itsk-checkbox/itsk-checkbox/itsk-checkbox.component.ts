@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
 
 export const CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -8,11 +9,12 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  selector: 'itsk-checkbox',
-  templateUrl: './itsk-checkbox.component.html',
-  styleUrls: ['./itsk-checkbox.component.scss'],
-  providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-checkbox',
+    templateUrl: './itsk-checkbox.component.html',
+    styleUrls: ['./itsk-checkbox.component.scss'],
+    providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [ItskIconComponent]
 })
 export class ItskCheckboxComponent implements ControlValueAccessor, OnInit {
   @HostBinding('attr.tabindex') tabindex = 0;

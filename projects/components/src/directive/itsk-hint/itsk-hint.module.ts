@@ -4,8 +4,7 @@ import { ItskHintContainerComponent } from './itsk-hint-container/itsk-hint-cont
 import { ItskHintDirective } from './itsk-hint.directive';
 
 @NgModule({
-  declarations: [ItskHintDirective, ItskHintContainerComponent],
-  exports: [ItskHintDirective],
-  imports: [CommonModule],
+    exports: [ItskHintDirective],
+    imports: [CommonModule, ItskHintDirective, ItskHintContainerComponent],
 })
 export class ItskHintModule {}

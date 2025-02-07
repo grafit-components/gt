@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'itsk-year-selector',
-  templateUrl: './itsk-year-selector.component.html',
-  styleUrls: ['./itsk-year-selector.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-year-selector',
+    templateUrl: './itsk-year-selector.component.html',
+    styleUrls: ['./itsk-year-selector.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgFor]
 })
 export class ItskYearSelectorComponent implements OnInit, OnDestroy {
   @Input() currentYear?: number;

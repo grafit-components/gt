@@ -13,7 +13,7 @@ import {
   ViewChild,
   forwardRef,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { AnyObject } from '../../itsk-shared/any-object';
@@ -21,6 +21,15 @@ import { IItskTreeItem } from '../../itsk-tree/model/i-itsk-tree-item';
 import { ItskTreeControl } from '../../itsk-tree/model/itsk-tree-control';
 import { ItskTreeSelectOptionDirective } from '../directive/itsk-tree-select-option.directive';
 import { ItskTreeSelectValueDirective } from '../directive/itsk-tree-select-value.directive';
+import { ItskDropdownComponent } from '../../itsk-dropdown/itsk-dropdown/itsk-dropdown.component';
+import { ItskDropdownHeadDirective } from '../../itsk-dropdown/itsk-dropdown-head.directive';
+import { NgSwitch, NgIf, NgTemplateOutlet, NgSwitchCase, NgFor } from '@angular/common';
+import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
+import { ItskDropdownContentDirective } from '../../itsk-dropdown/itsk-dropdown-content.directive';
+import { ItskTreeComponent } from '../../itsk-tree/itsk-tree/itsk-tree.component';
+import { ItskTreeTemplateDirective } from '../../itsk-tree/itsk-tree-template.directive';
+import { ItskTreeItemComponent } from '../../itsk-tree/itsk-tree-item/itsk-tree-item.component';
+import { ItskMarkDirective } from '../../itsk-shared/itsk-mark.directive';
 
 enum ViewType {
   inline,
@@ -38,17 +47,18 @@ interface TreeSelectItem extends IItskTreeItem {
 }
 
 @Component({
-  selector: 'itsk-tree-select',
-  templateUrl: './itsk-tree-select.component.html',
-  styleUrls: ['./itsk-tree-select.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ItskTreeSelectComponent),
-      multi: true,
-    },
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-tree-select',
+    templateUrl: './itsk-tree-select.component.html',
+    styleUrls: ['./itsk-tree-select.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ItskTreeSelectComponent),
+            multi: true,
+        },
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [ItskDropdownComponent, ItskDropdownHeadDirective, NgSwitch, NgIf, NgTemplateOutlet, NgSwitchCase, NgFor, ItskIconComponent, ItskDropdownContentDirective, FormsModule, ItskTreeComponent, ItskTreeTemplateDirective, ItskTreeItemComponent, ItskMarkDirective]
 })
 export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
   private searchTextSub = new Subject<string | null | undefined>();

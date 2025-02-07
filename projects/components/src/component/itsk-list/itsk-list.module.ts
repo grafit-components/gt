@@ -6,8 +6,7 @@ import { ItskListItemComponent } from './itsk-list-item/itsk-list-item.component
 import { ItskListComponent } from './itsk-list/itsk-list.component';
 
 @NgModule({
-  declarations: [ItskListComponent, ItskListItemComponent, ItskDelimiterComponent, ItskListGroupComponent],
-  exports: [ItskListComponent, ItskListItemComponent, ItskDelimiterComponent, ItskListGroupComponent],
-  imports: [CommonModule],
+    exports: [ItskListComponent, ItskListItemComponent, ItskDelimiterComponent, ItskListGroupComponent],
+    imports: [CommonModule, ItskListComponent, ItskListItemComponent, ItskDelimiterComponent, ItskListGroupComponent],
 })
 export class ItskListModule {}

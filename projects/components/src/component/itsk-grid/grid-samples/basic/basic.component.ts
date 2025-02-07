@@ -9,11 +9,13 @@ import { GridColumn } from '../../model/grid-column';
 import { GridOfflineHelper } from '../../model/grid-offline-helper';
 import { GridRow } from '../../model/grid-row';
 import { FakeDataService } from '../fake-data.service';
+import { ItskGridComponent } from '../../component/itsk-grid/itsk-grid.component';
 
 @Component({
-  selector: 'itsk-basic',
-  templateUrl: './basic.component.html',
-  styleUrls: ['./basic.component.scss'],
+    selector: 'itsk-basic',
+    templateUrl: './basic.component.html',
+    styleUrls: ['./basic.component.scss'],
+    imports: [ItskGridComponent]
 })
 export class BasicComponent implements OnInit {
   startData: any[];

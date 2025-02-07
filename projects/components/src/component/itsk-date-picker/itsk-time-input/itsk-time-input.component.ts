@@ -3,6 +3,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ArrayUtil } from '../../../util/array-util';
 import { NumberUtil } from '../../../util/number-util';
 import { ItskRange } from '../model/itsk-range';
+import { ItskClickOutsideDirective } from '../../../directive/itsk-click-outside/itsk-click-outside.directive';
+import { NgFor, NgIf } from '@angular/common';
 
 export const TIME_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -11,11 +13,12 @@ export const TIME_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  selector: 'itsk-time-input',
-  templateUrl: './itsk-time-input.component.html',
-  styleUrls: ['./itsk-time-input.component.scss'],
-  providers: [TIME_INPUT_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-time-input',
+    templateUrl: './itsk-time-input.component.html',
+    styleUrls: ['./itsk-time-input.component.scss'],
+    providers: [TIME_INPUT_CONTROL_VALUE_ACCESSOR],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [ItskClickOutsideDirective, NgFor, NgIf]
 })
 export class ItskTimeInputComponent implements OnInit, ControlValueAccessor {
   /** Компонент неактивен */

@@ -8,12 +8,21 @@ import { IId } from '../../model/grid-row';
 import { ItskGridDictionary } from '../../model/itsk-grid-dictionary';
 import { ItskGridConfigService } from '../../service/itsk-grid-config.service';
 import { ItskGridService } from '../../service/itsk-grid.service';
+import { NgIf, AsyncPipe } from '@angular/common';
+import { ItskTabsComponent } from '../../../itsk-tabs/itsk-tabs/itsk-tabs.component';
+import { ItskTabComponent } from '../../../itsk-tabs/itsk-tab/itsk-tab.component';
+import { ItskTabTitleDirective } from '../../../itsk-tabs/itsk-tab-title/itsk-tab-title.directive';
+import { ItskTabContentDirective } from '../../../itsk-tabs/itsk-tab-content/itsk-tab-content.directive';
+import { FilterWrapperComponent } from '../../../itsk-filter/filter-wrapper/filter-wrapper.component';
+import { GridColumnsSettingsComponent } from '../grid-columns-settings/grid-columns-settings.component';
+import { ItskIconComponent } from '../../../itsk-icon/itsk-icon/itsk-icon.component';
 
 @Component({
-  selector: 'itsk-grid-head-dropdown',
-  templateUrl: './itsk-grid-head-dropdown.component.html',
-  styleUrls: ['./itsk-grid-head-dropdown.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'itsk-grid-head-dropdown',
+    templateUrl: './itsk-grid-head-dropdown.component.html',
+    styleUrls: ['./itsk-grid-head-dropdown.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgIf, ItskTabsComponent, ItskTabComponent, ItskTabTitleDirective, ItskTabContentDirective, FilterWrapperComponent, GridColumnsSettingsComponent, ItskIconComponent, AsyncPipe]
 })
 export class ItskGridHeadDropdownComponent<T extends IId> extends ClickOutsideBase implements OnInit, OnDestroy {
   private subs = true;
