@@ -9,10 +9,10 @@
             [formControlName]="'well'"
             type="text"
             class="input__field"
-            [class.border-color_error]="form.get('well').invalid && form.get('well').touched"
+            [class.border-color_error]="form.get('well')?.invalid && form.get('well')?.touched"
             placeholder="placeholder text"
             />
-            @if (form.get('well').invalid && form.get('well').touched) {
+            @if (form.get('well')?.invalid && form.get('well')?.touched) {
               <div class="input__helper" title="Поле обязательно для ввода">
                 Поле обязательно для ввода
               </div>
@@ -27,14 +27,13 @@
             <select
               [formControlName]="'field'"
               class="input__field"
-              [class.border-color_error]="form.get('field').invalid && form.get('field').touched"
-              placeholder="placeholder text"
+              [class.border-color_error]="form.get('field')?.invalid && form.get('field')?.touched"
               >
               @for (field of fields; track field) {
                 <option [ngValue]="field.id">{{ field.name }}</option>
               }
             </select>
-            @if (form.get('field').invalid && form.get('field').touched) {
+            @if (form.get('field')?.invalid && form.get('field')?.touched) {
               <div class="input__helper" title="Поле обязательно для ввода">
                 Поле обязательно для ввода
               </div>
@@ -49,14 +48,13 @@
             <select
               [formControlName]="'layer'"
               class="input__field"
-              [class.border-color_error]="form.get('layer').invalid && form.get('layer').touched"
-              placeholder="placeholder text"
+              [class.border-color_error]="form.get('layer')?.invalid && form.get('layer')?.touched"
               >
               @for (layer of layers; track layer) {
                 <option [ngValue]="layer.id">{{ layer.name }}</option>
               }
             </select>
-            @if (form.get('layer').invalid && form.get('layer').touched) {
+            @if (form.get('layer')?.invalid && form.get('layer')?.touched) {
               <div class="input__helper" title="Поле обязательно для ввода">
                 Поле обязательно для ввода
               </div>
@@ -74,10 +72,10 @@
               [formControlName]="'liq'"
               type="text"
               class="input__field"
-              [class.border-color_error]="form.get('liq').invalid"
+              [class.border-color_error]="form.get('liq')?.invalid"
               placeholder="placeholder text"
               />
-              @if (form.get('liq').invalid && form.get('liq').touched) {
+              @if (form.get('liq')?.invalid && form.get('liq')?.touched) {
                 <div
                   class="input__helper"
                   title="Значение не может быть отрицательным"
@@ -96,10 +94,10 @@
                 [formControlName]="'oil'"
                 type="text"
                 class="input__field"
-                [class.border-color_error]="form.get('oil').invalid"
+                [class.border-color_error]="form.get('oil')?.invalid"
                 placeholder="placeholder text"
                 />
-                @if (form.get('oil').invalid && form.get('oil').touched) {
+                @if (form.get('oil')?.invalid && form.get('oil')?.touched) {
                   <div
                     class="input__helper"
                     title="Значение не может быть отрицательным"
@@ -118,10 +116,10 @@
                   [formControlName]="'pressure'"
                   type="text"
                   class="input__field"
-                  [class.border-color_error]="form.get('pressure').invalid"
+                  [class.border-color_error]="form.get('pressure')?.invalid"
                   placeholder="placeholder text"
                   />
-                  @if (form.get('pressure').invalid && form.get('pressure').touched) {
+                  @if (form.get('pressure')?.invalid && form.get('pressure')?.touched) {
                     <div
                       class="input__helper"
                       title="Значение не может быть отрицательным"
@@ -140,11 +138,11 @@
                 <div class="input">
                   <itsk-date-picker
                     [formControlName]="'repair'"
-                    [class.border-color_error]="form.get('repair').invalid && (form.get('repair').touched || form.get('repair').dirty)"
-                    [class.border-1px]="form.get('repair').invalid && (form.get('repair').touched || form.get('repair').dirty)"
+                    [class.border-color_error]="form.get('repair')?.invalid && (form.get('repair')?.touched || form.get('repair')?.dirty)"
+                    [class.border-1px]="form.get('repair')?.invalid && (form.get('repair')?.touched || form.get('repair')?.dirty)"
                     >
                   </itsk-date-picker>
-                  @if (form.get('repair').invalid && (form.get('repair').touched || form.get('repair').dirty)) {
+                  @if (form.get('repair')?.invalid && (form.get('repair')?.touched || form.get('repair')?.dirty)) {
                     <div
                       class="input__helper"
                       title="Дата ремонта не может быть меньше даты создания"
@@ -161,11 +159,11 @@
                 <div class="input">
                   <itsk-date-picker
                     [formControlName]="'created'"
-                    [class.border-color_error]="form.get('created').invalid && (form.get('created').touched || form.get('created').dirty)"
-                    [class.border-1px]="form.get('created').invalid && (form.get('created').touched || form.get('created').dirty)"
+                    [class.border-color_error]="form.get('created')?.invalid && (form.get('created')?.touched || form.get('created')?.dirty)"
+                    [class.border-1px]="form.get('created')?.invalid && (form.get('created')?.touched || form.get('created')?.dirty)"
                     >
                   </itsk-date-picker>
-                  @if (form.get('created').invalid && (form.get('created').touched || form.get('created').dirty)) {
+                  @if (form.get('created')?.invalid && (form.get('created')?.touched || form.get('created')?.dirty)) {
                     <div
                       class="input__helper"
                       title="Поле обязательно для ввода"
