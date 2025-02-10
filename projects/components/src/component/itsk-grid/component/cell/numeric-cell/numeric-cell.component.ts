@@ -3,7 +3,7 @@ import { CellComponentBase } from '../../../model/cell-component-base';
 import { GridColumn } from '../../../model/grid-column';
 import { GridRow, IId } from '../../../model/grid-row';
 import { ItskGridService } from '../../../service/itsk-grid.service';
-import { NgIf } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { ItskNumberPipe } from '../../../../../pipe/itsk-number-pipe/itsk-number.pipe';
 
@@ -12,7 +12,7 @@ import { ItskNumberPipe } from '../../../../../pipe/itsk-number-pipe/itsk-number
     templateUrl: './numeric-cell.component.html',
     styleUrls: ['./numeric-cell.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgIf, FormsModule, ItskNumberPipe]
+    imports: [FormsModule, ItskNumberPipe]
 })
 export class NumericCellComponent<T extends IId> extends CellComponentBase<T> implements OnInit {
   @Input() column?: GridColumn;

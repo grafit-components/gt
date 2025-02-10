@@ -4,12 +4,16 @@
     class="equality padding-h-1 height-4 margin-l-3 background-color_secondary"
     (click)="setType()"
     [title]="excluded ? 'Исключающая выборка' : 'Включающая выборка'"
-  >
+    >
     <itsk-icon [name]="excluded ? 'icon-not_equal-line-cross-outline' : 'icon-equal-line-parallel-outline'"></itsk-icon>
   </div>
 </div>
-<div class="grid-filter__body" *ngIf="filter">
-  <div class="checkbox-wrapper" *ngFor="let option of column.filterOptions">
-    <itsk-checkbox [ngModel]="filter.value" (ngModelChange)="setFilter($event)" [value]="option.id">{{ option.name }}</itsk-checkbox>
+@if (filter) {
+  <div class="grid-filter__body">
+    @for (option of column.filterOptions; track option) {
+      <div class="checkbox-wrapper">
+        <itsk-checkbox [ngModel]="filter.value" (ngModelChange)="setFilter($event)" [value]="option.id">{{ option.name }}</itsk-checkbox>
+      </div>
+    }
   </div>
-</div>
+}

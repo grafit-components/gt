@@ -1,25 +1,28 @@
-<cdk-virtual-scroll-viewport
-  *ngIf="virtual"
-  class="grid__body__right scrollbar"
-  style="height: 100%"
-  [itemSize]="40"
-  minBufferPx="200"
-  maxBufferPx="600"
->
-  <ng-container *ngIf="unlocked?.length">
-    <ng-container *cdkVirtualFor="let row of data; let rowIndex = index; trackBy: trackRow; templateCacheSize: 0">
-      <ng-container *ngTemplateOutlet="bodyTemplate; context: { row: row, rowIndex: rowIndex }"></ng-container>
-    </ng-container>
-  </ng-container>
-</cdk-virtual-scroll-viewport>
+@if (virtual) {
+  <cdk-virtual-scroll-viewport
+    class="grid__body__right scrollbar"
+    style="height: 100%"
+    [itemSize]="40"
+    minBufferPx="200"
+    maxBufferPx="600"
+    >
+    @if (unlocked?.length) {
+      <ng-container *cdkVirtualFor="let row of data; let rowIndex = index; trackBy: trackRow; templateCacheSize: 0">
+        <ng-container *ngTemplateOutlet="bodyTemplate; context: { row: row, rowIndex: rowIndex }"></ng-container>
+      </ng-container>
+    }
+  </cdk-virtual-scroll-viewport>
+}
 
-<div class="grid__body__right scrollbar" *ngIf="!virtual" [style.flex-grow]="unlockedFlex" [style.flex-basis.px]="unlockedBasis">
-  <ng-container *ngIf="unlocked?.length">
-    <ng-container *ngFor="let row of data; let rowIndex = index; trackBy: trackRow">
-      <ng-container *ngTemplateOutlet="bodyTemplate; context: { row: row, rowIndex: rowIndex }"></ng-container>
-    </ng-container>
-  </ng-container>
-</div>
+@if (!virtual) {
+  <div class="grid__body__right scrollbar" [style.flex-grow]="unlockedFlex" [style.flex-basis.px]="unlockedBasis">
+    @if (unlocked?.length) {
+      @for (row of data; track trackRow(rowIndex, row); let rowIndex = $index) {
+        <ng-container *ngTemplateOutlet="bodyTemplate; context: { row: row, rowIndex: rowIndex }"></ng-container>
+      }
+    }
+  </div>
+}
 
 <ng-template #bodyTemplate let-row="row" let-rowIndex="rowIndex">
   <div
@@ -30,18 +33,40 @@
     [style.min-width.px]="lockedBasis + unlockedBasis"
     [style.flex-basis.px]="lockedBasis + unlockedBasis"
     [class.grid__row_active]="row === activeRow"
-  >
-    <ng-container *ngIf="!grouping || groupingType !== GroupingType.Row || !row.isGroup">
-      <div
-        class="grid__row_locked"
-        *ngIf="locked.length > 0"
-        [style.flex-grow]="lockedFlex"
-        [style.flex-basis.px]="lockedBasis"
-        [style.min-width.px]="lockedBasis"
-      >
+    >
+    @if (!grouping || groupingType !== GroupingType.Row || !row.isGroup) {
+      @if (locked.length > 0) {
+        <div
+          class="grid__row_locked"
+          [style.flex-grow]="lockedFlex"
+          [style.flex-basis.px]="lockedBasis"
+          [style.min-width.px]="lockedBasis"
+          >
+          @for (column of locked; track trackColumns(colIndex, column); let colIndex = $index) {
+            <itsk-grid-cell
+              [index]="colIndex"
+              [additionalComponent]="additionalComponent"
+              [attr.data-row]="rowIndex"
+              [attr.data-column]="column.name"
+              [column]="column"
+              [row]="row"
+              [tree]="tree"
+              [grouping]="grouping"
+              [groupingType]="groupingType"
+              [selectType]="selectType"
+              [selectRowsBy]="selectRowsBy"
+              class="grid__cell"
+              [ngClass]="column.cellClass"
+              [style.flex-grow]="column.flex"
+              [style.flex-basis.px]="column.width"
+              [attr.tabindex]="0"
+            ></itsk-grid-cell>
+          }
+        </div>
+      }
+      @for (column of unlocked; track trackColumns(colIndex, column); let colIndex = $index) {
         <itsk-grid-cell
-          *ngFor="let column of locked; let colIndex = index; trackBy: trackColumns"
-          [index]="colIndex"
+          [index]="colIndex + locked.length"
           [additionalComponent]="additionalComponent"
           [attr.data-row]="rowIndex"
           [attr.data-column]="column.name"
@@ -58,50 +83,35 @@
           [style.flex-basis.px]="column.width"
           [attr.tabindex]="0"
         ></itsk-grid-cell>
-      </div>
-      <itsk-grid-cell
-        *ngFor="let column of unlocked; let colIndex = index; trackBy: trackColumns"
-        [index]="colIndex + locked.length"
-        [additionalComponent]="additionalComponent"
-        [attr.data-row]="rowIndex"
-        [attr.data-column]="column.name"
-        [column]="column"
-        [row]="row"
-        [tree]="tree"
-        [grouping]="grouping"
-        [groupingType]="groupingType"
-        [selectType]="selectType"
-        [selectRowsBy]="selectRowsBy"
-        class="grid__cell"
-        [ngClass]="column.cellClass"
-        [style.flex-grow]="column.flex"
-        [style.flex-basis.px]="column.width"
-        [attr.tabindex]="0"
-      ></itsk-grid-cell>
-    </ng-container>
-    <ng-container *ngIf="grouping && groupingType === GroupingType.Row && row.isGroup">
+      }
+    }
+    @if (grouping && groupingType === GroupingType.Row && row.isGroup) {
       <div class="grid__row_locked">
         <div [style.margin-left.px]="row.level * 20" class="container">
-          <div *ngIf="(selectType === 'single' || selectType === 'multiple') && selectRowsBy === 'checkbox'" class="grid__cell__icon">
-            <itsk-checkbox
-              [ngModel]="isGroupSelected(row)"
-              [value]="row"
-              (ngModelChange)="selectGroup(row, $event)"
-              [binary]="true"
-            ></itsk-checkbox>
-          </div>
+          @if ((selectType === 'single' || selectType === 'multiple') && selectRowsBy === 'checkbox') {
+            <div class="grid__cell__icon">
+              <itsk-checkbox
+                [ngModel]="isGroupSelected(row)"
+                [value]="row"
+                (ngModelChange)="selectGroup(row, $event)"
+                [binary]="true"
+              ></itsk-checkbox>
+            </div>
+          }
           <itsk-grid-expand [row]="row"></itsk-grid-expand>
         </div>
         <itsk-group-row-wrapper [columns]="columns" [row]="row" [groupRowComponent]="groupRowComponent"></itsk-group-row-wrapper>
       </div>
-    </ng-container>
+    }
   </div>
-  <div *ngIf="additionalComponent && row.showAdditional" [style.min-width.px]="unlockedBasis" class="grid__additional">
-    <itsk-grid-additional
-      [locked]="false"
-      [columns]="unlocked"
-      [row]="row"
-      [additionalComponent]="additionalComponent"
-    ></itsk-grid-additional>
-  </div>
+  @if (additionalComponent && row.showAdditional) {
+    <div [style.min-width.px]="unlockedBasis" class="grid__additional">
+      <itsk-grid-additional
+        [locked]="false"
+        [columns]="unlocked"
+        [row]="row"
+        [additionalComponent]="additionalComponent"
+      ></itsk-grid-additional>
+    </div>
+  }
 </ng-template>

@@ -16,7 +16,7 @@ import { map } from 'rxjs/operators';
 import { ItskDropdownComponent } from '../../itsk-dropdown/itsk-dropdown/itsk-dropdown.component';
 import { ItskDropdownHeadDirective } from '../../itsk-dropdown/itsk-dropdown-head.directive';
 import { ItskDropdownContentDirective } from '../../itsk-dropdown/itsk-dropdown-content.directive';
-import { NgIf, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { ItskMarkDirective } from '../../itsk-shared/itsk-mark.directive';
 
 @Component({
@@ -31,7 +31,7 @@ import { ItskMarkDirective } from '../../itsk-shared/itsk-mark.directive';
         },
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ItskDropdownComponent, ItskDropdownHeadDirective, FormsModule, ItskDropdownContentDirective, NgIf, CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, CdkVirtualForOf, ItskMarkDirective, AsyncPipe]
+    imports: [ItskDropdownComponent, ItskDropdownHeadDirective, FormsModule, ItskDropdownContentDirective, CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, CdkVirtualForOf, ItskMarkDirective, AsyncPipe]
 })
 export class ItskAutocompleteComponent implements ControlValueAccessor, OnInit {
   private items: string[] = [];

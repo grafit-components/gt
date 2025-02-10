@@ -6,28 +6,30 @@
   (click)="navigate(item$)"
   [routerLinkActive]="'menu__item_active'"
   [routerLinkActiveOptions]="{ exact: item$.url === '' || item$.url === '/' || item$.match === 'exact' }"
->
-  <ng-container *ngIf="!template">
-    <ng-container *ngIf="item$.outerUrl; else routeLinc">
+  >
+  @if (!template) {
+    @if (item$.outerUrl) {
       <a class="menu__item__name" [href]="item$.outerUrl" [target]="item$.target ?? '_self'">
-        <itsk-icon *ngIf="item$.iconClassName" [name]="item$.iconClassName"></itsk-icon> {{ item$.name }}
-      </a>
-    </ng-container>
+        @if (item$.iconClassName) {
+          <itsk-icon [name]="item$.iconClassName"></itsk-icon>
+          } {{ item$.name }}
+        </a>
+      } @else {
+        <a class="menu__item__name" [href]="item$.outerUrl" [routerLink]="item$.url">
+          @if (item$.iconClassName) {
+            <itsk-icon [name]="item$.iconClassName"></itsk-icon>
+            } {{ item$.name }}
+          </a>
+        }
+      }
 
-    <ng-template #routeLinc>
-      <a class="menu__item__name" [href]="item$.outerUrl" [routerLink]="item$.url">
-        <itsk-icon *ngIf="item$.iconClassName" [name]="item$.iconClassName"></itsk-icon> {{ item$.name }}
-      </a>
-    </ng-template>
-  </ng-container>
+      @if (template) {
+        <ng-container *ngTemplateOutlet="template; context: { $implicit: item$ }"></ng-container>
+      }
 
-  <ng-container *ngIf="template">
-    <ng-container *ngTemplateOutlet="template; context: { $implicit: item$ }"></ng-container>
-  </ng-container>
-
-  <ng-container *ngIf="children?.length > 0">
-    <span class="menu__item__icon" (click)="openItem(item$)">
-      <itsk-icon [name]="'icon-chevron_right-arrow-outline'"></itsk-icon>
-    </span>
-  </ng-container>
-</div>
+      @if (children?.length > 0) {
+        <span class="menu__item__icon" (click)="openItem(item$)">
+          <itsk-icon [name]="'icon-chevron_right-arrow-outline'"></itsk-icon>
+        </span>
+      }
+    </div>

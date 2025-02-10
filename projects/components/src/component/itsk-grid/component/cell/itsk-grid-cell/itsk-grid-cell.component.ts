@@ -8,7 +8,7 @@ import { ItskGridSelectType } from '../../../model/enum/itsk-grid-select-type';
 import { GridColumn } from '../../../model/grid-column';
 import { GridRow, IId } from '../../../model/grid-row';
 import { ItskGridService } from '../../../service/itsk-grid.service';
-import { NgIf } from '@angular/common';
+
 import { ItskCheckboxComponent } from '../../../../itsk-checkbox/itsk-checkbox/itsk-checkbox.component';
 import { FormsModule } from '@angular/forms';
 import { ItskGridExpandComponent } from '../../itsk-grid-expand/itsk-grid-expand.component';
@@ -20,7 +20,7 @@ import { ItskGridCellWrapperComponent } from '../itsk-grid-cell-wrapper/itsk-gri
     templateUrl: './itsk-grid-cell.component.html',
     styleUrls: ['./itsk-grid-cell.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgIf, ItskCheckboxComponent, FormsModule, ItskGridExpandComponent, ItskIconComponent, ItskGridCellWrapperComponent]
+    imports: [ItskCheckboxComponent, FormsModule, ItskGridExpandComponent, ItskIconComponent, ItskGridCellWrapperComponent]
 })
 export class ItskGridCellComponent<T extends IId> implements OnInit, OnDestroy {
   GroupingType = GroupingType;

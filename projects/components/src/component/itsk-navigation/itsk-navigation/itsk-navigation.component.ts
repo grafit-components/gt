@@ -1,14 +1,14 @@
 import { Component, ContentChild, HostListener, Input, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NavigationData } from '../model/itsk-navigation-data';
-import { NgIf, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
 import { ItskMenuComponent } from '../../itsk-menu/itsk-menu/itsk-menu.component';
 
 @Component({
     selector: 'itsk-navigation',
     templateUrl: './itsk-navigation.component.html',
-    imports: [NgIf, ItskIconComponent, NgTemplateOutlet, ItskMenuComponent]
+    imports: [ItskIconComponent, NgTemplateOutlet, ItskMenuComponent]
 })
 export class ItskNavigationComponent implements OnInit {
   @Input()

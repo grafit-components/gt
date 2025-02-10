@@ -1,12 +1,13 @@
 <span [style.display]="edit ? 'none' : 'block'" class="grid__cell_text">
   {{ row?.data[column?.name] | itskNumber: 2 }}
 </span>
-<input
-  #input
-  *ngIf="edit"
-  type="text"
-  class="input__field container_auto"
-  style="width: 0"
-  [ngModel]="row.data[column?.name]"
-  (ngModelChange)="row.data[column.name] = $event"
-/>
+@if (edit) {
+  <input
+    #input
+    type="text"
+    class="input__field container_auto"
+    style="width: 0"
+    [ngModel]="row.data[column?.name]"
+    (ngModelChange)="row.data[column.name] = $event"
+    />
+}

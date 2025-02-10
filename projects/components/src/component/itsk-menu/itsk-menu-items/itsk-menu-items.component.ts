@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { IItskMenuItem } from '../model/i-itsk-menu-item';
 import { ItskMenuGroup } from '../model/itsk-menu-group';
-import { NgFor, NgIf } from '@angular/common';
+
 import { ItskMenuItemComponent } from '../itsk-menu-item/itsk-menu-item.component';
 import { ItskClickOutsideDirective } from '../../../directive/itsk-click-outside/itsk-click-outside.directive';
 
@@ -20,7 +20,7 @@ import { ItskClickOutsideDirective } from '../../../directive/itsk-click-outside
     templateUrl: './itsk-menu-items.component.html',
     styleUrls: ['./itsk-menu-items.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgFor, ItskMenuItemComponent, NgIf, ItskClickOutsideDirective]
+    imports: [ItskMenuItemComponent, ItskClickOutsideDirective]
 })
 export class ItskMenuItemsComponent<T extends IItskMenuItem> implements OnInit, OnDestroy {
   allItems: T[] = [];

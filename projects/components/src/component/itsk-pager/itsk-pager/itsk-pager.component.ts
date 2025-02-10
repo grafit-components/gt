@@ -4,7 +4,7 @@ import { ItskPagerConfigService } from '../itsk-pager-config.service';
 import { ItskPagerConfig } from '../model/itsk-pager-config';
 import { Paging } from '../model/paging';
 import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
-import { NgFor, NgIf, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { ItskClickOutsideDirective } from '../../../directive/itsk-click-outside/itsk-click-outside.directive';
 
 @Component({
@@ -13,7 +13,7 @@ import { ItskClickOutsideDirective } from '../../../directive/itsk-click-outside
     styleUrls: ['./itsk-pager.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ItskIconComponent, NgFor, NgIf, ItskClickOutsideDirective, AsyncPipe]
+    imports: [ItskIconComponent, ItskClickOutsideDirective, AsyncPipe]
 })
 export class ItskPagerComponent implements OnInit {
   /** Настройки пагинатора */

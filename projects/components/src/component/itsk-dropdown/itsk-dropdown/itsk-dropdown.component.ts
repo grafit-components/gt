@@ -17,14 +17,14 @@ import { findScrollableParentX, findScrollableParentY, findTransformedParent, ge
 import { BooleanFunc, BooleanPromiseFunc, boolFuncOrPromiseCallback } from '../../../util/object-util';
 import { ItskDropdownContentDirective } from '../itsk-dropdown-content.directive';
 import { ItskDropdownHeadDirective } from '../itsk-dropdown-head.directive';
-import { NgIf, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
     selector: 'itsk-dropdown',
     templateUrl: './itsk-dropdown.component.html',
     styleUrls: ['./itsk-dropdown.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgIf, NgTemplateOutlet]
+    imports: [NgTemplateOutlet]
 })
 export class ItskDropdownComponent extends ClickOutsideBase implements OnInit, OnDestroy {
   @HostBinding('class.dropdown') classDropdown = true;

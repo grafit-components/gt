@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ItskNotification, ItskNotificationLevel, ItskNotificationService } from '@grafit/components';
+import { ItskDatePickerComponent } from '../../../../components/src/component/itsk-date-picker/itsk-date-picker/itsk-date-picker.component';
 import { DataModel } from './model/data-model';
 import { Fields } from './model/fields';
 import { Layers } from './model/layers';
@@ -23,6 +24,7 @@ export class WellDatesValidator {
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
   standalone: true,
+  imports: [ReactiveFormsModule, ItskDatePickerComponent],
 })
 export class FormComponent implements OnInit {
   form: FormGroup;

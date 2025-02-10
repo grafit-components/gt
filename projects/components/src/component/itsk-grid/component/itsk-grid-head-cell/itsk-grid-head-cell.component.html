@@ -1,16 +1,21 @@
 <div class="grid__head__cell__wrapper" [ngClass]="column?.headCellClass" (click)="sortColumn($event)">
-  <itsk-checkbox
-    *ngIf="selfIndex === 0 && rootIndex === 0 && (selectType === 'single' || selectType === 'multiple') && selectRowsBy === 'checkbox'"
-    (click)="stopPropagation($event)"
-    class="margin-l-2"
-    [binary]="true"
-    [ngModel]="allSelected()"
-    (ngModelChange)="selectAll($event)"
-  ></itsk-checkbox>
+  @if (selfIndex === 0 && rootIndex === 0 && (selectType === 'single' || selectType === 'multiple') && selectRowsBy === 'checkbox') {
+    <itsk-checkbox
+      (click)="stopPropagation($event)"
+      class="margin-l-2"
+      [binary]="true"
+      [ngModel]="allSelected()"
+      (ngModelChange)="selectAll($event)"
+    ></itsk-checkbox>
+  }
   <div class="container container_auto align-center justify-content-center">
-    <itsk-icon *ngIf="sorted" [name]="asc ? 'icon-arrow_up-outline' : 'icon-arrow_down-outline'"></itsk-icon>
+    @if (sorted) {
+      <itsk-icon [name]="asc ? 'icon-arrow_up-outline' : 'icon-arrow_down-outline'"></itsk-icon>
+    }
     <itsk-head-cell [column]="column" [filtered]="filtered" [asc]="asc" [sorted]="sorted"></itsk-head-cell>
-    <itsk-icon *ngIf="filtered" [name]="'icon-filter_small-conus-filled'"></itsk-icon>
+    @if (filtered) {
+      <itsk-icon [name]="'icon-filter_small-conus-filled'"></itsk-icon>
+    }
   </div>
 </div>
 <div class="grid__head__cell__dropdown">

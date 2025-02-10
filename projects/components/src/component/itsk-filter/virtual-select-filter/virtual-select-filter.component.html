@@ -4,20 +4,22 @@
     class="equality padding-h-1 height-4 margin-l-3 background-color_secondary"
     (click)="setType()"
     [title]="excluded ? 'Исключающая выборка' : 'Включающая выборка'"
-  >
+    >
     <itsk-icon [name]="excluded ? 'icon-not_equal-line-cross-outline' : 'icon-equal-line-parallel-outline'"></itsk-icon>
   </div>
 </div>
-<div class="container" *ngIf="filter">
-  <itsk-select
-    [items]="column.filterOptions"
-    [multiple]="true"
-    [fixed]="true"
-    [ngModel]="filter.value"
-    [textRef]="'name'"
-    [valueRef]="'id'"
-    (ngModelChange)="setFilter($event)"
-    [virtual]="true"
-  >
-  </itsk-select>
-</div>
+@if (filter) {
+  <div class="container">
+    <itsk-select
+      [items]="column.filterOptions"
+      [multiple]="true"
+      [fixed]="true"
+      [ngModel]="filter.value"
+      [textRef]="'name'"
+      [valueRef]="'id'"
+      (ngModelChange)="setFilter($event)"
+      [virtual]="true"
+      >
+    </itsk-select>
+  </div>
+}

@@ -1,14 +1,14 @@
 export class DataModel {
-  id: number;
-  well: string;
-  layer: number;
-  field: number;
-  repair: Date;
-  created: Date;
-  liq: number;
-  oil: number;
-  pressure: number;
-  active: boolean;
+  id?: number;
+  well?: string;
+  layer?: number;
+  field?: number;
+  repair?: Date;
+  created?: Date;
+  liq?: number;
+  oil?: number;
+  pressure?: number;
+  active?: boolean;
 
   constructor(options: {
     id?: number;

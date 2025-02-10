@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NgIf, NgStyle } from '@angular/common';
+import { NgStyle } from '@angular/common';
 
 export const TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -14,7 +14,7 @@ export const TOGGLE_CONTROL_VALUE_ACCESSOR: any = {
     styleUrls: ['./itsk-toggle.component.scss'],
     providers: [TOGGLE_CONTROL_VALUE_ACCESSOR],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgIf, NgStyle]
+    imports: [NgStyle]
 })
 export class ItskToggleComponent implements ControlValueAccessor, OnInit {
   @HostBinding('class.toggle') toggleClass = true;

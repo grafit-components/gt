@@ -8,7 +8,7 @@ import { IId } from '../../model/grid-row';
 import { ItskGridDictionary } from '../../model/itsk-grid-dictionary';
 import { ItskGridConfigService } from '../../service/itsk-grid-config.service';
 import { ItskGridService } from '../../service/itsk-grid.service';
-import { NgIf, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { ItskTabsComponent } from '../../../itsk-tabs/itsk-tabs/itsk-tabs.component';
 import { ItskTabComponent } from '../../../itsk-tabs/itsk-tab/itsk-tab.component';
 import { ItskTabTitleDirective } from '../../../itsk-tabs/itsk-tab-title/itsk-tab-title.directive';
@@ -22,7 +22,7 @@ import { ItskIconComponent } from '../../../itsk-icon/itsk-icon/itsk-icon.compon
     templateUrl: './itsk-grid-head-dropdown.component.html',
     styleUrls: ['./itsk-grid-head-dropdown.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgIf, ItskTabsComponent, ItskTabComponent, ItskTabTitleDirective, ItskTabContentDirective, FilterWrapperComponent, GridColumnsSettingsComponent, ItskIconComponent, AsyncPipe]
+    imports: [ItskTabsComponent, ItskTabComponent, ItskTabTitleDirective, ItskTabContentDirective, FilterWrapperComponent, GridColumnsSettingsComponent, ItskIconComponent, AsyncPipe]
 })
 export class ItskGridHeadDropdownComponent<T extends IId> extends ClickOutsideBase implements OnInit, OnDestroy {
   private subs = true;

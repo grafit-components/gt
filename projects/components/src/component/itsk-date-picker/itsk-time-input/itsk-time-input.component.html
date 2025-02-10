@@ -8,17 +8,20 @@
   (itskClickOutside)="activate(false)"
   [visible]="active"
   (dblclick)="dataInputDoubleClick($event)"
->
-  <ng-container *ngFor="let format of formatList$">
-    <span
-      class="datepicker__input-part"
-      *ngIf="showFormat && isEditableFormat(format)"
-      (focus)="dataPartFocus($event, format)"
-      (click)="dataPartFocus($event, format)"
-      (wheel)="dataPartScroll($event, format)"
-      [attr.data-format]="format"
-      >{{ formatValue[format] }}</span
-    >
-    <span class="datepicker__input-part" *ngIf="showFormat && !isEditableFormat(format)">{{ format }}</span>
-  </ng-container>
-</div>
+  >
+  @for (format of formatList$; track format) {
+    @if (showFormat && isEditableFormat(format)) {
+      <span
+        class="datepicker__input-part"
+        (focus)="dataPartFocus($event, format)"
+        (click)="dataPartFocus($event, format)"
+        (wheel)="dataPartScroll($event, format)"
+        [attr.data-format]="format"
+        >{{ formatValue[format] }}</span
+        >
+      }
+      @if (showFormat && !isEditableFormat(format)) {
+        <span class="datepicker__input-part">{{ format }}</span>
+      }
+    }
+  </div>
