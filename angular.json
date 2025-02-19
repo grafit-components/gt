@@ -33,6 +33,11 @@
                 "input": "projects/app/src/app/samples",
                 "output": "/samples/"
               }
+              {
+                "glob": "**/*",
+                "input": "dist/components/assets",
+                "output": "/assets/"
+              }
             ],
             "styles": ["projects/app/src/styles.scss"],
             "scripts": [],

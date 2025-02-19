@@ -1,0 +1,8 @@
+<itsk-select [items]="items" [(ngModel)]="selectedValue" valueRef="value" textRef="label" showClearButton="true" searchRef="label" />
+<br />
+Selected: {{ selectedValue | json }}
+<br />
+<button class="button_default" (click)="initItems()">Init options</button>
+<button class="button_default" (click)="items = []">Clear options</button>
+<button class="button_default" (click)="selectedValue = 2">Init selected</button>
+<button class="button_default" (click)="selectedValue = undefined">Clear selected</button>

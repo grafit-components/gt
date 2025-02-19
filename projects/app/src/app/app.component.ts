@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { IItskMenuItem, ItskMenuComponent } from '@grafit/components';
+import { IItskMenuItem, ItskIconService, ItskMenuComponent } from '@grafit/components';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,8 @@ import { IItskMenuItem, ItskMenuComponent } from '@grafit/components';
   standalone: true,
 })
 export class AppComponent {
+  private itskIconService = inject(ItskIconService);
+
   title = 'app';
   menu: IItskMenuItem[] = [
     {
@@ -20,5 +22,13 @@ export class AppComponent {
       code: 'Home',
       sortOrder: 0,
     },
+    {
+      name: 'Селект',
+      url: '/select',
+    },
   ];
+
+  constructor() {
+    this.itskIconService.addSprite('assets/icon.svg');
+  }
 }
