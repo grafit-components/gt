@@ -1,0 +1,16 @@
+<itsk-select
+  [items]="items"
+  [(ngModel)]="selectedValue"
+  multiple="true"
+  selectedRef="block"
+  valueRef="value"
+  textRef="label"
+  searchRef="label"
+/>
+<br />
+Selected: {{ selectedValue | json }}
+<br />
+<button class="button_default" (click)="initItems()">Init options</button>
+<button class="button_default" (click)="items = []">Clear options</button>
+<button class="button_default" (click)="selectedValue = 2">Init selected</button>
+<button class="button_default" (click)="selectedValue = undefined">Clear selected</button>

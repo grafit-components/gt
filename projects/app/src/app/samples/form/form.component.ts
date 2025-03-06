@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ItskNotification, ItskNotificationLevel, ItskNotificationService } from '@grafit/components';
-import { ItskDatePickerComponent } from '../../../../components/src/component/itsk-date-picker/itsk-date-picker/itsk-date-picker.component';
+import { ItskDatePickerComponent } from '../../../../../components/src/component/itsk-date-picker/itsk-date-picker/itsk-date-picker.component';
 import { DataModel } from './model/data-model';
 import { Fields } from './model/fields';
 import { Layers } from './model/layers';

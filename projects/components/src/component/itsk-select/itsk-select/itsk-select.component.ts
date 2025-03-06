@@ -1,4 +1,6 @@
-import { CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, CdkVirtualForOf } from '@angular/cdk/scrolling';
+import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
+import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -13,17 +15,13 @@ import {
   ViewChild,
   forwardRef,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
+import { ItskMarkDirective } from '../../itsk-shared/itsk-mark.directive';
 import { ItskSelectOptionDirective } from '../directive/itsk-select-option.directive';
 import { ItskSelectValueDirective } from '../directive/itsk-select-value.directive';
-import { ItskDropdownComponent } from '../../itsk-dropdown/itsk-dropdown/itsk-dropdown.component';
-import { ItskDropdownHeadDirective } from '../../itsk-dropdown/itsk-dropdown-head.directive';
-import { NgSwitch, NgIf, NgTemplateOutlet, NgSwitchCase, NgFor } from '@angular/common';
-import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
-import { ItskDropdownContentDirective } from '../../itsk-dropdown/itsk-dropdown-content.directive';
-import { ItskMarkDirective } from '../../itsk-shared/itsk-mark.directive';
 
 enum ViewType {
   inline,
@@ -36,18 +34,32 @@ enum ViewType {
 }
 
 @Component({
-    selector: 'itsk-select',
-    templateUrl: './itsk-select.component.html',
-    styleUrls: ['./itsk-select.component.scss'],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ItskSelectComponent),
-            multi: true,
-        },
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ItskDropdownComponent, ItskDropdownHeadDirective, NgSwitch, NgIf, NgTemplateOutlet, NgSwitchCase, NgFor, ItskIconComponent, ItskDropdownContentDirective, FormsModule, ItskMarkDirective, CdkVirtualScrollViewport, CdkFixedSizeVirtualScroll, CdkVirtualForOf]
+  selector: 'itsk-select',
+  templateUrl: './itsk-select.component.html',
+  styleUrls: ['./itsk-select.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ItskSelectComponent),
+      multi: true,
+    },
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    NgSwitch,
+    NgIf,
+    NgTemplateOutlet,
+    NgSwitchCase,
+    NgFor,
+    ItskIconComponent,
+    FormsModule,
+    ItskMarkDirective,
+    CdkVirtualScrollViewport,
+    CdkFixedSizeVirtualScroll,
+    CdkVirtualForOf,
+    CdkOverlayOrigin,
+    CdkConnectedOverlay,
+  ],
 })
 export class ItskSelectComponent implements ControlValueAccessor, OnInit {
   private items$?: any[];
@@ -86,6 +98,7 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
   /** Максимальная высота области прокрутки */
   @Input() height = this.itemSize * 8;
 
+  /** @deprecated Не используется, будет удалено */
   @Input() fixed = false;
 
   /** Данные для отображения */
@@ -291,6 +304,7 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
       this.changeDetector.markForCheck();
       if (this.hasSearch) {
         this.elementRef.nativeElement.focus();
+        this.searchText$ = '';
       }
       if (this.searchTextSubscription$) {
         this.searchTextSubscription$.unsubscribe();
@@ -408,6 +422,9 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
 
   @HostListener('focusout', ['$event'])
   focusoutHandler(event: FocusEvent) {
+    if (this.panelOpen) {
+      return;
+    }
     if ((this.focused$ && !event.relatedTarget) || !this._isDescendant(this.elementRef.nativeElement, event.relatedTarget)) {
       this.focused$ = false;
       this.close();
