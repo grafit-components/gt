@@ -65,7 +65,7 @@
   [cdkConnectedOverlayOrigin]="selectHead"
   [cdkConnectedOverlayOpen]="panelOpen"
 >
-  <div class="options" (keydown)="keyEvent($event)">
+  <div class="options" [style.min-width.px]="selectHead.elementRef.nativeElement.clientWidth" (keydown)="keyEvent($event)">
     <div class="padding-3" *ngIf="hasSearch">
       <input #searchInput class="input__field" type="search" [(ngModel)]="searchText" (focusout)="searchFocusout($event)" tabindex="-1" />
     </div>
