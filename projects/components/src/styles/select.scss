@@ -26,6 +26,7 @@
 
   &_placeholder {
     opacity: 0.5;
+    min-height: $space-8;
   }
 
   &:hover {
@@ -121,10 +122,9 @@ itsk-select.ng-invalid .select__head {
 }
 
 .options {
-  //position absolute
-  //z-index 1
+  @include baseBorder(map-get($blocks, 'work', 'default'));
+  @include shadow-b($shadow-1);
   @include listDefault();
-  //min-width 100%
   @include listBlock(map-get($blocks, 'work'));
 }
 
