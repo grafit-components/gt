@@ -1,4 +1,5 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -13,23 +14,22 @@ import {
   ViewChild,
   forwardRef,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { ItskDropdownContentDirective } from '../../itsk-dropdown/itsk-dropdown-content.directive';
+import { ItskDropdownHeadDirective } from '../../itsk-dropdown/itsk-dropdown-head.directive';
+import { ItskDropdownComponent } from '../../itsk-dropdown/itsk-dropdown/itsk-dropdown.component';
+import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
 import { AnyObject } from '../../itsk-shared/any-object';
+import { ItskMarkDirective } from '../../itsk-shared/itsk-mark.directive';
+import { ItskTreeItemComponent } from '../../itsk-tree/itsk-tree-item/itsk-tree-item.component';
+import { ItskTreeTemplateDirective } from '../../itsk-tree/itsk-tree-template.directive';
+import { ItskTreeComponent } from '../../itsk-tree/itsk-tree/itsk-tree.component';
 import { IItskTreeItem } from '../../itsk-tree/model/i-itsk-tree-item';
 import { ItskTreeControl } from '../../itsk-tree/model/itsk-tree-control';
 import { ItskTreeSelectOptionDirective } from '../directive/itsk-tree-select-option.directive';
 import { ItskTreeSelectValueDirective } from '../directive/itsk-tree-select-value.directive';
-import { ItskDropdownComponent } from '../../itsk-dropdown/itsk-dropdown/itsk-dropdown.component';
-import { ItskDropdownHeadDirective } from '../../itsk-dropdown/itsk-dropdown-head.directive';
-import { NgSwitch, NgIf, NgTemplateOutlet, NgSwitchCase, NgFor } from '@angular/common';
-import { ItskIconComponent } from '../../itsk-icon/itsk-icon/itsk-icon.component';
-import { ItskDropdownContentDirective } from '../../itsk-dropdown/itsk-dropdown-content.directive';
-import { ItskTreeComponent } from '../../itsk-tree/itsk-tree/itsk-tree.component';
-import { ItskTreeTemplateDirective } from '../../itsk-tree/itsk-tree-template.directive';
-import { ItskTreeItemComponent } from '../../itsk-tree/itsk-tree-item/itsk-tree-item.component';
-import { ItskMarkDirective } from '../../itsk-shared/itsk-mark.directive';
 
 enum ViewType {
   inline,
@@ -41,24 +41,39 @@ enum ViewType {
   notSelectedTemplate,
 }
 
-interface TreeSelectItem extends IItskTreeItem {
+export interface TreeSelectItem extends IItskTreeItem {
   [key: string]: any;
   children?: TreeSelectItem[];
 }
 
 @Component({
-    selector: 'itsk-tree-select',
-    templateUrl: './itsk-tree-select.component.html',
-    styleUrls: ['./itsk-tree-select.component.scss'],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => ItskTreeSelectComponent),
-            multi: true,
-        },
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ItskDropdownComponent, ItskDropdownHeadDirective, NgSwitch, NgIf, NgTemplateOutlet, NgSwitchCase, NgFor, ItskIconComponent, ItskDropdownContentDirective, FormsModule, ItskTreeComponent, ItskTreeTemplateDirective, ItskTreeItemComponent, ItskMarkDirective]
+  selector: 'itsk-tree-select',
+  templateUrl: './itsk-tree-select.component.html',
+  styleUrls: ['./itsk-tree-select.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ItskTreeSelectComponent),
+      multi: true,
+    },
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    ItskDropdownComponent,
+    ItskDropdownHeadDirective,
+    NgSwitch,
+    NgIf,
+    NgTemplateOutlet,
+    NgSwitchCase,
+    NgFor,
+    ItskIconComponent,
+    ItskDropdownContentDirective,
+    FormsModule,
+    ItskTreeComponent,
+    ItskTreeTemplateDirective,
+    ItskTreeItemComponent,
+    ItskMarkDirective,
+  ],
 })
 export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
   private searchTextSub = new Subject<string | null | undefined>();
@@ -342,7 +357,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
     this.$panelOpen = true;
     this.changeDetector.markForCheck();
     if (this.hasSearch) {
-      this.searchTextSubscription = this.searchTextSub.pipe(debounceTime(300)).subscribe((text) => this.search(text));
+      this.searchTextSubscription = this.searchTextSub.pipe(debounceTime(300)).subscribe((text) => this.search(text as string));
 
       setTimeout(() => {
         this.searchInput$?.nativeElement.focus();
@@ -552,15 +567,15 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
   //#region Поиск
 
   private search(searchText: string | null | undefined) {
+    this.$searchText = searchText;
     if (!this.items) {
       return;
     }
-    if (!searchText || !searchText.trim()) {
+    if (!searchText) {
       this.hiddenItems = new Set();
       this.changeDetector.markForCheck();
       return;
     }
-    this.$searchText = searchText.trim();
     let getSearchStr: (item: TreeSelectItem) => string;
     switch (typeof this.searchRef) {
       case 'string':
@@ -572,18 +587,19 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
     }
 
     const pattern = /[\-\[\]\/{}()*+?.\\^$|]/g;
-    const searchWithOutRegExp = searchText
+    const searchWords = searchText
       .toLowerCase()
       .replace(pattern, '\\$&')
-      .split(' ')
-      .filter((t) => t.length > 0)
-      .join('|');
+      .split(/\s+/)
+      .filter((t) => t.length > 0);
+
+    const searchRegex = new RegExp(searchWords.join('.*?'), 'i');
 
     const lookUp = (item: TreeSelectItem): boolean => {
       let match = false;
       const hasChildren = this.hasChildren(item);
       if (!hasChildren) {
-        match = getSearchStr(item).search(new RegExp(searchWithOutRegExp, 'i')) > -1;
+        match = searchRegex.test(getSearchStr(item));
       }
 
       let foundAnyChild = false;
@@ -630,12 +646,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
 
   @HostListener('keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    if (event.ctrlKey || event.altKey) {
-      return;
-    }
-    // заглушаем управляющие клавиши, имеющие смысл для компонента (кроме esc/enter)
-    // не заглушаем ввод
-    let eventSilenced = false;
+    let isHotkey = true;
     const key = event.code || event.key;
     const items = this.filteredFlatItems;
     const item = this.focusedItem;
@@ -643,22 +654,41 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
     switch (key) {
       case 'Escape':
       case 'Esc':
-        eventSilenced = false;
         this.close();
+        isHotkey = false;
+        break;
+
+      case 'Backspace':
+      case 'Del':
+      case 'Delete':
+        if (this.panelOpen && this.hasSearch) {
+          isHotkey = false;
+        } else {
+          if (this.selectedItem) {
+            if (this.$multiple && this.selectedItem.length > 0 && Array.isArray(this.selectedItem)) {
+              this._select(this.selectedItem[this.selectedItem.length - 1]);
+            } else {
+              this._select(this.selectedItem);
+            }
+          }
+        }
         break;
 
       case 'Space':
       case 'Spacebar':
         if (this.panelOpen) {
-          if (this.focusedIndex !== null && !this.hasSearch) {
+          if (this.searchFocused) {
+            return;
+          }
+          if (this.focusedIndex !== null) {
             if (item && this.hasChildren(item)) {
               this.treeControl?.toggle(item);
-              this.forceChange();
             } else {
               this._select(item);
+              if (!this.$multiple) {
+                isHotkey = false;
+              }
             }
-          } else {
-            eventSilenced = false;
           }
         } else {
           this.open();
@@ -666,9 +696,21 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
         break;
 
       case 'Tab':
-        eventSilenced = false;
+        isHotkey = false;
         // иначе первое нажатие только закроет выпадающий список
         if (this.panelOpen) {
+          if (this.performedSearch && keyItems.length > 0 && this.focusedIndex === null) {
+            this.selectFirst();
+          }
+          if (this.focusedIndex !== null) {
+            if (item && this.hasChildren(item)) {
+              if (this.groupsSelectable) {
+                this._select(item);
+              }
+            } else {
+              this._select(item);
+            }
+          }
           this.close();
         }
         break;
@@ -677,22 +719,24 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
         if (this.panelOpen) {
           if (this.performedSearch && keyItems.length > 0 && this.focusedIndex === null) {
             this.selectFirst();
-            eventSilenced = false;
-            return;
+            isHotkey = false;
+            break;
           }
           if (this.focusedIndex !== null) {
             if (item && this.hasChildren(item)) {
               if (this.groupsSelectable) {
                 this._select(item);
+                if (!this.$multiple) {
+                  isHotkey = false;
+                }
               } else {
                 this.treeControl?.toggle(item);
-                this.forceChange();
               }
             } else {
               this._select(item);
-            }
-            if (!this.$multiple) {
-              eventSilenced = false;
+              if (!this.$multiple) {
+                isHotkey = false;
+              }
             }
           }
         }
@@ -700,7 +744,11 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
 
       case 'ArrowUp':
       case 'Up':
-        if (this.panelOpen && items.length > 0) {
+        if (!this.panelOpen) {
+          this.open();
+          break;
+        }
+        if (items.length > 0) {
           if (this.focusedIndex === null) {
             this.focusedIndex = 0;
           } else {
@@ -719,6 +767,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
       case 'Down':
         if (!this.panelOpen) {
           this.open();
+          break;
         }
         if (items.length > 0) {
           if (this.focusedIndex === null) {
@@ -738,11 +787,11 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
       case 'ArrowRight':
       case 'Right':
         if (!this.panelOpen) {
-          eventSilenced = false;
+          isHotkey = false;
           break;
         }
         if (items.length === 0 || !item || this.focusedIndex === null || !this.hasChildren(item)) {
-          eventSilenced = false;
+          isHotkey = false;
           break;
         }
         if (!this.treeControl?.isExpanded(item)) {
@@ -759,11 +808,11 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
       case 'ArrowLeft':
       case 'Left':
         if (!this.panelOpen) {
-          eventSilenced = false;
+          isHotkey = false;
           break;
         }
         if (items.length === 0 || !item || this.focusedIndex === null) {
-          eventSilenced = false;
+          isHotkey = false;
           break;
         }
         if (this.focusedIndex > 0) {
@@ -790,10 +839,10 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
             this.searchText = event.key;
           }
         }
-        eventSilenced = false;
+        isHotkey = false;
     }
 
-    if (eventSilenced) {
+    if (isHotkey) {
       event.cancelBubble = true;
       if (event.stopPropagation) {
         event.stopPropagation();
