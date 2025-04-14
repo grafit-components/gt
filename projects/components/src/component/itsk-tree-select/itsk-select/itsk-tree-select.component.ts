@@ -308,14 +308,23 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
   //#region ControlValueAccessor
 
   /** Writes a new value to the element. */
-  writeValue(obj?: TreeSelectItem | TreeSelectItem[]): void {
+  writeValue(obj?: any | any[]): void {
     this.rawNgModel = obj;
     if (this.multiple) {
-      this.selectedItem = obj && this.items ? this.items.filter((item) => obj.indexOf(this.$valueRef(item)) > -1) : [];
+      this.selectedItem =
+        obj && this.items
+          ? Array.from(obj)
+              .map((objItem) => this.find({ children: this.items }, objItem))
+              .filter((item) => item)
+          : [];
     } else {
-      this.selectedItem = this.items && this.items.find((item) => this.$valueRef(item) === obj);
+      this.selectedItem = this.items && this.find({ children: this.items }, obj);
     }
     this.changeDetector.markForCheck();
+  }
+
+  private find(item: any, obj: any) {
+    return this.$valueRef(item) === obj ? item : item.children?.reduce((result: any, n: any) => result || this.find(n, obj), undefined);
   }
 
   /** Model callback вызовется когда модель измениться из ui */

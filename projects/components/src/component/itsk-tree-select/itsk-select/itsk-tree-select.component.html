@@ -65,6 +65,7 @@
         <itsk-tree-item
           *itskTreeTemplate="let item; let control = control"
           [style.display]="hiddenItems.has(item) ? 'none' : ''"
+          [style.height]="itemSize+'px'"
           [itskMark]="!hasChildren(item) ? searchText : ''"
           (click)="allowSelection(item) ? _select(item) : control.toggle(item)"
         >
