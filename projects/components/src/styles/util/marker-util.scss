@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import 'state-util.scss';
 
 @mixin marker() {
@@ -9,6 +10,6 @@
 }
 
 @mixin markerAccent($accent) {
-  background-color: map-get($accent, 'background-color');
-  color: map-get($accent, 'color');
+  background-color: map.get($accent, 'background-color');
+  color: map.get($accent, 'color');
 }

@@ -1,9 +1,10 @@
+@use 'sass:map';
 @import 'vars';
 @import 'color';
 @import 'util/navigation-util';
 
 .navigation {
-  @include navigationBlock(map-get($blocks, work));
+  @include navigationBlock(map.get($blocks, work));
   position: fixed;
   display: flex;
   top: 0;

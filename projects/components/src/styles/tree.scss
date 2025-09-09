@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import './color.scss';
 
 .tree {
@@ -11,7 +12,7 @@
     padding-left: 32px;
     border-left:
       solid 1px,
-      map-get($blocks, 'work', 'default', 'border-color');
+      map.get($blocks, 'work', 'default', 'border-color');
   }
 
   &__item {
@@ -35,7 +36,7 @@
         height: 50%;
         border-left:
           solid 1px,
-          map-get($blocks, 'work', 'default', 'border-color');
+          map.get($blocks, 'work', 'default', 'border-color');
       }
     }
 
@@ -46,7 +47,7 @@
       width: 16px;
       border-bottom:
         solid 1px,
-        map-get($blocks, 'work', 'default', 'border-color');
+        map.get($blocks, 'work', 'default', 'border-color');
       border-bottom-left-radius: 3px;
       content: '';
       display: block;

@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import './color.scss';
 @import 'util/list-util.scss';
 @import 'util/input-util.scss';
@@ -45,7 +46,7 @@
     overflow-x: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    @include selectBlock(map-get($blocks, 'work'));
+    @include selectBlock(map.get($blocks, 'work'));
 
     &-clear {
       padding-right: $space-8;
@@ -81,7 +82,7 @@
 
     &__title {
       margin: $space-1 0;
-      color: map-get($blocks, 'work', 'secondary', 'color');
+      color: map.get($blocks, 'work', 'secondary', 'color');
     }
 
     &__list {
@@ -97,7 +98,7 @@
 }
 
 itsk-select.ng-invalid .select__head {
-  border-color: map-get($blocks, 'work', 'error', 'color');
+  border-color: map.get($blocks, 'work', 'error', 'color');
 }
 
 @each $blockName, $blockItem in $blocks {
@@ -110,22 +111,22 @@ itsk-select.ng-invalid .select__head {
 
       &__values {
         &__title {
-          color: map-get($blockItem, 'secondary', 'color');
+          color: map.get($blockItem, 'secondary', 'color');
         }
       }
     }
 
     & itsk-select.ng-invalid .select__head {
-      border-color: map-get($blockItem, 'error', 'color');
+      border-color: map.get($blockItem, 'error', 'color');
     }
   }
 }
 
 .options {
-  @include baseBorder(map-get($blocks, 'work', 'default'));
+  @include baseBorder(map.get($blocks, 'work', 'default'));
   @include shadow-b($shadow-1);
   @include listDefault();
-  @include listBlock(map-get($blocks, 'work'));
+  @include listBlock(map.get($blocks, 'work'));
 }
 
 @each $blockName, $blockItem in $blocks {
@@ -142,7 +143,7 @@ select {
   min-height: $space-8;
   line-height: $space-8;
   font-size: 1.4rem;
-  @include selectBlock(map-get($blocks, 'work'));
+  @include selectBlock(map.get($blocks, 'work'));
 
   &:hover {
     cursor: pointer;
@@ -162,7 +163,7 @@ option {
   z-index: 1;
   min-width: 100%;
   @include listDefault();
-  @include listBlock(map-get($blocks, 'work'));
+  @include listBlock(map.get($blocks, 'work'));
 }
 
 @each $blockName, $blockItem in $blocks {

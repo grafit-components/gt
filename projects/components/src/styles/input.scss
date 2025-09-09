@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import './color.scss';
 @import 'util/input-util.scss';
 @import 'util/font-util.scss';
@@ -8,7 +9,7 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    color: map-get($blocks, 'work', 'default.color');
+    color: map.get($blocks, 'work', 'default.color');
 
     &-delimiter {
       position: relative;
@@ -21,8 +22,8 @@
         content: '';
         margin: 0 $space-1;
         width: $space-2;
-        height: map-get($borderSize, '1px');
-        background-color: map-get($blocks, 'work', 'default', 'border-color');
+        height: map.get($borderSize, '1px');
+        background-color: map.get($blocks, 'work', 'default', 'border-color');
       }
     }
 
@@ -37,7 +38,7 @@
       margin-right: $space-2;
       flex-shrink: 0;
       @include fontHelper($font-title3);
-      color: map-get($blocks, 'work', 'default', 'color');
+      color: map.get($blocks, 'work', 'default', 'color');
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -59,7 +60,7 @@
     width: $space-8;
     line-height: $space-8 !important;
     text-align: center;
-    color: map-get($blocks, 'work', 'default', 'color');
+    color: map.get($blocks, 'work', 'default', 'color');
 
     &-left {
       position: absolute;
@@ -87,18 +88,18 @@
     line-height: $space-8;
     @include fontHelper($font-body3);
     width: 100%;
-    @include inputField(map-get($blocks, 'work'));
+    @include inputField(map.get($blocks, 'work'));
 
     &_error {
-      border-color: map-get($work, 'error', 'border-color');
+      border-color: map.get($work, 'error', 'border-color');
     }
 
     &_warning {
-      border-color: map-get($work, 'warning', 'border-color');
+      border-color: map.get($work, 'warning', 'border-color');
     }
 
     &::placeholder {
-      color: map-get($work, 'default', 'color');
+      color: map.get($work, 'default', 'color');
     }
 
     &_textarea {
@@ -129,7 +130,7 @@
       position: absolute;
       bottom: 100%;
       right: $space-1;
-      color: map-get($blocks, 'work', 'error', 'color');
+      color: map.get($blocks, 'work', 'error', 'color');
       display: block;
       font-size: 1.6rem;
     }
@@ -141,7 +142,7 @@
       position: absolute;
       bottom: 100%;
       right: $space-1;
-      color: map-get($blocks, 'work', 'success', 'color');
+      color: map.get($blocks, 'work', 'success', 'color');
       display: block;
       font-size: 1.6rem;
     }
@@ -149,7 +150,7 @@
 
   &__helper {
     font-size: $font-size-overline;
-    color: map-get($blocks, 'work', 'default', 'color');
+    color: map.get($blocks, 'work', 'default', 'color');
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -164,7 +165,7 @@
 
 .file-upload {
   display: flex;
-  border: dashed 3px map-get($blocks, 'work', 'default', 'border-color');
+  border: dashed 3px map.get($blocks, 'work', 'default', 'border-color');
 
   &-button {
     position: relative;

@@ -1,6 +1,7 @@
+@use 'sass:map';
 @import 'util/marker-util.scss';
 
-@each $accentName, $accent in map-get($blocks, 'work') {
+@each $accentName, $accent in map.get($blocks, 'work') {
   .marker_#{$accentName} {
     @include marker();
     @include markerAccent($accent);

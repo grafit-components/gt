@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import 'vars.scss';
 @import './color.scss';
 
@@ -7,17 +8,17 @@
   text-align: center;
   flex-shrink: 0;
   font-size: 1.6rem;
-  fill: map-get($blocks, 'work', 'default', 'color');
+  fill: map.get($blocks, 'work', 'default', 'color');
 }
 
 @each $blockName, $blockItem in $blocks {
   .block-#{$blockName} {
     @each $accentName, $accent in $blockItem {
       .color_#{$accentName} .icon {
-        fill: map-get($accent, 'color');
+        fill: map.get($accent, 'color');
       }
       svg.color_#{$accentName} {
-        fill: map-get($accent, 'color') !important;
+        fill: map.get($accent, 'color') !important;
       }
       //&.color_{accentName}, .color_{accentName}
       //  fill: accent.color !important;
@@ -27,12 +28,12 @@
   }
 }
 
-@each $accentName, $accent in map-get($blocks, 'work') {
+@each $accentName, $accent in map.get($blocks, 'work') {
   .color_#{$accentName} .icon {
-    fill: map-get($accent, 'color');
+    fill: map.get($accent, 'color');
   }
 
   svg.color_#{$accentName} {
-    fill: map-get($accent, 'color') !important;
+    fill: map.get($accent, 'color') !important;
   }
 }

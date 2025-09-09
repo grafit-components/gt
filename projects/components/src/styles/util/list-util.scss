@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import '../font.scss';
 @import '../vars';
 @import 'shape-util';
@@ -11,9 +12,9 @@
 }
 
 @mixin listBlock($blockItem) {
-  @include baseBackground(map-get($blockItem, 'default'));
+  @include baseBackground(map.get($blockItem, 'default'));
   &__group {
-    border-bottom: solid 1px map-get($blockItem, 'default', 'border-color');
+    border-bottom: solid 1px map.get($blockItem, 'default', 'border-color');
     &:last-child {
       padding: 0;
       margin: 0;
@@ -21,15 +22,15 @@
     }
   }
   &__item {
-    @include baseState(map-get($blockItem, 'default', 'background-color'));
-    color: map-get($blockItem, 'default', 'color');
+    @include baseState(map.get($blockItem, 'default', 'background-color'));
+    color: map.get($blockItem, 'default', 'color');
     &_non-interactive:hover,
     &_disabled:hover {
-      background-color: map-get($blockItem, 'default', 'background-color');
+      background-color: map.get($blockItem, 'default', 'background-color');
     }
   }
   &__title {
-    color: map-get($blockItem, 'default', 'color');
+    color: map.get($blockItem, 'default', 'color');
   }
 }
 
@@ -57,7 +58,7 @@
     border: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: map-get($work, 'default', 'color');
+    color: map.get($work, 'default', 'color');
     @include fontHelper($font-body2);
     white-space: nowrap;
     @include cursorPointer();
@@ -68,7 +69,7 @@
 
     &:focus,
     &_focus {
-      border: solid 1px map-get($work, 'focus', 'border-color');
+      border: solid 1px map.get($work, 'focus', 'border-color');
     }
   }
 
@@ -79,7 +80,7 @@
     border: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: map-get($work, 'default', 'color');
+    color: map.get($work, 'default', 'color');
     @include fontHelper($font-title3);
     white-space: nowrap;
   }

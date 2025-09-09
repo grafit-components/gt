@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import './color.scss';
 
 .spinner {
@@ -19,7 +20,7 @@
     margin-top: -5rem;
     margin-left: -5rem;
     border-radius: 50%;
-    border: 1rem solid map-get($blocks, 'main', 'primary', 'background-color');
+    border: 1rem solid map.get($blocks, 'main', 'primary', 'background-color');
     border-top-color: transparent;
     animation: spinner 1.5s linear infinite;
   }

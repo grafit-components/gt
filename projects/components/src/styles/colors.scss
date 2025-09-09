@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import './color.scss';
 @each $blockName, $blockItem in $blocks {
   .block-#{$blockName} {
@@ -13,7 +14,7 @@
   }
 }
 
-@each $accentName, $accent in map-get($blocks, 'work') {
+@each $accentName, $accent in map.get($blocks, 'work') {
   @each $parameter, $value in $accent {
     .#{$parameter}_#{$accentName} {
       #{$parameter}: $value !important;

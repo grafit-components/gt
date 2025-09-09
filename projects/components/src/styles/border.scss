@@ -1,7 +1,8 @@
+@use 'sass:map';
 @import './vars.scss';
 
 @mixin borderRadius($size) {
-  border-radius: map-get($borderRadiusSize, $size);
+  border-radius: map.get($borderRadiusSize, $size);
 }
 
 @each $j, $size in $borderSize {

@@ -1,4 +1,5 @@
 @use 'sass:math';
+@use 'sass:map';
 @import './color.scss';
 @import './vars.scss';
 @import 'util/layout-util.scss';
@@ -15,7 +16,7 @@
   padding: 0 $space-6;
   align-items: center;
   flex-shrink: 0;
-  @include toolbarBlock(map-get($blocks, 'work'));
+  @include toolbarBlock(map.get($blocks, 'work'));
 }
 
 @each $blockName, $blockItem in $blocks {

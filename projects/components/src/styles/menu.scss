@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import 'color';
 @import 'util/menu-util';
 @import 'util/list-util';
@@ -6,7 +7,7 @@
   flex-grow: 1;
   position: relative;
   @include listDefault();
-  @include menuBlock(map-get($blocks, work));
+  @include menuBlock(map.get($blocks, work));
 
   &_absolute {
     position: absolute;

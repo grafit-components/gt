@@ -1,14 +1,15 @@
+@use 'sass:map';
 @import './color.scss';
 @import 'util/shape-util.scss';
 @import 'util/state-util.scss';
 
 .accordion {
   &__item {
-    @include baseShape(map-get($blocks, 'work', 'default'));
+    @include baseShape(map.get($blocks, 'work', 'default'));
     @include baseRadius();
 
     &_head {
-      @include baseState(map-get($blocks, 'work', 'secondary', 'background-color'));
+      @include baseState(map.get($blocks, 'work', 'secondary', 'background-color'));
       padding: 12px 24px;
       display: flex;
 

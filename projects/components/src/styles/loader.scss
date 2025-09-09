@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use 'sass:math';
 @import 'util/loader-util.scss';
 
@@ -10,7 +11,7 @@
     display: inline-block;
     width: $space-6;
     height: $space-6;
-    border: map-get($borderSize, '2px') solid map-get($blocks, 'work', 'primary', 'background-color');
+    border: map.get($borderSize, '2px') solid map.get($blocks, 'work', 'primary', 'background-color');
     border-left-color: transparent;
     border-radius: 50%;
     transform: rotate(30deg);
@@ -34,7 +35,7 @@
   }
 
   &_color-light:before {
-    border-color: map-get($blocks, 'work', 'default', 'background-color');
+    border-color: map.get($blocks, 'work', 'default', 'background-color');
     border-left-color: transparent;
   }
 

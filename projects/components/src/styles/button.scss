@@ -1,7 +1,8 @@
+@use 'sass:map';
 @import './color.scss';
 @import 'util/button-util.scss';
 
-@each $accentName, $accent in map-get($blocks, 'work') {
+@each $accentName, $accent in map.get($blocks, 'work') {
   .button_#{$accentName} {
     @include buttonAccent($accent);
   }

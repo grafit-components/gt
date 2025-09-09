@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import './color.scss';
 @import './vars.scss';
 @import './font.scss';
@@ -12,7 +13,7 @@
   flex-direction: column;
   flex-grow: 1;
   overflow: hidden;
-  @include gridBlock(map-get($blocks, 'work'));
+  @include gridBlock(map.get($blocks, 'work'));
 
   &__body {
     flex-grow: 1;
@@ -281,7 +282,7 @@
   flex-grow: 1;
   flex-direction: column;
   min-width: 0;
-  @include gridWrapperBlock(map-get($blocks, 'work'));
+  @include gridWrapperBlock(map.get($blocks, 'work'));
 
   &__panel {
     display: flex;
@@ -360,7 +361,7 @@
 }
 
 .table {
-  @include tableBlock(map-get($blocks, 'work'));
+  @include tableBlock(map.get($blocks, 'work'));
 }
 
 .filter-panel {

@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import './color.scss';
 @import 'util/shape-util.scss';
 @import 'util/shadow-util.scss';
@@ -31,7 +32,7 @@
 
   &__content {
     z-index: 3;
-    @include baseBorder(map-get($blocks, 'work', 'default'));
+    @include baseBorder(map.get($blocks, 'work', 'default'));
     @include shadow-b($shadow-1);
 
     &_top {
@@ -66,6 +67,6 @@
 
 @each $blockName, $blockItem in $blocks {
   .block-#{$blockName} .dropdown__content {
-    @include baseBorder(map-get($blockItem, 'default'));
+    @include baseBorder(map.get($blockItem, 'default'));
   }
 }

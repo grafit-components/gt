@@ -1,11 +1,12 @@
+@use 'sass:map';
 @import '../vars.scss';
 
 @mixin breadcrumb($blockItem) {
   &.breadcrumb,
   & .breadcrumb {
-    color: map-get($blockItem, 'default', 'color');
+    color: map.get($blockItem, 'default', 'color');
     &__item-name {
-      color: map-get($blockItem, 'default', 'color');
+      color: map.get($blockItem, 'default', 'color');
     }
   }
 }

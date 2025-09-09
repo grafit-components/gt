@@ -1,8 +1,9 @@
+@use 'sass:map';
 @import './color.scss';
 @import 'util/list-util.scss';
 
 .list {
-  @include listBlock(map-get($blocks, 'work'));
+  @include listBlock(map.get($blocks, 'work'));
   @include listDefault();
 }
 

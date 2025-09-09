@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import '../vars';
 @import 'shape-util';
 @import 'state-util';
@@ -14,45 +15,45 @@
   @include listBlock($blockItem);
 
   &__toolbar {
-    background: map-get($blockItem, info, background-color);
+    background: map.get($blockItem, info, background-color);
   }
 
   &__root {
-    @include baseShape(map-get($blockItem, default));
+    @include baseShape(map.get($blockItem, default));
   }
 
   &_absolute {
-    border: 1px solid map-get($blockItem, default, border-color);
+    border: 1px solid map.get($blockItem, default, border-color);
   }
 
   &__container {
-    @include baseBackground(map-get($blockItem, default));
-    @include baseColor(map-get($blockItem, default));
+    @include baseBackground(map.get($blockItem, default));
+    @include baseColor(map.get($blockItem, default));
   }
 
   &__item {
     &_open {
-      background: darkOrLight(map-get($blockItem, default, background-color), 10%);
+      background: darkOrLight(map.get($blockItem, default, background-color), 10%);
 
       &:hover {
-        background: darkOrLight(map-get($blockItem, default, background-color), 10%);
+        background: darkOrLight(map.get($blockItem, default, background-color), 10%);
       }
     }
 
     &__name {
-      color: map-get($blockItem, default, color);
+      color: map.get($blockItem, default, color);
     }
 
     &_active {
-      background: map-get($blockItem, primary, background-color);
+      background: map.get($blockItem, primary, background-color);
     }
 
     &_active &__name {
-      color: map-get($blockItem, primary, color);
+      color: map.get($blockItem, primary, color);
     }
 
     &_active:hover {
-      background: map-get($blockItem, primary, background-color);
+      background: map.get($blockItem, primary, background-color);
     }
   }
 }

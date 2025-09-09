@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import '../vars.scss';
 @import 'state-util.scss';
 
@@ -23,9 +24,9 @@
   min-width: $space-8;
   white-space: nowrap;
   padding: 0 $space-3;
-  color: map-get($accent, 'color');
+  color: map.get($accent, 'color');
   @include fontHelper($font-button2);
-  @include baseState(map-get($accent, 'background-color'));
+  @include baseState(map.get($accent, 'background-color'));
   @include cursorPointer();
 }
 
@@ -42,5 +43,5 @@
 @mixin buttonDelimiterAccent($accent) {
   display: inline-block;
   width: 1px;
-  background: map-get($accent, 'background-color');
+  background: map.get($accent, 'background-color');
 }

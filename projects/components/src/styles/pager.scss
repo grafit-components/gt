@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import './color.scss';
 @import 'util/shape-util.scss';
 @import 'util/button-util.scss';
@@ -6,8 +7,8 @@
 .pager {
   display: flex;
   align-items: center;
-  background: map-get($blocks, 'work', 'default', 'background-color');
-  color: map-get($blocks, 'work', 'default', 'color');
+  background: map.get($blocks, 'work', 'default', 'background-color');
+  color: map.get($blocks, 'work', 'default', 'color');
 
   &__dropdown {
     @include baseRadius();
@@ -16,19 +17,19 @@
     right: 0;
     white-space: nowrap;
     z-index: 1;
-    @include baseShape(map-get($blocks, 'work', 'default'));
+    @include baseShape(map.get($blocks, 'work', 'default'));
   }
 
   &__button__move {
-    @include buttonAccent(map-get($blocks, 'work', 'secondary'));
+    @include buttonAccent(map.get($blocks, 'work', 'secondary'));
   }
 
   &__button__count {
-    @include buttonAccent(map-get($blocks, 'work', 'secondary'));
+    @include buttonAccent(map.get($blocks, 'work', 'secondary'));
   }
 
   &__button__page {
-    @include buttonAccent(map-get($blocks, 'work', 'default'));
+    @include buttonAccent(map.get($blocks, 'work', 'default'));
   }
 }
 

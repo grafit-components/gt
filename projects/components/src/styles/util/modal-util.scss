@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import '../vars.scss';
 @import 'shape-util.scss';
 
@@ -32,7 +33,7 @@ $modalMinWidth: 200px;
     transform: translate(-50%, -50%);
     @include baseShadow();
     @include baseRadius();
-    @include baseShape(map-get($blockItem, 'default'));
+    @include baseShape(map.get($blockItem, 'default'));
     min-width: $modalMinWidth;
     min-height: $modalMinHeight;
 
