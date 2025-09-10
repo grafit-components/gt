@@ -30,6 +30,10 @@ export class ItskGridService<T extends IId> {
   private flatColumns: GridColumn[] = [];
   private visibleColumns$: ReplaySubject<GridColumn[]> = new ReplaySubject<GridColumn[]>(1);
   visibleColumns = this.visibleColumns$.asObservable();
+  
+  get allFlatColumns(): GridColumn[] {
+    return this.flatColumns;
+  }
 
   rowSelectable: boolean | BooleanFunc<GridRow<T>> | BooleanPromiseFunc<GridRow<T>> = false;
   selectType: 'single' | 'multiple' | 'none' = 'none';

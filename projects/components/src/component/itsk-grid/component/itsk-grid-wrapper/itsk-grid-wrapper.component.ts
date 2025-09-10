@@ -71,6 +71,7 @@ export class ItskGridWrapperComponent<T extends IId> implements IGridWrapper<T> 
   @Input() stateful = true;
   @Input() cookieName?: string;
   @Input() virtual: boolean = false;
+  @Input() forceColumnSync: boolean = false;
   @Input() showPager = true;
   @Input() showActionPanel = true;
   @Input() showFilterButton = true;

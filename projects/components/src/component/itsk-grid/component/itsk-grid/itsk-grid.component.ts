@@ -44,6 +44,7 @@ import { GridSortEvent } from '../../model/grid-sort-event';
 import { IGrid } from '../../model/grid/i-grid';
 import { GroupRowComponentBase } from '../../model/group-row-component-base';
 import { ItskGridService } from '../../service/itsk-grid.service';
+import { ColumnResizeEvent } from '../../model/column-resize-event';
 import { GroupRowDefaultComponent } from '../row/group-row-default/group-row-default.component';
 import { ItskGridHeadDropdownComponent } from '../itsk-grid-head-dropdown/itsk-grid-head-dropdown.component';
 import { ItskGridHeadComponent } from '../itsk-grid-head/itsk-grid-head.component';
@@ -95,6 +96,9 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
 
   /** Использовать виртуальный скролл */
   @Input() virtual: boolean = false;
+
+  /** Принудительная синхронизация колонок при инициализации */
+  @Input() forceColumnSync: boolean = false;
 
   /** Компонент для отображения дополнительного содержимого под основной строкой */
   @Input() additionalComponent?: Type<AdditionalComponentBase<any>>;
@@ -184,6 +188,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
 
   private currentEditRow: GridRow<T> | null = null;
   private currentEditCell: ICellCoordinates<T> | null = null;
+  private isResizing = false;
 
   constructor(
     protected svc$: ItskGridService<T>,
@@ -571,6 +576,7 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
   }
 
   ngOnInit() {
+    this.svc$.setColumns(this.columns ?? []);
     this.restoreHiddenState();
     this.restoreFilters();
     if (this.state$) this.setState(this.state$);
@@ -707,8 +713,16 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
     this.svc$.grouping = this.grouping;
     this.svc$.openLevels = this.openLevels;
     this.svc$.tree = this.tree;
+    
     if (changes.hasOwnProperty('columns') && this.columns) {
       this.svc$.setColumns(this.columns);
+      
+      // Если включена принудительная синхронизация и колонки пришли после инициализации
+      if (this.forceColumnSync && this.columns.length > 0) {
+        setTimeout(() => {
+          this.forceResizeAllColumns();
+        }, 100);
+      }
     }
 
     if (changes.hasOwnProperty('data') && this.data$) {
@@ -731,6 +745,34 @@ export class ItskGridComponent<T extends IId> implements IGrid<T>, OnInit, After
       if (changes['selectType'].previousValue !== changes['selectType'].currentValue) {
         this.svc$.selectType = this.selectType;
       }
+    }
+  }
+
+  // Принудительный resize всех колонок для пересчета стилей
+  private forceResizeAllColumns() {
+    if (this.isResizing) {
+      return; 
+    }
+    
+    try {
+      this.isResizing = true;
+      
+      const allColumns = this.svc$.allFlatColumns;
+      const visibleColumns = allColumns.filter((_) => _.hidden !== true);
+      
+      if (visibleColumns && visibleColumns.length > 0) {
+        // Вызываем resize для всех колонок
+        visibleColumns.forEach((column) => {
+          const resizeEvent = new ColumnResizeEvent(column, column.width, 0);
+          this.svc$.resizeColumn(resizeEvent);
+        });
+      }
+      
+      this.cdr$.detectChanges();
+    } catch (error) {
+      console.error('Ошибка при пересчете колонок:', error);
+    } finally {
+      this.isResizing = false;
     }
   }
 }
