@@ -1,15 +1,16 @@
 @use 'sass:map';
-@import './color.scss';
-@import 'util/datepicker-util.scss';
+@use './color.scss' as color;
+@use 'util/datepicker-util.scss' as datepickr-util;
+@use 'vars' as vars;
 
-$datePickerDaySize: $space-8;
+$datePickerDaySize: vars.$space-8;
 $datePickerWidth: 276px;
 $datePickerMinWidth: 130px;
 $datePickerWithTimeMinWidth: 170px;
 $datePickerWithSecondMinWidth: 150px;
 
 .datepicker {
-  @include datePickerBlock(map.get($blocks, 'work'));
+  @include datepickr-util.datePickerBlock(map.get(color.$blocks, 'work'));
   display: inline-flex;
 
   &__input {
@@ -19,7 +20,7 @@ $datePickerWithSecondMinWidth: 150px;
     position: relative;
     min-width: $datePickerMinWidth;
     min-height: $datePickerDaySize;
-    padding: 0 $space-2;
+    padding: 0 vars.$space-2;
     line-height: $datePickerDaySize;
     font-size: 1.4rem;
     user-select: none;
@@ -37,7 +38,7 @@ $datePickerWithSecondMinWidth: 150px;
     cursor: pointer;
 
     &_open {
-      margin-right: $space-2;
+      margin-right: vars.$space-2;
     }
 
     &_clear {
@@ -55,9 +56,9 @@ $datePickerWithSecondMinWidth: 150px;
 
   &__panel {
     display: flex;
-    padding: 0 $space-3;
+    padding: 0 vars.$space-3;
     align-items: center;
-    height: $space-14;
+    height: vars.$space-14;
 
     &__today {
       flex-grow: 1;
@@ -67,7 +68,7 @@ $datePickerWithSecondMinWidth: 150px;
     &__week {
       display: flex;
       font-size: 1rem;
-      padding: $space-1 $space-3;
+      padding: vars.$space-1 vars.$space-3;
       align-items: center;
 
       &__item {
@@ -78,7 +79,7 @@ $datePickerWithSecondMinWidth: 150px;
   }
 
   &__picker {
-    padding: $space-3;
+    padding: vars.$space-3;
 
     &__week {
       display: flex;
@@ -86,7 +87,7 @@ $datePickerWithSecondMinWidth: 150px;
 
     &__day {
       height: 34px;
-      line-height: $space-8;
+      line-height: vars.$space-8;
       width: 36px;
       justify-content: center;
       text-align: center;
@@ -107,12 +108,12 @@ $datePickerWithSecondMinWidth: 150px;
   }
 
   &__month {
-    padding: $space-2 0;
+    padding: vars.$space-2 0;
 
     &__item {
       height: $datePickerDaySize;
       line-height: $datePickerDaySize;
-      padding: 0 $space-3;
+      padding: 0 vars.$space-3;
 
       &__number {
         opacity: 0.6;
@@ -125,12 +126,12 @@ $datePickerWithSecondMinWidth: 150px;
   }
 
   &__year {
-    padding: $space-2 0;
+    padding: vars.$space-2 0;
 
     &__item {
       height: $datePickerDaySize;
       line-height: $datePickerDaySize;
-      padding: 0 $space-3;
+      padding: 0 vars.$space-3;
 
       &_current {
         font-weight: bold;
@@ -139,8 +140,8 @@ $datePickerWithSecondMinWidth: 150px;
   }
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} {
-    @include datepicker($blockItem);
+    @include datepickr-util.datepicker($blockItem);
   }
 }

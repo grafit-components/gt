@@ -1,7 +1,8 @@
 @use 'sass:map';
-@import './color.scss';
-@import 'util/shape-util.scss';
-@import 'util/shadow-util.scss';
+@use './color.scss';
+@use 'util/shape-util.scss';
+@use 'util/shadow-util.scss';
+@use 'vars';
 
 .dropdown {
   position: relative;
@@ -32,11 +33,11 @@
 
   &__content {
     z-index: 3;
-    @include baseBorder(map.get($blocks, 'work', 'default'));
-    @include shadow-b($shadow-1);
+    @include shape-util.baseBorder(map.get(color.$blocks, 'work', 'default'));
+    @include shadow-util.shadow-b(vars.$shadow-1);
 
     &_top {
-      @include shadow-t($shadow-1);
+      @include shadow-util.shadow-t(vars.$shadow-1);
       background: red;
     }
 
@@ -65,8 +66,8 @@
   }
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} .dropdown__content {
-    @include baseBorder(map.get($blockItem, 'default'));
+    @include shape-util.baseBorder(map.get($blockItem, 'default'));
   }
 }

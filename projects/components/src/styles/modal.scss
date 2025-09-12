@@ -1,13 +1,13 @@
 @use 'sass:map';
-@import './color.scss';
-@import 'util/modal-util.scss';
+@use './color.scss';
+@use 'util/modal-util.scss';
 
 .modal {
-  @include modalBlock(map.get($blocks, 'work'));
+  @include modal-util.modalBlock(map.get(color.$blocks, 'work'));
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} {
-    @include modal($blockItem);
+    @include modal-util.modal($blockItem);
   }
 }

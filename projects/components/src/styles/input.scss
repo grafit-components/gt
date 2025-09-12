@@ -1,29 +1,32 @@
 @use 'sass:map';
-@import './color.scss';
-@import 'util/input-util.scss';
-@import 'util/font-util.scss';
-@import 'util/scrollbar-util.scss';
+@use './color.scss';
+@use 'util/input-util.scss';
+@use 'util/font-util.scss';
+@use 'util/scrollbar-util.scss';
+@use 'vars';
+@use 'font';
+@use 'color/work/color' as work-color;
 
 .control {
   &__label {
     display: flex;
     width: 100%;
     flex-direction: column;
-    color: map.get($blocks, 'work', 'default.color');
+    color: map.get(color.$blocks, 'work', 'default.color');
 
     &-delimiter {
       position: relative;
-      padding-right: $space-4;
+      padding-right: vars.$space-4;
 
       &:after {
         position: absolute;
         top: 50%;
         right: 0;
         content: '';
-        margin: 0 $space-1;
-        width: $space-2;
-        height: map.get($borderSize, '1px');
-        background-color: map.get($blocks, 'work', 'default', 'border-color');
+        margin: 0 vars.$space-1;
+        width: vars.$space-2;
+        height: map.get(vars.$borderSize, '1px');
+        background-color: map.get(color.$blocks, 'work', 'default', 'border-color');
       }
     }
 
@@ -33,22 +36,22 @@
     }
 
     &__text {
-      margin-top: $space-1;
-      margin-bottom: $space-1;
-      margin-right: $space-2;
+      margin-top: vars.$space-1;
+      margin-bottom: vars.$space-1;
+      margin-right: vars.$space-2;
       flex-shrink: 0;
-      @include fontHelper($font-title3);
-      color: map.get($blocks, 'work', 'default', 'color');
+      color: map.get(color.$blocks, 'work', 'default', 'color');
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      @include font-util.fontHelper(font.$font-title3);
     }
   }
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} {
-    @include control($blockItem);
+    @include input-util.control($blockItem);
   }
 }
 
@@ -56,11 +59,11 @@
   position: relative;
 
   &__icon {
-    height: $space-8;
-    width: $space-8;
-    line-height: $space-8 !important;
+    height: vars.$space-8;
+    width: vars.$space-8;
+    line-height: vars.$space-8 !important;
     text-align: center;
-    color: map.get($blocks, 'work', 'default', 'color');
+    color: map.get(color.$blocks, 'work', 'default', 'color');
 
     &-left {
       position: absolute;
@@ -83,39 +86,39 @@
     display: inline-flex;
     flex-grow: 1;
     align-items: center;
-    padding: 0 $space-3 0 $space-3;
-    min-height: $space-8;
-    line-height: $space-8;
-    @include fontHelper($font-body3);
+    padding: 0 vars.$space-3 0 vars.$space-3;
+    min-height: vars.$space-8;
+    line-height: vars.$space-8;
+    @include font-util.fontHelper(font.$font-body3);
     width: 100%;
-    @include inputField(map.get($blocks, 'work'));
+    @include input-util.inputField(map.get(color.$blocks, 'work'));
 
     &_error {
-      border-color: map.get($work, 'error', 'border-color');
+      border-color: map.get(work-color.$work, 'error', 'border-color');
     }
 
     &_warning {
-      border-color: map.get($work, 'warning', 'border-color');
+      border-color: map.get(work-color.$work, 'warning', 'border-color');
     }
 
     &::placeholder {
-      color: map.get($work, 'default', 'color');
+      color: map.get(work-color.$work, 'default', 'color');
     }
 
     &_textarea {
       height: 100%;
       resize: none;
-      padding: $space-2 $space-3;
-      @include scrollbarBasis();
-      @include scrollbarHidden();
+      padding: vars.$space-2 vars.$space-3;
+      @include scrollbar-util.scrollbarBasis();
+      @include scrollbar-util.scrollbarHidden();
     }
 
     &_icon_left {
-      padding-left: $space-8;
+      padding-left: vars.$space-8;
     }
 
     &_icon_right {
-      padding-right: $space-8;
+      padding-right: vars.$space-8;
     }
 
     &::placeholder,
@@ -129,8 +132,8 @@
       content: '*';
       position: absolute;
       bottom: 100%;
-      right: $space-1;
-      color: map.get($blocks, 'work', 'error', 'color');
+      right: vars.$space-1;
+      color: map.get(color.$blocks, 'work', 'error', 'color');
       display: block;
       font-size: 1.6rem;
     }
@@ -141,31 +144,31 @@
       content: '*';
       position: absolute;
       bottom: 100%;
-      right: $space-1;
-      color: map.get($blocks, 'work', 'success', 'color');
+      right: vars.$space-1;
+      color: map.get(color.$blocks, 'work', 'success', 'color');
       display: block;
       font-size: 1.6rem;
     }
   }
 
   &__helper {
-    font-size: $font-size-overline;
-    color: map.get($blocks, 'work', 'default', 'color');
+    font-size: vars.$font-size-overline;
+    color: map.get(color.$blocks, 'work', 'default', 'color');
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} {
-    @include input($blockItem);
+    @include input-util.input($blockItem);
   }
 }
 
 .file-upload {
   display: flex;
-  border: dashed 3px map.get($blocks, 'work', 'default', 'border-color');
+  border: dashed 3px map.get(color.$blocks, 'work', 'default', 'border-color');
 
   &-button {
     position: relative;

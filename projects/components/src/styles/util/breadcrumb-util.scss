@@ -1,5 +1,5 @@
 @use 'sass:map';
-@import '../vars.scss';
+@use '../vars.scss' as *;
 
 @mixin breadcrumb($blockItem) {
   &.breadcrumb,

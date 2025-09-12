@@ -1,15 +1,15 @@
 @use 'sass:map';
-@import './color.scss';
-@import 'util/list-util.scss';
+@use './color.scss';
+@use 'util/list-util.scss';
 
 .list {
-  @include listBlock(map.get($blocks, 'work'));
-  @include listDefault();
+  @include list-util.listBlock(map.get(color.$blocks, 'work'));
+  @include list-util.listDefault();
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} {
-    @include list($blockItem);
+    @include list-util.list($blockItem);
   }
 }
 

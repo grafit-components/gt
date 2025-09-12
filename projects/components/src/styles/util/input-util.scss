@@ -1,7 +1,7 @@
 @use 'sass:map';
-@import '../vars.scss';
-@import 'shape-util.scss';
-@import 'state-util.scss';
+@use '../vars.scss';
+@use 'shape-util.scss';
+@use 'state-util.scss';
 
 @mixin control($blockItem) {
   &.control,
@@ -58,7 +58,7 @@
 }
 
 @mixin inputField($blockItem) {
-  @include baseShape(map.get($blockItem, 'default'));
-  @include baseRadius();
-  @include baseFocus($blockItem);
+  @include shape-util.baseShape(map.get($blockItem, 'default'));
+  @include shape-util.baseRadius();
+  @include state-util.baseFocus($blockItem);
 }

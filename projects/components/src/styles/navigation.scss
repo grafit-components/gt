@@ -1,10 +1,10 @@
 @use 'sass:map';
-@import 'vars';
-@import 'color';
-@import 'util/navigation-util';
+@use 'vars';
+@use 'color';
+@use 'util/navigation-util';
 
 .navigation {
-  @include navigationBlock(map.get($blocks, work));
+  @include navigation-util.navigationBlock(map.get(color.$blocks, work));
   position: fixed;
   display: flex;
   top: 0;
@@ -21,11 +21,11 @@
   }
 
   &__header {
-    padding: $space-5 $space-3 $space-3 $space-6;
+    padding: vars.$space-5 vars.$space-3 vars.$space-3 vars.$space-6;
   }
 
   &__footer {
-    padding: $space-3 $space-3 $space-3 $space-6;
+    padding: vars.$space-3 vars.$space-3 vars.$space-3 vars.$space-6;
   }
 
   & .menu_absolute {
@@ -34,13 +34,13 @@
   }
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName}.navigation {
-    @include navigationBlock($blockItem);
+    @include navigation-util.navigationBlock($blockItem);
   }
   .block-#{$blockName} {
     .navigation {
-      @include navigationBlock($blockItem);
+      @include navigation-util.navigationBlock($blockItem);
     }
   }
 }

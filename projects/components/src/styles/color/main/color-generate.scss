@@ -1,3 +1,4 @@
+@use "sass:color";
 @use 'sass:map';
 
 $blockItem: (
@@ -11,7 +12,7 @@ $blockItem: (
   'focus': #02a7f0,
 );
 $default: (
-  'background-color': mix(map.get($blockItem, 'normal'), map.get($blockItem, 'base'), map.get($blockItem, 'n')),
+  'background-color': color.mix(map.get($blockItem, 'normal'), map.get($blockItem, 'base'), map.get($blockItem, 'n')),
   'color': #d2d9de,
   'border-color': #1f5986,
 );

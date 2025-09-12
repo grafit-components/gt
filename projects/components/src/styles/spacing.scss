@@ -1,34 +1,35 @@
+@use "sass:list";
 @use 'sass:map';
-@import './color.scss';
-@import './vars.scss';
+@use './color.scss';
+@use './vars.scss';
 
 $properties: margin padding;
-$spaceListKeys: map-keys($spaceList);
+$spaceListKeys: map.keys(vars.$spaceList);
 
 @each $k in $properties {
   @each $i in $spaceListKeys {
     .#{$k}-h-#{$i} {
-      #{$k}-left: map.get($spaceList, $i) !important;
-      #{$k}-right: map.get($spaceList, $i) !important;
+      #{$k}-left: map.get(vars.$spaceList, $i) !important;
+      #{$k}-right: map.get(vars.$spaceList, $i) !important;
     }
 
     .#{$k}-v-#{$i} {
-      #{$k}-top: map.get($spaceList, $i) !important;
-      #{$k}-bottom: map.get($spaceList, $i) !important;
+      #{$k}-top: map.get(vars.$spaceList, $i) !important;
+      #{$k}-bottom: map.get(vars.$spaceList, $i) !important;
     }
 
-    @each $j, $index in $direction {
+    @each $j, $index in vars.$direction {
       .#{$k}-#{$j}-#{$i} {
-        #{$k}-#{$index}: map.get($spaceList, $i) !important;
+        #{$k}-#{$index}: map.get(vars.$spaceList, $i) !important;
       }
     }
   }
 }
 
 @each $k in $properties {
-  @for $i from 0 through length($spaceList) {
+  @for $i from 0 through list.length(vars.$spaceList) {
     .#{$k}-#{$i} {
-      #{$k}: map.get($spaceList, $i) !important;
+      #{$k}: map.get(vars.$spaceList, $i) !important;
     }
   }
 }

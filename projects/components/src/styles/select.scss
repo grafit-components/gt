@@ -1,9 +1,12 @@
 @use 'sass:map';
-@import './color.scss';
-@import 'util/list-util.scss';
-@import 'util/input-util.scss';
-@import 'util/state-util.scss';
-@import 'util/select-util.scss';
+@use './color.scss';
+@use 'vars';
+@use 'util/list-util.scss';
+@use 'util/input-util.scss';
+@use 'util/state-util.scss';
+@use 'util/shape-util.scss';
+@use 'util/shadow-util.scss';
+@use 'util/select-util.scss';
 
 .select {
   position: relative;
@@ -12,8 +15,8 @@
   width: 150px;
   min-width: 0;
   flex-grow: 1;
-  min-height: $space-8;
-  line-height: $space-8;
+  min-height: vars.$space-8;
+  line-height: vars.$space-8;
 
   &_disabled,
   &[disabled] {
@@ -21,13 +24,13 @@
   }
 
   &_multiple {
-    min-height: $space-8;
+    min-height: vars.$space-8;
     height: auto;
   }
 
   &_placeholder {
     opacity: 0.5;
-    min-height: $space-8;
+    min-height: vars.$space-8;
   }
 
   &:hover {
@@ -38,7 +41,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    padding: 0 $space-3;
+    padding: 0 vars.$space-3;
     font-size: 1.4rem;
     flex-grow: 1;
     min-height: 3.2rem;
@@ -46,10 +49,10 @@
     overflow-x: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    @include selectBlock(map.get($blocks, 'work'));
+    @include select-util.selectBlock(map.get(color.$blocks, 'work'));
 
     &-clear {
-      padding-right: $space-8;
+      padding-right: vars.$space-8;
     }
 
     &::-webkit-scrollbar {
@@ -66,7 +69,7 @@
 
   &__icon {
     position: absolute;
-    right: $space-1;
+    right: vars.$space-1;
     top: 50%;
     margin-top: -0.8rem;
 
@@ -81,8 +84,8 @@
     width: 100%;
 
     &__title {
-      margin: $space-1 0;
-      color: map.get($blocks, 'work', 'secondary', 'color');
+      margin: vars.$space-1 0;
+      color: map.get(color.$blocks, 'work', 'secondary', 'color');
     }
 
     &__list {
@@ -98,15 +101,15 @@
 }
 
 itsk-select.ng-invalid .select__head {
-  border-color: map.get($blocks, 'work', 'error', 'color');
+  border-color: map.get(color.$blocks, 'work', 'error', 'color');
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} {
     &.select,
     & .select {
       &__head {
-        @include selectBlock($blockItem);
+        @include select-util.selectBlock($blockItem);
       }
 
       &__values {
@@ -123,38 +126,38 @@ itsk-select.ng-invalid .select__head {
 }
 
 .options {
-  @include baseBorder(map.get($blocks, 'work', 'default'));
-  @include shadow-b($shadow-1);
-  @include listDefault();
-  @include listBlock(map.get($blocks, 'work'));
+  @include shape-util.baseBorder(map.get(color.$blocks, 'work', 'default'));
+  @include shadow-util.shadow-b(vars.$shadow-1);
+  @include list-util.listDefault();
+  @include list-util.listBlock(map.get(color.$blocks, 'work'));
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} {
     &.options,
     & .options {
-      @include listBlock($blockItem);
+      @include list-util.listBlock($blockItem);
     }
   }
 }
 
 select {
-  padding: 0 $space-3;
-  min-height: $space-8;
-  line-height: $space-8;
+  padding: 0 vars.$space-3;
+  min-height: vars.$space-8;
+  line-height: vars.$space-8;
   font-size: 1.4rem;
-  @include selectBlock(map.get($blocks, 'work'));
+  @include select-util.selectBlock(map.get(color.$blocks, 'work'));
 
   &:hover {
     cursor: pointer;
   }
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   select.block-#{$blockName},
   .block-#{$blockName}__select,
   .block-#{$blockName} select {
-    @include selectBlock($blockItem);
+    @include select-util.selectBlock($blockItem);
   }
 }
 
@@ -162,14 +165,14 @@ option {
   position: absolute;
   z-index: 1;
   min-width: 100%;
-  @include listDefault();
-  @include listBlock(map.get($blocks, 'work'));
+  @include list-util.listDefault();
+  @include list-util.listBlock(map.get(color.$blocks, 'work'));
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   option.block-#{$blockName},
   .block-#{$blockName}__option,
   .block-#{$blockName} option {
-    @include listBlock($blockItem);
+    @include list-util.listBlock($blockItem);
   }
 }

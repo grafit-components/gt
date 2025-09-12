@@ -1,7 +1,7 @@
-@import 'main/color';
-@import 'work/color';
+@use 'main/color' as main;
+@use 'work/color' as work;
 
 $blocks: (
-  'main': $main,
-  'work': $work,
+  'main': main.$main,
+  'work': work.$work,
 ) !default;

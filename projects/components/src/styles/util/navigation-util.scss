@@ -1,5 +1,5 @@
 @use 'sass:map';
-@import '../color.scss';
+@use '../color.scss' as *;
 
 @mixin navigationBlock($blockItem) {
   &__header,

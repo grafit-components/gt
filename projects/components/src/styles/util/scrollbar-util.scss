@@ -1,11 +1,13 @@
 @use 'sass:map';
+@use '../vars';
+@use '../color';
 
 @mixin scrollbarBasis() {
   overflow: auto;
   -ms-scrollbar-highlight-color: transparent;
   -ms-scrollbar-width: thin;
   -ms-overflow-style: -ms-autohiding-scrollbar;
-  @include scrollbarBlock(map.get($blocks, 'work'));
+  @include scrollbarBlock(map.get(color.$blocks, 'work'));
   &::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -15,7 +17,7 @@
     height: 0;
   }
   &::-webkit-scrollbar-thumb {
-    border-radius: $borderRadius-1;
+    border-radius: vars.$borderRadius-1;
   }
   &::-webkit-scrollbar-track {
     border: 0;
@@ -42,7 +44,7 @@
     background-color: transparent !important;
   }
   &:hover::-webkit-scrollbar-thumb {
-    background: rgba(map.get($blocks, 'work', 'primary', 'background-color'), 50%) !important;
+    background: rgba(map.get(color.$blocks, 'work', 'primary', 'background-color'), 50%) !important;
   }
 }
 

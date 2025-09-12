@@ -1,19 +1,19 @@
 @use 'sass:map';
-@import 'color';
-@import 'util/shape-util';
+@use 'color';
+@use 'util/shape-util';
 
 .tooltip {
   &__container {
     font-weight: normal;
-    color: map.get($blocks, 'work', 'default', 'color');
-    background: map.get($blocks, 'work', 'default', 'background-color');
+    color: map.get(color.$blocks, 'work', 'default', 'color');
+    background: map.get(color.$blocks, 'work', 'default', 'background-color');
     position: absolute;
     line-height: initial;
     padding: 12px;
     white-space: nowrap;
-    @include baseShape(map.get($blocks, 'work', 'default'));
-    @include baseShadow();
-    @include baseRadius();
+    @include shape-util.baseShape(map.get(color.$blocks, 'work', 'default'));
+    @include shape-util.baseShadow();
+    @include shape-util.baseRadius();
     z-index: 1;
 
     &::before,
@@ -37,7 +37,7 @@
         transform: translate(-50%, 0);
         border-left: 12px solid transparent;
         border-right: 12px solid transparent;
-        border-top: 12px solid map.get($blocks, 'work', 'default', 'border-color');
+        border-top: 12px solid map.get(color.$blocks, 'work', 'default', 'border-color');
       }
 
       &::after {
@@ -46,7 +46,7 @@
         transform: translate(-50%, 0);
         border-left: 12px solid transparent;
         border-right: 12px solid transparent;
-        border-top: 12px solid map.get($blocks, 'work', 'default', 'background-color');
+        border-top: 12px solid map.get(color.$blocks, 'work', 'default', 'background-color');
       }
     }
 
@@ -62,7 +62,7 @@
         transform: translate(0, -50%);
         border-top: 12px solid transparent;
         border-bottom: 12px solid transparent;
-        border-left: 12px solid map.get($blocks, 'work', 'default', 'border-color');
+        border-left: 12px solid map.get(color.$blocks, 'work', 'default', 'border-color');
       }
 
       &::after {
@@ -71,7 +71,7 @@
         transform: translate(0, -50%);
         border-top: 12px solid transparent;
         border-bottom: 12px solid transparent;
-        border-left: 12px solid map.get($blocks, 'work', 'default', 'background-color');
+        border-left: 12px solid map.get(color.$blocks, 'work', 'default', 'background-color');
       }
     }
 
@@ -87,7 +87,7 @@
         transform: translate(0, -50%);
         border-top: 12px solid transparent;
         border-bottom: 12px solid transparent;
-        border-right: 12px solid map.get($blocks, 'work', 'default', 'border-color');
+        border-right: 12px solid map.get(color.$blocks, 'work', 'default', 'border-color');
       }
 
       &::after {
@@ -96,7 +96,7 @@
         transform: translate(0, -50%);
         border-top: 12px solid transparent;
         border-bottom: 12px solid transparent;
-        border-right: 12px solid map.get($blocks, 'work', 'default', 'background-color');
+        border-right: 12px solid map.get(color.$blocks, 'work', 'default', 'background-color');
       }
     }
 
@@ -112,7 +112,7 @@
         transform: translate(-50%, 0);
         border-left: 12px solid transparent;
         border-right: 12px solid transparent;
-        border-bottom: 12px solid map.get($blocks, 'work', 'default', 'border-color');
+        border-bottom: 12px solid map.get(color.$blocks, 'work', 'default', 'border-color');
       }
 
       &::after {
@@ -121,7 +121,7 @@
         transform: translate(-50%, 0);
         border-left: 12px solid transparent;
         border-right: 12px solid transparent;
-        border-bottom: 12px solid map.get($blocks, 'work', 'default', 'background-color');
+        border-bottom: 12px solid map.get(color.$blocks, 'work', 'default', 'background-color');
       }
     }
   }

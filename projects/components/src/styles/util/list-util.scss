@@ -1,8 +1,10 @@
 @use 'sass:map';
-@import '../font.scss';
-@import '../vars';
-@import 'shape-util';
-@import 'state-util';
+@use '../font.scss';
+@use '../vars';
+@use 'shape-util';
+@use 'state-util';
+@use 'font-util';
+@use '../color/work/color' as work-color;
 
 @mixin list($blockItem) {
   &.list,
@@ -12,7 +14,7 @@
 }
 
 @mixin listBlock($blockItem) {
-  @include baseBackground(map.get($blockItem, 'default'));
+  @include shape-util.baseBackground(map.get($blockItem, 'default'));
   &__group {
     border-bottom: solid 1px map.get($blockItem, 'default', 'border-color');
     &:last-child {
@@ -22,8 +24,10 @@
     }
   }
   &__item {
-    @include baseState(map.get($blockItem, 'default', 'background-color'));
-    color: map.get($blockItem, 'default', 'color');
+    @include state-util.baseState(map.get($blockItem, 'default', 'background-color'));
+    & {
+      color: map.get($blockItem, 'default', 'color');
+    }
     &_non-interactive:hover,
     &_disabled:hover {
       background-color: map.get($blockItem, 'default', 'background-color');
@@ -35,14 +39,16 @@
 }
 
 @mixin listDefault() {
-  min-width: 100px;
-  display: flex;
-  flex-direction: column;
+  & {
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+  }
   &__group {
     display: flex;
     flex-direction: column;
-    padding-bottom: $space-1;
-    margin-bottom: $space-1;
+    padding-bottom: vars.$space-1;
+    margin-bottom: vars.$space-1;
 
     &:last-child {
       border-bottom: 0;
@@ -54,14 +60,14 @@
   &__item {
     display: flex;
     align-items: center;
-    padding: $space-2 $space-3;
+    padding: vars.$space-2 vars.$space-3;
     border: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: map.get($work, 'default', 'color');
-    @include fontHelper($font-body2);
+    color: map.get(work-color.$work, 'default', 'color');
     white-space: nowrap;
-    @include cursorPointer();
+    @include font-util.fontHelper(font.$font-body2);
+    @include state-util.cursorPointer();
 
     &_disabled {
       opacity: 0.5;
@@ -69,19 +75,19 @@
 
     &:focus,
     &_focus {
-      border: solid 1px map.get($work, 'focus', 'border-color');
+      border: solid 1px map.get(work-color.$work, 'focus', 'border-color');
     }
   }
 
   &__title {
     display: flex;
     align-items: center;
-    padding: $space-2 $space-3;
+    padding: vars.$space-2 vars.$space-3;
     border: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: map.get($work, 'default', 'color');
-    @include fontHelper($font-title3);
+    color: map.get(work-color.$work, 'default', 'color');
     white-space: nowrap;
+    @include font-util.fontHelper(font.$font-title3);
   }
 }

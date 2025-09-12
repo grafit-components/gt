@@ -1,12 +1,13 @@
-@import 'util/shape-util.scss';
-@import 'util/card-util.scss';
-@import 'util/shadow-util.scss';
+@use 'util/shape-util.scss';
+@use 'util/card-util.scss';
+@use 'util/shadow-util.scss';
+@use 'vars';
 
 .notification {
   position: relative;
-  margin: $space-3;
-  @include card();
-  @include shadow($shadow-3);
+  margin: vars.$space-3;
+  @include card-util.card();
+  @include shadow-util.shadow(vars.$shadow-3);
 }
 
 .notification__container {

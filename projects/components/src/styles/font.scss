@@ -1,5 +1,5 @@
-@import 'util/font-util.scss';
-@import 'vars.scss';
+@use 'util/font-util.scss' as font-util;
+@use 'vars.scss' as *;
 
 $font-h1: (
   font-size: $font-size-h1,
@@ -128,7 +128,7 @@ $fonts-hash: (
 
 @each $fontName, $fontHash in $fonts-hash {
   .font-#{$fontName} {
-    @include fontHelperImportant($fontHash);
+    @include font-util.fontHelperImportant($fontHash);
   }
 }
 

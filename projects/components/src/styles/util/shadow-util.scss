@@ -1,17 +1,27 @@
 @use 'sass:map';
 
 @mixin shadow($shadowBlock) {
-  box-shadow: 0 0 map.get($shadowBlock, 'blur') map.get($shadowBlock, 'color');
+  & {
+    box-shadow: 0 0 map.get($shadowBlock, 'blur') map.get($shadowBlock, 'color');
+  }
 }
 @mixin shadow-b($shadowBlock) {
-  box-shadow: 0 map.get($shadowBlock, 'offset') map.get($shadowBlock, 'blur') map.get($shadowBlock, 'color');
+  & {
+    box-shadow: 0 map.get($shadowBlock, 'offset') map.get($shadowBlock, 'blur') map.get($shadowBlock, 'color');
+  }
 }
 @mixin shadow-t($shadowBlock) {
-  box-shadow: 0 (-(map.get($shadowBlock, 'offset'))) map.get($shadowBlock, 'blur') map.get($shadowBlock, 'color');
+  & {
+    box-shadow: 0 (-(map.get($shadowBlock, 'offset'))) map.get($shadowBlock, 'blur') map.get($shadowBlock, 'color');
+  }
 }
 @mixin shadow-l($shadowBlock) {
-  box-shadow: -(map.get($shadowBlock, 'offset')) 0 map.get($shadowBlock, 'blur') map.get($shadowBlock, 'color');
+  & {
+    box-shadow: -(map.get($shadowBlock, 'offset')) 0 map.get($shadowBlock, 'blur') map.get($shadowBlock, 'color');
+  }
 }
 @mixin shadow-r($shadowBlock) {
-  box-shadow: map.get($shadowBlock, 'offset') 0 map.get($shadowBlock, 'blur') map.get($shadowBlock, 'color');
+  & {
+    box-shadow: map.get($shadowBlock, 'offset') 0 map.get($shadowBlock, 'blur') map.get($shadowBlock, 'color');
+  }
 }

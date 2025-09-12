@@ -1,6 +1,7 @@
 @use 'sass:map';
-@import '../vars.scss';
-@import 'shape-util.scss';
+@use '../vars.scss';
+@use 'shape-util.scss';
+@use 'state-util.scss';
 
 @mixin tabs($blockItem) {
   &.tabs,
@@ -20,8 +21,8 @@
     &__item {
       color: map.get($blockItem, 'secondary', 'color');
       border-bottom: solid 4px transparent;
-      @include baseState(map.get($blockItem, 'default', 'background-color'));
-      @include cursorPointer();
+      @include state-util.baseState(map.get($blockItem, 'default', 'background-color'));
+      @include state-util.cursorPointer();
 
       &_active {
         background: map.get($blockItem, 'default', 'background-color');

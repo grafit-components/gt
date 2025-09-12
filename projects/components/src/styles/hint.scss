@@ -1,29 +1,29 @@
 @use 'sass:map';
-@import './color.scss';
-@import 'util/shape-util.scss';
-@import 'util/hint-util.scss';
+@use './color.scss';
+@use 'util/shape-util.scss';
+@use 'util/hint-util.scss';
 
 .hint__container {
   position: absolute;
   bottom: 100%;
   display: block;
   padding: 4px 8px;
-  @include baseShadow();
-  @include baseRadius();
-  border: 1px solid map.get($blocks, 'work', 'default', 'border-color');
-  background: map.get($blocks, 'work', 'default', 'background-color');
-  color: map.get($blocks, 'work', 'default', 'color');
+  @include shape-util.baseShadow();
+  @include shape-util.baseRadius();
+  border: 1px solid map.get(color.$blocks, 'work', 'default', 'border-color');
+  background: map.get(color.$blocks, 'work', 'default', 'background-color');
+  color: map.get(color.$blocks, 'work', 'default', 'color');
   line-height: initial;
 }
 
-@each $accentName, $accent in map.get($blocks, 'work') {
+@each $accentName, $accent in map.get(color.$blocks, 'work') {
   .hint__container_#{$accentName} {
-    @include baseShape($accent);
+    @include shape-util.baseShape($accent);
   }
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} {
-    @include hint($blockItem);
+    @include hint-util.hint($blockItem);
   }
 }

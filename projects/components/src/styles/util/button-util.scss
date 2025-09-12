@@ -1,6 +1,9 @@
 @use 'sass:map';
-@import '../vars.scss';
-@import 'state-util.scss';
+@use '../vars.scss';
+@use 'shape-util';
+@use '../font';
+@use 'font-util';
+@use 'state-util.scss';
 
 @mixin button($blockItem) {
   @each $accentName, $accent in $blockItem {
@@ -8,26 +11,28 @@
     &.button_#{$accentName},
     & .button_#{$accentName} {
       @include buttonAccent($accent);
-      @include baseFocus($blockItem);
+      @include state-util.baseFocus($blockItem);
     }
   }
 }
 
 @mixin buttonAccent($accent) {
-  @include baseRadius();
-  border: solid 1px transparent;
-  min-height: $space-8;
-  height: $space-8;
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  min-width: $space-8;
-  white-space: nowrap;
-  padding: 0 $space-3;
-  color: map.get($accent, 'color');
-  @include fontHelper($font-button2);
-  @include baseState(map.get($accent, 'background-color'));
-  @include cursorPointer();
+  @include shape-util.baseRadius();
+  & {
+    border: solid 1px transparent;
+    min-height: vars.$space-8;
+    height: vars.$space-8;
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    min-width: vars.$space-8;
+    white-space: nowrap;
+    padding: 0 vars.$space-3;
+    color: map.get($accent, 'color');
+  }
+  @include font-util.fontHelper(font.$font-button2);
+  @include state-util.baseState(map.get($accent, 'background-color'));
+  @include state-util.cursorPointer();
 }
 
 @mixin buttonDelimiter($blockItem) {

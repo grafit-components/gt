@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use '../vars';
 
 @mixin checkbox($blockItem) {
   &.checkbox,
@@ -110,7 +111,7 @@
   }
 
   &__icon {
-    border: map.get($borderSize, '2px') solid map.get($blockItem, default, border-color);
+    border: map.get(vars.$borderSize, '2px') solid map.get($blockItem, default, border-color);
 
     &-inner {
       background-color: map.get($blockItem, 'secondary', 'color');

@@ -1,6 +1,6 @@
 @use 'sass:map';
-@import 'vars.scss';
-@import './color.scss';
+@use 'vars.scss';
+@use './color.scss';
 
 .icon {
   width: 1.6rem;
@@ -8,10 +8,10 @@
   text-align: center;
   flex-shrink: 0;
   font-size: 1.6rem;
-  fill: map.get($blocks, 'work', 'default', 'color');
+  fill: map.get(color.$blocks, 'work', 'default', 'color');
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} {
     @each $accentName, $accent in $blockItem {
       .color_#{$accentName} .icon {
@@ -28,7 +28,7 @@
   }
 }
 
-@each $accentName, $accent in map.get($blocks, 'work') {
+@each $accentName, $accent in map.get(color.$blocks, 'work') {
   .color_#{$accentName} .icon {
     fill: map.get($accent, 'color');
   }

@@ -1,6 +1,7 @@
 @use 'sass:map';
-@import 'state-util.scss';
-@import 'shape-util.scss';
+@use 'state-util.scss';
+@use 'shape-util.scss';
+@use 'button-util.scss';
 
 @mixin pager($blockItem) {
   &_pager,
@@ -10,25 +11,25 @@
     color: map.get($blockItem, 'default', 'color');
 
     &__dropdown {
-      @include baseRadius();
+      @include shape-util.baseRadius();
       position: absolute;
       bottom: 100%;
       right: 0;
       white-space: nowrap;
       z-index: 1;
-      @include baseShape(map.get($blockItem, 'default'));
+      @include shape-util.baseShape(map.get($blockItem, 'default'));
     }
 
     &__button__move {
-      @include buttonAccent(map.get($blockItem, 'secondary'));
+      @include button-util.buttonAccent(map.get($blockItem, 'secondary'));
     }
 
     &__button__count {
-      @include buttonAccent(map.get($blockItem, 'secondary'));
+      @include button-util.buttonAccent(map.get($blockItem, 'secondary'));
     }
 
     &__button__page {
-      @include buttonAccent(map.get($blockItem, 'default'));
+      @include button-util.buttonAccent(map.get($blockItem, 'default'));
     }
   }
 }

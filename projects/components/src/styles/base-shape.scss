@@ -1,37 +1,38 @@
 @use 'sass:map';
-@import 'border.scss';
-@import 'util/state-util.scss';
-@import 'util/shape-util.scss';
-@import 'color/index.scss';
+@use 'border.scss';
+@use 'util/state-util.scss';
+@use 'util/shape-util.scss';
+@use 'color/index.scss';
+@use 'color/work/color' as work-color;
 
 .base-shape {
-  @include baseShape(map.get($work, 'default'));
-  @include borderRadius(1);
+  @include shape-util.baseShape(map.get(work-color.$work, 'default'));
+  @include shape-util.baseRadius();
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in index.$blocks {
   .block-#{$blockName}.base-shape {
-    @include baseShape(map.get($blockItem, 'default'));
+    @include shape-util.baseShape(map.get($blockItem, 'default'));
   }
 
   .block-#{$blockName} {
     .base-shape {
-      @include baseShape(map.get($blockItem, 'default'));
+      @include shape-util.baseShape(map.get($blockItem, 'default'));
     }
   }
 
   @each $accentName, $accent in $blockItem {
     .base-shape_#{$accentName} {
-      @include baseShape($accent);
+      @include shape-util.baseShape($accent);
     }
 
     .block-#{$blockName}.base-shape_#{$accentName} {
-      @include baseShape($accent);
+      @include shape-util.baseShape($accent);
     }
 
     .block-#{$blockName} {
       .base-shape_#{$accentName} {
-        @include baseShape($accent);
+        @include shape-util.baseShape($accent);
       }
     }
   }

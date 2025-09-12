@@ -1,6 +1,6 @@
 @use 'sass:map';
-@import '../vars.scss';
-@import 'shape-util.scss';
+@use '../vars.scss';
+@use 'shape-util.scss';
 
 $modalMinHeight: 100px;
 $modalMinWidth: 200px;
@@ -31,9 +31,9 @@ $modalMinWidth: 200px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    @include baseShadow();
-    @include baseRadius();
-    @include baseShape(map.get($blockItem, 'default'));
+    @include shape-util.baseShadow();
+    @include shape-util.baseRadius();
+    @include shape-util.baseShape(map.get($blockItem, 'default'));
     min-width: $modalMinWidth;
     min-height: $modalMinHeight;
 
@@ -44,19 +44,19 @@ $modalMinWidth: 200px;
 
   &__head {
     display: flex;
-    padding: $space-3;
+    padding: vars.$space-3;
     align-items: center;
     justify-content: flex-end;
   }
 
   &__content {
     display: flex;
-    padding: $space-3;
+    padding: vars.$space-3;
   }
 
   &__foot {
     display: flex;
-    padding: $space-3;
+    padding: vars.$space-3;
     align-items: center;
     justify-content: flex-end;
   }

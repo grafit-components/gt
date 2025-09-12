@@ -1,7 +1,8 @@
 @use 'sass:map';
-@import './scrollbar-util.scss';
-@import './state-util.scss';
-@import './shape-util.scss';
+@use 'sass:color';
+@use './scrollbar-util.scss';
+@use './state-util.scss';
+@use './shape-util.scss';
 
 @mixin grid($blockItem) {
   &.grid,
@@ -24,7 +25,7 @@
 
     &__right {
       background-color: map.get($blockItem, 'default', 'background-color');
-      @include scrollbarBlock($blockItem);
+      @include scrollbar-util.scrollbarBlock($blockItem);
     }
   }
 
@@ -38,7 +39,7 @@
 
     &_left {
       border-right: solid 1px map.get($blockItem, 'secondary', 'border-color');
-      @include baseState(map.get($blockItem, 'default', 'background-color'));
+      @include state-util.baseState(map.get($blockItem, 'default', 'background-color'));
     }
   }
 
@@ -59,11 +60,11 @@
     }
 
     &:hover {
-      @include hoverFunc(map.get($blockItem, 'default', 'background-color'), 10%);
+      @include state-util.hoverFunc(map.get($blockItem, 'default', 'background-color'), 10%);
     }
 
     &_hover {
-      @include hoverFunc(map.get($blockItem, 'default', 'background-color'), 5%);
+      @include state-util.hoverFunc(map.get($blockItem, 'default', 'background-color'), 5%);
     }
 
     &:focus {
@@ -99,15 +100,15 @@
 
       &__caption {
         border-bottom: solid 1px map.get($blockItem, 'default', 'border-color');
-        color: adjust-color(map.get($blockItem, 'default', 'color'), $alpha: 0.7);
+        color: color.adjust(map.get($blockItem, 'default', 'color'), $alpha: 0.7);
       }
     }
 
     &__cell {
-      color: adjust-color(map.get($blockItem, 'default', 'color'), $alpha: 0.7);
+      color: color.adjust(map.get($blockItem, 'default', 'color'), $alpha: 0.7);
 
       &:hover {
-        @include hoverFunc(map.get($blockItem, 'default', 'background-color'), 5%);
+        @include state-util.hoverFunc(map.get($blockItem, 'default', 'background-color'), 5%);
       }
 
       &__sorted {
@@ -125,7 +126,7 @@
       }
 
       &__dropdown {
-        @include hoverFunc(map.get($blockItem, 'default', 'background-color'), 5%);
+        @include state-util.hoverFunc(map.get($blockItem, 'default', 'background-color'), 5%);
       }
 
       &__resize {
@@ -136,8 +137,8 @@
     }
 
     &__dropdown {
-      @include baseShape(map.get($blockItem, 'default'));
-      @include baseShadow();
+      @include shape-util.baseShape(map.get($blockItem, 'default'));
+      @include shape-util.baseShadow();
     }
   }
 
@@ -195,7 +196,7 @@
   color: map.get($blockItem, 'default', 'color');
 
   &__head {
-    color: adjust-color(map.get($blockItem, 'default', 'color'), $alpha: 0.7);
+    color: color.adjust(map.get($blockItem, 'default', 'color'), $alpha: 0.7);
     &__cell {
       border-color: map.get($blockItem, 'default', 'border-color');
     }

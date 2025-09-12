@@ -1,4 +1,4 @@
-@import 'shape-util.scss';
+@use 'shape-util.scss' as *;
 
 @mixin hint($blockItem) {
   @each $accentName, $accent in $blockItem {

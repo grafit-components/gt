@@ -1,8 +1,9 @@
 @use 'sass:map';
-@import '../vars';
-@import 'shape-util';
-@import 'state-util';
-@import 'list-util';
+@use '../vars';
+@use '../color';
+@use 'shape-util';
+@use 'state-util';
+@use 'list-util';
 
 @mixin menu($blockItem) {
   &.menu,
@@ -12,14 +13,14 @@
 }
 
 @mixin menuBlock($blockItem) {
-  @include listBlock($blockItem);
+  @include list-util.listBlock($blockItem);
 
   &__toolbar {
     background: map.get($blockItem, info, background-color);
   }
 
   &__root {
-    @include baseShape(map.get($blockItem, default));
+    @include shape-util.baseShape(map.get($blockItem, default));
   }
 
   &_absolute {
@@ -27,16 +28,16 @@
   }
 
   &__container {
-    @include baseBackground(map.get($blockItem, default));
-    @include baseColor(map.get($blockItem, default));
+    @include shape-util.baseBackground(map.get($blockItem, default));
+    @include shape-util.baseColor(map.get($blockItem, default));
   }
 
   &__item {
     &_open {
-      background: darkOrLight(map.get($blockItem, default, background-color), 10%);
+      background: state-util.darkOrLight(map.get($blockItem, default, background-color), 10%);
 
       &:hover {
-        background: darkOrLight(map.get($blockItem, default, background-color), 10%);
+        background: state-util.darkOrLight(map.get($blockItem, default, background-color), 10%);
       }
     }
 
@@ -58,7 +59,7 @@
   }
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} {
     @include menu($blockItem);
   }
