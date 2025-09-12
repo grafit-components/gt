@@ -1,5 +1,5 @@
-@import '../color.scss';
-@import '../vars.scss';
+@use '../color.scss' as *;
+@use '../vars.scss' as *;
 
 @mixin card() {
   padding: $space-3;

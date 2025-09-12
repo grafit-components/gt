@@ -1,6 +1,6 @@
-@import 'color.scss';
+@use 'color.scss' as main;
 
-@each $accentName, $accent in $main {
+@each $accentName, $accent in main.$main {
   @each $parameter, $value in $accent {
     .main-#{$accentName}_#{$parameter} {
       #{$parameter}: $value;

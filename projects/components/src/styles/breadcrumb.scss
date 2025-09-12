@@ -1,5 +1,5 @@
-@import './color.scss';
-@import 'util/breadcrumb-util.scss';
+@use './color.scss';
+@use 'util/breadcrumb-util.scss';
 
 .breadcrumb {
   display: flex;
@@ -17,8 +17,8 @@
   }
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} {
-    @include breadcrumb($blockItem);
+    @include breadcrumb-util.breadcrumb($blockItem);
   }
 }

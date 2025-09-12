@@ -1,39 +1,42 @@
-@import './color.scss';
-@import 'util/shape-util.scss';
-@import 'util/button-util.scss';
-@import 'util/pager-util.scss';
+@use 'sass:map';
+@use './color.scss';
+@use 'util/shape-util.scss';
+@use 'util/button-util.scss';
+@use 'util/pager-util.scss';
 
 .pager {
   display: flex;
   align-items: center;
-  background: map-get($blocks, 'work', 'default', 'background-color');
-  color: map-get($blocks, 'work', 'default', 'color');
+  background: map.get(color.$blocks, 'work', 'default', 'background-color');
+  color: map.get(color.$blocks, 'work', 'default', 'color');
 
   &__dropdown {
-    @include baseRadius();
-    position: absolute;
-    bottom: 100%;
-    right: 0;
-    white-space: nowrap;
-    z-index: 1;
-    @include baseShape(map-get($blocks, 'work', 'default'));
+    @include shape-util.baseRadius();
+    & {
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      white-space: nowrap;
+      z-index: 1;
+    }
+    @include shape-util.baseShape(map.get(color.$blocks, 'work', 'default'));
   }
 
   &__button__move {
-    @include buttonAccent(map-get($blocks, 'work', 'secondary'));
+    @include button-util.buttonAccent(map.get(color.$blocks, 'work', 'secondary'));
   }
 
   &__button__count {
-    @include buttonAccent(map-get($blocks, 'work', 'secondary'));
+    @include button-util.buttonAccent(map.get(color.$blocks, 'work', 'secondary'));
   }
 
   &__button__page {
-    @include buttonAccent(map-get($blocks, 'work', 'default'));
+    @include button-util.buttonAccent(map.get(color.$blocks, 'work', 'default'));
   }
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} {
-    @include pager($blockItem);
+    @include pager-util.pager($blockItem);
   }
 }

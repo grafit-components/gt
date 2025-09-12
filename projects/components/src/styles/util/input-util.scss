@@ -1,19 +1,20 @@
-@import '../vars.scss';
-@import 'shape-util.scss';
-@import 'state-util.scss';
+@use 'sass:map';
+@use '../vars.scss';
+@use 'shape-util.scss';
+@use 'state-util.scss';
 
 @mixin control($blockItem) {
   &.control,
   & .control {
     &__label {
-      color: map-get($blockItem, 'default', 'color');
+      color: map.get($blockItem, 'default', 'color');
       &-delimiter {
         &:after {
-          background-color: map-get($blockItem, 'default', 'border-color');
+          background-color: map.get($blockItem, 'default', 'border-color');
         }
       }
       &__text {
-        color: map-get($blockItem, 'default', 'color');
+        color: map.get($blockItem, 'default', 'color');
       }
     }
   }
@@ -25,16 +26,16 @@
   &__input,
   & > .input {
     &__icon {
-      color: map-get($blockItem, 'default', 'color');
+      color: map.get($blockItem, 'default', 'color');
     }
 
     &__field {
       @include inputField($blockItem);
       &_error {
-        border-color: map-get($blockItem, 'error', 'border-color');
+        border-color: map.get($blockItem, 'error', 'border-color');
       }
       &_warning {
-        border-color: map-get($blockItem, 'warning', 'border-color');
+        border-color: map.get($blockItem, 'warning', 'border-color');
       }
 
       &::placeholder {
@@ -44,20 +45,20 @@
 
     &_required {
       &:after {
-        color: map-get($blockItem, 'error', 'color');
+        color: map.get($blockItem, 'error', 'color');
       }
     }
 
     &_optional {
       &:after {
-        color: map-get($blockItem, 'success', 'color');
+        color: map.get($blockItem, 'success', 'color');
       }
     }
   }
 }
 
 @mixin inputField($blockItem) {
-  @include baseShape(map-get($blockItem, 'default'));
-  @include baseRadius();
-  @include baseFocus($blockItem);
+  @include shape-util.baseShape(map.get($blockItem, 'default'));
+  @include shape-util.baseRadius();
+  @include state-util.baseFocus($blockItem);
 }

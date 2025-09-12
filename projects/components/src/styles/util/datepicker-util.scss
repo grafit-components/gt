@@ -1,7 +1,9 @@
-@import '../vars.scss';
-@import './shape-util.scss';
-@import './state-util.scss';
-@import './button-util.scss';
+@use 'sass:map';
+@use '../vars.scss';
+@use './shape-util.scss';
+@use './state-util.scss';
+@use './button-util.scss' as btn-util;
+@use '../datepicker';
 
 @mixin datepicker($blockItem) {
   &.datepicker,
@@ -13,64 +15,64 @@
 }
 
 @mixin datePickerBlock($blockItem) {
-  border: solid 1px map-get($blockItem, 'default', 'border-color');
+  border: solid 1px map.get($blockItem, 'default', 'border-color');
 
   &__input {
-    background: map-get($blockItem, 'default', 'background-color');
-    line-height: $datePickerDaySize;
+    background: map.get($blockItem, 'default', 'background-color');
+    line-height: datepicker.$datePickerDaySize;
     font-size: 1.4rem;
 
     &_month {
-      background: map-get($blockItem, 'secondary', 'background-color');
-      color: map-get($blockItem, 'secondary', 'color');
+      background: map.get($blockItem, 'secondary', 'background-color');
+      color: map.get($blockItem, 'secondary', 'color');
     }
 
     &_show-time {
-      min-width: $datePickerWithTimeMinWidth;
+      min-width: datepicker.$datePickerWithTimeMinWidth;
     }
 
     &_invalid {
-      outline: 1px solid map-get($blockItem, 'error', 'border-color');
+      outline: 1px solid map.get($blockItem, 'error', 'border-color');
     }
   }
 
   &__body {
-    @include baseBackground(map-get($blockItem, 'default'));
-    @include baseColor(map-get($blockItem, 'default'));
+    @include shape-util.baseBackground(map.get($blockItem, 'default'));
+    @include shape-util.baseColor(map.get($blockItem, 'default'));
   }
 
   &__panel {
-    border-bottom: 1px solid map-get($blockItem, 'default', 'border-color');
+    border-bottom: 1px solid map.get($blockItem, 'default', 'border-color');
   }
 
   &__picker {
     &__day {
-      @include buttonAccent(map-get($blockItem, 'default'));
+      @include btn-util.buttonAccent(map.get($blockItem, 'default'));
 
       &_weekend {
-        @include buttonAccent(map-get($blockItem, 'success'));
+        @include btn-util.buttonAccent(map.get($blockItem, 'success'));
         background: transparent;
       }
 
       &_today {
-        @include buttonAccent(map-get($blockItem, 'secondary'));
+        @include btn-util.buttonAccent(map.get($blockItem, 'secondary'));
       }
 
       &_active {
-        @include buttonAccent(map-get($blockItem, 'primary'));
+        @include btn-util.buttonAccent(map.get($blockItem, 'primary'));
       }
     }
   }
 
   &__month {
     &__item {
-      @include baseState(map-get($blockItem, 'default', 'background-color'));
+      @include state-util.baseState(map.get($blockItem, 'default', 'background-color'));
     }
   }
 
   &__year {
     &__item {
-      @include baseState(map-get($blockItem, 'default', 'background-color'));
+      @include state-util.baseState(map.get($blockItem, 'default', 'background-color'));
     }
   }
 }

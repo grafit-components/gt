@@ -1,4 +1,4 @@
-@import './util/card-util.scss';
+@use './util/card-util.scss' as *;
 
 .card {
   @include card();

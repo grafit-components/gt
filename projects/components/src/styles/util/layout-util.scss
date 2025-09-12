@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 @mixin toolbar($blockItem) {
   &.toolbar,
   & .toolbar {
@@ -6,6 +8,6 @@
 }
 
 @mixin toolbarBlock($blockItem) {
-  background: map-get($blockItem, 'default', 'background-color');
-  color: map-get($blockItem, 'default', 'color');
+  background: map.get($blockItem, 'default', 'background-color');
+  color: map.get($blockItem, 'default', 'color');
 }

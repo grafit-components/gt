@@ -1,18 +1,21 @@
-@import 'util/marker-util.scss';
+@use 'sass:map';
+@use 'util/marker-util.scss';
+@use 'vars';
+@use 'color/index';
 
-@each $accentName, $accent in map-get($blocks, 'work') {
+@each $accentName, $accent in map.get(index.$blocks, 'work') {
   .marker_#{$accentName} {
-    @include marker();
-    @include markerAccent($accent);
+    @include marker-util.marker();
+    @include marker-util.markerAccent($accent);
   }
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in index.$blocks {
   .block-#{$blockName} {
     @each $accentName, $accent in $blockItem {
       .marker_#{$accentName} {
-        @include marker();
-        @include markerAccent($accent);
+        @include marker-util.marker();
+        @include marker-util.markerAccent($accent);
       }
     }
   }

@@ -1,4 +1,6 @@
-@each $i, $heightItem in $spaceList {
+@use 'vars';
+
+@each $i, $heightItem in vars.$spaceList {
   .height-#{$i} {
     height: $heightItem;
   }

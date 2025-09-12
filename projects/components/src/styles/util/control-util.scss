@@ -1,3 +1,6 @@
+@use 'sass:map';
+@use '../vars';
+
 @mixin checkbox($blockItem) {
   &.checkbox,
   & .checkbox {
@@ -7,29 +10,29 @@
 
 @mixin checkboxBlock($blockItem) {
   &__icon {
-    fill: map-get($blockItem, 'default', 'border-color');
+    fill: map.get($blockItem, 'default', 'border-color');
     //border: solid 1px blockItem.default.border-color;
-    color: map-get($blockItem, 'default', 'color');
+    color: map.get($blockItem, 'default', 'color');
     & .icon {
-      background: map-get($blockItem, 'default', 'background-color');
+      background: map.get($blockItem, 'default', 'background-color');
     }
     &_unchecked .icon {
-      fill: map-get($blockItem, 'primary', 'background-color');
+      fill: map.get($blockItem, 'primary', 'background-color');
     }
     &_checked .icon {
-      color: map-get($blockItem, 'primary', 'color');
+      color: map.get($blockItem, 'primary', 'color');
       //background-color blockItem.primary.background-color
-      fill: map-get($blockItem, 'primary', 'background-color');
+      fill: map.get($blockItem, 'primary', 'background-color');
       //border: solid 1px blockItem.primary.background-color;
     }
   }
 
   &__label {
-    color: map-get($blockItem, 'default', 'color');
+    color: map.get($blockItem, 'default', 'color');
   }
 
   &:focus &__icon {
-    border: 1px solid map-get($blockItem, 'focus', 'border-color');
+    border: 1px solid map.get($blockItem, 'focus', 'border-color');
   }
 }
 
@@ -42,39 +45,39 @@
 
 @mixin toggleBlock($blockItem) {
   &__icon {
-    border: solid 1px map-get($blockItem, 'secondary', 'border-color');
-    background: map-get($blockItem, 'secondary', 'background-color');
+    border: solid 1px map.get($blockItem, 'secondary', 'border-color');
+    background: map.get($blockItem, 'secondary', 'background-color');
 
     &_checked {
-      background: map-get($blockItem, 'primary', 'background-color');
+      background: map.get($blockItem, 'primary', 'background-color');
     }
 
     &__circle {
-      border: solid 1px map-get($blockItem, 'secondary', 'border-color');
-      background: map-get($blockItem, 'default', 'background-color');
+      border: solid 1px map.get($blockItem, 'secondary', 'border-color');
+      background: map.get($blockItem, 'default', 'background-color');
     }
   }
 
   &_success {
     .toggle__icon_checked {
-      background: map-get($blockItem, 'success', 'background-color');
+      background: map.get($blockItem, 'success', 'background-color');
     }
   }
 
   &_warning {
     .toggle__icon_checked {
-      background: map-get($blockItem, 'warning', 'background-color');
+      background: map.get($blockItem, 'warning', 'background-color');
     }
   }
 
   &_error {
     .toggle__icon_checked {
-      background: map-get($blockItem, 'error', 'background-color');
+      background: map.get($blockItem, 'error', 'background-color');
     }
   }
 
   &__label {
-    color: map-get($blockItem, 'default', 'color');
+    color: map.get($blockItem, 'default', 'color');
   }
 }
 
@@ -86,32 +89,32 @@
 }
 
 @mixin radioBlock($blockItem) {
-  color: map-get($blockItem, 'default', 'color');
+  color: map.get($blockItem, 'default', 'color');
 
   &_error {
     & .radio__icon {
-      border-color: map-get($blockItem, 'error', 'border-color');
+      border-color: map.get($blockItem, 'error', 'border-color');
     }
 
     & .radio__icon-inner {
-      background-color: map-get($blockItem, 'error', 'color');
+      background-color: map.get($blockItem, 'error', 'color');
     }
   }
 
   &_warning {
     & .radio__icon {
-      border-color: map-get($blockItem, 'warning', 'border-color');
+      border-color: map.get($blockItem, 'warning', 'border-color');
     }
     & .radio__icon-inner {
-      background-color: map-get($blockItem, 'warning', 'color');
+      background-color: map.get($blockItem, 'warning', 'color');
     }
   }
 
   &__icon {
-    border: map-get($borderSize, '2px') solid map-get($blockItem, default, border-color);
+    border: map.get(vars.$borderSize, '2px') solid map.get($blockItem, default, border-color);
 
     &-inner {
-      background-color: map-get($blockItem, 'secondary', 'color');
+      background-color: map.get($blockItem, 'secondary', 'color');
     }
   }
 }
