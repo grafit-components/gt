@@ -16,10 +16,10 @@
       display: flex;
       align-items: center;
       height: vars.$space-8;
-      @include font-util.fontHelper(font.$font-title3);
       padding: 0 16px;
       word-wrap: break-word;
       overflow: hidden;
+      @include font-util.fontHelper(font.$font-title3);
     }
   }
 

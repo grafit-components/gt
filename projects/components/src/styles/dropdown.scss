@@ -37,8 +37,8 @@
     @include shadow-util.shadow-b(vars.$shadow-1);
 
     &_top {
-      @include shadow-util.shadow-t(vars.$shadow-1);
       background: red;
+      @include shadow-util.shadow-t(vars.$shadow-1);
     }
 
     &_right,

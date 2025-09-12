@@ -8,12 +8,12 @@
   bottom: 100%;
   display: block;
   padding: 4px 8px;
-  @include shape-util.baseShadow();
-  @include shape-util.baseRadius();
   border: 1px solid map.get(color.$blocks, 'work', 'default', 'border-color');
   background: map.get(color.$blocks, 'work', 'default', 'background-color');
   color: map.get(color.$blocks, 'work', 'default', 'color');
   line-height: initial;
+  @include shape-util.baseShadow();
+  @include shape-util.baseRadius();
 }
 
 @each $accentName, $accent in map.get(color.$blocks, 'work') {

@@ -89,8 +89,8 @@
     padding: 0 vars.$space-3 0 vars.$space-3;
     min-height: vars.$space-8;
     line-height: vars.$space-8;
-    @include font-util.fontHelper(font.$font-body3);
     width: 100%;
+    @include font-util.fontHelper(font.$font-body3);
     @include input-util.inputField(map.get(color.$blocks, 'work'));
 
     &_error {

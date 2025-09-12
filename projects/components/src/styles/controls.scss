@@ -110,10 +110,10 @@
 }
 
 .radio {
-  @include control-util.radioBlock(map.get(color.$blocks, work));
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
+  @include control-util.radioBlock(map.get(color.$blocks, work));
 
   &_inline {
     flex-direction: row;

@@ -12,11 +12,13 @@
 
     &__dropdown {
       @include shape-util.baseRadius();
-      position: absolute;
-      bottom: 100%;
-      right: 0;
-      white-space: nowrap;
-      z-index: 1;
+      & {
+        position: absolute;
+        bottom: 100%;
+        right: 0;
+        white-space: nowrap;
+        z-index: 1;
+      }
       @include shape-util.baseShape(map.get($blockItem, 'default'));
     }
 

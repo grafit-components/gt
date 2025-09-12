@@ -4,7 +4,6 @@
 @use 'util/navigation-util';
 
 .navigation {
-  @include navigation-util.navigationBlock(map.get(color.$blocks, work));
   position: fixed;
   display: flex;
   top: 0;
@@ -13,6 +12,7 @@
   right: 0;
   z-index: 10;
   background: rgba(black, 0.4);
+  @include navigation-util.navigationBlock(map.get(color.$blocks, work));
 
   &__content {
     display: flex;

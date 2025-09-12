@@ -9,9 +9,9 @@
     @include shape-util.baseRadius();
 
     &_head {
-      @include state-util.baseState(map.get(color.$blocks, 'work', 'secondary', 'background-color'));
       padding: 12px 24px;
       display: flex;
+      @include state-util.baseState(map.get(color.$blocks, 'work', 'secondary', 'background-color'));
 
       &_content {
         flex-grow: 1;

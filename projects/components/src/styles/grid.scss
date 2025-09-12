@@ -340,9 +340,9 @@
   border-collapse: collapse;
 
   &__head {
-    @include font-util.fontHelper(font.$font-title3);
     border-style: solid;
     border-width: 1px;
+    @include font-util.fontHelper(font.$font-title3);
 
     &__cell {
       border-style: solid;

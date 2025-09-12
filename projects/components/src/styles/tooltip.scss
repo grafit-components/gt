@@ -11,10 +11,10 @@
     line-height: initial;
     padding: 12px;
     white-space: nowrap;
+    z-index: 1;
     @include shape-util.baseShape(map.get(color.$blocks, 'work', 'default'));
     @include shape-util.baseShadow();
     @include shape-util.baseRadius();
-    z-index: 1;
 
     &::before,
     &::after {
