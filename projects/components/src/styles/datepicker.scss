@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use './color.scss' as color;
-@use 'util/datepicker-util.scss' as datepickr-util;
+@use 'util/datepicker-util.scss';
 @use 'vars' as vars;
 
 $datePickerDaySize: vars.$space-8;
@@ -10,8 +10,8 @@ $datePickerWithTimeMinWidth: 170px;
 $datePickerWithSecondMinWidth: 150px;
 
 .datepicker {
-  @include datepickr-util.datePickerBlock(map.get(color.$blocks, 'work'));
   display: inline-flex;
+  @include datepicker-util.datePickerBlock(map.get(color.$blocks, 'work'), $datePickerDaySize, $datePickerWithTimeMinWidth);
 
   &__input {
     display: flex;
@@ -142,6 +142,6 @@ $datePickerWithSecondMinWidth: 150px;
 
 @each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} {
-    @include datepickr-util.datepicker($blockItem);
+    @include datepicker-util.datepicker($blockItem, $datePickerDaySize, $datePickerWithTimeMinWidth);
   }
 }

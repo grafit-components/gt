@@ -3,23 +3,22 @@
 @use './shape-util.scss';
 @use './state-util.scss';
 @use './button-util.scss' as btn-util;
-@use '../datepicker';
 
-@mixin datepicker($blockItem) {
+@mixin datepicker($blockItem, $daySize, $withTimeMinWidth) {
   &.datepicker,
   &__datepicker,
   & .datepicker,
   & > .datepicker {
-    @include datePickerBlock($blockItem);
+    @include datePickerBlock($blockItem, $daySize, $withTimeMinWidth);
   }
 }
 
-@mixin datePickerBlock($blockItem) {
+@mixin datePickerBlock($blockItem, $daySize, $withTimeMinWidth) {
   border: solid 1px map.get($blockItem, 'default', 'border-color');
 
   &__input {
     background: map.get($blockItem, 'default', 'background-color');
-    line-height: datepicker.$datePickerDaySize;
+    line-height: $daySize;
     font-size: 1.4rem;
 
     &_month {
@@ -28,7 +27,7 @@
     }
 
     &_show-time {
-      min-width: datepicker.$datePickerWithTimeMinWidth;
+      min-width: $withTimeMinWidth;
     }
 
     &_invalid {
@@ -50,8 +49,8 @@
       @include btn-util.buttonAccent(map.get($blockItem, 'default'));
 
       &_weekend {
-        @include btn-util.buttonAccent(map.get($blockItem, 'success'));
         background: transparent;
+        @include btn-util.buttonAccent(map.get($blockItem, 'success'));
       }
 
       &_today {

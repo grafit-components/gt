@@ -1,11 +1,11 @@
 @use 'sass:map';
-@use '../vars.scss' as *;
+@use '../vars.scss';
 
 @mixin selectBlock($blockItem) {
   background: map.get($blockItem, 'secondary', 'background-color');
   color: map.get($blockItem, 'secondary', 'color');
   border: solid 1px transparent;
-  border-radius: $borderRadius-1;
+  border-radius: vars.$borderRadius-1;
 
   &:focus,
   &_focus {

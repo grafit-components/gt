@@ -1,5 +1,5 @@
-@use './util/card-util.scss' as *;
+@use './util/card-util.scss';
 
 .card {
-  @include card();
+  @include card-util.card();
 }
