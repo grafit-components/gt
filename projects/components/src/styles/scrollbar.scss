@@ -1,18 +1,18 @@
-@import 'color';
-@import 'util/scrollbar-util';
+@use 'color';
+@use 'util/scrollbar-util';
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} {
-    @include scrollbar($blockItem);
+    @include scrollbar-util.scrollbar($blockItem);
   }
 }
 
 .scrollbar {
-  @include scrollbarBasis();
+  @include scrollbar-util.scrollbarBasis();
   &_invisible {
-    @include scrollbarInvisible();
+    @include scrollbar-util.scrollbarInvisible();
   }
   &_hidden {
-    @include scrollbarHidden();
+    @include scrollbar-util.scrollbarHidden();
   }
 }

@@ -1,5 +1,7 @@
-@import '../vars.scss';
-@import 'shape-util.scss';
+@use 'sass:map';
+@use '../vars.scss';
+@use 'shape-util.scss';
+@use 'state-util.scss';
 
 @mixin tabs($blockItem) {
   &.tabs,
@@ -9,22 +11,22 @@
 }
 
 @mixin tabsBlock($blockItem) {
-  background: map-get($blockItem, 'default', 'background-color');
-  color: map-get($blockItem, 'default', 'color');
+  background: map.get($blockItem, 'default', 'background-color');
+  color: map.get($blockItem, 'default', 'color');
 
   &__head {
-    background: map-get($blockItem, 'default', 'background-color');
-    color: map-get($blockItem, 'default', 'color');
+    background: map.get($blockItem, 'default', 'background-color');
+    color: map.get($blockItem, 'default', 'color');
 
     &__item {
-      color: map-get($blockItem, 'secondary', 'color');
+      color: map.get($blockItem, 'secondary', 'color');
       border-bottom: solid 4px transparent;
-      @include baseState(map-get($blockItem, 'default', 'background-color'));
-      @include cursorPointer();
+      @include state-util.baseState(map.get($blockItem, 'default', 'background-color'));
+      @include state-util.cursorPointer();
 
       &_active {
-        background: map-get($blockItem, 'default', 'background-color');
-        border-bottom: solid 4px map-get($blockItem, 'primary', 'border-color');
+        background: map.get($blockItem, 'default', 'background-color');
+        border-bottom: solid 4px map.get($blockItem, 'primary', 'border-color');
       }
     }
   }
@@ -34,6 +36,6 @@
     display: flex;
     flex-direction: column;
     height: 15vh;
-    background: map-get($blockItem, 'default', 'background-color');
+    background: map.get($blockItem, 'default', 'background-color');
   }
 }

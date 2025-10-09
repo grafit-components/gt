@@ -1,7 +1,8 @@
 @use 'sass:math';
-@import './color.scss';
-@import './vars.scss';
-@import 'util/layout-util.scss';
+@use 'sass:map';
+@use './color.scss';
+@use './vars.scss';
+@use 'util/layout-util.scss';
 
 .app {
   display: flex;
@@ -11,22 +12,22 @@
 
 .toolbar {
   display: flex;
-  height: $space-14;
-  padding: 0 $space-6;
+  height: vars.$space-14;
+  padding: 0 vars.$space-6;
   align-items: center;
   flex-shrink: 0;
-  @include toolbarBlock(map-get($blocks, 'work'));
+  @include layout-util.toolbarBlock(map.get(color.$blocks, 'work'));
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} {
-    @include toolbar($blockItem);
+    @include layout-util.toolbar($blockItem);
   }
 }
 
 /*column width calc*/
 @function widthCol($n) {
-  @return math.div(100%, $columns-count) * $n;
+  @return math.div(100%, vars.$columns-count) * $n;
 }
 
 .container {
@@ -37,7 +38,7 @@
     flex-wrap: nowrap;
   }
 
-  @for $n from 1 through $columns-count {
+  @for $n from 1 through vars.$columns-count {
     &_#{$n} {
       flex: 0 0 widthCol($n);
       min-width: 0;

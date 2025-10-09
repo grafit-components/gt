@@ -1,11 +1,11 @@
-@import 'shape-util.scss';
+@use 'shape-util.scss';
 
 @mixin hint($blockItem) {
   @each $accentName, $accent in $blockItem {
     &__hint__container_#{$accentName},
     &.hint__container_#{$accentName},
     & .hint__container_#{$accentName} {
-      @include baseShape($accent);
+      @include shape-util.baseShape($accent);
     }
   }
 }

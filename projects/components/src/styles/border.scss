@@ -1,18 +1,19 @@
-@import './vars.scss';
+@use 'sass:map';
+@use './vars.scss';
 
 @mixin borderRadius($size) {
-  border-radius: map-get($borderRadiusSize, $size);
+  border-radius: map.get(vars.$borderRadiusSize, $size);
 }
 
-@each $j, $size in $borderSize {
+@each $j, $size in vars.$borderSize {
   .border-#{$j} {
     border-style: solid;
     border-width: $size;
   }
 }
 
-@each $i, $directionItem in $direction {
-  @each $j, $size in $borderSize {
+@each $i, $directionItem in vars.$direction {
+  @each $j, $size in vars.$borderSize {
     .border-#{$i}-#{$j} {
       border-#{$directionItem}-style: solid;
       border-#{$directionItem}-width: $size;
@@ -20,7 +21,7 @@
   }
 }
 
-@each $key, $value in $borderRadiusSize {
+@each $key, $value in vars.$borderRadiusSize {
   .border-radius-#{$key} {
     border-radius: $value;
   }

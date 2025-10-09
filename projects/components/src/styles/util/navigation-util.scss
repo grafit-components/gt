@@ -1,12 +1,13 @@
-@import '../color.scss';
+@use 'sass:map';
+@use '../color.scss';
 
 @mixin navigationBlock($blockItem) {
   &__header,
   &__footer {
-    background-color: map-get($blockItem, 'secondary', 'background-color');
-    color: map-get($blockItem, 'default', 'color');
+    background-color: map.get($blockItem, 'secondary', 'background-color');
+    color: map.get($blockItem, 'default', 'color');
   }
   &__footer-img {
-    fill: map-get($blockItem, 'secondary', 'color');
+    fill: map.get($blockItem, 'secondary', 'color');
   }
 }

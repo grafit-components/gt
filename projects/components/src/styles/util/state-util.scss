@@ -1,6 +1,9 @@
+@use 'sass:color';
+@use 'sass:map';
+
 @function is_dark($color) {
   $result: false;
-  @if ($color == grayscale($color)) {
+  @if ($color == color.grayscale($color)) {
     $result: true;
   }
   @return $result;
@@ -9,7 +12,7 @@
 @mixin baseFocus($blockItem) {
   &:focus,
   &_focus {
-    border-color: map-get($blockItem, 'focus', 'border-color');
+    border-color: map.get($blockItem, 'focus', 'border-color');
   }
   //color: blockItem.focus.color;
   //background-color: blockItem.focus.background-color;
@@ -32,7 +35,9 @@
 }
 
 @mixin baseState($color) {
-  background: $color;
+  & {
+    background: $color;
+  }
   @include baseHover($color);
 
   &:active {
@@ -53,9 +58,9 @@
 }
 
 @function darkOrLight($color, $percent) {
-  @if lightness($color) < 50% {
-    @return lighten($color, $percent);
+  @if color.channel($color, "lightness", $space: hsl) < 50% {
+    @return color.scale($color, $lightness: $percent);
   } @else {
-    @return darken($color, $percent);
+    @return color.scale($color, $lightness: -$percent);
   }
 }

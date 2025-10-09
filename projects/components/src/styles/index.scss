@@ -1,0 +1,7 @@
+$blocks: () !default;
+
+@use './color/index' with (
+  $blocks: $blocks
+);
+
+@use './agregation-styles';

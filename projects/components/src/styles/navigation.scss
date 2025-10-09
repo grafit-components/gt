@@ -1,9 +1,9 @@
-@import 'vars';
-@import 'color';
-@import 'util/navigation-util';
+@use 'sass:map';
+@use 'vars';
+@use 'color';
+@use 'util/navigation-util';
 
 .navigation {
-  @include navigationBlock(map-get($blocks, work));
   position: fixed;
   display: flex;
   top: 0;
@@ -12,6 +12,7 @@
   right: 0;
   z-index: 10;
   background: rgba(black, 0.4);
+  @include navigation-util.navigationBlock(map.get(color.$blocks, work));
 
   &__content {
     display: flex;
@@ -20,11 +21,11 @@
   }
 
   &__header {
-    padding: $space-5 $space-3 $space-3 $space-6;
+    padding: vars.$space-5 vars.$space-3 vars.$space-3 vars.$space-6;
   }
 
   &__footer {
-    padding: $space-3 $space-3 $space-3 $space-6;
+    padding: vars.$space-3 vars.$space-3 vars.$space-3 vars.$space-6;
   }
 
   & .menu_absolute {
@@ -33,13 +34,13 @@
   }
 }
 
-@each $blockName, $blockItem in $blocks {
+@each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName}.navigation {
-    @include navigationBlock($blockItem);
+    @include navigation-util.navigationBlock($blockItem);
   }
   .block-#{$blockName} {
     .navigation {
-      @include navigationBlock($blockItem);
+      @include navigation-util.navigationBlock($blockItem);
     }
   }
 }
