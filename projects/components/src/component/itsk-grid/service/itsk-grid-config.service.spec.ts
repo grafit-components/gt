@@ -6,7 +6,7 @@ describe('ItskGridConfigService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ItskGridConfigService = TestBed.get(ItskGridConfigService);
+    const service: ItskGridConfigService = TestBed.inject(ItskGridConfigService);
     expect(service).toBeTruthy();
   });
 });

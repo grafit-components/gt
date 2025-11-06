@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common';
+
 import {
   ApplicationRef,
   ComponentFactoryResolver,
@@ -10,6 +10,7 @@ import {
   RendererFactory2,
   TemplateRef,
   Type,
+  DOCUMENT
 } from '@angular/core';
 import { ItskContentRef } from '../model/itsk-content-ref';
 
