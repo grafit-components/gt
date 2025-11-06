@@ -5,8 +5,9 @@ import { ItskSharedModule } from '../itsk-shared/itsk-shared.module';
 import { ItskNotificationItemComponent } from './itsk-notifications/itsk-notification-item/itsk-notification-item.component';
 import { ItskNotificationsComponent } from './itsk-notifications/itsk-notifications.component';
 
+/** @deprecated Использовать импорт компонентов */
 @NgModule({
-    imports: [CommonModule, ItskSharedModule, ItskIconModule, ItskNotificationsComponent, ItskNotificationItemComponent],
-    exports: [ItskNotificationsComponent, ItskSharedModule],
+  imports: [CommonModule, ItskSharedModule, ItskIconModule, ItskNotificationsComponent, ItskNotificationItemComponent],
+  exports: [ItskNotificationsComponent, ItskSharedModule],
 })
 export class ItskNotificationsModule {}

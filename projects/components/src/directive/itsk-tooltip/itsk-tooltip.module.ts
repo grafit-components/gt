@@ -4,8 +4,9 @@ import { ItskClickOutsideModule } from '../itsk-click-outside/itsk-click-outside
 import { ItskTooltipContainerComponent } from './itsk-tooltip-container/itsk-tooltip-container.component';
 import { ItskTooltipDirective } from './itsk-tooltip.directive';
 
+/** @deprecated Использовать импорт компонентов */
 @NgModule({
-    imports: [CommonModule, ItskClickOutsideModule, ItskTooltipDirective, ItskTooltipContainerComponent],
-    exports: [ItskTooltipDirective],
+  imports: [CommonModule, ItskClickOutsideModule, ItskTooltipDirective, ItskTooltipContainerComponent],
+  exports: [ItskTooltipDirective],
 })
 export class ItskTooltipModule {}
