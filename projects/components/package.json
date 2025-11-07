@@ -21,13 +21,12 @@
     }
   },
   "peerDependencies": {
-    "@angular/cdk": ">=17.0.0",
-    "@angular/common": ">=17.2.0",
-    "@angular/core": ">=17.2.0",
+    "@angular/cdk": ">=20.0.0",
+    "@angular/common": ">=20.0.0",
+    "@angular/core": ">=20.0.0",
     "moment-mini": "^2.24.0"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
   },
   "sideEffects": false,
   "description": "Система проектирования интерфейсов",
