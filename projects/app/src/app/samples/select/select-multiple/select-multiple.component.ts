@@ -1,7 +1,7 @@
 import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ItskSelectComponent } from '../../../../../../components/src/component/itsk-select/itsk-select/itsk-select.component';
+import { ItskSelectComponent } from '@grafit/components';
 
 @Component({
   selector: 'app-select-multiple',
