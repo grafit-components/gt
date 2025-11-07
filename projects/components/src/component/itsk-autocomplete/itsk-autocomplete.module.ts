@@ -6,8 +6,9 @@ import { ItskDropdownModule } from '../itsk-dropdown/itsk-dropdown.module';
 import { ItskSharedModule } from '../itsk-shared/itsk-shared.module';
 import { ItskAutocompleteComponent } from './itsk-autocomplete/itsk-autocomplete.component';
 
+/** @deprecated Использовать импорт компонентов */
 @NgModule({
-    exports: [ItskAutocompleteComponent],
-    imports: [CommonModule, FormsModule, ItskDropdownModule, ScrollingModule, ItskSharedModule, ItskAutocompleteComponent],
+  exports: [ItskAutocompleteComponent],
+  imports: [CommonModule, FormsModule, ItskDropdownModule, ScrollingModule, ItskSharedModule, ItskAutocompleteComponent],
 })
 export class ItskAutocompleteModule {}

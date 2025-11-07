@@ -4,8 +4,9 @@ import { ItskCardContentComponent } from './itsk-card-content/itsk-card-content.
 import { ItskCardHeaderComponent } from './itsk-card-header/itsk-card-header.component';
 import { ItskCardComponent } from './itsk-card/itsk-card.component';
 
+/** @deprecated Использовать импорт компонентов */
 @NgModule({
-    exports: [ItskCardComponent, ItskCardHeaderComponent, ItskCardContentComponent],
-    imports: [CommonModule, ItskCardComponent, ItskCardHeaderComponent, ItskCardContentComponent],
+  exports: [ItskCardComponent, ItskCardHeaderComponent, ItskCardContentComponent],
+  imports: [CommonModule, ItskCardComponent, ItskCardHeaderComponent, ItskCardContentComponent],
 })
 export class ItskCardModule {}

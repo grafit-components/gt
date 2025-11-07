@@ -1,5 +1,5 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -43,6 +43,7 @@ enum ViewType {
 
 export interface TreeSelectItem extends IItskTreeItem {
   [key: string]: any;
+
   children?: TreeSelectItem[];
 }
 
@@ -61,11 +62,7 @@ export interface TreeSelectItem extends IItskTreeItem {
   imports: [
     ItskDropdownComponent,
     ItskDropdownHeadDirective,
-    NgSwitch,
-    NgIf,
     NgTemplateOutlet,
-    NgSwitchCase,
-    NgFor,
     ItskIconComponent,
     ItskDropdownContentDirective,
     FormsModule,
@@ -122,9 +119,11 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
       this.close();
     }
   }
+
   get panelOpen() {
     return this.$panelOpen;
   }
+
   private $panelOpen = false;
 
   /** Возможность стереть значение(я) */
@@ -152,6 +151,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
       this.textPath = val;
     }
   }
+
   textTemplate?: TemplateRef<{ item: TreeSelectItem }>;
   private textPath?: string;
 
@@ -164,6 +164,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
       this.groupPath = val;
     }
   }
+
   groupTemplate?: TemplateRef<{ item: TreeSelectItem; expanded: boolean }>;
   private groupPath?: string;
 
@@ -174,9 +175,11 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
     this.$disabled = value;
     this.close();
   }
+
   get disabled() {
     return this.$disabled;
   }
+
   private $disabled = false;
 
   /** Возможность множественного выбора, по умолчанию `false` */
@@ -193,9 +196,11 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
       }
     }
   }
+
   get multiple() {
     return this.$multiple;
   }
+
   private $multiple = false;
 
   /** Данные для отображения */
@@ -208,9 +213,11 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
     this.$searchText = null;
     this.writeValue(this.rawNgModel);
   }
+
   get items() {
     return this.$items ?? [];
   }
+
   get filteredFlatItems() {
     if (!this.treeControl) {
       return [];
@@ -224,22 +231,26 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
       return result;
     });
   }
+
   get filteredFlatSelectableItems() {
     if (!this.groupsSelectable) {
       return this.filteredFlatDeepestItems;
     }
     return this.filteredFlatItems;
   }
+
   get filteredFlatDeepestItems() {
     const temp = this.filteredFlatItems.map((v) => v[0]);
     return this.flatDeepestItems.filter((v) => temp.includes(v[0]));
   }
+
   get focusedItem() {
     if (this.focusedIndex === null) {
       return undefined;
     }
     return this.filteredFlatItems[this.focusedIndex][0];
   }
+
   private flatItems: [TreeSelectItem, TreeSelectItem?][] = [];
   private flatDeepestItems: [TreeSelectItem, TreeSelectItem?][] = [];
   private $items?: TreeSelectItem[];
@@ -257,6 +268,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
         throw new Error('Неподдерживаемый тип');
     }
   }
+
   private $valueRef = (item?: TreeSelectItem) => item;
 
   //#endregion
@@ -270,6 +282,7 @@ export class ItskTreeSelectComponent implements ControlValueAccessor, OnInit {
   set searchText(value: string | null | undefined) {
     this.searchTextSub.next(value);
   }
+
   get searchText() {
     return this.$searchText;
   }

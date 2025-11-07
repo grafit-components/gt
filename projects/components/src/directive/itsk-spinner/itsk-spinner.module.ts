@@ -4,8 +4,9 @@ import { ItskSpinnerOverlayComponent } from './itsk-spinner-overlay/itsk-spinner
 import { ItskSpinnerDirective } from './itsk-spinner.directive';
 import { ItskSpinnerComponent } from './itsk-spinner/itsk-spinner.component';
 
+/** @deprecated Использовать импорт компонентов */
 @NgModule({
-    imports: [CommonModule, ItskSpinnerDirective, ItskSpinnerComponent, ItskSpinnerOverlayComponent],
-    exports: [ItskSpinnerDirective, ItskSpinnerComponent, ItskSpinnerOverlayComponent],
+  imports: [CommonModule, ItskSpinnerDirective, ItskSpinnerComponent, ItskSpinnerOverlayComponent],
+  exports: [ItskSpinnerDirective, ItskSpinnerComponent, ItskSpinnerOverlayComponent],
 })
 export class ItskSpinnerModule {}

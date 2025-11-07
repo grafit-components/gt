@@ -7,8 +7,17 @@ import { ItskTreeTemplateDirective } from './itsk-tree-template.directive';
 import { ItskTreeToggleDirective } from './itsk-tree-toggle.directive';
 import { ItskTreeComponent } from './itsk-tree/itsk-tree.component';
 
+/** @deprecated Использовать импорт компонентов */
 @NgModule({
-    exports: [ItskTreeComponent, ItskTreeItemComponent, ItskTreeToggleDirective, ItskSharedModule, ItskTreeTemplateDirective],
-    imports: [CommonModule, ItskSharedModule, ItskTreeComponent, ItskTreeItemComponent, ItskTreeHostComponent, ItskTreeToggleDirective, ItskTreeTemplateDirective],
+  exports: [ItskTreeComponent, ItskTreeItemComponent, ItskTreeToggleDirective, ItskSharedModule, ItskTreeTemplateDirective],
+  imports: [
+    CommonModule,
+    ItskSharedModule,
+    ItskTreeComponent,
+    ItskTreeItemComponent,
+    ItskTreeHostComponent,
+    ItskTreeToggleDirective,
+    ItskTreeTemplateDirective,
+  ],
 })
 export class ItskTreeModule {}

@@ -1,6 +1,6 @@
 import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -46,11 +46,7 @@ enum ViewType {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    NgSwitch,
-    NgIf,
     NgTemplateOutlet,
-    NgSwitchCase,
-    NgFor,
     ItskIconComponent,
     FormsModule,
     ItskMarkDirective,

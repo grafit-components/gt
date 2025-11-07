@@ -9,8 +9,19 @@ import { ItskSelectOptionDirective } from './directive/itsk-select-option.direct
 import { ItskSelectValueDirective } from './directive/itsk-select-value.directive';
 import { ItskSelectComponent } from './itsk-select/itsk-select.component';
 
+/** @deprecated Использовать импорт компонентов */
 @NgModule({
-    imports: [CommonModule, ItskDropdownModule, FormsModule, ScrollingModule, ItskIconModule, ItskSharedModule, ItskSelectComponent, ItskSelectValueDirective, ItskSelectOptionDirective],
-    exports: [ItskSelectComponent, ItskSelectValueDirective, ItskSelectOptionDirective],
+  imports: [
+    CommonModule,
+    ItskDropdownModule,
+    FormsModule,
+    ScrollingModule,
+    ItskIconModule,
+    ItskSharedModule,
+    ItskSelectComponent,
+    ItskSelectValueDirective,
+    ItskSelectOptionDirective,
+  ],
+  exports: [ItskSelectComponent, ItskSelectValueDirective, ItskSelectOptionDirective],
 })
 export class ItskSelectModule {}

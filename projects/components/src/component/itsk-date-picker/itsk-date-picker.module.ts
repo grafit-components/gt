@@ -14,31 +14,32 @@ import { ItskMonthSelectorComponent } from './itsk-month-selector/itsk-month-sel
 import { ItskTimeInputComponent } from './itsk-time-input/itsk-time-input.component';
 import { ItskYearSelectorComponent } from './itsk-year-selector/itsk-year-selector.component';
 
+/** @deprecated Использовать импорт компонентов */
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ItskClickOutsideModule,
-        ItskFocusModule,
-        ItskDropdownModule,
-        ItskPrependZeroPipeModule,
-        ItskIconModule,
-        ItskMonthSelectorComponent,
-        ItskMonthPickerComponent,
-        ItskYearSelectorComponent,
-        ItskDatePickerComponent,
-        ItskDaySelectorComponent,
-        ItskDateInputComponent,
-        ItskTimeInputComponent,
-    ],
-    exports: [
-        ItskMonthSelectorComponent,
-        ItskMonthPickerComponent,
-        ItskYearSelectorComponent,
-        ItskDatePickerComponent,
-        ItskDaySelectorComponent,
-        ItskDateInputComponent,
-        ItskTimeInputComponent,
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ItskClickOutsideModule,
+    ItskFocusModule,
+    ItskDropdownModule,
+    ItskPrependZeroPipeModule,
+    ItskIconModule,
+    ItskMonthSelectorComponent,
+    ItskMonthPickerComponent,
+    ItskYearSelectorComponent,
+    ItskDatePickerComponent,
+    ItskDaySelectorComponent,
+    ItskDateInputComponent,
+    ItskTimeInputComponent,
+  ],
+  exports: [
+    ItskMonthSelectorComponent,
+    ItskMonthPickerComponent,
+    ItskYearSelectorComponent,
+    ItskDatePickerComponent,
+    ItskDaySelectorComponent,
+    ItskDateInputComponent,
+    ItskTimeInputComponent,
+  ],
 })
 export class ItskDatePickerModule {}
