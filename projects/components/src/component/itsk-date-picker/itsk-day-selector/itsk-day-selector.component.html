@@ -1,17 +1,14 @@
 <div class="datepicker__panel__week">
-  @for (day of weekDays; track day) {
-    <div
-      class="datepicker__panel__week__item"
-      [class.datepicker__panel__week__item__holiday]="day === 0 || day === 6"
-      >
-      {{ locale.dayNamesMin[day] }}
+  @for (day of weekDays; track $index) {
+    <div class="datepicker__panel__week__item" [class.datepicker__panel__week__item__holiday]="day === 0 || day === 6">
+      {{ locale!.dayNamesMin[day] }}
     </div>
   }
 </div>
 <div class="datepicker__picker" (wheel)="scrollMonth($event)">
-  @for (weekItem of weeks; track weekItem) {
+  @for (weekItem of weeks; track $index) {
     <div class="datepicker__picker__week">
-      @for (day of weekItem; track day) {
+      @for (day of weekItem; track $index) {
         <div
           class="datepicker__picker__day"
           (click)="setDate(day, $event)"
@@ -21,9 +18,9 @@
           [class.datepicker__picker__day_disabled]="day.disabled"
           [class.datepicker__picker__day_weekend]="day.weekend"
           [class.datepicker__picker__day_today]="day.today"
-          >
+        >
           @if (day !== null && day !== undefined) {
-            {{ day.date.getDate() }}
+            {{ day.date!.getDate() }}
           }
         </div>
       }
