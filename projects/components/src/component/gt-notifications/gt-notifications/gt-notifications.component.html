@@ -1,0 +1,18 @@
+@if (notifications$ | async; as notifications) {
+  <div class="container container_column justify-content-end">
+    @for (notification of notifications; track notification) {
+      <gt-notification
+        class="margin-b-2 padding-2 shadow-2 base-shape background-color_default color_default"
+        [ngClass]="notification.config.className"
+        [class.border-color_info]="notification.config.level === 'info'"
+        [class.border-color_success]="notification.config.level === 'success'"
+        [class.border-color_warning]="notification.config.level === 'warn'"
+        [class.border-color_error]="notification.config.level === 'error'"
+        [notificationRef]="notification"
+      />
+    }
+    @if (notifications.length > 1) {
+      <button class="button_default justify-content-center" (click)="closeAll()">Закрыть все уведомления</button>
+    }
+  </div>
+}

@@ -1,0 +1,22 @@
+@let notificationRef = this.notificationRef();
+
+@if (notificationRef.config.head) {
+  <div class="container overflow-hidden">
+    @if (notificationRef.config.iconName) {
+      <itsk-icon class="margin-r-2" [name]="notificationRef.config.iconName" [ngClass]="notificationRef.config.iconClass" />
+    }
+    <span class="font-title2" [title]="notificationRef.config.head">{{ notificationRef.config.head }}</span>
+  </div>
+}
+
+@if (notificationRef.config.text) {
+  <div class="scrollbar font-body3 text overflow-hidden">{{ notificationRef.config.text }}</div>
+}
+
+<button class="button_default btn-close" (click)="notificationRef.close()">
+  <itsk-icon name="icon-x-close-outline" />
+</button>
+
+@if (notificationRef.config.component) {
+  <ng-container [ngComponentOutlet]="notificationRef.config.component" [ngComponentOutletInjector]="notificationRef.config.injector" />
+}

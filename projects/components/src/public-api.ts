@@ -2,6 +2,9 @@
  * Public API
  */
 
+/** Notifications */
+export * from './component/gt-notifications/public-api';
+
 /** Menu */
 
 export * from './component/itsk-menu/itsk-menu-button/itsk-menu-button.component';
