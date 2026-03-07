@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CustomComponentComponent } from '../../samples/notifications/custom-component/custom-component.component';
 import { DurationComponent } from '../../samples/notifications/duration/duration.component';
+import { IconsComponent } from '../../samples/notifications/icons/icons.component';
 import { LevelsComponent } from '../../samples/notifications/levels/levels.component';
 import { SimpleComponent } from '../../samples/notifications/simple/simple.component';
 import { SampleComponent, SampleOptions } from '../../shared/sample/sample.component';
@@ -40,5 +41,11 @@ export class NotificationsPageComponent {
       './samples/notifications/custom-component/notification-progress/notification-progress.component.ts',
       './samples/notifications/custom-component/notification-progress/notification-progress.component.html',
     ],
+  };
+
+  iconsSample: SampleOptions = {
+    title: 'Иконки в уведомлениях',
+    component: IconsComponent,
+    codePaths: ['./samples/notifications/icons/icons.component.ts', './samples/notifications/icons/icons.component.html'],
   };
 }
