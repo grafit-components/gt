@@ -18,5 +18,5 @@
 </button>
 
 @if (notificationRef.config.component) {
-  <ng-container [ngComponentOutlet]="notificationRef.config.component" [ngComponentOutletInjector]="notificationRef.config.injector" />
+  <ng-container [ngComponentOutlet]="notificationRef.config.component" [ngComponentOutletInjector]="componentInjector()" />
 }

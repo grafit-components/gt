@@ -13,6 +13,8 @@ export interface GtNotificationConfig {
 
   /** Длительность отображения уведомления в секундах. По умолчанию 10. */
   duration?: number;
+
+  /** Класс для контейнера уведомления */
   className?: string | string[];
 
   /** Компонент, который будет добавлен к уведомлению */
@@ -20,6 +22,9 @@ export interface GtNotificationConfig {
   /** Инжектор для компонента */
   injector?: Injector;
 
+  /** Иконка перед заголовком уведомления */
   iconName?: string;
+
+  /** Класс иконки */
   iconClass?: string | string[];
 }

@@ -1,14 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SimpleComponent } from '../../samples/notifications/simple/simple.component';
-import { LevelsComponent } from '../../samples/notifications/levels/levels.component';
-import { DurationComponent } from '../../samples/notifications/duration/duration.component';
 import { CustomComponentComponent } from '../../samples/notifications/custom-component/custom-component.component';
-import { DocViewerComponent } from '../../shared/doc-viewer/doc-viewer.component';
+import { DurationComponent } from '../../samples/notifications/duration/duration.component';
+import { LevelsComponent } from '../../samples/notifications/levels/levels.component';
+import { SimpleComponent } from '../../samples/notifications/simple/simple.component';
 import { SampleComponent, SampleOptions } from '../../shared/sample/sample.component';
 
 @Component({
   selector: 'app-notifications-page',
-  imports: [SampleComponent, DocViewerComponent],
+  imports: [SampleComponent],
   templateUrl: './notifications-page.component.html',
   styleUrl: './notifications-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

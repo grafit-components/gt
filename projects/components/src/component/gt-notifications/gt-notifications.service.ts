@@ -26,7 +26,7 @@ export class GtNotificationsService {
    * @param config Конфигурация уведомления
    */
   add(config: GtNotificationConfig): GtNotificationRef {
-    const configCopy = structuredClone(config);
+    const configCopy = { ...config };
     configCopy.level = configCopy.level ?? 'info';
     configCopy.duration = configCopy.duration ?? 10;
 
