@@ -1,0 +1,8 @@
+:host {
+  ::ng-deep {
+    .tabs__content {
+      height: unset;
+      max-height: 500px;
+    }
+  }
+}
