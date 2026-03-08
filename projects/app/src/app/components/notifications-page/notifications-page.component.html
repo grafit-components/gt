@@ -1,0 +1,172 @@
+<div class="documentation color-text-contrast">
+  <div class="title font-title1 margin-b-4">GtNotificationsService</div>
+
+  <div class="margin-b-4">
+    <p class="font-size-4 margin-b-2">
+      Сервис для создания и управления уведомлениями. Уведомления отображаются в верхней части экрана и автоматически скрываются через
+      заданное время.
+    </p>
+  </div>
+
+  <div class="title font-title2 margin-b-2">Подключение</div>
+  <div class="margin-b-4">
+    <p class="margin-b-2">
+      Сервис <code>GtNotificationsService</code> предоставляется в корневом инжекторе и готов к использованию. Для создания уведомления
+      используйте метод <code>add()</code>:
+    </p>
+    <app-sample [options]="basicSample" />
+  </div>
+
+  <div class="title font-title2 margin-b-2">Уровни уведомлений</div>
+  <div class="margin-b-4">
+    <p class="margin-b-2">
+      Уведомления поддерживают 4 уровня: <code>info</code>, <code>success</code>, <code>warn</code>, <code>error</code>. Уровень определяет
+      цвет и иконку уведомления.
+    </p>
+    <app-sample [options]="levelsSample" />
+  </div>
+
+  <div class="title font-title2 margin-b-2">Длительность отображения</div>
+  <div class="margin-b-4">
+    <p class="margin-b-2">
+      Параметр <code>duration</code> задаёт время отображения уведомления в секундах. По умолчанию — 10 секунд. Установите
+      <code>0</code> для постоянного уведомления.
+    </p>
+    <app-sample [options]="durationSample" />
+  </div>
+
+  <div class="title font-title2 margin-b-2">Кастомный компонент</div>
+  <div class="margin-b-4">
+    <p class="margin-b-2">В уведомление можно добавить кастомный компонент через параметр <code>component</code>.</p>
+    <app-sample [options]="customComponentSample" />
+  </div>
+
+  <div class="title font-title2 margin-b-2">Иконки</div>
+  <div class="margin-b-4">
+    <p class="margin-b-2">
+      Для отображения иконки используйте параметры <code>iconName</code> (имя иконки) и <code>iconClass</code> (дополнительные CSS-классы).
+      Иконка отображается перед заголовком уведомления.
+    </p>
+    <app-sample [options]="iconsSample" />
+  </div>
+
+  <div class="title font-title2 margin-b-2">API</div>
+  <div class="margin-b-4">
+    <div class="margin-b-3">
+      <div class="font-title3 margin-b-1">GtNotificationsService</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Метод</th>
+            <th>Описание</th>
+            <th>Возвращает</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>add(config: GtNotificationConfig)</code></td>
+            <td>Создаёт новое уведомление</td>
+            <td><code>GtNotificationRef</code></td>
+          </tr>
+          <tr>
+            <td><code>closeAll()</code></td>
+            <td>Закрывает все уведомления</td>
+            <td><code>void</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="margin-b-3">
+      <div class="font-title3 margin-b-1">GtNotificationConfig</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th>По умолчанию</th>
+            <th>Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>head</code></td>
+            <td><code>string</code></td>
+            <td>—</td>
+            <td>Заголовок уведомления</td>
+          </tr>
+          <tr>
+            <td><code>text</code></td>
+            <td><code>string</code></td>
+            <td>—</td>
+            <td>Текст уведомления</td>
+          </tr>
+          <tr>
+            <td><code>level</code></td>
+            <td><code>'info' | 'success' | 'warn' | 'error'</code></td>
+            <td><code>'info'</code></td>
+            <td>Уровень уведомления</td>
+          </tr>
+          <tr>
+            <td><code>duration</code></td>
+            <td><code>number</code></td>
+            <td><code>10</code></td>
+            <td>Длительность в секундах (0 — не закрывать)</td>
+          </tr>
+          <tr>
+            <td><code>component</code></td>
+            <td><code>Type&lt;any&gt;</code></td>
+            <td>—</td>
+            <td>Кастомный компонент для отображения в уведомлении</td>
+          </tr>
+          <tr>
+            <td><code>injector</code></td>
+            <td><code>Injector</code></td>
+            <td>—</td>
+            <td>Инжектор для кастомного компонента</td>
+          </tr>
+          <tr>
+            <td><code>className</code></td>
+            <td><code>string | string[]</code></td>
+            <td>—</td>
+            <td>Дополнительные CSS-классы</td>
+          </tr>
+          <tr>
+            <td><code>iconName</code></td>
+            <td><code>string</code></td>
+            <td>—</td>
+            <td>Имя иконки</td>
+          </tr>
+          <tr>
+            <td><code>iconClass</code></td>
+            <td><code>string | string[]</code></td>
+            <td>—</td>
+            <td>Дополнительные CSS-классы для иконки</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <div class="font-title3 margin-b-1">GtNotificationRef</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Метод/Свойство</th>
+            <th>Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>close()</code></td>
+            <td>Закрывает уведомление</td>
+          </tr>
+          <tr>
+            <td><code>config</code></td>
+            <td>Конфигурация уведомления</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

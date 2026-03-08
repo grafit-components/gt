@@ -26,6 +26,18 @@ export class AppComponent {
       name: 'Селект',
       url: '/select',
     },
+    {
+      name: 'Уведомления',
+      url: '/notifications',
+    },
+    {
+      name: 'Иконки',
+      url: '/icons',
+    },
+    {
+      name: 'Code view',
+      url: '/first',
+    },
   ];
 
   constructor() {

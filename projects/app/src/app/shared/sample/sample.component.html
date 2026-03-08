@@ -1,0 +1,41 @@
+@let options = this.options();
+<div class="border-1px padding-2 border-color_default border-radius-1">
+
+  <div class="title font-title1 margin-b-2">
+    {{options.title}}
+
+    @if (options.codePaths.length) {
+      <div class="container_auto"></div>
+      <button class="button_default margin-l-4"
+              [class.button_default-active]="showCode"
+              (click)="showCode = !showCode">
+        <itsk-icon [name]="showCode ? 'icon-visible_off-eye-view-outline' : 'icon-visible_on-eye-view-outline'"/>
+      </button>
+    }
+
+  </div>
+
+  @if (showCode) {
+
+
+    <itsk-tabs >
+      @for (path of options.codePaths; track path) {
+        <itsk-tab [title]="path | fileName" >
+
+          <ng-template itskTabContent>
+            <div class="padding-2 scrollbar">
+
+            <app-doc-viewer [fileSrc]="path"/>
+            </div>
+          </ng-template>
+        </itsk-tab>
+      }
+    </itsk-tabs>
+
+    <div class="border-t-1px border-color_default margin-v-2"></div>
+  }
+
+  @if (options.component) {
+    <ng-container [ngComponentOutlet]="options.component"></ng-container>
+  }
+</div>

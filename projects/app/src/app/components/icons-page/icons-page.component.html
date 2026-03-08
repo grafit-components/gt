@@ -1,0 +1,10 @@
+<div class="icons color-text-contrast">
+  @for (iconName of iconNames; track iconName) {
+    <ng-container>
+      <div>
+        {{ iconName }}
+        <itsk-icon [name]="iconName" />
+      </div>
+    </ng-container>
+  }
+</div>

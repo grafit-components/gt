@@ -2,6 +2,9 @@
  * Public API
  */
 
+/** Notifications */
+export * from './component/gt-notifications/public-api';
+
 /** Menu */
 
 export * from './component/itsk-menu/itsk-menu-button/itsk-menu-button.component';
@@ -27,9 +30,6 @@ export * from './component/itsk-tabs/itsk-tabs/itsk-tabs.component';
 
 /** Notification massages */
 export * from './component/itsk-notifications/itsk-notification.service';
-export * from './component/itsk-notifications/itsk-notifications.module';
-export * from './component/itsk-notifications/itsk-notifications/itsk-notification-item/itsk-notification-item.component';
-export * from './component/itsk-notifications/itsk-notifications/itsk-notifications.component';
 export * from './component/itsk-notifications/model/itsk-notification';
 export * from './component/itsk-notifications/model/itsk-notification-level.enum';
 

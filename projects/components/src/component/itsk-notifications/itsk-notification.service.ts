@@ -1,37 +1,50 @@
-import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { GtNotificationService } from '../gt-notifications/gt-notification.service';
 import { ItskNotification } from './model/itsk-notification';
+import { ItskNotificationLevel } from './model/itsk-notification-level.enum';
 
 @Injectable({
   providedIn: 'root',
 })
+/** @deprecated Используй GtNotificationService */
 export class ItskNotificationService {
-  private _notifications = new Subject<ItskNotification>();
-  private _clear = new Subject<string>();
+  private readonly notificationService = inject(GtNotificationService);
 
-  notifications: Observable<ItskNotification>;
-  clear: Observable<string>;
-
-  constructor() {
-    this.notifications = this._notifications.asObservable();
-    this.clear = this._clear.asObservable();
-  }
+  constructor() {}
 
   add(notification: ItskNotification) {
     if (notification) {
-      this._notifications.next(notification);
+      this.notificationService.add({
+        head: notification.head!,
+        text: notification.text!,
+        level: this.mapLevel(notification.level),
+        duration: notification.infinite ? 0 : notification.duration ?? 10,
+        iconName: notification.iconName,
+      });
     }
   }
 
   addMultiple(notifications: ItskNotification[]) {
     if (notifications && notifications.length) {
       notifications.forEach((n) => {
-        this._notifications.next(n);
+        this.add(n);
       });
     }
   }
 
-  clearMessages(name: string) {
-    this._clear.next(name);
+  clearMessages(name: string) {}
+
+  private mapLevel(level: ItskNotificationLevel): 'error' | 'info' | 'success' | 'warn' {
+    switch (level) {
+      case ItskNotificationLevel.Error:
+        return 'error';
+      case ItskNotificationLevel.Warn:
+        return 'warn';
+      case ItskNotificationLevel.Success:
+        return 'success';
+
+      default:
+        return 'info';
+    }
   }
 }

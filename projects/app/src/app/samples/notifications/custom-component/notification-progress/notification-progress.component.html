@@ -1,0 +1,7 @@
+<div class="container_vertical gap-1">
+  @let progress = progress$ | async;
+  <div class="font-size-3">Прогресс: {{progress}}%</div>
+  <div class="progress-bar">
+    <div class="progress-bar-fill" [style.width.%]="progress"></div>
+  </div>
+</div>
