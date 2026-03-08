@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { GtNotificationsService } from '@grafit/components';
+import { GtNotificationService } from '@grafit/components';
 
 @Component({
   selector: 'app-duration',
@@ -9,10 +9,10 @@ import { GtNotificationsService } from '@grafit/components';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DurationComponent {
-  private readonly notificationsService = inject(GtNotificationsService);
+  private readonly notificationService = inject(GtNotificationService);
 
   protected addShort() {
-    this.notificationsService.add({
+    this.notificationService.add({
       head: 'Короткое уведомление',
       text: 'Исчезнет через 3 секунды',
       duration: 3,
@@ -20,7 +20,7 @@ export class DurationComponent {
   }
 
   protected addNormal() {
-    this.notificationsService.add({
+    this.notificationService.add({
       head: 'Обычное уведомление',
       text: 'Исчезнет через 10 секунд (по умолчанию)',
       duration: 10,
@@ -28,7 +28,7 @@ export class DurationComponent {
   }
 
   protected addLong() {
-    this.notificationsService.add({
+    this.notificationService.add({
       head: 'Долгое уведомление',
       text: 'Исчезнет через 30 секунд',
       duration: 30,
@@ -36,7 +36,7 @@ export class DurationComponent {
   }
 
   protected addPersistent() {
-    this.notificationsService.add({
+    this.notificationService.add({
       head: 'Постоянное уведомление',
       text: 'Не исчезнет само (duration: 0)',
       duration: 0,

@@ -1,7 +1,7 @@
 import { AsyncPipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { GtNotificationService } from '../gt-notification.service';
 import { GtNotificationComponent } from '../gt-notification/gt-notification.component';
-import { GtNotificationsService } from '../gt-notifications.service';
 
 @Component({
   selector: 'gt-notifications',
@@ -11,7 +11,7 @@ import { GtNotificationsService } from '../gt-notifications.service';
   imports: [GtNotificationComponent, NgClass, AsyncPipe],
 })
 export class GtNotificationsComponent {
-  private readonly notificationsService = inject(GtNotificationsService);
+  private readonly notificationsService = inject(GtNotificationService);
 
   protected readonly notifications$ = this.notificationsService.notifications$;
 

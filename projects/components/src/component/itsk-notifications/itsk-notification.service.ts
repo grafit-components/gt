@@ -5,6 +5,7 @@ import { ItskNotification } from './model/itsk-notification';
 @Injectable({
   providedIn: 'root',
 })
+/** @deprecated Используй GtNotificationService */
 export class ItskNotificationService {
   private _notifications = new Subject<ItskNotification>();
   private _clear = new Subject<string>();

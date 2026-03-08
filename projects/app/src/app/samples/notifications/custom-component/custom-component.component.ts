@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { GtNotificationsService } from '@grafit/components';
+import { GtNotificationService } from '@grafit/components';
 import { NotificationProgressComponent } from './notification-progress/notification-progress.component';
 
 @Component({
@@ -10,10 +10,10 @@ import { NotificationProgressComponent } from './notification-progress/notificat
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomComponentComponent {
-  private readonly notificationsService = inject(GtNotificationsService);
+  private readonly notificationService = inject(GtNotificationService);
 
   protected addWithProgress() {
-    this.notificationsService.add({
+    this.notificationService.add({
       head: 'Загрузка файла',
       text: 'Файл загружается...',
       component: NotificationProgressComponent,

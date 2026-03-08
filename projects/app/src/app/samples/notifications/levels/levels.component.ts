@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { GtNotificationsService } from '@grafit/components';
+import { GtNotificationService } from '@grafit/components';
 
 @Component({
   selector: 'app-levels',
@@ -9,10 +9,10 @@ import { GtNotificationsService } from '@grafit/components';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LevelsComponent {
-  private readonly notificationsService = inject(GtNotificationsService);
+  private readonly notificationService = inject(GtNotificationService);
 
   protected addInfo() {
-    this.notificationsService.add({
+    this.notificationService.add({
       head: 'Информация',
       text: 'Это информационное уведомление',
       level: 'info',
@@ -20,7 +20,7 @@ export class LevelsComponent {
   }
 
   protected addSuccess() {
-    this.notificationsService.add({
+    this.notificationService.add({
       head: 'Успех',
       text: 'Операция выполнена успешно',
       level: 'success',
@@ -28,7 +28,7 @@ export class LevelsComponent {
   }
 
   protected addWarn() {
-    this.notificationsService.add({
+    this.notificationService.add({
       head: 'Предупреждение',
       text: 'Обратите внимание на эту информацию',
       level: 'warn',
@@ -36,7 +36,7 @@ export class LevelsComponent {
   }
 
   protected addError() {
-    this.notificationsService.add({
+    this.notificationService.add({
       head: 'Ошибка',
       text: 'Произошла ошибка при выполнении операции',
       level: 'error',

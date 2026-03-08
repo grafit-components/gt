@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { GtNotificationsService } from '@grafit/components';
+import { GtNotificationService } from '@grafit/components';
 
 @Component({
   selector: 'app-simple',
@@ -9,10 +9,10 @@ import { GtNotificationsService } from '@grafit/components';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SimpleComponent {
-  private readonly notificationsService = inject(GtNotificationsService);
+  private readonly notificationService = inject(GtNotificationService);
 
   protected addNotification() {
-    this.notificationsService.add({
+    this.notificationService.add({
       head: 'Заголовок',
       text: 'Текст уведомления',
     });

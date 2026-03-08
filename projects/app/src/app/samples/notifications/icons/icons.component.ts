@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { GtNotificationsService } from '@grafit/components';
+import { GtNotificationService } from '@grafit/components';
 
 @Component({
   selector: 'app-icons',
@@ -8,10 +8,10 @@ import { GtNotificationsService } from '@grafit/components';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconsComponent {
-  private readonly notificationsService = inject(GtNotificationsService);
+  private readonly notificationService = inject(GtNotificationService);
 
   protected addInfo() {
-    this.notificationsService.add({
+    this.notificationService.add({
       head: 'Новое сообщение',
       text: 'Вы получили новое сообщение',
       level: 'info',
@@ -20,7 +20,7 @@ export class IconsComponent {
   }
 
   protected addWarn() {
-    this.notificationsService.add({
+    this.notificationService.add({
       head: 'Истекает срок действия',
       text: 'Срок действия пароля истекает через 3 дня',
       level: 'warn',

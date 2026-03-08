@@ -8,7 +8,7 @@ import { GtNotificationsComponent } from './gt-notifications/gt-notifications.co
 
 /** Сервис для работы с уведомлениями. */
 @Injectable({ providedIn: 'root' })
-export class GtNotificationsService {
+export class GtNotificationService {
   private overlay = inject(Overlay);
   private injector = inject(Injector);
 
@@ -68,7 +68,7 @@ export class GtNotificationsService {
     const componentInjector = Injector.create({
       providers: [
         {
-          provide: GtNotificationsService,
+          provide: GtNotificationService,
           useValue: this,
         },
       ],
