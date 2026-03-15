@@ -1,0 +1,16 @@
+@use 'colors/main-color.scss';
+@use 'colors/work-color.scss';
+
+$blocks: (
+  'main': main-color.$main,
+  'work': work-color.$work,
+);
+
+@use '../extends' with ($blocks: $blocks);
+@use 'projects/components/src/styles/index' with ($blocks: $blocks);
+
+:root {
+  --theme: light;
+  container: root;
+  color-scheme: light;
+}

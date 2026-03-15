@@ -17,7 +17,7 @@ export class CodeToHtmlService {
 
     return this.highlighter!.codeToHtml(document, {
       lang: this.getLang(land),
-      theme: 'github-light',
+      theme: localStorage['theme'] === 'dark' ? 'github-dark' : 'github-light',
     });
   }
 

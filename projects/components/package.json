@@ -26,8 +26,7 @@
     "@angular/core": ">=20.0.0",
     "moment-mini": "^2.24.0"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "sideEffects": false,
   "description": "Система проектирования интерфейсов",
   "homepage": "https://grafit-components.github.io/gt",
@@ -38,7 +37,7 @@
     "components"
   ],
   "repository": {
-    "url": "https://github.com/grafit-components/gt.git",
+    "url": "git+https://github.com/grafit-components/gt.git",
     "type": "git"
   },
   "bugs": {

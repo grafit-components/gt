@@ -5,6 +5,12 @@
     <div style="margin-left: auto">
       <!--      <app-theme-switch></app-theme-switch>-->
     </div>
+    <button class="btn-theme button_ghost display-flex align-center" (click)="onThemeToggle()" [title]="toggleThemeTitle">
+      <itsk-icon
+        [name]="currentTheme === 'light' ? 'icon-light_on-bulb-filled' : 'icon-light_off-bulb-dark-filled'"
+        cssClass="display-flex align-center"
+      />
+    </button>
   </div>
   <div class="container container_auto overflow-hidden">
     <div class="container border-r-1px border-color_default">
