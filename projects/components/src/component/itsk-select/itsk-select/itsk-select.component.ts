@@ -301,6 +301,7 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
       if (this.hasSearch) {
         this.elementRef.nativeElement.focus();
         this.searchText$ = '';
+        this.viewItems$ = this.items$ ?? [];
       }
       if (this.searchTextSubscription$) {
         this.searchTextSubscription$.unsubscribe();
