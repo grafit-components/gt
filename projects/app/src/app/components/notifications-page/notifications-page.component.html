@@ -1,5 +1,5 @@
 <div class="documentation color-text-contrast">
-  <div class="title font-title1 margin-b-4">GtNotificationsService</div>
+  <div class="title font-title1 margin-b-4">GtNotificationService</div>
 
   <div class="margin-b-4">
     <p class="font-size-4 margin-b-2">
@@ -11,7 +11,7 @@
   <div class="title font-title2 margin-b-2">Подключение</div>
   <div class="margin-b-4">
     <p class="margin-b-2">
-      Сервис <code>GtNotificationsService</code> предоставляется в корневом инжекторе и готов к использованию. Для создания уведомления
+      Сервис <code>GtNotificationService</code> предоставляется в корневом инжекторе и готов к использованию. Для создания уведомления
       используйте метод <code>add()</code>:
     </p>
     <app-sample [options]="basicSample" />
@@ -38,6 +38,17 @@
   <div class="title font-title2 margin-b-2">Кастомный компонент</div>
   <div class="margin-b-4">
     <p class="margin-b-2">В уведомление можно добавить кастомный компонент через параметр <code>component</code>.</p>
+    <p class="margin-b-2">
+      Внутри кастомного компонента доступен <code>GtNotificationRef</code> через <code>inject()</code> — с его помощью компонент может
+      управлять собственным уведомлением, например закрыть его по завершении операции:
+    </p>
+    <pre class="margin-b-2"><code>private readonly notificationRef = inject(GtNotificationRef);
+// ...
+this.notificationRef.close();</code></pre>
+    <p class="margin-b-2">
+      Чтобы передать в компонент собственные зависимости, используйте параметр <code>injector</code> — указанный инжектор станет
+      родительским для DI кастомного компонента.
+    </p>
     <app-sample [options]="customComponentSample" />
   </div>
 
@@ -53,13 +64,13 @@
   <div class="title font-title2 margin-b-2">API</div>
   <div class="margin-b-4">
     <div class="margin-b-3">
-      <div class="font-title3 margin-b-1">GtNotificationsService</div>
+      <div class="font-title3 margin-b-1">GtNotificationService</div>
       <table class="table">
         <thead>
           <tr>
-            <th>Метод</th>
+            <th>Метод/Свойство</th>
             <th>Описание</th>
-            <th>Возвращает</th>
+            <th>Возвращает/Тип</th>
           </tr>
         </thead>
         <tbody>
@@ -72,6 +83,11 @@
             <td><code>closeAll()</code></td>
             <td>Закрывает все уведомления</td>
             <td><code>void</code></td>
+          </tr>
+          <tr>
+            <td><code>notifications$</code></td>
+            <td>Поток активных уведомлений (для счётчиков, индикаторов и т.п.)</td>
+            <td><code>Observable&lt;GtNotificationRef[]&gt;</code></td>
           </tr>
         </tbody>
       </table>
@@ -93,7 +109,7 @@
             <td><code>head</code></td>
             <td><code>string</code></td>
             <td>—</td>
-            <td>Заголовок уведомления</td>
+            <td>Заголовок уведомления (блок заголовка с иконкой отображается только при заданном <code>head</code>)</td>
           </tr>
           <tr>
             <td><code>text</code></td>
@@ -160,6 +176,10 @@
           <tr>
             <td><code>close()</code></td>
             <td>Закрывает уведомление</td>
+          </tr>
+          <tr>
+            <td><code>redraw()</code></td>
+            <td>Перерисовывает уведомление (например, после изменения <code>config</code>)</td>
           </tr>
           <tr>
             <td><code>config</code></td>
