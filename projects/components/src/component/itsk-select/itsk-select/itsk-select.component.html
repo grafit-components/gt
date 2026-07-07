@@ -63,8 +63,10 @@
 <ng-template
   cdkConnectedOverlay
   (overlayOutsideClick)="close()"
+  (detach)="close()"
   [cdkConnectedOverlayOrigin]="selectHead"
   [cdkConnectedOverlayOpen]="panelOpen"
+  [cdkConnectedOverlayScrollStrategy]="scrollStrategy"
 >
   <div class="options" [style.min-width.px]="selectHead.elementRef.nativeElement.clientWidth" (keydown)="keyEvent($event)">
     @if (hasSearch) {
