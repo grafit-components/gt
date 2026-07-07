@@ -1,4 +1,4 @@
-import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
+import { CdkConnectedOverlay, CdkOverlayOrigin, ScrollStrategy, ScrollStrategyOptions } from '@angular/cdk/overlay';
 import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { NgTemplateOutlet } from '@angular/common';
 import {
@@ -221,10 +221,15 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
 
   //#region Angular
 
+  readonly scrollStrategy: ScrollStrategy;
+
   constructor(
     private changeDetector: ChangeDetectorRef,
     public elementRef: ElementRef,
-  ) {}
+    scrollStrategyOptions: ScrollStrategyOptions,
+  ) {
+    this.scrollStrategy = scrollStrategyOptions.close();
+  }
 
   ngOnInit() {}
 
@@ -280,6 +285,7 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
       return;
     }
     this.panelOpen$ = true;
+    window.addEventListener('scroll', this.onScroll, true);
     this.changeDetector.markForCheck();
     if (this.hasSearch) {
       this.searchTextSubscription$ = this.searchTextSub$.pipe(debounceTime(300)).subscribe((text) => this.search(text));
@@ -297,6 +303,7 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
     if (this.panelOpen) {
       this.panelOpen$ = false;
       this.focusedIndex$ = null;
+      window.removeEventListener('scroll', this.onScroll, true);
       this.changeDetector.markForCheck();
       if (this.hasSearch) {
         this.elementRef.nativeElement.focus();
@@ -309,6 +316,13 @@ export class ItskSelectComponent implements ControlValueAccessor, OnInit {
       }
     }
   }
+
+  private onScroll = (event: Event) => {
+    const target = event.target as Node | null;
+    if (target && target.contains && target.contains(this.elementRef.nativeElement)) {
+      this.close();
+    }
+  };
 
   //#endregion
 
