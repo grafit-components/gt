@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IconsPageComponent } from './components/icons-page/icons-page.component';
-import { NotificationsPageComponent } from './components/notifications-page/notifications-page.component';
-import { SelectPageComponent } from './components/select-page/select-page.component';
+import { OverviewPageComponent } from './components/overview-page/overview-page.component';
+import { DOCS } from './docs';
 import { FirstComponent } from './first/first.component';
 import { FormComponent } from './samples/form/form.component';
 import { SecondComponent } from './second/second.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: OverviewPageComponent,
+  },
+  ...DOCS.map(({ path, component }) => ({ path, component })),
   {
     path: 'first',
     component: FirstComponent,
@@ -17,20 +22,8 @@ const routes: Routes = [
     component: SecondComponent,
   },
   {
-    path: 'select',
-    component: SelectPageComponent,
-  },
-  {
     path: 'third',
     component: FormComponent,
-  },
-  {
-    path: 'notifications',
-    component: NotificationsPageComponent,
-  },
-  {
-    path: 'icons',
-    component: IconsPageComponent,
   },
 ];
 

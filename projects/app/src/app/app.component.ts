@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { IItskMenuItem, ItskIconComponent, ItskIconService, ItskMenuComponent } from '@grafit/components';
+import { DOCS } from './docs';
 
 @Component({
   selector: 'app-root',
@@ -25,18 +26,7 @@ export class AppComponent {
       code: 'Home',
       sortOrder: 0,
     },
-    {
-      name: 'Селект',
-      url: '/select',
-    },
-    {
-      name: 'Уведомления',
-      url: '/notifications',
-    },
-    {
-      name: 'Иконки',
-      url: '/icons',
-    },
+    ...DOCS.map(({ name, path, group }) => ({ name, url: '/' + path, group })),
     // {
     //   name: 'Code view',
     //   url: '/first',

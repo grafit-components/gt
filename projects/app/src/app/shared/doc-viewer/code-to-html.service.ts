@@ -25,7 +25,7 @@ export class CodeToHtmlService {
     switch (land) {
       case 'ts':
         return 'angular-ts';
-      case 'scss':
+      case 'html':
         return 'angular-html';
       default:
         return land;

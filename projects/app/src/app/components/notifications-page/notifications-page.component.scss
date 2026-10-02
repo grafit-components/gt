@@ -1,3 +1,20 @@
-td, th {
-  padding-right: 40px;
+@use 'projects/components/src/styles/vars' as vars;
+
+// Бейджи уровней — повторяют акцент реального уведомления (левый бордер)
+.level-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: vars.$space-2;
+}
+
+.level-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: vars.$space-1 vars.$space-2;
+  border: 1px solid transparent;
+  border-left-width: 3px;
+  border-radius: vars.$borderRadius-1;
+  background-color: rgba(128, 128, 128, 0.12);
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.2rem;
 }

@@ -1,0 +1,8 @@
+<itsk-select [items]="items" [(ngModel)]="selectedValue" valueRef="id" [textRef]="userTpl" searchRef="name" showClearButton="true" />
+
+<ng-template #userTpl let-item="item">
+  <b>{{ item.name }}</b> — {{ item.role }}
+</ng-template>
+
+<br />
+Selected: {{ selectedValue | json }}

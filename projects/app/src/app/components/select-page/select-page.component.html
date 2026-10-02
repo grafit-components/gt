@@ -1,9 +1,258 @@
-<p>select-page works!</p>
+<div class="documentation color-text-contrast">
+  <header class="page-header margin-b-4">
+    <div class="page-header__eyebrow font-overline">Компонент выбора</div>
+    <h1 class="page-header__title">ItskSelectComponent</h1>
+  </header>
 
-<app-select />
-<br />
-<br />
-<app-select-multiple />
-<br />
-<br />
-<app-tree-select />
+  <div class="lead border-color_info margin-b-5">
+    <p class="font-size-4">
+      Выпадающий список для выбора одного или нескольких значений из набора данных. Реализует
+      <code>ControlValueAccessor</code>, поэтому работает с <code>ngModel</code> и реактивными формами. Поддерживает поиск,
+      кнопку очистки, кастомные шаблоны и навигацию с клавиатуры.
+    </p>
+  </div>
+
+  <section class="section margin-b-4">
+    <div class="section__title font-title2 margin-b-2">Базовое использование</div>
+    <p class="margin-b-3">
+      Передайте массив данных в <code>items</code> и привяжите выбранное значение через <code>ngModel</code>. Параметр
+      <code>valueRef</code> указывает, какое поле объекта использовать в качестве значения модели, а <code>textRef</code> —
+      какое поле выводить в списке. Чтобы включить поиск, задайте <code>searchRef</code>, а для кнопки очистки —
+      <code>showClearButton</code>:
+    </p>
+    <div class="code-block margin-b-3"><app-doc-viewer [code]="basicCode" lang="html" /></div>
+    <app-sample [options]="basicSample" />
+  </section>
+
+  <section class="section margin-b-4">
+    <div class="section__title font-title2 margin-b-2">Множественный выбор</div>
+    <p class="margin-b-3">
+      Установите <code>multiple="true"</code> — в модель будет записываться массив значений. Параметр
+      <code>selectedRef="block"</code> отображает выбранные элементы в виде отдельных блоков (чипсов).
+    </p>
+    <p class="margin-b-3">
+      <strong>Важно:</strong> режим <code>multiple</code> нельзя менять после инициализации компонента — это вызовет ошибку.
+    </p>
+    <app-sample [options]="multipleSample" />
+  </section>
+
+  <section class="section margin-b-4">
+    <div class="section__title font-title2 margin-b-2">Значение модели и <code>valueRef</code></div>
+    <p class="margin-b-3">
+      Параметр <code>valueRef</code> определяет, что именно записывается в модель при выборе. Это может быть имя поля или
+      функция, которая принимает элемент данных и возвращает значение. По умолчанию <code>valueRef</code> возвращает сам
+      объект элемента целиком.
+    </p>
+    <div class="code-block margin-b-3"><app-doc-viewer [code]="valueRefCode" lang="html" /></div>
+    <p class="margin-b-0">
+      Поддерживается доступ к вложенным полям через точку, например <code>valueRef="data.id"</code>. То же относится к
+      <code>textRef</code> и <code>searchRef</code>. При изменении массива <code>items</code> выбранное значение
+      перевычисляется автоматически по текущему <code>valueRef</code>.
+    </p>
+  </section>
+
+  <section class="section margin-b-4">
+    <div class="section__title font-title2 margin-b-2">Placeholder и блокировка</div>
+    <p class="margin-b-3">
+      Параметр <code>placeholder</code> задаёт текст (или шаблон), который отображается, пока ничего не выбрано. Параметр
+      <code>disabled</code> блокирует селект — открыть список и изменить значение нельзя. При работе через реактивные формы
+      блокировка управляется состоянием контрола (<code>FormControl.disable()</code>).
+    </p>
+    <app-sample [options]="placeholderSample" />
+  </section>
+
+  <section class="section margin-b-4">
+    <div class="section__title font-title2 margin-b-2">Кастомный шаблон</div>
+    <p class="margin-b-3">
+      Помимо строкового имени поля <code>textRef</code> может принимать <code>TemplateRef</code> — тогда вы полностью
+      управляете разметкой элемента. Один и тот же шаблон используется и для строк выпадающего списка, и для отображения
+      выбранного значения. Контекст шаблона содержит элемент данных в переменной <code>item</code>:
+    </p>
+    <div class="code-block margin-b-3"><app-doc-viewer [code]="customTemplateCode" lang="html" /></div>
+    <app-sample [options]="customTemplateSample" />
+  </section>
+
+  <section class="section margin-b-4">
+    <div class="section__title font-title2 margin-b-2">Поиск и виртуальный скролл</div>
+    <p class="margin-b-3">
+      Задайте <code>searchRef</code> (имя поля или функцию) — над списком появится поле поиска с фильтрацией по подстрокам
+      (без учёта порядка слов, без учёта регистра). При больших списках включите <code>virtual="true"</code> для
+      виртуального скролла; высоту строки и области прокрутки регулируют <code>itemSize</code> и <code>height</code>.
+    </p>
+    <p class="margin-b-3">
+      Высота выпадающего списка подстраивается под количество элементов и ограничена восемью видимыми строками — далее
+      появляется прокрутка.
+    </p>
+    <app-sample [options]="virtualSample" />
+  </section>
+
+  <section class="section margin-b-4">
+    <div class="section__title font-title2 margin-b-2">Программное управление</div>
+    <p class="margin-b-3">
+      Открыть или закрыть список программно можно через методы компонента <code>open()</code>, <code>close()</code> и
+      <code>toggle()</code> — например, по ссылке на экземпляр через шаблонную переменную. Входной параметр
+      <code>panelOpen</code> также позволяет задать состояние списка через привязку <code>[panelOpen]="isOpen"</code>.
+    </p>
+    <div class="code-block margin-b-3"><app-doc-viewer [code]="panelControlCode" lang="html" /></div>
+    <app-sample [options]="panelControlSample" />
+  </section>
+
+  <section class="section margin-b-4">
+    <div class="section__title font-title2 margin-b-2">Клавиатура</div>
+    <p class="margin-b-3">Селект полностью управляется с клавиатуры:</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Клавиша</th>
+          <th>Действие</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>↑</code> / <code>↓</code></td>
+          <td>Открыть список и перемещать фокус по элементам</td>
+        </tr>
+        <tr>
+          <td><code>Enter</code> / <code>Space</code></td>
+          <td>Выбрать элемент в фокусе (или первый результат поиска)</td>
+        </tr>
+        <tr>
+          <td><code>Shift</code> + <code>↑</code>/<code>↓</code></td>
+          <td>Выбор элементов при перемещении (для <code>multiple</code>)</td>
+        </tr>
+        <tr>
+          <td><code>Esc</code></td>
+          <td>Закрыть список</td>
+        </tr>
+        <tr>
+          <td>Любой символ</td>
+          <td>Начать поиск (если задан <code>searchRef</code>)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="section__title font-title3 margin-b-3">API</div>
+
+    <div class="margin-b-4">
+      <div class="font-title3 margin-b-2">ItskSelectComponent</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th>По умолчанию</th>
+            <th>Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>items</code></td>
+            <td><code>any[]</code></td>
+            <td><code>[]</code></td>
+            <td>Данные для отображения</td>
+          </tr>
+          <tr>
+            <td><code>valueRef</code></td>
+            <td><code>string | ((item) =&gt; any)</code></td>
+            <td><code>(item) =&gt; item</code></td>
+            <td>Поле или функция, возвращающие значение для модели</td>
+          </tr>
+          <tr>
+            <td><code>textRef</code></td>
+            <td><code>string | TemplateRef</code></td>
+            <td>—</td>
+            <td>Поле или шаблон для отображения элемента</td>
+          </tr>
+          <tr>
+            <td><code>searchRef</code></td>
+            <td><code>string | ((item) =&gt; string)</code></td>
+            <td>—</td>
+            <td>Поле или функция для поиска (включает поле ввода)</td>
+          </tr>
+          <tr>
+            <td><code>multiple</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Множественный выбор (нельзя менять после инициализации)</td>
+          </tr>
+          <tr>
+            <td><code>selectedRef</code></td>
+            <td><code>TemplateRef | 'block'</code></td>
+            <td>—</td>
+            <td>Шаблон выбранного значения или режим блоков</td>
+          </tr>
+          <tr>
+            <td><code>placeholder</code></td>
+            <td><code>string | TemplateRef</code></td>
+            <td>—</td>
+            <td>Текст или шаблон при отсутствии выбора</td>
+          </tr>
+          <tr>
+            <td><code>showClearButton</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Показывать кнопку очистки значения</td>
+          </tr>
+          <tr>
+            <td><code>disabled</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Заблокировать селект</td>
+          </tr>
+          <tr>
+            <td><code>virtual</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Использовать виртуальный скролл</td>
+          </tr>
+          <tr>
+            <td><code>itemSize</code></td>
+            <td><code>number</code></td>
+            <td><code>32</code></td>
+            <td>Высота строки списка в px</td>
+          </tr>
+          <tr>
+            <td><code>height</code></td>
+            <td><code>number</code></td>
+            <td><code>itemSize * 8</code></td>
+            <td>Максимальная высота области прокрутки</td>
+          </tr>
+          <tr>
+            <td><code>panelOpen</code></td>
+            <td><code>boolean</code></td>
+            <td><code>false</code></td>
+            <td>Управление состоянием открытия списка</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <div class="font-title3 margin-b-2">Методы</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Метод</th>
+            <th>Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>open()</code></td>
+            <td>Открыть выпадающий список</td>
+          </tr>
+          <tr>
+            <td><code>close()</code></td>
+            <td>Закрыть выпадающий список</td>
+          </tr>
+          <tr>
+            <td><code>toggle()</code></td>
+            <td>Переключить состояние списка</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

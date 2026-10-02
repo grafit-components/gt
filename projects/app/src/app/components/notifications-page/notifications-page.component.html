@@ -1,65 +1,83 @@
 <div class="documentation color-text-contrast">
-  <div class="title font-title1 margin-b-4">GtNotificationsService</div>
+  <header class="page-header margin-b-4">
+    <div class="page-header__eyebrow font-overline">Сервис уведомлений</div>
+    <h1 class="page-header__title">GtNotificationService</h1>
+  </header>
 
-  <div class="margin-b-4">
-    <p class="font-size-4 margin-b-2">
+  <div class="lead border-color_info margin-b-5">
+    <p class="font-size-4">
       Сервис для создания и управления уведомлениями. Уведомления отображаются в верхней части экрана и автоматически скрываются через
       заданное время.
     </p>
   </div>
 
-  <div class="title font-title2 margin-b-2">Подключение</div>
-  <div class="margin-b-4">
-    <p class="margin-b-2">
-      Сервис <code>GtNotificationsService</code> предоставляется в корневом инжекторе и готов к использованию. Для создания уведомления
+  <section class="section margin-b-4">
+    <div class="section__title font-title2 margin-b-2">Подключение</div>
+    <p class="margin-b-3">
+      Сервис <code>GtNotificationService</code> предоставляется в корневом инжекторе и готов к использованию. Для создания уведомления
       используйте метод <code>add()</code>:
     </p>
     <app-sample [options]="basicSample" />
-  </div>
+  </section>
 
-  <div class="title font-title2 margin-b-2">Уровни уведомлений</div>
-  <div class="margin-b-4">
-    <p class="margin-b-2">
-      Уведомления поддерживают 4 уровня: <code>info</code>, <code>success</code>, <code>warn</code>, <code>error</code>. Уровень определяет
-      цвет и иконку уведомления.
+  <section class="section margin-b-4">
+    <div class="section__title font-title2 margin-b-2">Уровни уведомлений</div>
+    <p class="margin-b-3">
+      Уведомления поддерживают 4 уровня. Уровень определяет цвет акцента и иконку уведомления:
     </p>
+    <div class="level-badges margin-b-3">
+      <span class="level-badge border-color_info">info</span>
+      <span class="level-badge border-color_success">success</span>
+      <span class="level-badge border-color_warning">warn</span>
+      <span class="level-badge border-color_error">error</span>
+    </div>
     <app-sample [options]="levelsSample" />
-  </div>
+  </section>
 
-  <div class="title font-title2 margin-b-2">Длительность отображения</div>
-  <div class="margin-b-4">
-    <p class="margin-b-2">
+  <section class="section margin-b-4">
+    <div class="section__title font-title2 margin-b-2">Длительность отображения</div>
+    <p class="margin-b-3">
       Параметр <code>duration</code> задаёт время отображения уведомления в секундах. По умолчанию — 10 секунд. Установите
       <code>0</code> для постоянного уведомления.
     </p>
     <app-sample [options]="durationSample" />
-  </div>
+  </section>
 
-  <div class="title font-title2 margin-b-2">Кастомный компонент</div>
-  <div class="margin-b-4">
-    <p class="margin-b-2">В уведомление можно добавить кастомный компонент через параметр <code>component</code>.</p>
-    <app-sample [options]="customComponentSample" />
-  </div>
-
-  <div class="title font-title2 margin-b-2">Иконки</div>
-  <div class="margin-b-4">
+  <section class="section margin-b-4">
+    <div class="section__title font-title2 margin-b-2">Кастомный компонент</div>
+    <p class="margin-b-3">В уведомление можно добавить кастомный компонент через параметр <code>component</code>.</p>
     <p class="margin-b-2">
+      Внутри кастомного компонента доступен <code>GtNotificationRef</code> через <code>inject()</code> — с его помощью компонент может
+      управлять собственным уведомлением, например закрыть его по завершении операции:
+    </p>
+    <div class="code-block margin-b-3"><app-doc-viewer [code]="notificationRefCode" lang="ts" /></div>
+    <p class="margin-b-3">
+      Чтобы передать в компонент собственные зависимости, используйте параметр <code>injector</code> — указанный инжектор станет
+      родительским для DI кастомного компонента.
+    </p>
+    <app-sample [options]="customComponentSample" />
+  </section>
+
+  <section class="section margin-b-4">
+    <div class="section__title font-title2 margin-b-2">Иконки</div>
+    <p class="margin-b-3">
       Для отображения иконки используйте параметры <code>iconName</code> (имя иконки) и <code>iconClass</code> (дополнительные CSS-классы).
       Иконка отображается перед заголовком уведомления.
     </p>
     <app-sample [options]="iconsSample" />
-  </div>
+  </section>
 
-  <div class="title font-title2 margin-b-2">API</div>
-  <div class="margin-b-4">
-    <div class="margin-b-3">
-      <div class="font-title3 margin-b-1">GtNotificationsService</div>
+  <section class="section">
+    <div class="section__title font-title2 margin-b-3">API</div>
+
+    <div class="margin-b-4">
+      <div class="font-title3 margin-b-2">GtNotificationService</div>
       <table class="table">
         <thead>
           <tr>
-            <th>Метод</th>
+            <th>Метод/Свойство</th>
             <th>Описание</th>
-            <th>Возвращает</th>
+            <th>Возвращает/Тип</th>
           </tr>
         </thead>
         <tbody>
@@ -73,12 +91,17 @@
             <td>Закрывает все уведомления</td>
             <td><code>void</code></td>
           </tr>
+          <tr>
+            <td><code>notifications$</code></td>
+            <td>Поток активных уведомлений (для счётчиков, индикаторов и т.п.)</td>
+            <td><code>Observable&lt;GtNotificationRef[]&gt;</code></td>
+          </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="margin-b-3">
-      <div class="font-title3 margin-b-1">GtNotificationConfig</div>
+    <div class="margin-b-4">
+      <div class="font-title3 margin-b-2">GtNotificationConfig</div>
       <table class="table">
         <thead>
           <tr>
@@ -93,7 +116,7 @@
             <td><code>head</code></td>
             <td><code>string</code></td>
             <td>—</td>
-            <td>Заголовок уведомления</td>
+            <td>Заголовок уведомления (блок заголовка с иконкой отображается только при заданном <code>head</code>)</td>
           </tr>
           <tr>
             <td><code>text</code></td>
@@ -148,7 +171,7 @@
     </div>
 
     <div>
-      <div class="font-title3 margin-b-1">GtNotificationRef</div>
+      <div class="font-title3 margin-b-2">GtNotificationRef</div>
       <table class="table">
         <thead>
           <tr>
@@ -162,11 +185,15 @@
             <td>Закрывает уведомление</td>
           </tr>
           <tr>
+            <td><code>redraw()</code></td>
+            <td>Перерисовывает уведомление (например, после изменения <code>config</code>)</td>
+          </tr>
+          <tr>
             <td><code>config</code></td>
             <td>Конфигурация уведомления</td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div>
+  </section>
 </div>

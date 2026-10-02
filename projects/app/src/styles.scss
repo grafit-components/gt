@@ -1,0 +1,158 @@
+@use 'projects/components/src/styles/vars' as vars;
+
+// Общие стили страниц документации (не зависят от темы)
+
+// нейтральные подложки/границы, не зависящие от темы
+$surface: rgba(128, 128, 128, 0.04);
+$surface-strong: rgba(128, 128, 128, 0.12);
+$line: rgba(128, 128, 128, 0.18);
+
+// страница, отрисованная роутером, занимает всю рабочую область
+router-outlet + * {
+  display: block;
+  flex: 1;
+}
+
+.documentation {
+  max-width: 920px;
+
+  // Шапка страницы
+  .page-header {
+    &__eyebrow {
+      opacity: 0.6;
+      margin-bottom: vars.$space-1;
+    }
+
+    &__title {
+      margin: 0;
+      font-family: 'Roboto Mono', 'Roboto', monospace;
+      font-size: 2.8rem;
+      line-height: 1.2;
+      font-weight: 600;
+    }
+  }
+
+  // Вводный блок с акцентной полосой слева
+  .lead {
+    padding: vars.$space-3 vars.$space-4;
+    border-left: 3px solid;
+    border-radius: vars.$borderRadius-1;
+    background-color: $surface;
+  }
+
+  // Секция-карточка
+  .section {
+    display: block;
+    padding: vars.$space-4 vars.$space-5;
+    border: 1px solid $line;
+    border-radius: vars.$borderRadius-2;
+    background-color: $surface;
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+
+    &:hover {
+      border-color: rgba(128, 128, 128, 0.3);
+      box-shadow: 0 vars.$space-1 vars.$space-4 rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  .section__title {
+    display: flex;
+    align-items: center;
+    gap: vars.$space-2;
+
+    // декоративный маркер у заголовка секции
+    &::before {
+      content: '';
+      flex: none;
+      width: vars.$space-1;
+      height: 1.6rem;
+      border-radius: vars.$borderRadius-1;
+      background-color: currentColor;
+      opacity: 0.45;
+    }
+  }
+
+  // Инлайн-код. Код внутри pre не трогаем: это блоки с подсветкой в превью примеров
+  :not(pre) > code {
+    padding: 0.1em 0.4em;
+    border-radius: vars.$borderRadius-1;
+    background-color: $surface-strong;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.92em;
+    white-space: nowrap;
+  }
+
+  // Код с подсветкой (блоки на страницах и превью примеров): моноширинный шрифт нужен и вложенным span,
+  // иначе их перебивает шрифт из сброса стилей
+  pre code,
+  pre code * {
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  // Блок кода
+  .code-block {
+    margin: 0;
+    padding: vars.$space-3;
+    border-radius: vars.$borderRadius-1;
+    background-color: $surface-strong;
+    overflow-x: auto;
+
+    code {
+      font-size: 0.92em;
+    }
+
+    // подсветчик задаёт pre свой фон инлайн-стилем — оставляем подложку блока
+    pre {
+      margin: 0;
+      background: none !important;
+    }
+  }
+
+  // Таблицы API
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      padding: vars.$space-2 vars.$space-3;
+      border-bottom: 1px solid $line;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      border-bottom-width: 2px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      transition: background-color 0.15s ease;
+
+      &:hover {
+        background-color: $surface;
+      }
+
+      &:last-child td {
+        border-bottom: none;
+      }
+    }
+  }
+
+  // Сетка карточек на обзорной странице
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: vars.$space-3;
+  }
+
+  .overview-card {
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+}
