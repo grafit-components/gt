@@ -19,6 +19,10 @@ import { ApiRow, DOC_IMPORTS, sample } from '../../shared/doc/doc.components';
           ссылке. Пункты с одинаковым <code>group</code> выводятся под общим заголовком после пунктов без группы,
           <code>hidden</code> скрывает пункт, <code>iconClassName</code> задаёт имя иконки.
         </p>
+        <p class="margin-b-3">
+          <strong>Важно:</strong> меню занимает всю высоту родителя и прокручивается внутри себя. Родитель должен быть flex-контейнером с
+          заданной высотой, иначе меню схлопнется в ноль и его не будет видно.
+        </p>
         <app-sample [options]="basicSample" />
       </app-doc-section>
 

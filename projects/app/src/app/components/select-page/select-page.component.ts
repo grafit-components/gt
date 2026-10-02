@@ -5,15 +5,40 @@ import { SelectPanelControlComponent } from '../../samples/select/select-panel-c
 import { SelectPlaceholderComponent } from '../../samples/select/select-placeholder/select-placeholder.component';
 import { SelectVirtualComponent } from '../../samples/select/select-virtual/select-virtual.component';
 import { SelectComponent } from '../../samples/select/select/select.component';
+import { DocViewerComponent } from '../../shared/doc-viewer/doc-viewer.component';
 import { SampleComponent, SampleOptions } from '../../shared/sample/sample.component';
 
 @Component({
   selector: 'app-select-page',
-  imports: [SampleComponent],
+  imports: [SampleComponent, DocViewerComponent],
   templateUrl: './select-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectPageComponent {
+  basicCode = `<itsk-select
+  [items]="items"
+  [(ngModel)]="selectedValue"
+  valueRef="value"
+  textRef="label"
+  searchRef="label"
+  showClearButton="true"
+/>`;
+
+  valueRefCode = `<!-- записывать в модель поле value -->
+<itsk-select valueRef="value" />
+
+<!-- или произвольное вычисляемое значение: getId = (item) => item.id -->
+<itsk-select [valueRef]="getId" />`;
+
+  customTemplateCode = `<itsk-select [items]="items" [(ngModel)]="selectedValue" valueRef="id" [textRef]="userTpl" searchRef="name" />
+
+<ng-template #userTpl let-item="item">
+  <b>{{ item.name }}</b> — {{ item.role }}
+</ng-template>`;
+
+  panelControlCode = `<itsk-select #sel [items]="items" ... />
+<button (click)="sel.toggle()">Переключить</button>`;
+
   basicSample: SampleOptions = {
     title: 'Базовое использование',
     component: SelectComponent,

@@ -5,7 +5,8 @@ import { IItskMenuItem, ItskMenuComponent } from '@grafit/components';
   selector: 'app-menu-basic',
   imports: [ItskMenuComponent],
   template: `
-    <div class="border-1px border-color_default" style="width: 280px">
+    <!-- меню занимает высоту родителя, поэтому родитель должен быть flex-контейнером с заданной высотой -->
+    <div class="container border-1px border-color_default" style="width: 280px; height: 240px">
       <itsk-menu [menu]="menu" (itemClick)="clicked = $event.name" />
     </div>
     <br />

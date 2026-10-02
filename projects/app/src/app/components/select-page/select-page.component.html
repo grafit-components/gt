@@ -20,14 +20,7 @@
       какое поле выводить в списке. Чтобы включить поиск, задайте <code>searchRef</code>, а для кнопки очистки —
       <code>showClearButton</code>:
     </p>
-    <pre class="code-block margin-b-3"><code>&lt;itsk-select
-  [items]="items"
-  [(ngModel)]="selectedValue"
-  valueRef="value"
-  textRef="label"
-  searchRef="label"
-  showClearButton="true"
-/&gt;</code></pre>
+    <div class="code-block margin-b-3"><app-doc-viewer [code]="basicCode" lang="html" /></div>
     <app-sample [options]="basicSample" />
   </section>
 
@@ -50,11 +43,7 @@
       функция, которая принимает элемент данных и возвращает значение. По умолчанию <code>valueRef</code> возвращает сам
       объект элемента целиком.
     </p>
-    <pre class="code-block margin-b-3"><code>// записывать в модель поле value
-valueRef="value"
-
-// или произвольное вычисляемое значение
-[valueRef]="getId"     // getId = (item) =&gt; item.id</code></pre>
+    <div class="code-block margin-b-3"><app-doc-viewer [code]="valueRefCode" lang="html" /></div>
     <p class="margin-b-0">
       Поддерживается доступ к вложенным полям через точку, например <code>valueRef="data.id"</code>. То же относится к
       <code>textRef</code> и <code>searchRef</code>. При изменении массива <code>items</code> выбранное значение
@@ -79,11 +68,7 @@ valueRef="value"
       управляете разметкой элемента. Один и тот же шаблон используется и для строк выпадающего списка, и для отображения
       выбранного значения. Контекст шаблона содержит элемент данных в переменной <code>item</code>:
     </p>
-    <pre class="code-block margin-b-3"><code>&lt;itsk-select [items]="items" [(ngModel)]="selectedValue" valueRef="id" [textRef]="userTpl" searchRef="name" /&gt;
-
-&lt;ng-template #userTpl let-item="item"&gt;
-  &lt;b&gt;{{ '{{' }} item.name {{ '}}' }}&lt;/b&gt; — {{ '{{' }} item.role {{ '}}' }}
-&lt;/ng-template&gt;</code></pre>
+    <div class="code-block margin-b-3"><app-doc-viewer [code]="customTemplateCode" lang="html" /></div>
     <app-sample [options]="customTemplateSample" />
   </section>
 
@@ -108,8 +93,7 @@ valueRef="value"
       <code>toggle()</code> — например, по ссылке на экземпляр через шаблонную переменную. Входной параметр
       <code>panelOpen</code> также позволяет задать состояние списка через привязку <code>[panelOpen]="isOpen"</code>.
     </p>
-    <pre class="code-block margin-b-3"><code>&lt;itsk-select #sel [items]="items" ... /&gt;
-&lt;button (click)="sel.toggle()"&gt;Переключить&lt;/button&gt;</code></pre>
+    <div class="code-block margin-b-3"><app-doc-viewer [code]="panelControlCode" lang="html" /></div>
     <app-sample [options]="panelControlSample" />
   </section>
 

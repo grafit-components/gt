@@ -50,9 +50,7 @@
       Внутри кастомного компонента доступен <code>GtNotificationRef</code> через <code>inject()</code> — с его помощью компонент может
       управлять собственным уведомлением, например закрыть его по завершении операции:
     </p>
-    <pre class="code-block margin-b-3"><code>private readonly notificationRef = inject(GtNotificationRef);
-// ...
-this.notificationRef.close();</code></pre>
+    <div class="code-block margin-b-3"><app-doc-viewer [code]="notificationRefCode" lang="ts" /></div>
     <p class="margin-b-3">
       Чтобы передать в компонент собственные зависимости, используйте параметр <code>injector</code> — указанный инжектор станет
       родительским для DI кастомного компонента.

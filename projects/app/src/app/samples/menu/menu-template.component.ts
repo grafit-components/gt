@@ -9,7 +9,8 @@ interface CounterMenuItem extends IItskMenuItem {
   selector: 'app-menu-template',
   imports: [ItskMenuComponent, ItskMenuItemDirective],
   template: `
-    <div class="border-1px border-color_default" style="width: 280px">
+    <!-- меню занимает высоту родителя, поэтому родитель должен быть flex-контейнером с заданной высотой -->
+    <div class="container border-1px border-color_default" style="width: 280px; height: 120px">
       <itsk-menu [menu]="menu">
         <ng-template itskMenuItem let-item>
           <span class="menu__item__name">{{ item.name }} ({{ item.count }})</span>

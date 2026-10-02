@@ -4,16 +4,21 @@ import { DurationComponent } from '../../samples/notifications/duration/duration
 import { IconsComponent } from '../../samples/notifications/icons/icons.component';
 import { LevelsComponent } from '../../samples/notifications/levels/levels.component';
 import { SimpleComponent } from '../../samples/notifications/simple/simple.component';
+import { DocViewerComponent } from '../../shared/doc-viewer/doc-viewer.component';
 import { SampleComponent, SampleOptions } from '../../shared/sample/sample.component';
 
 @Component({
   selector: 'app-notifications-page',
-  imports: [SampleComponent],
+  imports: [SampleComponent, DocViewerComponent],
   templateUrl: './notifications-page.component.html',
   styleUrl: './notifications-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotificationsPageComponent {
+  notificationRefCode = `private readonly notificationRef = inject(GtNotificationRef);
+// ...
+this.notificationRef.close();`;
+
   basicSample: SampleOptions = {
     title: 'Базовое использование',
     component: SimpleComponent,
