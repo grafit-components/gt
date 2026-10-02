@@ -11,7 +11,6 @@ import { MenuPageComponent } from './components/menu-page/menu-page.component';
 import { ModalPageComponent } from './components/modal-page/modal-page.component';
 import { NavigationPageComponent } from './components/navigation-page/navigation-page.component';
 import { NotificationsPageComponent } from './components/notifications-page/notifications-page.component';
-import { PagerPageComponent } from './components/pager-page/pager-page.component';
 import { RadioPageComponent } from './components/radio-page/radio-page.component';
 import { SelectPageComponent } from './components/select-page/select-page.component';
 import { SpinnerPageComponent } from './components/spinner-page/spinner-page.component';
@@ -102,13 +101,6 @@ export const DOCS: DocEntry[] = [
   },
   { path: 'tabs', name: 'Вкладки', group: 'Навигация', description: 'Переключение содержимого по вкладкам', component: TabsPageComponent },
   {
-    path: 'pager',
-    name: 'Пагинатор',
-    group: 'Навигация',
-    description: 'Переход по страницам и размер страницы',
-    component: PagerPageComponent,
-  },
-  {
     path: 'navigation',
     name: 'Панель навигации',
     group: 'Навигация',
@@ -180,7 +172,8 @@ export const DOCS: DocEntry[] = [
 
 /** Компоненты библиотеки, для которых страниц пока нет */
 export const NOT_DOCUMENTED: { name: string; reason: string }[] = [
-  { name: 'itsk-grid, itsk-filter', reason: 'таблица и её фильтры описываются отдельно' },
+  { name: 'itsk-grid, itsk-pager', reason: 'устарели, не используйте в новом коде' },
+  { name: 'itsk-filter', reason: 'фильтры таблицы, завязаны на модели itsk-grid' },
   { name: 'itsk-card', reason: 'заготовка без параметров' },
   { name: 'itsk-switch, itsk-carousel, itsk-number-field, itsk-accordion', reason: 'заготовки, не экспортируются из библиотеки' },
 ];

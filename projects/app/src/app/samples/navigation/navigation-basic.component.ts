@@ -22,7 +22,7 @@ export class NavigationBasicComponent {
     menuItems: [
       { name: 'Главная', url: '/', match: 'exact' },
       { name: 'Вкладки', url: '/tabs' },
-      { name: 'Пагинатор', url: '/pager' },
+      { name: 'Меню', url: '/menu' },
     ],
     // ссылка на символ в svg-спрайте, например 'assets/logo.svg#logo'
     footerImg: '',

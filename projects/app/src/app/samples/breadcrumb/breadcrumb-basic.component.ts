@@ -14,6 +14,6 @@ export class BreadcrumbBasicComponent {
   protected menu: IItskMenuItem[] = [
     { name: 'Хлебные крошки', url: '/breadcrumb' },
     { name: 'Вкладки', url: '/tabs' },
-    { name: 'Пагинатор', url: '/pager' },
+    { name: 'Меню', url: '/menu' },
   ];
 }
