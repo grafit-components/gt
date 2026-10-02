@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input, Type } from '@angular/core';
+import { DocumentLang } from '../doc-viewer/code-to-html.service';
+import { DocViewerComponent } from '../doc-viewer/doc-viewer.component';
 import { SampleComponent, SampleOptions } from '../sample/sample.component';
 
 /** Каркас страницы документации: шапка, вводный блок и секции */
@@ -102,8 +104,21 @@ export class ApiTableComponent {
   protected readonly hasDefault = computed(() => this.rows().some((row) => row.default));
 }
 
+/** Блок кода с подсветкой синтаксиса */
+@Component({
+  selector: 'app-doc-code',
+  imports: [DocViewerComponent],
+  template: `<app-doc-viewer [code]="code()" [lang]="lang()" />`,
+  host: { class: 'code-block display-block margin-b-3' },
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class DocCodeComponent {
+  readonly code = input.required<string>();
+  readonly lang = input<DocumentLang>('html');
+}
+
 /** Всё, что нужно шаблону страницы документации */
-export const DOC_IMPORTS = [DocPageComponent, DocSectionComponent, ApiTableComponent, SampleComponent] as const;
+export const DOC_IMPORTS = [DocPageComponent, DocSectionComponent, ApiTableComponent, DocCodeComponent, SampleComponent] as const;
 
 /** Описание примера: `path` — путь к файлу примера внутри `samples` без расширения `.component.ts` */
 export function sample(title: string, component: Type<unknown>, path: string): SampleOptions {

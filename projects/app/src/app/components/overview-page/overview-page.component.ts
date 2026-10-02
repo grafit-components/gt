@@ -30,22 +30,6 @@ import { DocEntry, DOCS, NOT_DOCUMENTED } from '../../docs';
           }
         </div>
       }
-
-      <div class="section">
-        <div class="section__title font-title2 margin-b-2">Пока без документации</div>
-        <table class="table">
-          <tbody>
-            @for (item of notDocumented; track item.name) {
-              <tr>
-                <td>
-                  <code>{{ item.name }}</code>
-                </td>
-                <td>{{ item.reason }}</td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      </div>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

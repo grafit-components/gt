@@ -14,6 +14,12 @@ import { NotificationsPageComponent } from './components/notifications-page/noti
 import { RadioPageComponent } from './components/radio-page/radio-page.component';
 import { SelectPageComponent } from './components/select-page/select-page.component';
 import { SpinnerPageComponent } from './components/spinner-page/spinner-page.component';
+import { StyleColorsPageComponent } from './components/style-pages/style-colors-page.component';
+import { StyleControlsPageComponent } from './components/style-pages/style-controls-page.component';
+import { StyleLayoutPageComponent } from './components/style-pages/style-layout-page.component';
+import { StyleSetupPageComponent } from './components/style-pages/style-setup-page.component';
+import { StyleSpacingPageComponent } from './components/style-pages/style-spacing-page.component';
+import { StyleTypographyPageComponent } from './components/style-pages/style-typography-page.component';
 import { TabsPageComponent } from './components/tabs-page/tabs-page.component';
 import { TogglePageComponent } from './components/toggle-page/toggle-page.component';
 import { TooltipPageComponent } from './components/tooltip-page/tooltip-page.component';
@@ -34,6 +40,43 @@ export interface DocEntry {
 
 /** Единый список страниц документации: из него строятся маршруты, боковое меню и обзорная страница */
 export const DOCS: DocEntry[] = [
+  {
+    path: 'style-setup',
+    name: 'Подключение и темы',
+    group: 'Стили',
+    description: 'Файл темы, карта цветов, переключение',
+    component: StyleSetupPageComponent,
+  },
+  { path: 'style-colors', name: 'Цвета', group: 'Стили', description: 'Палитра блоков work и main', component: StyleColorsPageComponent },
+  {
+    path: 'style-typography',
+    name: 'Типографика',
+    group: 'Стили',
+    description: 'Шкала шрифтовых стилей',
+    component: StyleTypographyPageComponent,
+  },
+  {
+    path: 'style-spacing',
+    name: 'Отступы, рамки и тени',
+    group: 'Стили',
+    description: 'Шкала размеров и её классы',
+    component: StyleSpacingPageComponent,
+  },
+  {
+    path: 'style-layout',
+    name: 'Раскладка и утилиты',
+    group: 'Стили',
+    description: 'Контейнеры, сетка, служебные классы',
+    component: StyleLayoutPageComponent,
+  },
+  {
+    path: 'style-controls',
+    name: 'Кнопки и поля',
+    group: 'Стили',
+    description: 'Классы для кнопок и полей ввода',
+    component: StyleControlsPageComponent,
+  },
+
   {
     path: 'checkbox',
     name: 'Чекбокс',
