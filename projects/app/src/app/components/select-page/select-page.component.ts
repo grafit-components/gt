@@ -11,7 +11,6 @@ import { SampleComponent, SampleOptions } from '../../shared/sample/sample.compo
   selector: 'app-select-page',
   imports: [SampleComponent],
   templateUrl: './select-page.component.html',
-  styleUrl: './select-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectPageComponent {
