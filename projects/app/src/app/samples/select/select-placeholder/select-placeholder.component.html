@@ -1,0 +1,13 @@
+<itsk-select
+  [items]="items"
+  [(ngModel)]="selectedValue"
+  valueRef="value"
+  textRef="label"
+  placeholder="Выберите значение"
+  [disabled]="disabled"
+  showClearButton="true"
+/>
+<br />
+Selected: {{ selectedValue | json }}
+<br />
+<button class="button_default" (click)="disabled = !disabled">{{ disabled ? 'Разблокировать' : 'Заблокировать' }}</button>

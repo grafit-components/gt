@@ -1,0 +1,5 @@
+<itsk-select #sel [items]="items" [(ngModel)]="selectedValue" valueRef="value" textRef="label" />
+<br />
+<button class="button_default" (click)="sel.open()">Открыть</button>
+<button class="button_default" (click)="sel.close()">Закрыть</button>
+<button class="button_default" (click)="sel.toggle()">Переключить</button>

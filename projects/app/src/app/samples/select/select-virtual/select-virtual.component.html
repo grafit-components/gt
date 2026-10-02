@@ -1,0 +1,11 @@
+<itsk-select
+  [items]="items"
+  [(ngModel)]="selectedValue"
+  valueRef="value"
+  textRef="label"
+  searchRef="label"
+  virtual="true"
+  showClearButton="true"
+/>
+<br />
+Selected: {{ selectedValue | json }}
