@@ -8,8 +8,8 @@ import { ApiRow, DOC_IMPORTS } from '../../shared/doc/doc.components';
     <app-doc-page group="Стили" title="Подключение и темы">
       <p lead>
         Стили библиотеки — это набор SCSS-файлов в папке <code>styles</code> пакета. Они собираются в приложении и настраиваются одной
-        Sass-картой цветов <code>$blocks</code>. Каждая тема — отдельный CSS-файл, собранный со своей картой; CSS-переменных для цветов в
-        библиотеке нет.
+        Sass-картой цветов <code>$blocks</code>. Каждая тема — отдельный CSS-файл, собранный со своей картой. Цвета рабочего блока
+        дополнительно выводятся в CSS-переменные.
       </p>
 
       <app-doc-section title="Файл темы">
@@ -27,11 +27,22 @@ import { ApiRow, DOC_IMPORTS } from '../../shared/doc/doc.components';
       <app-doc-section title="Карта цветов">
         <p class="margin-b-3">
           <code>$blocks</code> состоит из двух блоков: <code>work</code> — рабочая область, цвета по умолчанию, и <code>main</code> —
-          контрастные панели, например шапка. В каждом блоке девять акцентов, у каждого акцента три цвета. Если карту не передать,
-          используются цвета из <code>styles/color</code> библиотеки.
+          контрастные панели, например шапка. Блок — это набор акцентов, у каждого акцента три цвета. Если карту не передать, используются
+          цвета из <code>styles/color</code> библиотеки: там двенадцать акцентов. Набор акцентов определяет сама карта — классы и переменные
+          создаются только для тех, что в ней перечислены. В темах этой документации акцентов девять, без <code>*_invert</code>.
         </p>
         <app-doc-code [code]="blocksCode" lang="scss" />
         <app-api-table title="Акценты" nameLabel="Акцент" [rows]="accents" />
+      </app-doc-section>
+
+      <app-doc-section title="CSS-переменные">
+        <p class="margin-b-3">
+          Все цвета блока <code>work</code> выводятся в <code>:root</code> как CSS-переменные с именами вида
+          <code>--&lt;свойство&gt;-&lt;акцент&gt;</code>. Они меняются вместе с файлом темы, поэтому подходят для стилей компонентов
+          приложения, которые собираются один раз и не знают о Sass-карте. Для блока <code>main</code> переменных нет.
+        </p>
+        <app-doc-code [code]="cssVarsCode" lang="scss" />
+        <app-api-table title="Шаблоны имён" nameLabel="Переменная" [rows]="cssVars" />
       </app-doc-section>
 
       <app-doc-section title="Сборка и переключение темы">
@@ -100,7 +111,7 @@ $primary: (
   'color': #ffffff,
   'border-color': #2fb4e9,
 );
-// ... secondary, ghost, success, warning, error, info, focus
+// ... secondary, ghost, success, warning, error, info, focus и другие акценты
 
 $work: (
   'default': $default,
@@ -143,6 +154,23 @@ themeLink.href = theme === 'dark' ? 'styles-dark.css' : 'styles-light.css';`;
     { name: 'error', description: 'Ошибка' },
     { name: 'info', description: 'Информация и ссылки' },
     { name: 'focus', description: 'Элемент в фокусе' },
+    { name: 'success_invert, warning_invert, error_invert', description: 'Те же статусы с насыщенным фоном и белым текстом' },
+  ];
+
+  cssVarsCode = `.report-card {
+  color: var(--color-default);
+  background-color: var(--background-color-default);
+  border: 1px solid var(--border-color-default);
+}
+
+.report-card_failed {
+  border-color: var(--border-color-error);
+}`;
+
+  cssVars: ApiRow[] = [
+    { name: '--color-<акцент>', description: 'Цвет текста акцента' },
+    { name: '--background-color-<акцент>', description: 'Цвет фона акцента' },
+    { name: '--border-color-<акцент>', description: 'Цвет рамки акцента' },
   ];
 
   files: ApiRow[] = [
@@ -173,8 +201,10 @@ themeLink.href = theme === 'dark' ? 'styles-dark.css' : 'styles-light.css';`;
 
   reset: ApiRow[] = [
     { name: 'html', description: 'Размер шрифта 10px — основа для rem' },
-    { name: '*', description: 'Шрифт Roboto, нулевые margin и padding, box-sizing: border-box, без обводки фокуса' },
-    { name: 'body', description: 'Размер 1.2rem, интервал 1.5, высота 100vh' },
+    { name: '*', description: 'Шрифт Roboto, нулевые margin и padding, box-sizing: border-box' },
+    { name: ':focus', description: 'Обводка браузера убрана у всех элементов' },
+    { name: ':focus-visible', description: 'Обводка 2 пикселя цветом рамки акцента focus при фокусе с клавиатуры; кроме input и textarea' },
+    { name: 'body', description: 'Фон и цвет текста акцента default блока work, размер 1.2rem, интервал 1.5, высота 100vh' },
     { name: 'h1 … h6', description: 'Размеры и насыщенность стилей font-h1 … font-h6' },
     { name: 'p', description: 'Стиль font-body3' },
     { name: 'a', description: 'Цвет акцента info, без подчёркивания, одна строка с многоточием' },

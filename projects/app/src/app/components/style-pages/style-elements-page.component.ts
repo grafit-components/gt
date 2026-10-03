@@ -60,8 +60,8 @@ import { ApiRow, DOC_IMPORTS } from '../../shared/doc/doc.components';
         </div>
         <app-doc-code [code]="loaderCode" />
         <p class="margin-b-0">
-          Подложка <code>loader_center</code> всегда белая с прозрачностью 50 % и в тёмной теме высветляет блок. Директива
-          <code>itskSpinner</code> использует другой класс — <code>spinner</code>.
+          Подложка <code>loader_center</code> берёт фон акцента <code>default</code> текущей темы. Прозрачность 50 % задана всему элементу,
+          поэтому кольцо в центре тоже полупрозрачное. Директива <code>itskSpinner</code> использует другой класс — <code>spinner</code>.
         </p>
       </app-doc-section>
 
