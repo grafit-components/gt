@@ -21,3 +21,11 @@
     }
   }
 }
+
+:root {
+  @each $accentName, $accent in map.get(color.$blocks, 'work') {
+    @each $parameter, $value in $accent {
+      --#{$parameter}-#{$accentName}: #{$value};
+    }
+  }
+}

@@ -47,6 +47,7 @@
 
 .toggle {
   display: inline-flex;
+  user-select: none;
   @include control-util.toggleBlock(map.get(color.$blocks, work));
 
   &_disabled {

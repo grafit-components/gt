@@ -11,3 +11,7 @@
     @include modal-util.modal($blockItem);
   }
 }
+
+.backdrop-dark-background {
+  background: rgba(17, 29, 34, 0.75);
+}

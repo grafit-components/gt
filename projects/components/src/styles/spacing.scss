@@ -33,3 +33,9 @@ $spaceListKeys: map.keys(vars.$spaceList);
     }
   }
 }
+
+@each $i, $widthItem in vars.$spaceList {
+  .width-#{$i} {
+    width: $widthItem;
+  }
+}
