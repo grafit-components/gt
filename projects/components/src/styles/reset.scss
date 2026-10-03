@@ -17,12 +17,12 @@ html {
 body {
   font-kerning: normal;
   font-size: 1.2rem;
-  background: map.get(color.$blocks, '$work', 'default', 'color');
+  background: map.get(color.$blocks, 'work', 'default', 'background-color');
   height: 100vh;
   margin: 0;
   font-weight: 400;
   line-height: 1.5;
-  color: map.get(color.$blocks, '$work', 'default', 'color');
+  color: map.get(color.$blocks, 'work', 'default', 'color');
 }
 
 input,
@@ -54,14 +54,15 @@ table {
   outline: 0;
 }
 
+:focus-visible:not(input, textarea) {
+  outline: 2px solid map.get(color.$blocks, 'work', 'focus', 'border-color');
+  outline-offset: 2px;
+}
+
 * {
   font-family: vars.$font_default;
   margin: 0;
   padding: 0;
-}
-
-button:focus {
-  outline: 0;
 }
 
 //font

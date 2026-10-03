@@ -113,7 +113,8 @@
   min-width: 0;
 }
 
-.nowrap {
+.nowrap,
+.white-space_nowrap {
   white-space: nowrap;
 }
 
@@ -153,13 +154,6 @@
   &-y-scroll {
     overflow-y: scroll;
   }
-}
-
-.overflow-hidden {
-  overflow: hidden;
-}
-.white-space_nowrap {
-  white-space: nowrap;
 }
 
 .text-overflow {

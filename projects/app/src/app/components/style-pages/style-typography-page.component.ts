@@ -72,7 +72,7 @@ export class StyleTypographyPageComponent {
     { name: 'title1', size: '1.6rem', lineHeight: '2.8rem', weight: '400' },
     { name: 'title2', size: '1.4rem', lineHeight: '2rem', weight: '500' },
     { name: 'title3', size: '1.2rem', lineHeight: '1.6rem', weight: '700' },
-    { name: 'body1', size: '1.6rem', lineHeight: '1.4rem', weight: '400' },
+    { name: 'body1', size: '1.6rem', lineHeight: '2.4rem', weight: '400' },
     { name: 'body2', size: '1.4rem', lineHeight: '1.6rem', weight: '400' },
     { name: 'body3', size: '1.2rem', lineHeight: '1.8rem', weight: '400' },
     { name: 'button1', size: '1.4rem', lineHeight: '1.6rem', weight: '500' },
