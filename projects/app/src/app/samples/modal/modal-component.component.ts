@@ -7,11 +7,17 @@ import { ItskCurrentModal, ItskDynamicData, ItskModalCloseReason, ItskModalServi
   selector: 'app-rename-dialog',
   imports: [FormsModule],
   template: `
-    <div class="padding-5" style="width: 360px">
-      <div class="font-title2 margin-b-3">Переименовать</div>
-      <div class="input margin-b-4"><input class="input__field" [(ngModel)]="name" /></div>
-      <button class="button_primary margin-r-2" (click)="save()">Сохранить</button>
-      <button class="button_default" (click)="modal.close()">Отмена</button>
+    <div style="width: 360px">
+      <div class="modal__head">
+        <div class="font-title2 container_auto">Переименовать</div>
+      </div>
+      <div class="modal__content">
+        <div class="input container_auto"><input class="input__field" [(ngModel)]="name" /></div>
+      </div>
+      <div class="modal__foot">
+        <button class="button_primary margin-r-2" (click)="save()">Сохранить</button>
+        <button class="button_default" (click)="modal.close()">Отмена</button>
+      </div>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

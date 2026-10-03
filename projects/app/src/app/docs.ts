@@ -16,6 +16,7 @@ import { SelectPageComponent } from './components/select-page/select-page.compon
 import { SpinnerPageComponent } from './components/spinner-page/spinner-page.component';
 import { StyleColorsPageComponent } from './components/style-pages/style-colors-page.component';
 import { StyleControlsPageComponent } from './components/style-pages/style-controls-page.component';
+import { StyleElementsPageComponent } from './components/style-pages/style-elements-page.component';
 import { StyleLayoutPageComponent } from './components/style-pages/style-layout-page.component';
 import { StyleSetupPageComponent } from './components/style-pages/style-setup-page.component';
 import { StyleSpacingPageComponent } from './components/style-pages/style-spacing-page.component';
@@ -75,6 +76,13 @@ export const DOCS: DocEntry[] = [
     group: 'Стили',
     description: 'Классы для кнопок и полей ввода',
     component: StyleControlsPageComponent,
+  },
+  {
+    path: 'style-elements',
+    name: 'Плашки, метки и индикаторы',
+    group: 'Стили',
+    description: 'Плашки, метки, индикатор загрузки, карточки, ссылки',
+    component: StyleElementsPageComponent,
   },
 
   {

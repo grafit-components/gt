@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ItskIconComponent } from '@grafit/components';
+import { FormsModule } from '@angular/forms';
+import { ItskIconComponent, ItskRadioButtonComponent, ItskRadioComponent, ItskToggleComponent } from '@grafit/components';
 import { ApiRow, DOC_IMPORTS } from '../../shared/doc/doc.components';
 
 @Component({
   selector: 'app-style-controls-page',
-  imports: [DOC_IMPORTS, ItskIconComponent],
+  imports: [DOC_IMPORTS, ItskIconComponent, ItskToggleComponent, ItskRadioComponent, ItskRadioButtonComponent, FormsModule],
   template: `
     <app-doc-page group="Стили" title="Кнопки и поля">
       <p lead>
@@ -33,6 +34,23 @@ import { ApiRow, DOC_IMPORTS } from '../../shared/doc/doc.components';
           </div>
         </div>
         <app-doc-code [code]="buttonCode" />
+        <p class="margin-b-3">
+          При наведении фон кнопки меняется на 5 %, при нажатии — на 10 %. Те же состояния можно включить классами, не дожидаясь действий
+          пользователя. В <code>button__group</code> между кнопками ставят разделитель <code>button__delimiter_&lt;акцент&gt;</code>: это
+          полоска шириной в один пиксель цвета фона акцента, высоту ей задаёт соседний класс.
+        </p>
+        <div class="demo-row margin-b-3">
+          <button class="button_primary">обычная</button>
+          <button class="button_primary button_primary_active">_active</button>
+          <button class="button_primary button_primary_focus">_focus</button>
+          <button class="button_primary button_primary_disabled">_disabled</button>
+          <div class="button__group">
+            <button class="button_default">Копировать</button>
+            <div class="button__delimiter_primary height-8"></div>
+            <button class="button_default">Вставить</button>
+          </div>
+        </div>
+        <app-api-table title="Классы кнопок" nameLabel="Класс" [rows]="buttonClasses" />
       </app-doc-section>
 
       <app-doc-section title="Поля ввода">
@@ -80,6 +98,33 @@ import { ApiRow, DOC_IMPORTS } from '../../shared/doc/doc.components';
         <app-doc-code [code]="inputCode" />
         <app-api-table title="Классы полей" nameLabel="Класс" [rows]="inputClasses" />
       </app-doc-section>
+
+      <app-doc-section title="Состояния переключателей, радиокнопок и списков">
+        <p class="margin-b-3">
+          У компонентов <code>itsk-toggle</code> и <code>itsk-radio</code> нет параметров для состояния проверки — оно задаётся классом на
+          самом компоненте. Радиокнопки красят рамку и точку. Переключатель во включённом положении получает цвет фона акцента — в темах
+          этой документации фоны у <code>success</code>, <code>warning</code> и <code>error</code> бледные, поэтому разница едва заметна.
+        </p>
+        <div class="demo-row margin-b-3">
+          <itsk-toggle class="toggle_success" [ngModel]="true">toggle_success</itsk-toggle>
+          <itsk-toggle class="toggle_warning" [ngModel]="true">toggle_warning</itsk-toggle>
+          <itsk-toggle class="toggle_error" [ngModel]="true">toggle_error</itsk-toggle>
+          <itsk-radio class="radio_warning" [inline]="true" [ngModel]="1">
+            <itsk-radio-button [value]="1">radio_warning</itsk-radio-button>
+          </itsk-radio>
+          <itsk-radio class="radio_error" [inline]="true" [ngModel]="1">
+            <itsk-radio-button [value]="1">radio_error</itsk-radio-button>
+          </itsk-radio>
+        </div>
+        <p class="margin-b-3">Пункты списка <code>list__item</code> тоже получают состояние классом:</p>
+        <div class="list margin-b-3" style="width: 28rem">
+          <div class="list__item">list__item</div>
+          <div class="list__item list__item_active">list__item_active</div>
+          <div class="list__item list__item_disabled">list__item_disabled</div>
+          <div class="list__item list__item_non-interactive">list__item_non-interactive</div>
+        </div>
+        <app-api-table title="Классы состояний" nameLabel="Класс" [rows]="stateClasses" />
+      </app-doc-section>
     </app-doc-page>
   `,
   styles: `
@@ -116,6 +161,23 @@ export class StyleControlsPageComponent {
     <div class="input__helper">Поле обязательно для ввода</div>
   </div>
 </label>`;
+
+  buttonClasses: ApiRow[] = [
+    { name: 'button_<акцент>', description: 'Кнопка цветами акцента, высота 32 пикселя' },
+    { name: 'button_<акцент>_active', description: 'Нажатое состояние' },
+    { name: 'button_<акцент>_focus', description: 'Рамка цвета фокуса, как при :focus' },
+    { name: 'button_<акцент>_disabled', description: 'Заблокированный вид, как при атрибуте disabled' },
+    { name: 'button__group', description: 'Группа кнопок без зазоров, скруглены только крайние' },
+    { name: 'button__delimiter_<акцент>', description: 'Разделитель внутри группы' },
+    { name: 'button-delimiter_<акцент>', description: 'Тот же разделитель, но только внутри block-main или block-work' },
+  ];
+
+  stateClasses: ApiRow[] = [
+    { name: 'toggle_success, toggle_warning, toggle_error', description: 'Включённый переключатель цветом фона акцента' },
+    { name: 'radio_warning, radio_error', description: 'Цвет рамки и точки радиокнопок' },
+    { name: 'list__item_active', description: 'Выбранный пункт списка' },
+    { name: 'list__item_disabled, list__item_non-interactive', description: 'Пункт без курсора-указателя при наведении' },
+  ];
 
   inputClasses: ApiRow[] = [
     { name: 'input', description: 'Обёртка поля' },

@@ -105,6 +105,10 @@ export class StyleColorsPageComponent implements OnDestroy {
     { name: 'background-color_<акцент>', description: 'Цвет фона' },
     { name: 'border-color_<акцент>', description: 'Цвет рамки; саму рамку задают классы border-1px и подобные' },
     { name: 'block-main, block-work', description: 'Переключают вложенные элементы на цвета блока' },
+    {
+      name: 'block-main__<свойство>_<акцент>',
+      description: 'То же одним классом без обёртки, например block-main__color_primary; так же для block-work',
+    },
   ];
 
   constructor() {

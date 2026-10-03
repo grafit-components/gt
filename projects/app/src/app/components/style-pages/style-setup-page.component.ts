@@ -55,6 +55,19 @@ import { ApiRow, DOC_IMPORTS } from '../../shared/doc/doc.components';
         </p>
         <app-doc-code [code]="varsCode" lang="scss" />
         <app-api-table title="Что есть в библиотеке" nameLabel="Файл" [rows]="files" />
+        <app-api-table title="Миксины общего назначения" nameLabel="Миксин" [rows]="mixins" />
+        <p class="margin-b-0">
+          Остальные файлы <code>util/*-util</code> содержат миксины, из которых собраны стили самих компонентов: кнопок, полей, списков,
+          меню, вкладок и других. Они принимают блок или акцент темы и нужны, только если вы оформляете свой блок цветов.
+        </p>
+      </app-doc-section>
+
+      <app-doc-section title="Сброс стилей">
+        <p class="margin-b-3">
+          Вместе с библиотекой подключается сброс браузерных стилей. Он затрагивает все элементы страницы, поэтому его стоит учитывать при
+          вёрстке своих компонентов.
+        </p>
+        <app-api-table title="Что задаёт сброс" nameLabel="Элемент" [rows]="reset" />
       </app-doc-section>
     </app-doc-page>
   `,
@@ -140,5 +153,33 @@ themeLink.href = theme === 'dark' ? 'styles-dark.css' : 'styles-light.css';`;
     { name: 'util/shadow-util', description: 'Миксины shadow, shadow-t, shadow-b, shadow-l, shadow-r' },
     { name: 'border', description: 'Миксин borderRadius($size)' },
     { name: 'util/*-util', description: 'Миксины отдельных компонентов: кнопки, поля, скроллбар и другие' },
+  ];
+
+  mixins: ApiRow[] = [
+    { name: 'shape-util.baseShape($accent)', description: 'Рамка, фон и цвет текста акцента; фон активного состояния' },
+    { name: 'shape-util.baseBorder, baseBackground, baseColor', description: 'То же по отдельности' },
+    { name: 'shape-util.baseRadius()', description: 'Скругление 4 пикселя' },
+    { name: 'shape-util.baseShadow()', description: 'Базовая тень вниз первого уровня' },
+    { name: 'state-util.baseState($color)', description: 'Фон и его состояния: наведение, нажатие, _active, _disabled' },
+    { name: 'state-util.baseHover($color)', description: 'Изменение фона на 5 % при наведении' },
+    { name: 'state-util.baseFocus($blockItem)', description: 'Рамка цвета фокуса при :focus и для класса _focus' },
+    { name: 'state-util.cursorPointer()', description: 'Курсор-указатель при наведении' },
+    { name: 'scrollbar-util.scrollbarBasis()', description: 'Прокрутка с тонкой полосой в цветах темы' },
+    { name: 'scrollbar-util.scrollbarHidden()', description: 'Полоса прокрутки видна только при наведении' },
+    { name: 'scrollbar-util.scrollbarInvisible()', description: 'Прокрутка без полосы' },
+    { name: 'marker-util.marker(), markerAccent($accent)', description: 'Форма и цвета метки' },
+    { name: 'card-util.card()', description: 'Поля и отступы карточки' },
+  ];
+
+  reset: ApiRow[] = [
+    { name: 'html', description: 'Размер шрифта 10px — основа для rem' },
+    { name: '*', description: 'Шрифт Roboto, нулевые margin и padding, box-sizing: border-box, без обводки фокуса' },
+    { name: 'body', description: 'Размер 1.2rem, интервал 1.5, высота 100vh' },
+    { name: 'h1 … h6', description: 'Размеры и насыщенность стилей font-h1 … font-h6' },
+    { name: 'p', description: 'Стиль font-body3' },
+    { name: 'a', description: 'Цвет акцента info, без подчёркивания, одна строка с многоточием' },
+    { name: 'li', description: 'Без маркеров списка' },
+    { name: 'table', description: 'Схлопнутые рамки, выравнивание влево' },
+    { name: 'fieldset', description: 'Без рамки и отступов' },
   ];
 }
