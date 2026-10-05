@@ -9,11 +9,17 @@ import { IModalResult, ItskModalCloseReason, ItskModalConfig, ItskModalService }
     Result: {{ result }}
 
     <ng-template #confirm let-data let-close="close">
-      <div class="padding-5" style="width: 360px">
-        <div class="font-title2 margin-b-3">Удалить «{{ data.name }}»?</div>
-        <p class="margin-b-4">Окно можно закрыть кнопкой, клавишей Esc или кликом по затемнению.</p>
-        <button class="button_primary margin-r-2" (click)="close({ reason: reasons.Resolve })">Удалить</button>
-        <button class="button_default" (click)="close({ reason: reasons.Exit })">Отмена</button>
+      <div style="width: 360px">
+        <div class="modal__head">
+          <div class="font-title2 container_auto">Удалить «{{ data.name }}»?</div>
+        </div>
+        <div class="modal__content">
+          <p>Окно можно закрыть кнопкой, клавишей Esc или кликом по затемнению.</p>
+        </div>
+        <div class="modal__foot">
+          <button class="button_primary margin-r-2" (click)="close({ reason: reasons.Resolve })">Удалить</button>
+          <button class="button_default" (click)="close({ reason: reasons.Exit })">Отмена</button>
+        </div>
       </div>
     </ng-template>
   `,

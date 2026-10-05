@@ -24,7 +24,7 @@ $success: (
   'background-color': #f3f3f3,
 );
 $success_invert: (
-  'background': #22c38e,
+  'background-color': #22c38e,
   'color': #ffffff,
   'border-color': #1dad7e,
 );
@@ -66,6 +66,9 @@ $main: (
   'success': $success,
   'warning': $warning,
   'error': $error,
+  'success_invert': $success_invert,
+  'warning_invert': $warning_invert,
+  'error_invert': $error_invert,
   'info': $info,
   'focus': $focus,
 );

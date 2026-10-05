@@ -37,10 +37,17 @@ import { ApiRow, DOC_IMPORTS } from '../../shared/doc/doc.components';
         </table>
       </app-doc-section>
 
-      <app-doc-section title="Классы отступов и высот">
+      <app-doc-section title="Классы отступов и размеров">
         <p class="margin-b-3">
-          Вместо <code>N</code> подставляется шаг шкалы от 0 до 14. Классы отступов выставляют значение с <code>!important</code>.
+          Вместо <code>N</code> подставляется шаг шкалы от 0 до 14. Классы отступов выставляют значение с <code>!important</code>, классы
+          ширины и высоты — без него.
         </p>
+        <div class="demo-row margin-b-3">
+          @for (width of widths; track width) {
+            <div class="height-8 background-color_primary border-radius-1" [class]="'width-' + width" [title]="'width-' + width"></div>
+          }
+          <span class="font-caption">width-2, width-6, width-10, width-14 при высоте height-8</span>
+        </div>
         <app-doc-code [code]="spacingCode" />
         <app-api-table title="Шаблоны имён" nameLabel="Класс" [rows]="spacingClasses" />
       </app-doc-section>
@@ -75,7 +82,15 @@ import { ApiRow, DOC_IMPORTS } from '../../shared/doc/doc.components';
             <div class="demo-box background-color_default" [class]="shadow">{{ shadow }}</div>
           }
         </div>
+        <p class="margin-b-3">
+          <code>shadow-hover</code> показывает равномерную тень первого уровня только при наведении — для карточек и строк, на которые можно
+          нажать. Наведите курсор на блок ниже.
+        </p>
+        <div class="demo-row demo-row_shadow margin-b-3">
+          <div class="demo-box background-color_default shadow-hover">shadow-hover</div>
+        </div>
         <app-api-table title="Уровни" nameLabel="Переменная" [rows]="shadowLevels" />
+        <app-api-table title="Шаблоны имён" nameLabel="Класс" [rows]="shadowClasses" />
       </app-doc-section>
     </app-doc-page>
   `,
@@ -88,6 +103,7 @@ import { ApiRow, DOC_IMPORTS } from '../../shared/doc/doc.components';
     .demo-row {
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 1.6rem;
 
       &_shadow {
@@ -127,6 +143,7 @@ export class StyleSpacingPageComponent {
     { name: 'margin-h-N, padding-h-N', description: 'Слева и справа' },
     { name: 'margin-v-N, padding-v-N', description: 'Сверху и снизу' },
     { name: 'margin-t-N, -r-N, -b-N, -l-N', description: 'С одной стороны: сверху, справа, снизу, слева; то же для padding' },
+    { name: 'width-N', description: 'Ширина' },
     { name: 'height-N', description: 'Высота' },
     { name: 'line-height-N', description: 'Межстрочный интервал' },
   ];
@@ -136,6 +153,14 @@ export class StyleSpacingPageComponent {
     { name: 'border-t-1px, -r-, -b-, -l-', description: 'Рамка с одной стороны, те же четыре толщины' },
     { name: 'border-radius-0 … border-radius-5', description: 'Скругление всех углов: 0, 4, 8, 12, 16, 20 пикселей' },
     { name: 'border-radius-topLeft-N, -topRight-N, -bottomRight-N, -bottomLeft-N', description: 'Скругление одного угла' },
+  ];
+
+  widths = [2, 6, 10, 14];
+
+  shadowClasses: ApiRow[] = [
+    { name: 'shadow-1 … shadow-3', description: 'Равномерная тень' },
+    { name: 'shadow-b-N, shadow-l-N, shadow-r-N', description: 'Тень, смещённая вниз, влево или вправо' },
+    { name: 'shadow-hover', description: 'Равномерная тень первого уровня при наведении' },
   ];
 
   shadowLevels: ApiRow[] = [

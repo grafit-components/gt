@@ -1,9 +1,0 @@
-@use 'color.scss' as work;
-
-@each $accentName, $accent in work.$work {
-  @each $parameter, $value in $accent {
-    .main-#{$accentName}_#{$parameter} {
-      #{$parameter}: $value;
-    }
-  }
-}

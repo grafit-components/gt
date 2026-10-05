@@ -48,6 +48,11 @@ import { ApiRow, DOC_IMPORTS } from '../../shared/doc/doc.components';
       </app-doc-section>
 
       <app-doc-section title="Работа с текстом">
+        <p class="margin-b-3">
+          <code>font-bold</code> делает текст полужирным, не меняя размера: насыщенность 550. Его можно сочетать с любым стилем шкалы, кроме
+          случаев, когда тот уже задал насыщенность с <code>!important</code> — тогда побеждает стиль шкалы.
+        </p>
+        <p class="margin-b-3">Обычный текст и <span class="font-bold">текст с классом font-bold</span>.</p>
         <app-api-table title="Служебные классы" nameLabel="Класс" [rows]="textClasses" />
       </app-doc-section>
     </app-doc-page>
@@ -72,7 +77,7 @@ export class StyleTypographyPageComponent {
     { name: 'title1', size: '1.6rem', lineHeight: '2.8rem', weight: '400' },
     { name: 'title2', size: '1.4rem', lineHeight: '2rem', weight: '500' },
     { name: 'title3', size: '1.2rem', lineHeight: '1.6rem', weight: '700' },
-    { name: 'body1', size: '1.6rem', lineHeight: '1.4rem', weight: '400' },
+    { name: 'body1', size: '1.6rem', lineHeight: '2.4rem', weight: '400' },
     { name: 'body2', size: '1.4rem', lineHeight: '1.6rem', weight: '400' },
     { name: 'body3', size: '1.2rem', lineHeight: '1.8rem', weight: '400' },
     { name: 'button1', size: '1.4rem', lineHeight: '1.6rem', weight: '500' },
@@ -93,6 +98,7 @@ export class StyleTypographyPageComponent {
 }`;
 
   textClasses: ApiRow[] = [
+    { name: 'font-bold', description: 'Полужирный текст, насыщенность 550' },
     { name: 'text-align-left, -center, -right', description: 'Выравнивание текста' },
     { name: 'text-short', description: 'Одна строка с многоточием при переполнении' },
     { name: 'nowrap, white-space_nowrap', description: 'Запрет переноса строк' },

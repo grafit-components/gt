@@ -36,6 +36,24 @@ import { ApiRow, DOC_IMPORTS } from '../../shared/doc/doc.components';
         <app-doc-code [code]="appCode" />
       </app-doc-section>
 
+      <app-doc-section title="Ручка изменения ширины">
+        <p class="margin-b-3">
+          <code>resize</code> — вертикальная полоска между двумя панелями, за которую пользователь тянет, чтобы изменить их ширину. Класс
+          задаёт только вид: ширину 4 пикселя с отрицательными полями, чтобы полоска не раздвигала соседей, курсор <code>ew-resize</code> и
+          подсветку при наведении. Само перетаскивание реализует приложение.
+        </p>
+        <p class="margin-b-3">
+          Из-за отрицательных полей полоска заходит на соседние панели, и следующая панель перекрывает её правую половину. Чтобы ручка
+          ловила курсор всей шириной, добавьте ей <code>position-relative</code>.
+        </p>
+        <div class="container margin-b-3" style="height: 8rem">
+          <div class="cell container_4">Панель</div>
+          <div class="resize position-relative"></div>
+          <div class="cell container_auto">Содержимое</div>
+        </div>
+        <app-doc-code [code]="resizeCode" />
+      </app-doc-section>
+
       <app-doc-section title="Служебные классы">
         <app-api-table title="Флексбокс" nameLabel="Класс" [rows]="flexClasses" />
         <app-api-table title="Отображение и позиционирование" nameLabel="Класс" [rows]="displayClasses" />
@@ -74,6 +92,12 @@ export class StyleLayoutPageComponent {
   </div>
 </div>`;
 
+  resizeCode = `<div class="container">
+  <div class="container_4">Панель</div>
+  <div class="resize position-relative" (mousedown)="startResize($event)"></div>
+  <div class="container_auto">Содержимое</div>
+</div>`;
+
   flexClasses: ApiRow[] = [
     { name: 'container', description: 'Флекс-строка' },
     { name: 'container_column', description: 'Флекс-колонка без переноса' },
@@ -92,6 +116,7 @@ export class StyleLayoutPageComponent {
     { name: 'position-relative, -absolute, -fixed', description: 'Свойство position' },
     { name: 'float__left, float__right, clear', description: 'Обтекание и его сброс' },
     { name: 'cursor_pointer', description: 'Курсор-указатель при наведении' },
+    { name: 'resize', description: 'Ручка изменения ширины между панелями' },
   ];
 
   overflowClasses: ApiRow[] = [

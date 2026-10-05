@@ -1,6 +1,7 @@
 @use 'util/shape-util.scss';
 @use 'util/card-util.scss';
 @use 'util/shadow-util.scss';
+@use 'util/scrollbar-util.scss';
 @use 'vars';
 
 .notification {
@@ -8,6 +9,11 @@
   margin: vars.$space-3;
   @include card-util.card();
   @include shadow-util.shadow(vars.$shadow-3);
+}
+
+.notification-content {
+  max-height: 300px;
+  @include scrollbar-util.scrollbarBasis();
 }
 
 .notification__container {

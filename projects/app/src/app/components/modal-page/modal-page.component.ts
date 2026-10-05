@@ -23,6 +23,11 @@ import { ApiRow, DOC_IMPORTS, sample } from '../../shared/doc/doc.components';
           Результат закрытия — объект <code>IModalResult</code> с обязательной причиной <code>reason</code> и любыми дополнительными полями.
           При закрытии клавишей <code>Esc</code> и кликом по затемнению причину выставляет сам сервис.
         </p>
+        <p class="margin-b-3">
+          Содержимое окна размечается тремя блоками: <code>modal__head</code> — шапка, <code>modal__content</code> — тело,
+          <code>modal__foot</code> — подвал с кнопками, прижатыми вправо. У каждого блока поля по 12 пикселей. Ширину окна задаёт само
+          содержимое, минимальный размер — 200 на 100 пикселей.
+        </p>
         <app-sample [options]="templateSample" />
       </app-doc-section>
 
