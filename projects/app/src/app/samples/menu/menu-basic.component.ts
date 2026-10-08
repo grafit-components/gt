@@ -6,7 +6,7 @@ import { IItskMenuItem, ItskMenuComponent } from '@grafit/components';
   imports: [ItskMenuComponent],
   template: `
     <!-- меню занимает высоту родителя, поэтому родитель должен быть flex-контейнером с заданной высотой -->
-    <div class="container border-1px border-color_default" style="width: 280px; height: 240px">
+    <div class="block-main container border-1px border-color_default" style="width: 280px; height: 240px">
       <itsk-menu [menu]="menu" (itemClick)="clicked = $event.name" />
     </div>
     <br />
@@ -19,9 +19,29 @@ export class MenuBasicComponent {
   protected menu: IItskMenuItem[] = [
     { name: 'Обзор', iconClassName: 'icon-home-house-filled' },
     { name: 'Профиль', iconClassName: 'icon-user-filled' },
+    {
+      name: 'Открытый сейчас пункт',
+      iconClassName: 'icon-user-filled',
+      url: '/menu',
+    },
     { name: 'Скрытый пункт', hidden: true },
-    { name: 'Пользователи', group: 'Администрирование' },
-    { name: 'Настройки', group: 'Администрирование', iconClassName: 'icon-settings-star-gear-filled' },
+    {
+      name: 'Пользователи',
+      group: 'Администрирование',
+    },
+    {
+      name: 'Настройки',
+      group: 'Администрирование',
+      iconClassName: 'icon-settings-star-gear-filled',
+      children: [
+        {
+          name: 'Роли',
+        },
+        {
+          name: 'Доступы',
+        },
+      ],
+    },
   ];
 
   protected clicked = '—';
