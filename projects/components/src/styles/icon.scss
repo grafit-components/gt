@@ -13,6 +13,9 @@
 
 @each $blockName, $blockItem in color.$blocks {
   .block-#{$blockName} {
+    .icon {
+      fill: map.get($blockItem, 'default', 'color')
+    }
     @each $accentName, $accent in $blockItem {
       .color_#{$accentName} .icon {
         fill: map.get($accent, 'color');
@@ -22,8 +25,6 @@
       }
       //&.color_{accentName}, .color_{accentName}
       //  fill: accent.color !important;
-      //.icon
-      //  fill accent.color
     }
   }
 }

@@ -75,10 +75,13 @@
       &:hover {
         border-bottom: 0;
       }
+      itsk-icon {
+         margin-right: vars.$space-2;
+      }
     }
     &__icon {
       text-align: center;
-      padding: 0 vars.$space-1 0 vars.$space-10;
+      padding: 0 vars.$space-1;
     }
   }
 }
