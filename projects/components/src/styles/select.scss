@@ -130,6 +130,7 @@ itsk-select.ng-invalid .select__head {
   @include shadow-util.shadow-b(vars.$shadow-1);
   @include list-util.listDefault();
   @include list-util.listBlock(map.get(color.$blocks, 'work'));
+  flex: 1;
 }
 
 @each $blockName, $blockItem in color.$blocks {
